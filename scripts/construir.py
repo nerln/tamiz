@@ -12,7 +12,8 @@ Fonde:
     catalogo/ayuda_humana.json     se manca, elenco vuoto (lo dice)
     catalogo/glosario.json         se manca, elenco vuoto (lo dice)
     catalogo/grupos_paises.json    facoltativo; si aggiunge ai gruppi di base UE, EEE_no_UE, Suiza
-    sitio.json                     il nome del sito, copiato in catalogo.sitio
+    sitio.json                     il nome del sito, copiato in catalogo.sitio (senza il campo analytics)
+    scripts/analytics.py           allinea le pagine di web/ al token di sitio.json (conteggio visite)
 Con --ejemplo le schede, ayuda_humana e glosario vengono da schema/esempi/.
 
 Le schede si copiano così come sono, con i campi `area`, `informativa` e `plazo.mes_habitual`
@@ -136,13 +137,17 @@ def main(argv):
     if not f_sitio.exists():
         sys.exit("ERRORE  manca sitio.json")
 
+    # Il conteggio delle visite: le pagine di web/ seguono il token di sitio.json (scripts/analytics.py).
+    if subprocess.run([sys.executable, str(RAIZ / "scripts" / "analytics.py")]).returncode != 0:
+        sys.exit("ERRORE  scripts/analytics.py non ha allineato web/ al token di sitio.json")
+
     catalogo = {
         "esquema": "tamiz-catalogo",
         "version": 1.1,
         "actualizado_el": a.hoy,
         "redactado_con_ia": REDACTADO_CON_IA,
         "revision_humana": dict(REVISION_HUMANA),
-        "sitio": _leggi(f_sitio),
+        "sitio": {k: v for k, v in _leggi(f_sitio).items() if k != "analytics"},
         "fichas": fichas,
         "ayuda_humana": _lista_facoltativa(f_ayuda, "ayuda_humana"),
         "grupos_paises": grupos,

@@ -3,15 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com">
   <meta name="referrer" content="no-referrer">
   <meta name="description" content="Política de privacidad de Tamiz: qué datos se tratan, quién los trata y cuáles son tus derechos.">
   <title>Privacidad · Tamiz</title>
+  <link rel="canonical" href="https://nerln.github.io/tamiz/privacidad.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tamiz">
+  <meta property="og:title" content="Privacidad · Tamiz">
+  <meta property="og:description" content="Política de privacidad de Tamiz: qué datos se tratan, quién los trata y cuáles son tus derechos.">
+  <meta property="og:url" content="https://nerln.github.io/tamiz/privacidad.html">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="img/favicon-16.png" sizes="16x16" type="image/png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="stylesheet" href="css/paginas.css">
+  <!--analitica:beacon-->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"ee2940af484d46e494d956e6ae0181d7"}'></script>
+  <!--/analitica:beacon-->
 </head>
 <body>
   <a class="saltar" href="#contenido">Ir al contenido</a>
@@ -26,7 +37,9 @@
     <h1>Política de privacidad</h1>
 
     <div class="aviso">
-      <p><strong>En resumen:</strong> Tamiz no recoge datos personales. Tus respuestas y tu perfil se quedan en tu dispositivo y no se envían a ningún servidor.</p>
+      <!--analitica:resumen-->
+    <p><strong>En resumen:</strong> tus respuestas y tu perfil se quedan en tu dispositivo y no se envían a ningún servidor. Solo contamos las visitas, sin cookies y en cifras agregadas (apartado 9).</p>
+    <!--/analitica:resumen-->
     </div>
 
     <dl class="datos">
@@ -41,19 +54,29 @@
     </dl>
 
     <h2>1. Finalidad y datos tratados</h2>
-    <p>Tamiz no recoge datos personales. Las respuestas del cuestionario y tu perfil se procesan únicamente en tu dispositivo, con la única finalidad de mostrarte los resultados. No se envían a ningún servidor, ni nuestro ni de terceros.</p>
+    <!--analitica:finalidad-->
+    <p>El cuestionario no recoge datos personales: las respuestas y tu perfil se procesan únicamente en tu dispositivo, con la única finalidad de mostrarte los resultados, y no se envían a ningún servidor, ni nuestro ni de terceros. Aparte, Tamiz cuenta las visitas a las páginas con Cloudflare Web Analytics (apartado 9).</p>
+    <!--/analitica:finalidad-->
 
     <h2>2. Cookies</h2>
-    <p>Tamiz no usa cookies, ni herramientas de analítica, ni publicidad, ni contenidos de terceros (fuentes, scripts o vídeos externos).</p>
+    <!--analitica:cookies-->
+    <p>Tamiz no usa cookies, ni publicidad, ni fuentes, vídeos ni contenidos de terceros. El único script de terceros es el del recuento de visitas (apartado 9), que tampoco usa cookies.</p>
+    <!--/analitica:cookies-->
 
     <h2>3. Alojamiento y destinatarios</h2>
-    <p>La web está alojada en GitHub Pages, de GitHub, Inc. Para servir las páginas, GitHub recibe tu dirección IP y los datos técnicos de la solicitud (navegador, página pedida, fecha y hora). GitHub trata esos datos como responsable autónomo, conforme a su <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">declaración de privacidad</a>. No hay otros destinatarios.</p>
+    <!--analitica:destinatarios-->
+    <p>La web está alojada en GitHub Pages, de GitHub, Inc. Para servir las páginas, GitHub recibe tu dirección IP y los datos técnicos de la solicitud (navegador, página pedida, fecha y hora). GitHub trata esos datos como responsable autónomo, conforme a su <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">declaración de privacidad</a>. Para contar las visitas (apartado 9), Cloudflare, Inc. recibe tu dirección IP y la dirección de la página. No hay otros destinatarios.</p>
+    <!--/analitica:destinatarios-->
 
     <h2>4. Transferencias internacionales</h2>
-    <p>GitHub trata los datos en Estados Unidos. La transferencia está amparada por el Marco de Privacidad de Datos UE-EE. UU. (Data Privacy Framework), al que GitHub, Inc. está adherida.</p>
+    <!--analitica:transferencias-->
+    <p>GitHub y Cloudflare, Inc. tratan los datos en Estados Unidos. Las transferencias están amparadas por el Marco de Privacidad de Datos UE-EE. UU. (Data Privacy Framework), al que GitHub, Inc. y Cloudflare, Inc. están adheridas.</p>
+    <!--/analitica:transferencias-->
 
     <h2>5. Conservación</h2>
-    <p>Tamiz no conserva datos personales. Los datos que introduces permanecen en tu dispositivo hasta que los borres con «Borrar todo» o cierres la página. GitHub conserva los datos técnicos durante los plazos que indica su declaración de privacidad.</p>
+    <!--analitica:conservacion-->
+    <p>Tamiz no conserva datos personales. Los datos que introduces permanecen en tu dispositivo hasta que los borres con «Borrar todo» o cierres la página. GitHub conserva los datos técnicos durante los plazos que indica su declaración de privacidad. Cloudflare conserva los datos del recuento según el apartado 9.</p>
+    <!--/analitica:conservacion-->
 
     <h2>6. Archivo perfil.json</h2>
     <p>«Guardar en tu dispositivo» descarga el archivo <code>perfil.json</code>, que contiene los datos que has introducido. Su custodia te corresponde: Tamiz no tiene copia de él.</p>
@@ -63,6 +86,13 @@
 
     <h2>8. Tus derechos</h2>
     <p>Puedes ejercer los derechos de acceso, rectificación, supresión y los demás que reconoce el RGPD escribiendo al contacto indicado arriba, y presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es/">aepd.es</a>).</p>
+
+    <!--analitica:visitas-->
+    <h2>9. Recuento de visitas</h2>
+    <p>Para contar las visitas, Tamiz usa Cloudflare Web Analytics. Cuando se carga una página, un pequeño script de Cloudflare envía la dirección de la página, que solo incluye el nombre de la sección o de la ficha que abres, la página de la que vienes, el tipo de navegador y datos sobre los tiempos de carga. Tus respuestas nunca forman parte de la dirección de la página, así que no llegan a Cloudflare.</p>
+    <p>Cloudflare recibe tu dirección IP, como cualquiera que te entrega un archivo, y de ella deduce el país. Según Cloudflare, el script no usa cookies, no guarda nada en tu dispositivo y no construye perfiles de los visitantes. Tamiz solo ve cifras agregadas. Cloudflare conserva los datos detallados 7 días y los agregados hasta 6 meses.</p>
+    <p>Cloudflare, Inc. tiene su sede en Estados Unidos y está adherida al Marco de Privacidad de Datos UE-EE. UU. (Data Privacy Framework); se aplica <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">su política de privacidad</a>. La base jurídica es el interés legítimo de Tamiz en saber qué páginas se leen. Un bloqueador de contenidos lo impide.</p>
+    <!--/analitica:visitas-->
 
     <p class="fecha">Última actualización: 14/10/2026.</p>
   </main>

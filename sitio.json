@@ -4,5 +4,8 @@
   "url": "https://nerln.github.io/tamiz/",
   "repo": "nerln/tamiz",
   "responsable": "nerln",
-  "contacto": "https://github.com/nerln/tamiz/issues"
+  "contacto": "https://github.com/nerln/tamiz/issues",
+  "analytics": {
+    "cloudflare_token": "ee2940af484d46e494d956e6ae0181d7"
+  }
 }

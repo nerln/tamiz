@@ -11,9 +11,10 @@ Las ofertas son **oportunidades de terceros, no derechos ni ayudas**. Están en 
 sin «Parece que encajas», con un aviso fijo: «Ofertas de terceros, sin verificar: no son ayudas ni
 derechos. Tamiz no recibe nada de ti al abrirlas.»
 
-El sitio no hace peticiones a terceros desde el navegador: `empleo.json` es un fichero estático
-escrito al generar el sitio. La página no carga scripts, fuentes ni imágenes externas (CSP
-`default-src 'self'`). Los enlaces a las ofertas y a las fuentes son navegación con
+El sitio no pide datos a terceros desde el navegador: `empleo.json` es un fichero estático
+escrito al generar el sitio. La página no carga fuentes ni imágenes externas, y no carga scripts
+externos salvo el recuento de visitas de Cloudflare Web Analytics, cuando el token de `sitio.json`
+está lleno (la CSP sigue siendo `'self'`, con los dos hosts de ese recuento). Los enlaces a las ofertas y a las fuentes son navegación con
 `target="_blank"` y `rel="noopener noreferrer"`.
 
 ## Fuentes

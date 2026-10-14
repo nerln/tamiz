@@ -7,7 +7,9 @@ quién acudir para que te ayuden. Por ahora cubre la Comunitat Valenciana, adem�
 estatales y de la Unión Europea que se aplican allí.
 
 El motor de reglas corre en el navegador. **Tus respuestas no se envían a ningún sitio**: el
-sitio no hace peticiones a terceros, no usa cookies ni almacenamiento del navegador.
+sitio no usa cookies ni almacenamiento del navegador. El único tercero que puede recibir datos de
+visitas es el recuento de Cloudflare Web Analytics, cuando el token de `sitio.json` está lleno; no
+ve tus respuestas.
 
 > **Aviso.** Las fichas del catálogo están redactadas con ayuda de una IA y están pendientes de
 > revisión humana. La fuente oficial (la convocatoria, la norma o el organismo) siempre prevalece
@@ -32,10 +34,10 @@ sitio no hace peticiones a terceros, no usa cookies ni almacenamiento del navega
 | `web/` | El sitio estático que se publica: páginas HTML, CSS, JavaScript y los datos generados (`web/data/`). |
 | `catalogo/` | Las fuentes del catálogo: `fichas/` (una ayuda por archivo), `ayuda_humana.json` y `glosario.json`. |
 | `schema/` | Los esquemas JSON (`perfil.schema.json`, `catalogo.schema.json`) y los ejemplos inventados en `schema/esempi/`. |
-| `scripts/` | Herramientas en Python de la biblioteca estándar, entre ellas `construir.py` (genera el catálogo) y `validar.py` (valida esquemas, fichas y perfiles). |
+| `scripts/` | Herramientas en Python de la biblioteca estándar, entre ellas `construir.py` (genera el catálogo), `validar.py` (valida esquemas, fichas y perfiles) y `analytics.py` (enciende o apaga el recuento de visitas según el token de `sitio.json`). |
 | `tests/` | Pruebas del motor de reglas (`motor.test.mjs`), con perfiles inventados. |
 | `docs/` | Documentación del esquema: `ESQUEMA.md` describe el esquema v1.1 campo por campo y el contrato de la función `evaluar()`. |
-| `sitio.json` | Nombre, lema y dirección del sitio. Es la única fuente de esos datos. |
+| `sitio.json` | Nombre, lema y dirección del sitio, y el token de Cloudflare Web Analytics (`analytics.cloudflare_token`; vacío = sin recuento). Es la única fuente de esos datos. |
 
 ## Cómo se construye y se prueba en local
 

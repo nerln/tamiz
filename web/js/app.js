@@ -1,5 +1,5 @@
 // Punto d'ingresso: carica il catalogo, gestisce le sezioni (solo il nome nel frammento dell'URL), tiene lo stato in memoria.
-// Non scrive nulla nel browser e non chiama origini diverse da quella della pagina.
+// Il codice dell'app non scrive nulla nel browser e non chiama origini diverse da quella della pagina.
 import { evaluar } from "./motor.js";
 import { renderInicio } from "./ui/inicio.js";
 import { renderCuestionario } from "./ui/cuestionario.js";
