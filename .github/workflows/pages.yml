@@ -1,0 +1,55 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # una volta al giorno (UTC)
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# un solo deploy alla volta; un deploy in corso non viene interrotto
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # validar.py (chiamato da construir.py) usa jsonschema; versione fissata
+      - name: Installa jsonschema
+        run: python3 -m pip install jsonschema==4.26.0
+
+      # Le offerte si rigenerano ogni giorno. Se il passo fallisce resta il file del commit.
+      - name: Offerte di lavoro
+        continue-on-error: true
+        run: python3 scripts/empleo.py
+
+      - name: Costruisci il catalogo
+        run: python3 scripts/construir.py
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

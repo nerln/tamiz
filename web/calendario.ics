@@ -1,0 +1,71 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Tamiz//calendario de plazos//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Tamiz: plazos
+X-WR-CALNAME:Tamiz: plazos
+X-WR-CALDESC:Plazos leídos en el texto oficial. Compruébalos siempre en l
+ a fuente.
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+BEGIN:VEVENT
+UID:es-aei-doctorados-industriales-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261026
+DTEND;VALUE=DATE:20261027
+SUMMARY:Plazo: Doctorados Industriales 2026 — la presenta la empresa
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-doctorados-i
+ ndustriales-2026. Fecha leída en el texto oficial el 14/10/2026\; compru
+ ébala en la fuente: https://www.aei.gob.es/sites/default/files/convocator
+ y_info/file/2026-09/Resoluci%C3%B3n%20convocatoria%20DIN%202026_fda.pdf. N
+ o es un texto oficial.
+URL:https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-cont
+ ratos-formacion-doctores-doctoras-empresas-otras-20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-aei-fpu-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261112
+DTEND;VALUE=DATE:20261113
+SUMMARY:Plazo: FPU 2026 — solicitud de la persona
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-fpu-2026. Fe
+ cha leída en el texto oficial el 14/10/2026\; compruébala en la fuente: 
+ https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/202
+ 6-09/convocatoria%20FPU%202026_firmada.pdf. No es un texto oficial.
+URL:https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-for
+ macion-profesorado-universitario-fpu-2026
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-vc-apostd-2027.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:Plazo: APOSTD — solicitud de la persona
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-vc-apostd-2027. 
+ Fecha leída en el texto oficial el 14/10/2026\; compruébala en la fuente
+ : https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf. No es un tex
+ to oficial.
+URL:https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-vc-acif-2027.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261221
+DTEND;VALUE=DATE:20261222
+SUMMARY:Plazo: ACIF — solicitud de la persona
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-vc-acif-2027. Fe
+ cha leída en el texto oficial el 14/10/2026\; compruébala en la fuente: 
+ https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf. No es un texto
+  oficial.
+URL:https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

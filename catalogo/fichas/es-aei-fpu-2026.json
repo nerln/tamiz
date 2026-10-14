@@ -1,0 +1,73 @@
+{
+  "id": "es-aei-fpu-2026",
+  "nombre": "FPU 2026 — contratos predoctorales para formación de profesorado universitario",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "resumen": "Contrato predoctoral de hasta 4 años (más hasta 12 meses de orientación postdoctoral) para hacer la tesis con formación docente. 875 ayudas (44 reservadas a discapacidad igual o superior al 33 %). Tú rellenas y firmas el formulario; la presenta la entidad con la firma de su representante.",
+  "cuantia": {
+    "texto": "Contrato: 32.500 € por año, con salario bruto mínimo en el contrato de 25.457 €/año; indemnización de fin de contrato: 3.350 € en total; estancias en otros centros de I+D y matrícula de doctorado: 10.000 € en total. Convocatoria 2026 (resolución de 25/09/2026).",
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "!=",
+      "valor": "doctorado",
+      "texto": "Tener un nivel de estudios inferior al de doctor/a (de cualquier universidad)",
+      "cita": "Art. 6.2.b de la convocatoria (Resolución AEI de 25/09/2026)"
+    },
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": [
+        "grado",
+        "master"
+      ],
+      "texto": "Tener un grado, una licenciatura o un máster que dé acceso al doctorado",
+      "cita": "Art. 6.1 y anexo III.1 de la convocatoria"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar matriculado/a o admitido/a en un doctorado para el curso 2026/2027, o poder estarlo cuando se formalice el contrato (art. 6.1)",
+    "No haber disfrutado, antes de presentar la solicitud, de un contrato predoctoral por más de 12 meses en total (art. 6.2.c). Tener ahora un contrato predoctoral no te excluye si no pasas de 12 meses.",
+    "No haber iniciado, a fecha de la solicitud, la formación predoctoral con financiación de otras ayudas predoctorales del Plan Estatal 2024-2027 o de planes anteriores (declaración responsable, art. 15.3)",
+    "No haber sido beneficiario/a de una FPU en convocatorias anteriores (art. 6.2.a)",
+    "Tener director/a de tesis con título de doctor y vínculo con la entidad (art. 7); figurar en una sola solicitud (art. 6.3)",
+    "Colaboración docente mínima de 90 horas repartidas durante la ayuda (art. 12.2)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-10-20",
+    "fin": "2026-11-12",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf",
+    "nota": "Tú (persona participante) rellenas y firmas tu formulario del 20/10 al 12/11/2026 a las 14:00 (hora peninsular). La entidad firma y presenta la solicitud hasta el 20/11/2026 a las 14:00 (art. 14)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "El contrato es incompatible con cualquier otro contrato laboral y con otras ayudas de finalidad análoga; sí permite complementos no salariales de proyectos de I+D, complementos por docencia sin vínculo contractual, ayudas de movilidad y de asistencia a congresos (art. 12.1).",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Date de alta en el RUS de la AEI y, desde el 20/10/2026 hasta el 12/11 a las 14:00, rellena y firma tu formulario. Necesitas un/a director/a de tesis con doctorado y una entidad que presente la solicitud antes del 20/11 a las 14:00.",
+    "url": "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Formulario electrónico en la web de la AEI (alta previa en el RUS de la persona participante, de quien dirige la tesis y del representante legal de la entidad); la presenta la entidad solicitante con la firma de su representante.",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf",
+  "url_oficial": "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026",
+  "bdns": "918659",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-11-13",
+  "confianza": "alta"
+}

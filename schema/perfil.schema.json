@@ -1,0 +1,843 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nerln.github.io/tamiz/schema/perfil.schema.json",
+  "title": "Tamiz: perfil.json, esquema v1.1",
+  "description": "Perfil de una persona para Tamiz. Todo es opcional salvo esquema y version. Un campo ausente o \"no_lo_se\" da «Te falta un dato», nunca «No encaja». Quien no se reconoce en ninguna de las opciones de un campo lo deja vacío y obtiene «Te falta un dato» con un enlace a una ONG que puede orientarle. Ver docs/ESQUEMA.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "esquema",
+    "version"
+  ],
+  "properties": {
+    "esquema": {
+      "const": "tamiz-perfil"
+    },
+    "version": {
+      "const": 1.1
+    },
+    "actualizado_el": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    },
+    "ejemplo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nombre_ficticio": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "descripcion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "sintetico": {
+          "const": true
+        }
+      },
+      "required": [
+        "nombre_ficticio",
+        "descripcion",
+        "sintetico"
+      ]
+    },
+    "persona": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "anio_nacimiento": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1900,
+              "maximum": 2100
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "mes_nacimiento": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 12
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "nacionalidades": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "uniqueItems": true
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "sexo": {
+          "type": "string",
+          "enum": [
+            "mujer",
+            "hombre",
+            "otro",
+            "prefiero_no_decirlo"
+          ]
+        }
+      }
+    },
+    "residencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pais": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "region": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "provincia": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "municipio": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "municipio_ine": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{5}$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "empadronado_desde": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        }
+      }
+    },
+    "situacion_administrativa": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tipo": {
+          "description": "El documento que tiene la persona, escrito como en la tarjeta. Si ninguna opción describe su situación, el campo se deja vacío (no se escribe): el resultado será «Te falta un dato» con un enlace a una ONG que puede orientarle.",
+          "type": "string",
+          "enum": [
+            "nacional",
+            "ciudadano_ue",
+            "ciudadano_ue_permanente",
+            "ciudadano_ue_sin_registro",
+            "familiar_ue",
+            "familiar_ue_permanente",
+            "residencia_temporal",
+            "residencia_larga_duracion",
+            "residencia_larga_duracion_ue",
+            "estancia_estudios",
+            "proteccion_internacional_solicitante",
+            "proteccion_internacional",
+            "proteccion_temporal",
+            "residencia_art50_tue",
+            "otro",
+            "no_lo_se"
+          ]
+        },
+        "autoriza_trabajar": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "residencia_legal_desde": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "documento_desde": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "documento_hasta": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        }
+      }
+    },
+    "empleo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "situaciones": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "asalariado",
+                  "autonomo",
+                  "desempleado",
+                  "estudiante",
+                  "inactivo",
+                  "jubilado",
+                  "otro"
+                ]
+              },
+              "uniqueItems": true
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "tipo_contrato": {
+          "type": "string",
+          "enum": [
+            "indefinido",
+            "fijo_discontinuo",
+            "temporal",
+            "predoctoral",
+            "cientifico_tecnico",
+            "postdoctoral",
+            "formativo",
+            "funcionario",
+            "ninguno",
+            "otro",
+            "no_lo_se"
+          ]
+        },
+        "contrato_hasta": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12][0-9]|3[01]))?)?$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "meses_cotizados_6_anios": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 72
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "inscrito_demandante": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "cobra_prestacion": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        }
+      }
+    },
+    "estudios": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nivel_max": {
+          "type": "string",
+          "enum": [
+            "ninguno",
+            "primaria",
+            "eso",
+            "bachillerato",
+            "fp_medio",
+            "fp_superior",
+            "grado",
+            "master",
+            "doctorado",
+            "otro",
+            "no_lo_se"
+          ]
+        },
+        "matriculado_en": {
+          "type": "string",
+          "enum": [
+            "ninguno",
+            "secundaria",
+            "fp",
+            "grado",
+            "master",
+            "doctorado",
+            "idiomas",
+            "otro",
+            "no_lo_se"
+          ]
+        },
+        "titulo_extranjero": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "titulo_pais": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "homologacion": {
+          "type": "string",
+          "enum": [
+            "no_pedida",
+            "en_tramite",
+            "concedida",
+            "denegada",
+            "no_lo_se"
+          ]
+        }
+      }
+    },
+    "hogar": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "miembros": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "hijos": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "anio_nacimiento": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1900,
+                        "maximum": 2100
+                      },
+                      {
+                        "const": "no_lo_se"
+                      }
+                    ]
+                  },
+                  "mes_nacimiento": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 12
+                      },
+                      {
+                        "const": "no_lo_se"
+                      }
+                    ]
+                  }
+                }
+              },
+              "maxItems": 20
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "pareja": {
+          "type": "string",
+          "enum": [
+            "no",
+            "matrimonio",
+            "pareja_de_hecho",
+            "pareja_sin_registrar",
+            "prefiero_no_decirlo"
+          ]
+        },
+        "monoparental": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "familia_numerosa": {
+          "type": "string",
+          "enum": [
+            "no",
+            "general",
+            "especial",
+            "no_lo_se"
+          ]
+        }
+      }
+    },
+    "vivienda": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "regimen": {
+          "type": "string",
+          "enum": [
+            "alquiler",
+            "habitacion",
+            "propiedad",
+            "hipoteca",
+            "cedida",
+            "sin_hogar",
+            "otro",
+            "no_lo_se"
+          ]
+        },
+        "alquiler_mensual": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "contrato_a_su_nombre": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        }
+      }
+    },
+    "ingresos": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ejercicio": {
+          "type": "integer",
+          "minimum": 2000,
+          "maximum": 2100
+        },
+        "individual": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tramo": {
+              "type": "string",
+              "enum": [
+                "cero",
+                "hasta_6000",
+                "de_6001_a_9000",
+                "de_9001_a_12000",
+                "de_12001_a_15000",
+                "de_15001_a_18000",
+                "de_18001_a_21000",
+                "de_21001_a_25000",
+                "de_25001_a_30000",
+                "de_30001_a_40000",
+                "de_40001_a_50000",
+                "de_50001_a_70000",
+                "mas_de_70000",
+                "no_lo_se"
+              ]
+            },
+            "importe": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000000
+                },
+                {
+                  "const": "no_lo_se"
+                }
+              ]
+            }
+          }
+        },
+        "hogar": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tramo": {
+              "type": "string",
+              "enum": [
+                "cero",
+                "hasta_6000",
+                "de_6001_a_9000",
+                "de_9001_a_12000",
+                "de_12001_a_15000",
+                "de_15001_a_18000",
+                "de_18001_a_21000",
+                "de_21001_a_25000",
+                "de_25001_a_30000",
+                "de_30001_a_40000",
+                "de_40001_a_50000",
+                "de_50001_a_70000",
+                "mas_de_70000",
+                "no_lo_se"
+              ]
+            },
+            "importe": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000000
+                },
+                {
+                  "const": "no_lo_se"
+                }
+              ]
+            }
+          }
+        },
+        "patrimonio_sin_vivienda": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tramo": {
+              "type": "string",
+              "enum": [
+                "cero",
+                "hasta_6000",
+                "de_6001_a_9000",
+                "de_9001_a_12000",
+                "de_12001_a_15000",
+                "de_15001_a_18000",
+                "de_18001_a_21000",
+                "de_21001_a_25000",
+                "de_25001_a_30000",
+                "de_30001_a_40000",
+                "de_40001_a_50000",
+                "de_50001_a_70000",
+                "mas_de_70000",
+                "no_lo_se"
+              ]
+            },
+            "importe": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000000
+                },
+                {
+                  "const": "no_lo_se"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "vinculos": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entidad_trabajo": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tipo": {
+              "type": "string",
+              "enum": [
+                "universidad_publica",
+                "universidad_privada",
+                "organismo_publico_investigacion",
+                "centro_investigacion",
+                "hospital_o_instituto_sanitario",
+                "administracion_publica",
+                "empresa",
+                "ong_o_fundacion",
+                "centro_formacion",
+                "otro",
+                "no_lo_se"
+              ]
+            },
+            "ambito": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+                },
+                {
+                  "const": "no_lo_se"
+                }
+              ]
+            }
+          }
+        },
+        "entidad_estudios": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tipo": {
+              "type": "string",
+              "enum": [
+                "universidad_publica",
+                "universidad_privada",
+                "organismo_publico_investigacion",
+                "centro_investigacion",
+                "hospital_o_instituto_sanitario",
+                "administracion_publica",
+                "empresa",
+                "ong_o_fundacion",
+                "centro_formacion",
+                "otro",
+                "no_lo_se"
+              ]
+            },
+            "ambito": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+                },
+                {
+                  "const": "no_lo_se"
+                }
+              ]
+            }
+          }
+        },
+        "paises_origen": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "uniqueItems": true
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "paises_cotizacion": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "uniqueItems": true
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "afiliaciones": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "colegio_profesional",
+                  "sociedad_cientifica",
+                  "asociacion",
+                  "otro"
+                ]
+              },
+              "uniqueItems": true
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        },
+        "permiso_conducir_pais": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ]
+        }
+      }
+    },
+    "intereses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "investigacion",
+          "emprendimiento",
+          "empleo",
+          "empleo_remoto",
+          "formacion",
+          "estudios",
+          "nacionalidad",
+          "vivienda",
+          "familia"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "solicitudes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ayuda": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "maxLength": 80
+          },
+          "estado": {
+            "type": "string",
+            "enum": [
+              "interesa",
+              "presentada",
+              "respuesta",
+              "cobrada",
+              "denegada"
+            ]
+          },
+          "fecha": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+          },
+          "registro": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "convocatoria": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "nota": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "ayuda",
+          "estado",
+          "fecha"
+        ]
+      }
+    }
+  }
+}

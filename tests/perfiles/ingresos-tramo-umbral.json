@@ -1,0 +1,22 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba tramo",
+    "descripcion": "Perfil inventado: ingresos en el tramo de 18.001 a 21.000 €, que contiene el umbral de 20.000 €; vive con otra persona.",
+    "sintetico": true
+  },
+  "hogar": {
+    "miembros": 2
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "de_18001_a_21000"
+    },
+    "hogar": {
+      "tramo": "de_25001_a_30000"
+    }
+  }
+}

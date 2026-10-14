@@ -1,0 +1,18 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba edad",
+    "descripcion": "Perfil inventado: nacido en octubre de 1991, llega a los 35 años en octubre de 2026 y no dice el día.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1991,
+    "mes_nacimiento": 10
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC"
+  }
+}

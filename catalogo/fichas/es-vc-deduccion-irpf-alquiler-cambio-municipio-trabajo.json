@@ -1,0 +1,107 @@
+{
+  "id": "es-vc-deduccion-irpf-alquiler-cambio-municipio-trabajo",
+  "nombre": "Deducción autonómica IRPF por alquiler al cambiar de municipio por trabajo (Comunitat Valenciana)",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (Agencia Tributaria)",
+  "ambito": "ES-VC",
+  "resumen": "Si alquilas una vivienda en la Comunitat Valenciana, a más de 50 km de donde vivías antes, por trabajar (por cuenta propia o ajena) en otro municipio, se deduce el 10 % del alquiler pagado, con un máximo de 224 €/año. El alquiler no puede pagarlo tu empleador.",
+  "cuantia": {
+    "texto": "10 % del alquiler pagado en el año, con un máximo de 224 €. Ejercicio 2025; el límite se prorratea por los días de vigencia del arrendamiento.",
+    "importe_eur": 224,
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Vivir en una vivienda alquilada en la Comunitat Valenciana",
+      "cita": "Art. 4.Uno.ñ) Ley 13/1997"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "vivienda.regimen",
+          "op": "==",
+          "valor": "alquiler",
+          "texto": "Vivir de alquiler",
+          "cita": "Art. 4.Uno.ñ) Ley 13/1997"
+        },
+        {
+          "campo": "vivienda.regimen",
+          "op": "==",
+          "valor": "habitacion",
+          "texto": "Vivir de alquiler en una habitación",
+          "cita": "Art. 4.Uno.ñ) Ley 13/1997",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Comprueba que tu contrato de habitación cuenta como arrendamiento de vivienda; si dudas, pregunta a la Agencia Tributaria."
+        }
+      ],
+      "texto": "Alquilar la vivienda donde vives",
+      "cita": "Art. 4.Uno.ñ) Ley 13/1997"
+    },
+    {
+      "campo": "vivienda.contrato_a_su_nombre",
+      "op": "==",
+      "valor": true,
+      "texto": "Ser la persona titular del contrato de alquiler",
+      "cita": "Guía AEAT Renta 2025 (advertencia de la página); no figura en la ley",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La ley no lo exige, pero la guía de la Agencia Tributaria dice que sólo aplica la deducción quien figura como titular del contrato. Si el contrato no está a tu nombre, consúltalo con la Agencia Tributaria."
+    },
+    {
+      "campo": "calc.ingresos_individuales",
+      "op": "<=",
+      "valor": 30000,
+      "texto": "Ingresos brutos de 30.000 € o menos al año (el límite de la base liquidable en declaración individual)",
+      "cita": "Art. 4.Uno, Cuatro y Cinco Ley 13/1997 (manual práctico Renta 2025 de la AEAT): base liquidable general y del ahorro (casillas 0500 y 0510) de 30.000 € o menos",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La deducción mira la base liquidable (casillas 0500 y 0510 de tu declaración), que es menor que el bruto; en declaración conjunta el límite es 47.000 €. Con más de 30.000 € brutos puedes encajar igual: mira tu declaración de la Renta."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que la vivienda alquilada esté a más de 50 km de aquella en la que vivías justo antes, y que te hayas mudado para trabajar por cuenta propia o ajena en un municipio distinto del anterior",
+    "Que tu empleador no te pague el alquiler",
+    "La suma de la base liquidable general y la del ahorro (casillas 0500 y 0510) no puede superar 30.000 € en declaración individual (47.000 € en conjunta); el máximo completo sólo se aplica por debajo de 27.000 € (44.000 € en conjunta)",
+    "Pagar el alquiler con tarjeta, transferencia, cheque nominativo o ingreso en cuenta de una entidad de crédito",
+    "Si varias personas pueden aplicar la deducción por la misma vivienda, el límite se reparte a partes iguales"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica en la declaración de la Renta, no se pide aparte. Las cifras son del ejercicio 2025, que se declaró del 08/04 al 30/06/2026 (campaña ya cerrada); el ejercicio 2026 se declarará en 2027, con fechas aún no publicadas."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [
+      "es-vc-deduccion-irpf-alquiler-vivienda-habitual"
+    ],
+    "texto": "Es compatible con la deducción autonómica por alquiler de la vivienda habitual (art. 4.Uno.ñ) Ley 13/1997: «resultará compatible con la recogida en la letra n»).",
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-1998-8202"
+  },
+  "siguiente_paso": {
+    "texto": "Al presentar la Renta del ejercicio 2026 (en 2027), marca esta deducción e indica en el anexo B.7 el NIF o NIE de tu arrendador. Guarda el contrato y los justificantes de pago. Mira antes la guía de la Agencia Tributaria.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/arrendamiento-vivienda-distinto-municipio.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB, Renta DIRECTA o la app), en las deducciones autonómicas de la Comunitat Valenciana; en el anexo B.7 va el NIF/NIE del arrendador. No se solicita aparte.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/arrendamiento-vivienda-distinto-municipio.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/arrendamiento-vivienda-distinto-municipio.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

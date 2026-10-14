@@ -1,0 +1,70 @@
+{
+  "id": "es-prueba-negaciones",
+  "nombre": "Prueba: negaciones",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Organismo inventado para las pruebas del motor",
+  "ambito": "ES",
+  "resumen": "Ficha inventada que solo sirve para probar el motor de reglas. No describe ninguna ayuda real.",
+  "cuantia": {
+    "texto": "Ficha de prueba, sin importe.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "hogar.pareja",
+      "op": "!=",
+      "valor": "matrimonio",
+      "texto": "No estar casado o casada"
+    },
+    {
+      "campo": "vivienda.regimen",
+      "op": "not_in",
+      "valor": [
+        "propiedad",
+        "hipoteca"
+      ],
+      "texto": "No tener vivienda en propiedad"
+    },
+    {
+      "campo": "persona.nacionalidades",
+      "op": "contains_none",
+      "valor_grupo": "UE",
+      "texto": "No tener la nacionalidad de un país de la UE"
+    },
+    {
+      "campo": "vinculos.paises_cotizacion",
+      "op": "not_contains",
+      "valor": "ES",
+      "texto": "No haber cotizado en España"
+    },
+    {
+      "campo": "empleo.inscrito_demandante",
+      "op": "!=",
+      "valor": true,
+      "texto": "No estar inscrito como demandante de empleo"
+    }
+  ],
+  "requisitos_no_evaluables": [],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Ficha de prueba: no hay nada que pedir."
+  },
+  "ayuda_humana": [
+    "sepe"
+  ],
+  "fuente": "https://example.org/tamiz/prueba",
+  "url_oficial": "https://example.org/tamiz/prueba",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

@@ -1,0 +1,21 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba hijo de 2008",
+    "descripcion": "Perfil inventado: un hijo nacido en 2008 sin mes (17 o 18 años) y una hija sin año.",
+    "sintetico": true
+  },
+  "hogar": {
+    "miembros": 3,
+    "hijos": [
+      {
+        "anio_nacimiento": 2008
+      },
+      {
+        "anio_nacimiento": "no_lo_se"
+      }
+    ]
+  }
+}

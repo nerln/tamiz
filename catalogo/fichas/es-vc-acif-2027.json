@@ -1,0 +1,136 @@
+{
+  "id": "es-vc-acif-2027",
+  "nombre": "ACIF — contratos predoctorales de la Generalitat Valenciana (convocatoria 2027)",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana — Conselleria de Educación, Cultura y Universidades (DG Ciencia e Investigación)",
+  "ambito": "ES-VC",
+  "resumen": "140 contratos predoctorales de hasta 4 años en centros de investigación de la Comunitat Valenciana, cofinanciados por el FSE+, más un año de orientación postdoctoral si defiendes la tesis antes de la última anualidad. La solicitud la presentas tú, con la conformidad del centro.",
+  "cuantia": {
+    "texto": "Subvención anual para el contrato: 24.300 € los dos primeros años, 25.760 € el tercero y 32.550 € el cuarto; hasta 2.760 € para la indemnización de fin de contrato; periodo de orientación postdoctoral (POP) de un año: 32.550 €. Convocatoria para el ejercicio 2027 (DOGV núm. 10412, 24/07/2026).",
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "any_of": [
+        {
+          "campo": "persona.nacionalidades",
+          "op": "contains_any",
+          "valor_grupo": "UE",
+          "texto": "Tener la nacionalidad de un país de la UE",
+          "cita": "Anexo I, apartado segundo 2.a"
+        },
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "nacional",
+            "familiar_ue",
+            "familiar_ue_permanente",
+            "residencia_temporal",
+            "residencia_larga_duracion",
+            "residencia_larga_duracion_ue",
+            "estancia_estudios",
+            "residencia_art50_tue",
+            "proteccion_internacional",
+            "proteccion_temporal"
+          ],
+          "texto": "Tener autorización o permiso de residencia, o de estancia por estudios, en España",
+          "cita": "Anexo I, apartado segundo 2.a",
+          "aclaracion": "Si tu documento no está en la lista, comprueba en las bases si cuenta como autorización de residencia."
+        },
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "ciudadano_ue",
+            "ciudadano_ue_permanente",
+            "ciudadano_ue_sin_registro"
+          ],
+          "texto": "Tener certificado de registro o de residencia permanente como ciudadano/a del EEE o de Suiza en España",
+          "cita": "Anexo I, apartado segundo 2.a",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Este documento también lo tienen quienes son del EEE o de Suiza sin ser de la UE. Las bases piden autorización o permiso de residencia o de estancia por estudios: comprueba en ellas si tu certificado cuenta."
+        }
+      ],
+      "texto": "Ser nacional de la UE, o extranjero/a con residencia o estancia por estudios en España",
+      "cita": "Anexo I, apartado segundo 2.a"
+    },
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": [
+        "grado",
+        "master"
+      ],
+      "texto": "Tener una licenciatura, ingeniería, grado o diplomatura como nivel más alto de estudios (sin llegar al de doctor/a)",
+      "cita": "Anexo I, apartado segundo 2.b y 2.d"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "estudios.nivel_max",
+          "op": "==",
+          "valor": "master",
+          "texto": "Tener el título de máster",
+          "cita": "Anexo I, apartado segundo 2.b.2"
+        },
+        {
+          "campo": "estudios.matriculado_en",
+          "op": "in",
+          "valor": [
+            "doctorado",
+            "master"
+          ],
+          "texto": "Estar admitido/a en un doctorado o matriculado/a en un máster oficial que dé acceso a él",
+          "cita": "Anexo I, apartado segundo 2.b.1 y 2.b.3",
+          "aclaracion": "El doctorado debe ser de una universidad de la Comunitat Valenciana; el máster, oficial y con acceso al doctorado."
+        }
+      ],
+      "texto": "Tener un máster, o estar admitido/a en un doctorado, o matriculado/a en un máster oficial con acceso al doctorado",
+      "cita": "Anexo I, apartado segundo 2.b"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Título de grado, licenciatura o similar obtenido después del 1 de enero de 2022 (un año más por cada permiso de maternidad/paternidad, atención a dependientes, enfermedad grave o violencia de género; y hasta 2019 si has cuidado hijos menores de 6 años al menos un año)",
+    "Nota media mínima ponderada del expediente de grado, por rama: Ciencias Sociales y Jurídicas 8,44; Ingeniería y Arquitectura 8,13; Artes y Humanidades 8,80; Ciencias de la Salud 8,45; Ciencias 8,41",
+    "No haber disfrutado, a la fecha de fin del plazo, de más de 12 meses de contrato predoctoral subvencionado (apartado segundo 3)",
+    "Si vas por admisión en un doctorado, que sea de una universidad de la Comunitat Valenciana; si te seleccionan, deberás estar admitido/a en uno cuando te contraten (apartado segundo 2.b.1 y 4)",
+    "Memoria del proyecto, CV en el modelo FECYT y conformidad de quien dirija la tesis y del centro; nadie puede dirigir más de una solicitud (apartado tercero)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-12-01",
+    "fin": "2026-12-21",
+    "verificado": true,
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+    "nota": "Del 1 al 21 de diciembre de 2026 (Anexo I, apartado tercero.1). La presentas tú, en la sede electrónica de la Generalitat con firma digital, con la conformidad del centro y de quien dirija tu tesis."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con cualquier otra subvención, beca o contrato de análoga naturaleza, salvo las subvenciones para estancias predoctorales del proyecto de tesis; también con otras percepciones económicas cuando su normativa lo establezca (Anexo I, apartado noveno).",
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Del 1 al 21/12/2026 presenta la solicitud en la sede electrónica de la Generalitat (sede.gva.es), con firma digital, la conformidad de quien dirija tu tesis y la del centro de investigación. Ve preparando el CV en formato FECYT y la memoria.",
+    "url": "https://sede.gva.es"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Sede electrónica de la Generalitat (sede.gva.es) con firma digital. La solicitud necesita la conformidad del centro de investigación y de quien dirija la tesis.",
+  "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "url_oficial": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "bdns": "920701",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-12-22",
+  "confianza": "alta"
+}

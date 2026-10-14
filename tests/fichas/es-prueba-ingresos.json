@@ -1,0 +1,49 @@
+{
+  "id": "es-prueba-ingresos",
+  "nombre": "Prueba: ingresos",
+  "tipo": "oportunidad",
+  "subtipo": "beca",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Organismo inventado para las pruebas del motor",
+  "ambito": "ES",
+  "resumen": "Ficha inventada que solo sirve para probar el motor de reglas. No describe ninguna ayuda real.",
+  "cuantia": {
+    "texto": "Ficha de prueba, sin importe.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.ingresos_individuales",
+      "op": "<=",
+      "valor": 20000,
+      "texto": "Ganar 20.000 € brutos al año o menos"
+    },
+    {
+      "campo": "calc.ingresos_hogar_por_miembro",
+      "op": "<=",
+      "valor": 15000,
+      "texto": "Que en tu hogar entren 15.000 € brutos al año o menos por persona"
+    }
+  ],
+  "requisitos_no_evaluables": [],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Ficha de prueba: no hay nada que pedir."
+  },
+  "ayuda_humana": [
+    "sepe"
+  ],
+  "fuente": "https://example.org/tamiz/prueba",
+  "url_oficial": "https://example.org/tamiz/prueba",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

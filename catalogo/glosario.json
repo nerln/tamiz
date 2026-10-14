@@ -1,0 +1,38 @@
+[
+  {
+    "termino": "IPREM",
+    "explicacion": "Indicador Público de Renta de Efectos Múltiples: la referencia de renta que fija el Estado cada año y que sirve para calcular muchas ayudas. En 2026 es de 600 € al mes en 14 pagas."
+  },
+  {
+    "termino": "convocatoria",
+    "explicacion": "Anuncio oficial que abre el plazo para pedir una ayuda, con sus fechas y su presupuesto. Una misma ayuda puede tener una convocatoria cada año o ninguna."
+  },
+  {
+    "termino": "bases",
+    "explicacion": "Reglas completas de una convocatoria: quién puede pedirla, cómo, cuándo y con qué documentos. Lo que dicen las bases manda sobre cualquier resumen."
+  },
+  {
+    "termino": "larga duración",
+    "explicacion": "Autorización de residencia de larga duración, para quien lleva varios años con residencia legal en España; da más derechos que la residencia temporal. Para ciudadanos de la UE se llama residencia permanente."
+  },
+  {
+    "termino": "compatible",
+    "explicacion": "Dos ayudas son compatibles cuando la norma permite cobrar las dos a la vez. Si las bases no lo dicen, no se da por hecho."
+  },
+  {
+    "termino": "empadronamiento",
+    "explicacion": "Inscripción en el padrón del municipio donde vives. Muchas ayudas piden llevar empadronado un tiempo mínimo."
+  },
+  {
+    "termino": "CCSE",
+    "explicacion": "Examen de Conocimientos Constitucionales y Socioculturales de España. Se pide en algunos trámites de nacionalidad y de residencia."
+  },
+  {
+    "termino": "base liquidable",
+    "explicacion": "Cantidad sobre la que se calcula el impuesto después de restar las reducciones. Es menor que los ingresos brutos."
+  },
+  {
+    "termino": "demandante de empleo",
+    "explicacion": "Persona inscrita en un servicio público de empleo (LABORA o SEPE) que busca trabajo. Muchas ayudas piden estar inscrito."
+  }
+]

@@ -1,0 +1,136 @@
+{
+  "id": "es-imv-ingreso-minimo-vital",
+  "nombre": "Ingreso Mínimo Vital (IMV)",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Seguridad Social - INSS",
+  "ambito": "ES",
+  "resumen": "Prestación mensual de la Seguridad Social para hogares con pocos recursos. Pide residencia legal y efectiva sin interrupción el año anterior (con excepciones). Renta garantizada en 2026: 733,60 € al mes para una persona sola.",
+  "cuantia": {
+    "texto": "En 2026 la renta garantizada es de 733,60 € al mes para una persona sola; 953,68 € (un adulto y un menor, o dos adultos); 1.173,76 €; 1.393,84 € y 1.613,92 € en hogares mayores; en hogares monoparentales +22 % (1.115,07 € con un menor). Se paga la diferencia entre esa cifra y los ingresos del hogar, más el complemento de infancia por cada menor.",
+    "importe_eur": 733.6,
+    "periodicidad": "mensual"
+  },
+  "requisitos": [
+    {
+      "any_of": [
+        {
+          "campo": "calc.edad",
+          "op": ">=",
+          "valor": 23,
+          "texto": "Tener 23 años o más",
+          "cita": "Art. 4.1.b y 5.2 Ley 19/2021",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "Hay excepciones entre los 18 y los 22 años (salir de un centro de protección de menores, orfandad, salir de prisión) y para víctimas de violencia de género o de trata. Mira el art. 4 y 5 de la Ley 19/2021 o pregunta al INSS."
+        },
+        {
+          "all_of": [
+            {
+              "campo": "calc.edad",
+              "op": ">=",
+              "valor": 18,
+              "texto": "Ser mayor de edad"
+            },
+            {
+              "campo": "calc.num_hijos",
+              "op": ">=",
+              "valor": 1,
+              "texto": "Tener hijos o menores a tu cargo"
+            }
+          ],
+          "texto": "Ser mayor de edad y tener hijos a tu cargo"
+        }
+      ],
+      "texto": "Tener 23 años o más, o ser mayor de edad con hijos a tu cargo",
+      "cita": "Art. 5.2 Ley 19/2021"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener residencia legal en España",
+      "cita": "Art. 10.1.a Ley 19/2021"
+    },
+    {
+      "campo": "calc.anios_residencia_legal",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Llevar al menos 1 año con residencia legal y efectiva en España, sin interrupción",
+      "cita": "Art. 10.1.a Ley 19/2021",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "No se pide el año a las víctimas de trata ni a las mujeres víctimas de violencia de género, ni a los menores que se incorporan al hogar (art. 10.1.a). Si es tu caso, puedes pedirlo igual."
+    },
+    {
+      "campo": "calc.ingresos_hogar",
+      "op": "<=",
+      "valor": 8683.2,
+      "texto": "Ingresos brutos del hogar el año pasado de 8.683,20 € o menos (es el límite de una persona sola; con más personas en el hogar el límite es más alto)",
+      "cita": "Art. 11.2 Ley 19/2021: renta garantizada 2026 de un adulto solo, 8.803,20 € al año (733,60 € al mes), menos 10 € al mes = 8.683,20 € al año (Seguridad Social)",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Con más ingresos brutos puedes encajar igual: el límite sube con cada persona del hogar y la ley cuenta los ingresos computables del art. 20, no el bruto. Compruébalo en el simulador oficial de la Seguridad Social (imv.seg-social.es)."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ingresos del año anterior: el promedio mensual debe quedar al menos 10 € por debajo de la renta garantizada de tu hogar (art. 11.2). Se miden con las reglas del art. 20, no con el bruto: usa el simulador oficial",
+    "Patrimonio neto sin la vivienda habitual por debajo de 26.409,60 € si vives solo (2026); los hogares mayores tienen su tabla (art. 11.3 y anexo II)",
+    "Hogar formado de forma continuada al menos 6 meses antes de pedirlo, salvo excepciones (art. 10.3)",
+    "Si vives solo y tienes menos de 30 años: haber vivido de forma independiente los 2 años anteriores (1 año si tienes 30 o más); hay excepciones (art. 10.2)",
+    "No ser administrador de derecho de una sociedad mercantil en actividad, ni tener activos no societarios por encima del límite del anexo III (art. 11.3)",
+    "Incompatible con la asignación económica por hijo a cargo (sin discapacidad o con menos del 33 %) del mismo hijo: si te corresponden las dos, se elige una (Seguridad Social, apartado de incompatibilidades)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-21007",
+    "nota": "Se puede pedir en cualquier momento; la prestación se genera desde el día 1 del mes siguiente al de la solicitud (art. 14.1 Ley 19/2021). Si la falta de ingresos te ha llegado durante este año, la ley prevé pedirlo entre el 1 de abril y el 31 de diciembre (art. 11.5)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "compatible_con": [
+      "es-vc-renta-valenciana-inclusion",
+      "es-imv-complemento-ayuda-infancia"
+    ],
+    "incompatible_con": [],
+    "texto": "Es incompatible con la asignación económica por hijo a cargo (sin discapacidad o con menos del 33 %) del mismo hijo. La Renta Valenciana de Inclusión se puede cobrar a la vez: el IMV se resta de su importe (Ley 2/2026, arts. 11.1 y 31.2). El complemento de infancia (CAPI) se suma al IMV.",
+    "fuente": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7"
+  },
+  "siguiente_paso": {
+    "texto": "Prueba primero el simulador oficial de la Seguridad Social. Si te sale que puedes, pídelo en el servicio Ingreso Mínimo Vital de la sede electrónica de la Seguridad Social.",
+    "url": "https://imv.seg-social.es/"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia",
+    "accem"
+  ],
+  "como_pedirla": "Servicio Ingreso Mínimo Vital de la sede electrónica de la Seguridad Social (certificado digital o Cl@ve). Teléfono de información: 020.",
+  "fuente": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7",
+  "url_oficial": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7",
+  "simulador_oficial": "https://imv.seg-social.es/",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

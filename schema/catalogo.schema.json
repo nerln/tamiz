@@ -1,0 +1,4224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nerln.github.io/tamiz/schema/catalogo.schema.json",
+  "title": "Tamiz: catálogo, esquema v1.1",
+  "description": "Catálogo de ayudas, becas y derechos. Una ficha suelta se valida contra #/$defs/ficha. Ver docs/ESQUEMA.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "esquema",
+    "version",
+    "actualizado_el",
+    "fichas",
+    "ayuda_humana",
+    "redactado_con_ia",
+    "revision_humana"
+  ],
+  "properties": {
+    "esquema": {
+      "const": "tamiz-catalogo"
+    },
+    "version": {
+      "const": 1.1
+    },
+    "actualizado_el": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+    },
+    "redactado_con_ia": {
+      "description": "true si las fichas las ha redactado o leído una IA. Mientras sea true y revision_humana.completa sea false, la interfaz lo avisa.",
+      "type": "boolean"
+    },
+    "revision_humana": {
+      "$ref": "#/$defs/revision_humana"
+    },
+    "sitio": {
+      "$ref": "#/$defs/sitio"
+    },
+    "fichas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ficha"
+      }
+    },
+    "ayuda_humana": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ayuda_humana"
+      }
+    },
+    "grupos_paises": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[A-Za-z0-9_]+$"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    },
+    "glosario": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/termino_glosario"
+      }
+    }
+  },
+  "$defs": {
+    "ficha": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "nombre",
+        "tipo",
+        "subtipo",
+        "concesion",
+        "organismo",
+        "ambito",
+        "resumen",
+        "cuantia",
+        "requisitos",
+        "requisitos_no_evaluables",
+        "plazo",
+        "compatibilidad",
+        "siguiente_paso",
+        "ayuda_humana",
+        "fuente",
+        "url_oficial",
+        "verificado_el",
+        "leido_por_agente",
+        "revisar_antes_de",
+        "confianza"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "maxLength": 80
+        },
+        "nombre": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 140
+        },
+        "tipo": {
+          "enum": [
+            "derecho",
+            "oportunidad"
+          ]
+        },
+        "subtipo": {
+          "enum": [
+            "beca",
+            "subvencion",
+            "prestacion",
+            "deduccion_fiscal",
+            "descuento",
+            "premio",
+            "empleo",
+            "formacion_remunerada",
+            "tramite_ventaja",
+            "servicio_gratuito"
+          ]
+        },
+        "concesion": {
+          "enum": [
+            "reglada",
+            "orden_de_llegada",
+            "concurrencia_competitiva",
+            "no_aplica",
+            "desconocida"
+          ]
+        },
+        "solicita": {
+          "description": "Quién presenta la solicitud. Por defecto (si falta) es la persona misma.",
+          "enum": [
+            "persona",
+            "empresa",
+            "universidad",
+            "director_tesis",
+            "otro"
+          ],
+          "default": "persona"
+        },
+        "organismo": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "ambito": {
+          "type": "string",
+          "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+        },
+        "resumen": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 400
+        },
+        "cuantia": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "texto": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "importe_eur": {
+              "type": "number",
+              "minimum": 0
+            },
+            "periodicidad": {
+              "enum": [
+                "unica",
+                "mensual",
+                "anual",
+                "variable",
+                "no_monetaria"
+              ]
+            },
+            "duracion_meses_max": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "texto"
+          ]
+        },
+        "requisitos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nodo"
+          }
+        },
+        "requisitos_no_evaluables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 400
+          }
+        },
+        "plazo": {
+          "$ref": "#/$defs/plazo"
+        },
+        "compatibilidad": {
+          "$ref": "#/$defs/compatibilidad"
+        },
+        "siguiente_paso": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "texto": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 300
+            },
+            "url": {
+              "type": "string",
+              "pattern": "^https://[^\\s]+$",
+              "maxLength": 1000
+            }
+          },
+          "required": [
+            "texto"
+          ]
+        },
+        "ayuda_humana": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "como_pedirla": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 400
+        },
+        "fuente": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        },
+        "url_oficial": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        },
+        "simulador_oficial": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        },
+        "bdns": {
+          "type": "string",
+          "pattern": "^[0-9]{3,8}$"
+        },
+        "verificado_el": {
+          "description": "Día en que UNA PERSONA comparó la ficha con la fuente. null si ninguna persona la ha revisado todavía (una IA no cuenta: eso es leido_por_agente).",
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "leido_por_agente": {
+          "description": "Día en que un agente de IA leyó la fuente oficial y escribió o corrigió la ficha.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+        },
+        "revisar_antes_de": {
+          "description": "Desde el día siguiente, la ficha está «Por revisar». Debe ser posterior a leido_por_agente.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+        },
+        "confianza": {
+          "enum": [
+            "alta",
+            "media",
+            "baja"
+          ]
+        },
+        "_revisar": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 3
+          },
+          "minItems": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "concesion": {
+                "const": "reglada"
+              }
+            },
+            "required": [
+              "concesion"
+            ]
+          },
+          "then": {
+            "properties": {
+              "tipo": {
+                "const": "derecho"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "concesion": {
+                "const": "concurrencia_competitiva"
+              }
+            },
+            "required": [
+              "concesion"
+            ]
+          },
+          "then": {
+            "properties": {
+              "tipo": {
+                "const": "oportunidad"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "subtipo": {
+                "enum": [
+                  "premio",
+                  "empleo"
+                ]
+              }
+            },
+            "required": [
+              "subtipo"
+            ]
+          },
+          "then": {
+            "properties": {
+              "tipo": {
+                "const": "oportunidad"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "plazo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tipo",
+        "verificado"
+      ],
+      "properties": {
+        "tipo": {
+          "enum": [
+            "abierto_todo_el_ano",
+            "convocatoria_anual",
+            "fechas",
+            "cerrado",
+            "desconocido"
+          ]
+        },
+        "inicio": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+        },
+        "fin": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+        },
+        "verificado": {
+          "description": "true solo si las fechas (o el tipo) se han leído en el texto oficial de la convocatoria (resolución, DOGV, BOE) y plazo.fuente apunta a ese texto. Solo las fechas verificadas van al calendario.",
+          "type": "boolean"
+        },
+        "fuente": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        },
+        "nota": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 500
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "tipo": {
+                "const": "fechas"
+              }
+            },
+            "required": [
+              "tipo"
+            ]
+          },
+          "then": {
+            "required": [
+              "fin"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tipo": {
+                "enum": [
+                  "abierto_todo_el_ano",
+                  "convocatoria_anual",
+                  "desconocido"
+                ]
+              }
+            },
+            "required": [
+              "tipo"
+            ]
+          },
+          "then": {
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "inicio"
+                  ]
+                },
+                {
+                  "required": [
+                    "fin"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "tipo": {
+                "const": "desconocido"
+              }
+            },
+            "required": [
+              "tipo"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verificado": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verificado": {
+                "const": true
+              }
+            },
+            "required": [
+              "verificado"
+            ]
+          },
+          "then": {
+            "required": [
+              "fuente"
+            ]
+          }
+        }
+      ]
+    },
+    "compatibilidad": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "declarada_en_bases"
+      ],
+      "properties": {
+        "declarada_en_bases": {
+          "type": "boolean"
+        },
+        "incompatible_con": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "compatible_con": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "texto": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 400
+        },
+        "fuente": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        }
+      },
+      "if": {
+        "properties": {
+          "declarada_en_bases": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "texto",
+          "fuente"
+        ]
+      },
+      "else": {
+        "properties": {
+          "incompatible_con": {
+            "maxItems": 0
+          },
+          "compatible_con": {
+            "maxItems": 0
+          },
+          "texto": false,
+          "fuente": false
+        }
+      }
+    },
+    "ayuda_humana": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "nombre",
+        "tipo",
+        "que_hace",
+        "ambito",
+        "gratuito",
+        "fuente",
+        "verificado_el"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "maxLength": 80
+        },
+        "nombre": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 140
+        },
+        "tipo": {
+          "enum": [
+            "sindicato",
+            "ong",
+            "administracion",
+            "universidad",
+            "colegio_profesional",
+            "otro"
+          ]
+        },
+        "que_hace": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        },
+        "para_quien": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "ambito": {
+          "type": "string",
+          "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+        },
+        "municipio_ine": {
+          "type": "string",
+          "pattern": "^[0-9]{5}$"
+        },
+        "direccion": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "telefono": {
+          "type": "string",
+          "pattern": "^\\+?[0-9 ]{6,20}$"
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        },
+        "horario": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "gratuito": {
+          "const": true
+        },
+        "fuente": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 1000
+        },
+        "verificado_el": {
+          "description": "Día en que una persona comprobó la entrada. null si todavía no.",
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "url"
+          ]
+        },
+        {
+          "required": [
+            "telefono"
+          ]
+        },
+        {
+          "required": [
+            "direccion"
+          ]
+        }
+      ]
+    },
+    "nodo": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/regla"
+        },
+        {
+          "$ref": "#/$defs/grupo_any_of"
+        },
+        {
+          "$ref": "#/$defs/grupo_all_of"
+        }
+      ]
+    },
+    "regla": {
+      "type": "object",
+      "required": [
+        "campo"
+      ],
+      "properties": {
+        "campo": {
+          "enum": [
+            "calc.edad",
+            "calc.anios_residencia_legal",
+            "calc.meses_residencia_legal",
+            "calc.anios_empadronado",
+            "calc.meses_empadronado",
+            "calc.num_hijos",
+            "calc.hijos_menores_3",
+            "calc.hijos_menores_18",
+            "calc.hijos_menores_25",
+            "calc.ingresos_individuales",
+            "calc.ingresos_hogar",
+            "calc.ingresos_hogar_por_miembro",
+            "calc.patrimonio_sin_vivienda",
+            "hogar.miembros",
+            "vivienda.alquiler_mensual",
+            "empleo.meses_cotizados_6_anios",
+            "residencia.empadronado_desde",
+            "situacion_administrativa.residencia_legal_desde",
+            "situacion_administrativa.documento_desde",
+            "situacion_administrativa.documento_hasta",
+            "empleo.contrato_hasta",
+            "situacion_administrativa.autoriza_trabajar",
+            "empleo.inscrito_demandante",
+            "empleo.cobra_prestacion",
+            "estudios.titulo_extranjero",
+            "hogar.monoparental",
+            "vivienda.contrato_a_su_nombre",
+            "persona.sexo",
+            "situacion_administrativa.tipo",
+            "empleo.tipo_contrato",
+            "estudios.nivel_max",
+            "estudios.matriculado_en",
+            "estudios.homologacion",
+            "hogar.pareja",
+            "hogar.familia_numerosa",
+            "vivienda.regimen",
+            "vinculos.entidad_trabajo.tipo",
+            "vinculos.entidad_estudios.tipo",
+            "residencia.pais",
+            "residencia.region",
+            "residencia.provincia",
+            "residencia.municipio_ine",
+            "estudios.titulo_pais",
+            "vinculos.entidad_trabajo.ambito",
+            "vinculos.entidad_estudios.ambito",
+            "vinculos.permiso_conducir_pais",
+            "persona.nacionalidades",
+            "vinculos.paises_origen",
+            "vinculos.paises_cotizacion",
+            "empleo.situaciones",
+            "vinculos.afiliaciones"
+          ]
+        }
+      },
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.edad"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.anios_residencia_legal"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.meses_residencia_legal"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.anios_empadronado"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.meses_empadronado"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.num_hijos"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.hijos_menores_3"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.hijos_menores_18"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.hijos_menores_25"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.ingresos_individuales"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.ingresos_hogar"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.ingresos_hogar_por_miembro"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "calc.patrimonio_sin_vivienda"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "hogar.miembros"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vivienda.alquiler_mensual"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.meses_cotizados_6_anios"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!=",
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "number"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.empadronado_desde"
+            },
+            "op": {
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "situacion_administrativa.residencia_legal_desde"
+            },
+            "op": {
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "situacion_administrativa.documento_desde"
+            },
+            "op": {
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "situacion_administrativa.documento_hasta"
+            },
+            "op": {
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.contrato_hasta"
+            },
+            "op": {
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "situacion_administrativa.autoriza_trabajar"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "boolean"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.inscrito_demandante"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "boolean"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.cobra_prestacion"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "boolean"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.titulo_extranjero"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "boolean"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "hogar.monoparental"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "boolean"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vivienda.contrato_a_su_nombre"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "boolean"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "persona.sexo"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_sexo"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "persona.sexo"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_sexo"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "situacion_administrativa.tipo"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_situacion_administrativa"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "situacion_administrativa.tipo"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_situacion_administrativa"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.tipo_contrato"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_tipo_contrato"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.tipo_contrato"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_tipo_contrato"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.nivel_max"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_nivel_estudios"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.nivel_max"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_nivel_estudios"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.matriculado_en"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_matriculado_en"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.matriculado_en"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_matriculado_en"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.homologacion"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_homologacion"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.homologacion"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_homologacion"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "hogar.pareja"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_pareja"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "hogar.pareja"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_pareja"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "hogar.familia_numerosa"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_familia_numerosa"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "hogar.familia_numerosa"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_familia_numerosa"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vivienda.regimen"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_regimen_vivienda"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vivienda.regimen"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_regimen_vivienda"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_trabajo.tipo"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_tipo_entidad"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_trabajo.tipo"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_tipo_entidad"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_estudios.tipo"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_tipo_entidad"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_estudios.tipo"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_tipo_entidad"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.pais"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.pais"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor_grupo",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.pais"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor_grupo": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]+$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.region"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.region"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.provincia"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.provincia"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.municipio_ine"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[0-9]{5}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "residencia.municipio_ine"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9]{5}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.titulo_pais"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.titulo_pais"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor_grupo",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "estudios.titulo_pais"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor_grupo": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]+$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_trabajo.ambito"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_trabajo.ambito"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_estudios.ambito"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.entidad_estudios.ambito"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.permiso_conducir_pais"
+            },
+            "op": {
+              "enum": [
+                "==",
+                "!="
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.permiso_conducir_pais"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor_grupo",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.permiso_conducir_pais"
+            },
+            "op": {
+              "enum": [
+                "in",
+                "not_in"
+              ]
+            },
+            "valor_grupo": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]+$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "persona.nacionalidades"
+            },
+            "op": {
+              "enum": [
+                "contains",
+                "not_contains"
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "persona.nacionalidades"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor_grupo",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "persona.nacionalidades"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor_grupo": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]+$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.paises_origen"
+            },
+            "op": {
+              "enum": [
+                "contains",
+                "not_contains"
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.paises_origen"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor_grupo",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.paises_origen"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor_grupo": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]+$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.paises_cotizacion"
+            },
+            "op": {
+              "enum": [
+                "contains",
+                "not_contains"
+              ]
+            },
+            "valor": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.paises_cotizacion"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor_grupo",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.paises_cotizacion"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor_grupo": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_]+$"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.situaciones"
+            },
+            "op": {
+              "enum": [
+                "contains",
+                "not_contains"
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_empleo_situacion"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "empleo.situaciones"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_empleo_situacion"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.afiliaciones"
+            },
+            "op": {
+              "enum": [
+                "contains",
+                "not_contains"
+              ]
+            },
+            "valor": {
+              "$ref": "#/$defs/valor_afiliacion"
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "campo",
+            "op",
+            "valor",
+            "texto"
+          ],
+          "properties": {
+            "campo": {
+              "const": "vinculos.afiliaciones"
+            },
+            "op": {
+              "enum": [
+                "contains_any",
+                "contains_none"
+              ]
+            },
+            "valor": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/valor_afiliacion"
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "texto": {
+              "$ref": "#/$defs/texto_regla"
+            },
+            "cita": {
+              "$ref": "#/$defs/cita"
+            },
+            "no_concluyente": {
+              "$ref": "#/$defs/no_concluyente"
+            },
+            "aclaracion": {
+              "$ref": "#/$defs/aclaracion"
+            }
+          }
+        }
+      ]
+    },
+    "grupo_any_of": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "any_of",
+        "texto"
+      ],
+      "properties": {
+        "any_of": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nodo"
+          },
+          "minItems": 1
+        },
+        "texto": {
+          "$ref": "#/$defs/texto_regla"
+        },
+        "cita": {
+          "$ref": "#/$defs/cita"
+        }
+      }
+    },
+    "grupo_all_of": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "all_of",
+        "texto"
+      ],
+      "properties": {
+        "all_of": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nodo"
+          },
+          "minItems": 1
+        },
+        "texto": {
+          "$ref": "#/$defs/texto_regla"
+        },
+        "cita": {
+          "$ref": "#/$defs/cita"
+        }
+      }
+    },
+    "texto_regla": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "cita": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "no_concluyente": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "cumple",
+          "no_cumple"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "aclaracion": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 300
+    },
+    "valor_sexo": {
+      "type": "string",
+      "enum": [
+        "mujer",
+        "hombre"
+      ]
+    },
+    "valor_situacion_administrativa": {
+      "type": "string",
+      "enum": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ]
+    },
+    "valor_tipo_contrato": {
+      "type": "string",
+      "enum": [
+        "indefinido",
+        "fijo_discontinuo",
+        "temporal",
+        "predoctoral",
+        "cientifico_tecnico",
+        "postdoctoral",
+        "formativo",
+        "funcionario",
+        "ninguno"
+      ]
+    },
+    "valor_nivel_estudios": {
+      "type": "string",
+      "enum": [
+        "ninguno",
+        "primaria",
+        "eso",
+        "bachillerato",
+        "fp_medio",
+        "fp_superior",
+        "grado",
+        "master",
+        "doctorado"
+      ]
+    },
+    "valor_matriculado_en": {
+      "type": "string",
+      "enum": [
+        "ninguno",
+        "secundaria",
+        "fp",
+        "grado",
+        "master",
+        "doctorado",
+        "idiomas"
+      ]
+    },
+    "valor_homologacion": {
+      "type": "string",
+      "enum": [
+        "no_pedida",
+        "en_tramite",
+        "concedida",
+        "denegada"
+      ]
+    },
+    "valor_pareja": {
+      "type": "string",
+      "enum": [
+        "no",
+        "matrimonio",
+        "pareja_de_hecho",
+        "pareja_sin_registrar"
+      ]
+    },
+    "valor_familia_numerosa": {
+      "type": "string",
+      "enum": [
+        "no",
+        "general",
+        "especial"
+      ]
+    },
+    "valor_regimen_vivienda": {
+      "type": "string",
+      "enum": [
+        "alquiler",
+        "habitacion",
+        "propiedad",
+        "hipoteca",
+        "cedida",
+        "sin_hogar"
+      ]
+    },
+    "valor_tipo_entidad": {
+      "type": "string",
+      "enum": [
+        "universidad_publica",
+        "universidad_privada",
+        "organismo_publico_investigacion",
+        "centro_investigacion",
+        "hospital_o_instituto_sanitario",
+        "administracion_publica",
+        "empresa",
+        "ong_o_fundacion",
+        "centro_formacion"
+      ]
+    },
+    "valor_empleo_situacion": {
+      "type": "string",
+      "enum": [
+        "asalariado",
+        "autonomo",
+        "desempleado",
+        "estudiante",
+        "inactivo",
+        "jubilado"
+      ]
+    },
+    "valor_afiliacion": {
+      "type": "string",
+      "enum": [
+        "colegio_profesional",
+        "sociedad_cientifica",
+        "asociacion"
+      ]
+    },
+    "revision_humana": {
+      "description": "Estado de la revisión del catálogo por una persona.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "completa",
+        "por",
+        "el"
+      ],
+      "properties": {
+        "completa": {
+          "type": "boolean"
+        },
+        "por": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 120
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "el": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "if": {
+        "properties": {
+          "completa": {
+            "const": true
+          }
+        },
+        "required": [
+          "completa"
+        ]
+      },
+      "then": {
+        "properties": {
+          "por": {
+            "type": "string"
+          },
+          "el": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sitio": {
+      "description": "Copia de sitio.json que construir.py mete en el catálogo: la única fuente del nombre del sitio.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nombre",
+        "lema",
+        "url",
+        "repo"
+      ],
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "lema": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 140
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 300
+        },
+        "repo": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
+        "nombre_anterior": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 40
+        },
+        "responsable": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "contacto": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        }
+      }
+    },
+    "termino_glosario": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "termino": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "explicacion": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 400
+        }
+      },
+      "required": [
+        "termino",
+        "explicacion"
+      ]
+    }
+  }
+}

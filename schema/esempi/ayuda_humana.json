@@ -1,0 +1,37 @@
+[
+  {
+    "id": "sepe",
+    "nombre": "SEPE — Servicio Público de Empleo Estatal",
+    "tipo": "administracion",
+    "que_hace": "Informa sobre la prestación por desempleo y la tramita; se puede pedir cita previa en sus oficinas.",
+    "ambito": "ES",
+    "gratuito": true,
+    "url": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+    "verificado_el": null
+  },
+  {
+    "id": "uv-servei-investigacio",
+    "nombre": "Universitat de València — Servei d'Investigació",
+    "tipo": "universidad",
+    "que_hace": "Orienta a quien investiga en la Universitat de València sobre convocatorias de contratos y ayudas.",
+    "para_quien": "Personal investigador y doctorandos de la Universitat de València",
+    "ambito": "ES-VC",
+    "municipio_ine": "46250",
+    "gratuito": true,
+    "url": "https://www.uv.es/uvweb/servei-investigacio/es/financament/programa-ajudes-investigacio-uv/altres-ajudes-1285928520875.htm",
+    "fuente": "https://www.uv.es/uvweb/servei-investigacio/es/financament/programa-ajudes-investigacio-uv/altres-ajudes-1285928520875.htm",
+    "verificado_el": null
+  },
+  {
+    "id": "gva-vivienda",
+    "nombre": "Generalitat Valenciana — información de vivienda",
+    "tipo": "administracion",
+    "que_hace": "Publica las convocatorias de ayudas al alquiler de la Generalitat y cómo pedirlas.",
+    "ambito": "ES-VC",
+    "gratuito": true,
+    "url": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026",
+    "fuente": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026",
+    "verificado_el": null
+  }
+]

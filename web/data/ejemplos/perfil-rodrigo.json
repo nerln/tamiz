@@ -1,0 +1,59 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Rodrigo",
+    "descripcion": "Persona inventada. Paraguayo de 35 años en València, acaba de obtener la residencia de larga duración. Varios datos se han dejado sin responder a propósito.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1991,
+    "nacionalidades": ["PY"],
+    "sexo": "hombre"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2019"
+  },
+  "situacion_administrativa": {
+    "tipo": "residencia_larga_duracion",
+    "autoriza_trabajar": true,
+    "residencia_legal_desde": "2021-06",
+    "documento_desde": "2026-09",
+    "documento_hasta": "2031-09"
+  },
+  "empleo": {
+    "situaciones": ["asalariado"],
+    "tipo_contrato": "no_lo_se",
+    "inscrito_demandante": false
+  },
+  "estudios": {
+    "nivel_max": "bachillerato",
+    "matriculado_en": "ninguno",
+    "titulo_extranjero": true,
+    "titulo_pais": "PY",
+    "homologacion": "no_lo_se"
+  },
+  "hogar": {
+    "pareja": "prefiero_no_decirlo"
+  },
+  "vivienda": {
+    "regimen": "alquiler"
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {"tramo": "no_lo_se"}
+  },
+  "vinculos": {
+    "paises_origen": ["PY"],
+    "paises_cotizacion": ["PY"],
+    "permiso_conducir_pais": "PY"
+  },
+  "intereses": ["nacionalidad", "empleo", "formacion"],
+  "solicitudes": []
+}

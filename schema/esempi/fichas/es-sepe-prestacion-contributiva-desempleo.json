@@ -1,0 +1,55 @@
+{
+  "id": "es-sepe-prestacion-contributiva-desempleo",
+  "nombre": "Prestación contributiva por desempleo (paro)",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "SEPE — Servicio Público de Empleo Estatal",
+  "ambito": "ES",
+  "resumen": "Prestación para quien pierde un empleo por cuenta ajena y ha cotizado por desempleo al menos 360 días en los últimos 6 años.",
+  "cuantia": {
+    "texto": "70 % de la base reguladora los primeros 180 días y 60 % después. En 2026, entre 560 € y 1.225 € al mes si no tienes hijos (más si tienes hijos).",
+    "periodicidad": "mensual"
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "desempleado",
+      "texto": "Estar sin trabajo (en situación legal de desempleo)"
+    },
+    {
+      "campo": "empleo.meses_cotizados_6_anios",
+      "op": ">=",
+      "valor": 12,
+      "texto": "Haber cotizado por desempleo al menos 360 días en los últimos 6 años"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que el contrato termine por una causa que da situación legal de desempleo (por ejemplo, el fin de un contrato temporal)",
+    "Que el contrato cotizara por desempleo (compruébalo en tu vida laboral)",
+    "Inscribirte como demandante de empleo y firmar el compromiso de actividad",
+    "No tener la edad ordinaria de jubilación"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "nota": "Pídela en los 15 días hábiles siguientes al último día trabajado: si tardas más, pierdes los días de prestación que pasen."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Inscríbete como demandante de empleo en LABORA y pide la prestación en la sede electrónica del SEPE, dentro de los 15 días hábiles.",
+    "url": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html"
+  },
+  "ayuda_humana": ["sepe"],
+  "como_pedirla": "Sede electrónica del SEPE con certificado digital, Cl@ve o cita previa.",
+  "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+  "url_oficial": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

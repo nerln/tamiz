@@ -1,0 +1,49 @@
+{
+  "id": "es-prueba-fechas",
+  "nombre": "Prueba: fechas del perfil",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Organismo inventado para las pruebas del motor",
+  "ambito": "ES",
+  "resumen": "Ficha inventada que solo sirve para probar el motor de reglas. No describe ninguna ayuda real.",
+  "cuantia": {
+    "texto": "Ficha de prueba, sin importe.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "situacion_administrativa.residencia_legal_desde",
+      "op": "<=",
+      "valor": "2024-10-14",
+      "texto": "Tener residencia legal desde el 14/10/2024 o antes"
+    },
+    {
+      "campo": "empleo.contrato_hasta",
+      "op": ">=",
+      "valor": "2027-01-01",
+      "texto": "Tener contrato al menos hasta el 01/01/2027"
+    }
+  ],
+  "requisitos_no_evaluables": [],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Ficha de prueba: no hay nada que pedir."
+  },
+  "ayuda_humana": [
+    "sepe"
+  ],
+  "fuente": "https://example.org/tamiz/prueba",
+  "url_oficial": "https://example.org/tamiz/prueba",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

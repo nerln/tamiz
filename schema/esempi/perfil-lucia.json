@@ -1,0 +1,73 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Lucía",
+    "descripcion": "Persona inventada. Investigadora predoctoral con contrato en una universidad pública de València, ciudadana de la UE, 28 años, vive de alquiler.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1998,
+    "mes_nacimiento": 3,
+    "nacionalidades": ["PT"],
+    "sexo": "mujer"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2023-09"
+  },
+  "situacion_administrativa": {
+    "tipo": "ciudadano_ue",
+    "autoriza_trabajar": true,
+    "residencia_legal_desde": "2023-09"
+  },
+  "empleo": {
+    "situaciones": ["asalariado", "estudiante"],
+    "tipo_contrato": "predoctoral",
+    "contrato_hasta": "2027-09",
+    "meses_cotizados_6_anios": 36,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "master",
+    "matriculado_en": "doctorado",
+    "titulo_extranjero": true,
+    "titulo_pais": "PT",
+    "homologacion": "no_pedida"
+  },
+  "hogar": {
+    "miembros": 1,
+    "hijos": [],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "alquiler",
+    "alquiler_mensual": 650,
+    "contrato_a_su_nombre": true
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {"tramo": "de_18001_a_21000"},
+    "patrimonio_sin_vivienda": {"tramo": "hasta_6000"}
+  },
+  "vinculos": {
+    "entidad_trabajo": {"tipo": "universidad_publica", "ambito": "ES-VC"},
+    "entidad_estudios": {"tipo": "universidad_publica", "ambito": "ES-VC"},
+    "paises_origen": ["PT"],
+    "paises_cotizacion": [],
+    "afiliaciones": [],
+    "permiso_conducir_pais": "PT"
+  },
+  "intereses": ["investigacion", "vivienda", "formacion"],
+  "solicitudes": [
+    {"ayuda": "es-vc-bono-alquiler-joven-2026", "estado": "interesa", "fecha": "2026-10-14"}
+  ]
+}

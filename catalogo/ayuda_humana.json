@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ccoo-pv",
+    "nombre": "CCOO del País Valencià",
+    "tipo": "sindicato",
+    "que_hace": "Sindicato: orientación sobre derechos laborales y de protección social.",
+    "ambito": "ES-VC",
+    "gratuito": true,
+    "url": "https://pv.ccoo.es/",
+    "fuente": "https://pv.ccoo.es/",
+    "verificado_el": null
+  },
+  {
+    "id": "accem",
+    "nombre": "Accem",
+    "tipo": "ong",
+    "que_hace": "ONG que atiende a personas migrantes y refugiadas: información y orientación sobre sus trámites y derechos.",
+    "ambito": "ES",
+    "gratuito": true,
+    "url": "https://www.accem.es/",
+    "fuente": "https://www.accem.es/",
+    "verificado_el": null
+  },
+  {
+    "id": "cepaim",
+    "nombre": "Fundación Cepaim",
+    "tipo": "ong",
+    "que_hace": "ONG de integración de personas migrantes: orientación y acompañamiento social.",
+    "ambito": "ES",
+    "gratuito": true,
+    "url": "https://cepaim.org/",
+    "fuente": "https://cepaim.org/",
+    "verificado_el": null
+  },
+  {
+    "id": "oficina-extranjeria-valencia",
+    "nombre": "Oficina de Extranjería de València",
+    "tipo": "administracion",
+    "que_hace": "Atención pública sobre trámites de extranjería (residencia, nacionalidad) en la provincia de València.",
+    "ambito": "ES-VC",
+    "municipio_ine": "46250",
+    "gratuito": true,
+    "url": "https://extranjeros.inclusion.gob.es/",
+    "fuente": "https://extranjeros.inclusion.gob.es/",
+    "verificado_el": null
+  },
+  {
+    "id": "servicios-sociales-valencia",
+    "nombre": "Servicios Sociales del Ayuntamiento de València",
+    "tipo": "administracion",
+    "que_hace": "Atención social municipal y orientación sobre ayudas sociales de la ciudad.",
+    "ambito": "ES-VC",
+    "municipio_ine": "46250",
+    "gratuito": true,
+    "url": "https://sede.valencia.es/",
+    "fuente": "https://sede.valencia.es/",
+    "verificado_el": null
+  },
+  {
+    "id": "universitat-de-valencia",
+    "nombre": "Universitat de València",
+    "tipo": "universidad",
+    "que_hace": "Información sobre doctorado, becas y contratos de investigación de la universidad.",
+    "ambito": "ES-VC",
+    "municipio_ine": "46250",
+    "gratuito": true,
+    "url": "https://www.uv.es/",
+    "fuente": "https://www.uv.es/",
+    "verificado_el": null
+  },
+  {
+    "id": "labora",
+    "nombre": "LABORA, Servicio Valenciano de Empleo y Formación",
+    "tipo": "administracion",
+    "que_hace": "Servicio de empleo de la Comunitat Valenciana: inscripción como demandante, orientación y formación para el empleo.",
+    "ambito": "ES-VC",
+    "gratuito": true,
+    "url": "https://labora.gva.es/",
+    "fuente": "https://labora.gva.es/",
+    "verificado_el": null
+  }
+]

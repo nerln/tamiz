@@ -1,0 +1,69 @@
+{
+  "id": "es-aei-fpu-2026",
+  "nombre": "FPU 2026: contratos predoctorales para formación de profesorado universitario",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "resumen": "Contrato predoctoral de 4 años para hacer la tesis con formación docente. La persona rellena la solicitud y la universidad la presenta.",
+  "cuantia": {
+    "texto": "32.500 € al año para el contrato (salario bruto mínimo de 25.457 € al año), más ayudas para estancias en otros centros y matrícula de doctorado.",
+    "importe_eur": 32500,
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": ["grado", "master"],
+      "texto": "Tener un grado o un máster y no tener el doctorado",
+      "cita": "Convocatoria FPU 2026"
+    },
+    {
+      "campo": "empleo.tipo_contrato",
+      "op": "!=",
+      "valor": "predoctoral",
+      "texto": "No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)",
+      "cita": "Convocatoria FPU 2026",
+      "no_concluyente": ["no_cumple"],
+      "aclaracion": "Con un contrato predoctoral ahora depende de los meses: las bases no admiten haber tenido más de 12 meses de contrato predoctoral antes de la solicitud."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar matriculado o admitido en un doctorado para el curso 2026/2027, o poder estarlo al firmar el contrato",
+    "No haber tenido antes una ayuda FPU",
+    "No haber disfrutado más de 12 meses de contrato predoctoral antes de la solicitud",
+    "Tener un director o directora de tesis doctor, con vínculo con la entidad, que no figure en otra solicitud",
+    "Hacer al menos 90 horas de colaboración docente durante la ayuda"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-10-20",
+    "fin": "2026-11-12",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf",
+    "nota": "La persona rellena y firma hasta el 12/11/2026 a las 14:00; la universidad presenta la solicitud hasta el 20/11/2026. Ficha de ejemplo: fechas tomadas de la convocatoria citada por un agente, que una persona aún no ha comprobado."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Las bases la declaran incompatible con otro contrato laboral y con ayudas de finalidad parecida; permiten ayudas de movilidad y para ir a congresos.",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Date de alta en el registro de la AEI y rellena el formulario electrónico; después tu universidad presenta la solicitud.",
+    "url": "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026"
+  },
+  "ayuda_humana": ["uv-servei-investigacio"],
+  "como_pedirla": "Formulario electrónico en la web de la AEI y presentación por la universidad con la firma de su representante.",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf",
+  "url_oficial": "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-11-13",
+  "confianza": "alta"
+}

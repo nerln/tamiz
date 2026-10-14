@@ -1,0 +1,113 @@
+{
+  "id": "es-imv-complemento-ayuda-infancia",
+  "nombre": "Complemento de Ayuda para la Infancia (CAPI) del IMV",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Seguridad Social - INSS",
+  "ambito": "ES",
+  "resumen": "Complemento mensual por cada menor de 18 años del hogar. Se puede pedir con o sin Ingreso Mínimo Vital, si los ingresos y el patrimonio del hogar están por debajo de los límites de la Ley 19/2021.",
+  "cuantia": {
+    "texto": "En 2026, por cada menor y mes: 115 € (menores de 3 años), 80,50 € (de 3 a 5 años) y 57,50 € (de 6 a 17 años), según la edad que tenga cada menor el 1 de enero del año.",
+    "importe_eur": 115,
+    "periodicidad": "mensual"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.hijos_menores_18",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener en tu hogar al menos un hijo o menor a tu cargo de menos de 18 años",
+      "cita": "Art. 11.6 Ley 19/2021"
+    },
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 18,
+      "texto": "Ser mayor de edad",
+      "cita": "Art. 5.2 Ley 19/2021"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener residencia legal en España",
+      "cita": "Art. 10.1.a Ley 19/2021"
+    },
+    {
+      "campo": "calc.anios_residencia_legal",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Llevar al menos 1 año con residencia legal y efectiva en España, sin interrupción",
+      "cita": "Art. 10.1.a Ley 19/2021",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "No se pide el año a los menores que se incorporan al hogar (nacimiento, adopción, reagrupación...) ni a las víctimas de trata o de violencia de género. Si es tu caso, puedes pedirlo igual."
+    },
+    {
+      "campo": "calc.ingresos_hogar",
+      "op": "<",
+      "valor": 34332.48,
+      "texto": "Ingresos brutos del hogar el año pasado por debajo de 34.332,48 € (es el límite de un adulto con un menor; con más personas en el hogar el límite es más alto)",
+      "cita": "Art. 11.6 y anexo I Ley 19/2021: 300 % del umbral de un adulto y un menor (8.803,20 € en 2026 × 1,3 = 11.444,16 € al año) = 34.332,48 €",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Con más ingresos brutos puedes encajar igual: el límite sube con cada persona del hogar y la ley cuenta los ingresos computables del art. 20, no el bruto. Compruébalo en el simulador oficial de la Seguridad Social (imv.seg-social.es)."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ingresos computables del año anterior por debajo del 300 % de los umbrales del anexo I de la Ley 19/2021 (art. 11.6). Se miden con las reglas del art. 20, no con el bruto: usa el simulador oficial",
+    "Patrimonio neto por debajo del 150 % de los límites del anexo II y test de activos del anexo III (art. 11.6)",
+    "Hogar formado de forma continuada al menos 6 meses antes de pedirlo, salvo excepciones (art. 10.3)",
+    "Incompatible con la asignación económica por hijo a cargo (sin discapacidad o con menos del 33 %) de la Seguridad Social"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-21007",
+    "nota": "Sin convocatoria: se puede pedir en cualquier momento, con o sin IMV, en la sede electrónica de la Seguridad Social."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "compatible_con": [
+      "es-imv-ingreso-minimo-vital"
+    ],
+    "incompatible_con": [],
+    "texto": "Se suma al IMV y, según la Seguridad Social, se puede pedir con o sin IMV. Es incompatible con la asignación económica por hijo a cargo (sin discapacidad o con menos del 33 %). La Renta Valenciana de Inclusión (Ley 2/2026, art. 28) no da su complemento de infancia si alguien del hogar ya cobra una ayuda con la misma finalidad, como este.",
+    "fuente": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7"
+  },
+  "siguiente_paso": {
+    "texto": "Calcula tu caso con el simulador oficial y pide el complemento en el servicio Ingreso Mínimo Vital de la sede electrónica de la Seguridad Social.",
+    "url": "https://imv.seg-social.es/"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia",
+    "accem"
+  ],
+  "como_pedirla": "Servicio Ingreso Mínimo Vital de la sede electrónica de la Seguridad Social (certificado digital o Cl@ve). Teléfono de información: 020.",
+  "fuente": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7",
+  "url_oficial": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7",
+  "simulador_oficial": "https://imv.seg-social.es/",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

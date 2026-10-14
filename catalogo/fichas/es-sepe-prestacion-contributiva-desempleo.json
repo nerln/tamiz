@@ -1,0 +1,74 @@
+{
+  "id": "es-sepe-prestacion-contributiva-desempleo",
+  "nombre": "Prestación contributiva por desempleo (paro) entre contratos",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "SEPE — Servicio Público de Empleo Estatal",
+  "ambito": "ES",
+  "resumen": "Paro: prestación para quien pierde un empleo por cuenta ajena y ha cotizado por desempleo al menos 360 días en los 6 años anteriores. Se pide en los 15 días hábiles siguientes al último día trabajado. Con menos de 360 días (mínimo 90) puede haber subsidio de 3 a 6 meses.",
+  "cuantia": {
+    "texto": "70 % de la base reguladora los primeros 180 días y 60 % desde el día 181. Topes mensuales 2026 (IPREM 600 €): mínimo 560 € sin hijos y 749 € con hijos; máximo 1.225 € sin hijos, 1.400 € con 1 hijo y 1.575 € con 2 o más. Duración: de 120 días (360 a 539 días cotizados) hasta 720 días (2.160 o más).",
+    "periodicidad": "mensual",
+    "duracion_meses_max": 24
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.meses_cotizados_6_anios",
+      "op": ">=",
+      "valor": 12,
+      "texto": "Haber cotizado por desempleo al menos 360 días (12 meses) en los últimos 6 años",
+      "cita": "Arts. 266.b y 269.1 LGSS; página SEPE «prestación contributiva»",
+      "aclaracion": "Cuentan los días cotizados por la contingencia de desempleo: míralo en tu vida laboral."
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains_none",
+      "valor": [
+        "jubilado"
+      ],
+      "texto": "Seguir en edad laboral, sin haberte jubilado",
+      "cita": "Art. 266 LGSS y página SEPE (requisitos): no haber cumplido la edad ordinaria de jubilación",
+      "aclaracion": "Si cobras una pensión de jubilación, el paro no se puede cobrar a la vez."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar en situación legal de desempleo; por ejemplo, que tu contrato de duración determinada termine por expiración del tiempo convenido y no por decisión tuya (art. 267 LGSS). Confirma que tu tipo de contrato da paro.",
+    "Que el contrato cotizara por desempleo (míralo en la vida laboral)",
+    "Estar afiliado/a y en alta o situación asimilada al alta en la Seguridad Social",
+    "Estar inscrito/a como demandante de empleo y firmar el acuerdo de actividad; la inscripción hay que mantenerla mientras cobras",
+    "Estar disponible para buscar empleo y aceptar una colocación adecuada",
+    "No haber cumplido la edad ordinaria de jubilación",
+    "No hacer un trabajo por cuenta propia o ajena a tiempo completo mientras cobras (salvo que un programa de fomento del empleo lo permita)",
+    "No cobrar una pensión de la Seguridad Social incompatible con el trabajo"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+    "nota": "Hay que pedirla en los 15 días hábiles siguientes al último día trabajado. Si te pasas, la cobras igual, pero pierdes tantos días de prestación como hayan pasado (art. 268.2 LGSS)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "El SEPE exige no hacer un trabajo por cuenta propia o ajena a tiempo completo mientras cobras (salvo programa de fomento del empleo) ni cobrar una pensión de la Seguridad Social incompatible con el trabajo.",
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html"
+  },
+  "siguiente_paso": {
+    "texto": "Pide la prestación en los 15 días hábiles siguientes al último día trabajado: en la sede electrónica del SEPE (certificado digital o Cl@ve) o con cita previa en la oficina de prestaciones. Antes, haz la simulación oficial para ver cuánto y cuánto tiempo podrías cobrar.",
+    "url": "https://sede.sepe.gob.es/portalSede/procedimientos-y-servicios/personas/proteccion-por-desempleo/solicitud-de-prestaciones.html"
+  },
+  "ayuda_humana": [
+    "labora"
+  ],
+  "como_pedirla": "Sede electrónica del SEPE con certificado digital, DNI electrónico o Cl@ve; con cita previa en la oficina de prestaciones; en cualquier registro público o por correo administrativo. La solicitud requiere estar inscrito/a como demandante de empleo.",
+  "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+  "url_oficial": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
+  "simulador_oficial": "https://sede.sepe.gob.es/dgsimulador/introSimulador.do",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

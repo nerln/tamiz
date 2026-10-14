@@ -1,0 +1,13 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba mes sin día",
+    "descripcion": "Perfil inventado: residencia legal desde octubre de 2024, sin el día (23 o 24 meses).",
+    "sintetico": true
+  },
+  "situacion_administrativa": {
+    "residencia_legal_desde": "2024-10"
+  }
+}

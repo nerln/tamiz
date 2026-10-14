@@ -1,0 +1,95 @@
+{
+  "id": "es-vc-bono-alquiler-joven-2026",
+  "nombre": "Bono Alquiler Joven 2026 (Comunitat Valenciana)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "desconocida",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana — Conselleria de Vivienda, Empleo, Juventud e Igualdad",
+  "ambito": "ES-VC",
+  "resumen": "Ayuda directa para pagar el alquiler, para jóvenes de hasta 35 años con ingresos regulares y renta baja. La convocatoria 2026 ya está cerrada.",
+  "cuantia": {
+    "texto": "250 € al mes (sin pasar del alquiler que pagas), durante 24 meses seguidos: hasta 6.000 €.",
+    "importe_eur": 250,
+    "periodicidad": "mensual",
+    "duracion_meses_max": 24
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": "<=",
+      "valor": 35,
+      "texto": "Tener 35 años o menos al pedirla"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener la nacionalidad española o de la UE, o estancia o residencia legal en España"
+    },
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Vivir en la Comunitat Valenciana"
+    },
+    {
+      "campo": "vivienda.regimen",
+      "op": "in",
+      "valor": ["alquiler", "habitacion"],
+      "texto": "Vivir de alquiler (vivienda o habitación) en tu residencia habitual"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ingresos de la unidad de convivencia de hasta 3 veces el IPREM (4 veces con dos jóvenes beneficiarios en el piso, 5 con tres o más; no sube en el alquiler de habitación), medidos con la base imponible general y del ahorro del IRPF 2024, no con el bruto",
+    "Tener una fuente regular de ingresos (trabajo por cuenta propia o ajena, contrato de personal investigador en formación o prestación periódica), con vida laboral de 3 meses en los últimos 6 o ingresos previstos de al menos 6 meses",
+    "Si el contrato tiene varios titulares, todos tienen 35 años o menos",
+    "Contrato de alquiler de al menos un año",
+    "No ser propietario ni usufructuario de una vivienda en España (salvo excepciones)",
+    "No tener parentesco de primer o segundo grado con la persona arrendadora",
+    "Estar empadronado en la vivienda antes de pedirla",
+    "Alquiler máximo según el municipio (anexo I de las bases): València 900 € al mes por vivienda y 450 € por habitación; Alicante y Castellón 800 € y 400 €; otros municipios 700 € y 350 € o 650 € y 300 €",
+    "El contrato no es de alquiler turístico ni un subarriendo, y la vivienda no es pública"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-08-24",
+    "fin": "2026-09-11",
+    "verificado": false,
+    "nota": "La convocatoria 2026 está cerrada. Las bases (DOGV de 21/08/2026) dan 15 días hábiles desde el día siguiente al extracto; las fechas 24/08-11/09/2026 vienen de fuentes secundarias, no del texto oficial. Próxima convocatoria no confirmada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Las bases no permiten cobrarla junto con otra ayuda al alquiler de cualquier administración.",
+    "fuente": "https://dogv.gva.es/datos/2026/08/21/pdf/2026_27284_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Ahora no se puede pedir. Cuando salga la próxima convocatoria, se pedirá en la sede electrónica de la Generalitat.",
+    "url": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026"
+  },
+  "ayuda_humana": ["gva-vivienda"],
+  "como_pedirla": "Sede electrónica de la Generalitat, con identificación electrónica, o en persona con cita previa.",
+  "fuente": "https://dogv.gva.es/datos/2026/08/21/pdf/2026_27284_es.pdf",
+  "url_oficial": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

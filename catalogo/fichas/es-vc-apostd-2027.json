@@ -1,0 +1,80 @@
+{
+  "id": "es-vc-apostd-2027",
+  "nombre": "APOSTD — contratos postdoctorales de la Generalitat Valenciana (convocatoria 2027)",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana — Conselleria de Educación, Cultura y Universidades",
+  "ambito": "ES-VC",
+  "resumen": "65 contratos postdoctorales de 18 a 24 meses con movilidad: modalidad A (doctorado en la Comunitat Valenciana y proyecto fuera de ella) o B (doctorado fuera y proyecto en un centro valenciano). Necesitas un/a investigador/a principal de un centro valenciano que te proponga.",
+  "cuantia": {
+    "texto": "46.235 € por año para salario y cuota empresarial de la Seguridad Social; salario bruto mínimo en el contrato: 35.000 €/año. Duración: de 18 a 24 meses. Convocatoria para el ejercicio 2027.",
+    "importe_eur": 46235,
+    "periodicidad": "anual",
+    "duracion_meses_max": 24
+  },
+  "requisitos": [
+    {
+      "any_of": [
+        {
+          "campo": "estudios.nivel_max",
+          "op": "==",
+          "valor": "doctorado",
+          "texto": "Tener el título de doctor/a",
+          "cita": "Anexo IV, apartado segundo 2.a"
+        },
+        {
+          "campo": "estudios.matriculado_en",
+          "op": "==",
+          "valor": "doctorado",
+          "texto": "Estar haciendo el doctorado y poder acreditar en 2 meses el título, el pago de tasas o la defensa de la tesis",
+          "cita": "Anexo IV, apartado segundo 2.a",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Sólo vale si ya has defendido o depositado la tesis, o pagado las tasas del título; si todavía no, no puedes pedirla."
+        }
+      ],
+      "texto": "Tener el título de doctor/a o estar en condiciones de obtenerlo al solicitar",
+      "cita": "Anexo IV, apartado segundo 2.a"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Título de doctor obtenido después del 1 de enero de 2022 (ampliable un año por cada permiso de maternidad/paternidad, atención a dependientes, enfermedad grave o violencia de género; hasta 2019 si has cuidado hijos menores de 6 años)",
+    "No haber sido beneficiario/a de ayudas postdoctorales de esta serie en convocatorias anteriores (apartado segundo 2.b)",
+    "Un/a investigador/a principal con vínculo con un centro valenciano y 2 tramos de investigación o 2 proyectos IP terminados que te proponga; sólo puede avalar una solicitud por modalidad (apartado segundo 3)",
+    "Estancia en un único centro de investigación, distinto de aquel en el que obtuviste el doctorado, con la conformidad de la persona responsable del centro receptor (apartado primero 1, 5 y 6)",
+    "Modalidad A (doctorado en universidad valenciana, proyecto fuera de la Comunitat) o B (doctorado fuera, proyecto en centro valenciano) según dónde obtuviste el doctorado (apartado primero 3)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-11-02",
+    "fin": "2026-11-20",
+    "verificado": true,
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+    "nota": "Del 2 al 20 de noviembre de 2026 (Anexo IV, apartado tercero.1). La presentas tú en la sede electrónica de la Generalitat con firma digital. Si aún no tienes el título, entrega título, justificante de pago de tasas o acreditación de defensa de la tesis en los 2 meses siguientes al fin del plazo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con cualquier otra subvención para la misma finalidad que financie los mismos conceptos de gasto o similares y, en concreto, con las ayudas para estancias de personal investigador doctor fuera de la Comunitat Valenciana del Anexo VIII (Anexo IV, apartado octavo).",
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Busca ya a un/a investigador/a principal de un centro valenciano que te avale y a un tutor en el centro receptor. Del 2 al 20/11/2026 presenta la solicitud en la sede electrónica de la Generalitat (sede.gva.es) con firma digital.",
+    "url": "https://sede.gva.es"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Sede electrónica de la Generalitat (sede.gva.es) con firma digital; la solicitud necesita la conformidad del/de la investigador/a principal que te propone y del centro receptor.",
+  "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "url_oficial": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "bdns": "920701",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-11-21",
+  "confianza": "alta"
+}

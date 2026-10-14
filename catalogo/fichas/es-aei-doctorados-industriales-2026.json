@@ -1,0 +1,63 @@
+{
+  "id": "es-aei-doctorados-industriales-2026",
+  "nombre": "Doctorados Industriales 2026 (AEI)",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "empresa",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "resumen": "La empresa (u otra entidad con I+D+i) solicita la ayuda para contratarte 4 años y que hagas una tesis doctoral dentro de un proyecto de I+D+i suyo. La solicitud la presenta la entidad, no tú: antes del 26/10/2026 a las 14:00 necesitas una entidad dispuesta a presentarla.",
+  "cuantia": {
+    "texto": "Contrato: coste máximo financiable 34.400 €/año, con salario bruto mínimo en el contrato de 25.400 €/año; la ayuda cubre el 70/60/50 % (pequeña/mediana/gran empresa) en investigación industrial y el 45/35/25 % en desarrollo experimental. Además: movilidad 8.500 € por persona (única), matrícula de doctorado 1.500 € por persona (única) y otros gastos de ejecución hasta 40.000 € por proyecto.",
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "!=",
+      "valor": "doctorado",
+      "texto": "Tener un nivel de estudios inferior al de doctor/a (de cualquier universidad)",
+      "cita": "Art. 7.f de la convocatoria (Resolución AEI de 22/09/2026)"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "La solicitud la presenta una empresa o entidad con capacidad de I+D+i, con firma electrónica de su representante legal (art. 14); tú no la presentas",
+    "No haber tenido relación laboral con esa entidad, ni con otra relacionada con ella por capital o socios, antes del 18/02/2026 (art. 7.b; hay excepción para spin-off y JEI)",
+    "Estar en disposición de matricularte, o estar admitido/a, en un doctorado de una universidad española para el curso 2027/2028 cuando se formalice el contrato (art. 7.a)",
+    "No haber disfrutado más de 12 meses de otra ayuda estatal de formación predoctoral (FPI, FPU, PFIS, etc.) (art. 7.e)",
+    "No tener una participación en el capital de la entidad que suponga control efectivo (art. 7.c)",
+    "No figurar como persona propuesta en la solicitud de más de una entidad (art. 7.d)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-09-30",
+    "fin": "2026-10-26",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/Resoluci%C3%B3n%20convocatoria%20DIN%202026_fda.pdf",
+    "nota": "Hasta las 14:00 (hora peninsular). La presenta la entidad, con la firma electrónica de su representante legal; la persona candidata no presenta nada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "El contrato es incompatible con cualquier otro contrato laboral de la persona contratada y con otras ayudas de finalidad análoga; el contrato no puede financiarse además con otras ayudas para la misma finalidad (art. 11.1 y 11.2 de la convocatoria).",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/Resoluci%C3%B3n%20convocatoria%20DIN%202026_fda.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Si no tienes entidad, pregunta ya a una empresa o centro con I+D+i si puede presentar la solicitud contigo: el plazo termina el 26/10/2026 a las 14:00 y la firma su representante legal en la sede de la AEI.",
+    "url": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-formacion-doctores-doctoras-empresas-otras-20"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "La presenta la entidad: su representante legal se inscribe en el RUS de la AEI, rellena el formulario electrónico y lo firma con firma electrónica avanzada (art. 14).",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/Resoluci%C3%B3n%20convocatoria%20DIN%202026_fda.pdf",
+  "url_oficial": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-formacion-doctores-doctoras-empresas-otras-20",
+  "bdns": "918684",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-10-27",
+  "confianza": "alta"
+}

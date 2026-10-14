@@ -1,0 +1,118 @@
+{
+  "id": "es-vc-renta-valenciana-inclusion",
+  "nombre": "Renta Valenciana de Inclusión (RVI), nueva ley 2/2026",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana - Conselleria de Servicios Sociales, Familia e Infancia",
+  "ambito": "ES-VC",
+  "resumen": "Prestación económica y acompañamiento social para hogares con pocos recursos de la Comunitat Valenciana. La Ley 2/2026 entra en vigor el 20/10/2026 y sustituye a la Ley 19/2017; la Ley 5/2026 pide 3 años seguidos de empadronamiento (o 10 de los últimos 30). Es complementaria del IMV.",
+  "cuantia": {
+    "texto": "Cuantía máxima al mes según las personas del hogar: 793,80 € (1), 929,88 € (2), 1.020,60 € (3), 1.088,64 € (4), 1.156,68 € (5) y 1.247,40 € (6 o más). Se paga la diferencia con tus ingresos, restando lo que cobres del IMV. Complemento de infancia: 60 € por menor, máximo 180 € al mes. +30 % si pagas alquiler o hipoteca.",
+    "importe_eur": 793.8,
+    "periodicidad": "mensual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Vivir en la Comunitat Valenciana",
+      "cita": "Art. 8.1.a Ley 2/2026"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "calc.edad",
+          "op": ">=",
+          "valor": 23,
+          "texto": "Tener 23 años o más",
+          "cita": "Art. 4.2.a Ley 2/2026"
+        },
+        {
+          "all_of": [
+            {
+              "campo": "calc.edad",
+              "op": ">=",
+              "valor": 18,
+              "texto": "Tener 18 años o más"
+            },
+            {
+              "campo": "calc.hijos_menores_18",
+              "op": ">=",
+              "valor": 1,
+              "texto": "Tener hijos menores a tu cargo"
+            }
+          ],
+          "texto": "Tener 18 años o más y hijos menores a tu cargo"
+        }
+      ],
+      "texto": "Tener 23 años o más, o 18 si tienes hijos menores a tu cargo",
+      "cita": "Art. 4.2.a y 4.2.b Ley 2/2026"
+    },
+    {
+      "campo": "calc.meses_empadronado",
+      "op": ">=",
+      "valor": 36,
+      "texto": "Estar empadronado en la Comunitat Valenciana 3 años seguidos (o 10 de los últimos 30)",
+      "cita": "Art. 9.1 Ley 2/2026, redacción del art. 140 de la Ley 5/2026",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Vale el empadronamiento en cualquier municipio valenciano y también 10 años de los últimos 30; tu perfil solo mide el municipio actual. Hay exenciones (protección internacional, apátrida, protección temporal, víctimas de trata o de violencia de género)."
+    },
+    {
+      "campo": "calc.ingresos_hogar",
+      "op": "<=",
+      "valor": 9405.6,
+      "texto": "Ingresos brutos del hogar de 783,80 € al mes o menos, es decir 9.405,60 € al año (es el límite de una persona sola; con más personas el límite es más alto)",
+      "cita": "Art. 11.1 y anexo I Ley 2/2026: cuantía máxima de 1 persona 793,80 € al mes menos 10 € = 783,80 € al mes; pasado a año: × 12 = 9.405,60 €",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La ley mira los ingresos del mes en que lo pides (el sueldo menos las cotizaciones, sin contar el IMV), no el bruto del año, y el límite sube con cada persona del hogar. Con más ingresos puedes encajar igual: pregunta en los servicios sociales de tu ayuntamiento."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ingresos del mes de la solicitud por debajo de la cuantía máxima de tu hogar (anexo I) menos 10 €; cuentan el sueldo menos las cotizaciones, las prestaciones y otras rentas, sin contar el IMV (arts. 11.1 y 24 y anexo II). No es el bruto anual",
+    "Patrimonio: mobiliario por debajo de la cuantía máxima anual e inmobiliario (valor catastral) por debajo de 5 veces ese importe (art. 11.2 y anexo III)",
+    "Haber pedido antes otras prestaciones que te puedan corresponder, como el IMV; no haber rechazado ofertas de empleo adecuadas, y no tener sanciones muy graves ni condenas recientes (art. 8.1.c a 8.1.g)",
+    "Vulnerabilidad social acreditada por el diagnóstico de los servicios sociales (arts. 10 y 16)",
+    "No estar de alta laboral al solicitar, no ocupar una plaza residencial permanente ni estar en prisión (art. 8.2)",
+    "Entre 23 y 30 años: haber vivido de forma independiente los 2 años anteriores, con excepciones (hijos a cargo, discapacidad, víctimas...) (art. 4.2.a)",
+    "Firmar y seguir un itinerario de inclusión (PAI); duración inicial de 6 años renovables y luego cada 3 (arts. 7.d y 15)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-10-20",
+    "fin": "2099-12-31",
+    "verificado": false,
+    "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9799",
+    "nota": "Se puede pedir desde el 20/10/2026, cuando entra en vigor la Ley 2/2026 (seis meses después de su publicación en el DOGV del 20/04/2026, disposición final cuarta); hasta entonces rige la Ley 19/2017. Después se pide en cualquier momento: no hay fecha de cierre y el 31/12/2099 es solo un tope técnico. La prestación cuenta desde el día 1 del mes siguiente (art. 37); resuelven en 5 meses (art. 36)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "compatible_con": [
+      "es-imv-ingreso-minimo-vital"
+    ],
+    "incompatible_con": [],
+    "texto": "Es complementaria y subsidiaria del IMV: hay que pedirlo antes. El IMV no cuenta para medir tu vulnerabilidad, pero su importe se resta de la RVI (arts. 7.a, 11.1 y 31.2). El complemento de infancia solo se da si nadie del hogar cobra otra ayuda con esa finalidad, como el CAPI (art. 28).",
+    "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9799"
+  },
+  "siguiente_paso": {
+    "texto": "Pide cita en los servicios sociales de tu ayuntamiento: hacen el diagnóstico y reciben la solicitud (art. 32.2 Ley 2/2026). Antes, pide el IMV.",
+    "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9799"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia",
+    "accem"
+  ],
+  "como_pedirla": "Preferentemente por vía telemática; también en los servicios sociales de atención primaria o en el registro del ayuntamiento de tu domicilio (art. 32.2 Ley 2/2026).",
+  "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9799",
+  "url_oficial": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9799",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-10-27",
+  "confianza": "alta"
+}

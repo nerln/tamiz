@@ -1,0 +1,1319 @@
+{
+  "generado_el": "2026-10-14T05:12:58+02:00",
+  "fuentes": [
+    {
+      "nombre": "Arbeitnow",
+      "url": "https://www.arbeitnow.com/",
+      "atribucion": "Ofertas de Arbeitnow (arbeitnow.com), con enlace de vuelta a la fuente.",
+      "estado": "ok",
+      "n": 96
+    },
+    {
+      "nombre": "Remotive",
+      "url": "https://remotive.com/",
+      "atribucion": "Ofertas de Remotive (remotive.com), con un retraso de 24 horas.",
+      "estado": "ok",
+      "n": 8,
+      "leido_el": "2026-10-14T05:12:54+02:00"
+    },
+    {
+      "nombre": "BOE",
+      "url": "https://www.boe.es/",
+      "atribucion": "Fuente de los datos: Agencia Estatal Boletín Oficial del Estado",
+      "estado": "ok",
+      "n": 35
+    }
+  ],
+  "ofertas": [
+    {
+      "titulo": "Senior Medical Writer | France",
+      "empresa": "TransPerfect",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-14",
+      "url": "https://www.arbeitnow.fr/jobs/companies/transperfect/remote-senior-medical-writer-france-paris-210621",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Werkstudent/in (W/M/D) Sustainability Supply Chain Administration",
+      "empresa": "Leadership Advantage GmbH / Leadership & Sustainability Karin Ekberg GmbH",
+      "lugar": "Würzburg",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/leadership-advantage-gmbh-leadership-sustainability-karin-ekberg-gmbh/werkstudent-in-sustainability-supply-chain-administration-wurzburg-434799",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Web Developer (all genders)",
+      "empresa": "Contabo",
+      "lugar": "Remote (Germany)",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/contabo/remote-web-developer-all-genders-321019",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Vice President, US Privacy and Global Data Protection Officer",
+      "empresa": "Spring Health",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/spring-health/remote-vice-president-us-privacy-and-global-data-protection-officer-199334",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Vertriebsprofi - Kreditberatung im Homeoffice (w/m/d)",
+      "empresa": "FFG FINANZCHECK Finanzportale GmbH",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/ffg-finanzcheck-finanzportale-gmbh/vertriebsprofi-kreditberatung-im-homeoffice-berlin-221986",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "US Marketing Lead",
+      "empresa": "Teton",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/teton/remote-us-marketing-lead-419060",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technicien de maintenance itinérant (F/H)",
+      "empresa": "Signode",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.fr/jobs/companies/signode/remote-technicien-de-maintenance-itinerant-f-h-beauvais-223554",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technicien de maintenance Itinérant (F/H)",
+      "empresa": "Signode",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.fr/jobs/companies/signode/remote-technicien-de-maintenance-itinerant-f-h-nantes-155044",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technicien de maintenance Itinérant (F/H)",
+      "empresa": "Signode",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.fr/jobs/companies/signode/remote-technicien-de-maintenance-itinerant-f-h-nancy-92476",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technical Sourcer",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-technical-sourcer-184295",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technical Recruiter, Manufacturing",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-technical-recruiter-manufacturing-222961",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technical Customer Support Specialist",
+      "empresa": "Happyrobot.ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/happyrobotai/remote-technical-customer-support-specialist-148934",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Talent Scout / Recruiter (m/w/d) | 100 % Remote",
+      "empresa": "Claudia Buhl",
+      "lugar": "Schrobenhausen",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/claudia-buhl/talent-scout-recruiter-100-remote-schrobenhausen-127446",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Staff Software Engineer, Real-Time Systems",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-staff-software-engineer-real-time-systems-109359",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Staff Software Engineer, Autonomy",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-staff-software-engineer-autonomy-402548",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Software Engineer, Robotics",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-software-engineer-robotics-180888",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Software Engineer, Real-Time Systems (Early Career)",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-software-engineer-real-time-systems-early-career-159904",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Software Engineer, Autonomy",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-software-engineer-autonomy-278473",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Service Monteur Warmtepompen",
+      "empresa": "DeWarmte",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.nl/jobs/companies/dewarmte/remote-service-monteur-warmtepompen-339634",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior/Leading Software Engineer (fintech)",
+      "empresa": "TechBiz Global GmbH",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/techbiz-global-gmbh/remote-senior-leading-software-engineer-fintech-berlin-481208",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Software Engineer",
+      "empresa": "Nopan",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/nopan/remote-senior-software-engineer-423367",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Sales Manager",
+      "empresa": "TechBiz Global GmbH",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/techbiz-global-gmbh/remote-senior-sales-manager-aachen-181363",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior SEO & GEO Manager (m/w/d)",
+      "empresa": "Auxmoney Gmbh",
+      "lugar": "Remote / Düsseldorf",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/auxmoney-gmbh/remote-senior-seo-geo-manager-457507",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Project Manager",
+      "empresa": "Mustardseed",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/mustardseed/remote-senior-project-manager-121039",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Product Owner",
+      "empresa": "Protofy GmbH & Co. KG",
+      "lugar": "Hamburg",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/protofy-gmbh-co-kg/senior-product-owner-hamburg-79879",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Product Designer",
+      "empresa": "Haut Ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/haut-ai/remote-senior-product-designer-71097",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Network Engineer (all genders)",
+      "empresa": "Contabo",
+      "lugar": "Remote (Germany)",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/contabo/remote-senior-network-engineer-all-genders-71807",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Forward Deployed Engineer",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-senior-forward-deployed-engineer-439184",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Finance Business Analyst (Safeguarding, Treasury & Accounting)",
+      "empresa": "Delta Capita",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.co.uk/jobs/companies/delta-capita/remote-senior-finance-business-analyst-safeguarding-treasury-accounting-london-13863",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Director, Provider Experience Operations",
+      "empresa": "Spring Health",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/spring-health/remote-senior-director-provider-experience-operations-305303",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Data Scientist",
+      "empresa": "Spring Health",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/spring-health/remote-senior-data-scientist-304274",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior AI Automation Expert (m/w/d) - Microsoft M365 / Copilot",
+      "empresa": "Blümlein AI & Automation GmbH",
+      "lugar": "Schwäbisch Hall",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/blumlein-ai-automation-gmbh/senior-ai-automation-expert-microsoft-m365-copilot-schwabisch-hall-134461",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "SPAR Research Manager",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-spar-research-manager-229758",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Resolución de 8 de octubre de 2026, de la Diputación Provincial de Almería, referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21280",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Viladecans (Barcelona), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21270",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Valencina de la Concepción (Sevilla), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21273",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Seseña (Toledo), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21279",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Motilla del Palancar (Cuenca), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21272",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Martos (Jaén), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21274",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Las Cabezas de San Juan (Sevilla), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21275",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de La Vall d'Uixó (Castellón/Castelló), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "Comunitat Valenciana",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21271",
+      "fuente": "boe",
+      "categoria": "comunitat_valenciana"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de La Gineta (Albacete), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21267",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Cartaya (Huelva), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21278",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, del Ayuntamiento de Candeleda (Ávila), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21276",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, de la Mancomunidad Beterri-Buruntza (Gipuzkoa), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21277",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, de la Diputación Provincial de Córdoba, referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21269",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 7 de octubre de 2026, de la Diputación Provincial de Albacete, referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21268",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Vigo (Pontevedra), referente a la convocatoria para proveer puesto de trabajo por el sistema de concurso.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21261",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Arico (Santa Cruz de Tenerife), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21266",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 5 de octubre de 2026, del Ayuntamiento de Xàbia/Jávea (Alicante/Alacant), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "Comunitat Valenciana",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21265",
+      "fuente": "boe",
+      "categoria": "comunitat_valenciana"
+    },
+    {
+      "titulo": "Resolución de 29 de septiembre de 2026, del Ayuntamiento de El Molar (Madrid), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21263",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 2 de octubre de 2026, del Consorcio de Extinción de Incendios y Salvamento de Alicante (Alicante/Alacant), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "Comunitat Valenciana",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21264",
+      "fuente": "boe",
+      "categoria": "comunitat_valenciana"
+    },
+    {
+      "titulo": "Resolución de 12 de mayo de 2026, del Ayuntamiento de Sant Cugat del Vallès (Barcelona), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21262",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Recruiter, Mission & Business Operations",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-recruiter-mission-business-operations-214773",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Recruiter",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-recruiter-361710",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Quereinsteiger im Vertrieb im Homeoffice (w/m/d)",
+      "empresa": "Smava GmbH",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/smava-gmbh/quereinsteiger-im-vertrieb-im-homeoffice-berlin-169677",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Perception and Fusion Engineer",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-perception-and-fusion-engineer-357509",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Nebenjob als Online-Testbenutzer (m/w/d) - Studien für Apps, Websites & digitale Produkte",
+      "empresa": "TPnet Marktforschung",
+      "lugar": "Leipzig",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/tpnet-marktforschung/nebenjob-als-online-testbenutzer-studien-fur-apps-websites-digitale-produkte-leipzig-135204",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "ML Engineer (Computer Vision & ML Ops)",
+      "empresa": "StellDirVor GmbH",
+      "lugar": "Munich",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/stelldirvor-gmbh/ml-engineer-computer-vision-ml-ops-munich-359350",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Lead Product Manager, Go-to-Market",
+      "empresa": "Haut Ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/haut-ai/remote-lead-product-manager-go-to-market-472861",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Kundenberater - Kreditabsicherung im Homeoffice (w/m/d)",
+      "empresa": "Smava GmbH",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/smava-gmbh/kundenberater-kreditabsicherung-im-homeoffice-berlin-189422",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Junior Account Executive DACH (German-speaking)",
+      "empresa": "Workmotion",
+      "lugar": "Germany",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/workmotion/remote-junior-account-executive-dach-german-speaking-germany-475847",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Head of Special Projects",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-head-of-special-projects-217861",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Head of Kairos Labs",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-head-of-kairos-labs-411620",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Head of Groups",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-head-of-groups-272100",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Head of Customer Success",
+      "empresa": "Haut Ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/haut-ai/remote-head-of-customer-success-116283",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Global Head of Customer Solutions",
+      "empresa": "Breakmark",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/breakmark/remote-global-head-of-customer-solutions-303921",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Generalist (Workshops)",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-generalist-workshops-179126",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Generalist (Special Projects)",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-generalist-special-projects-495738",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Generalist (Groups)",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-generalist-groups-493165",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "GCP Program Manager",
+      "empresa": "Kairos Project",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/kairos-project/remote-gcp-program-manager-57725",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Forward Deployed Engineer - MX",
+      "empresa": "Breakmark",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/breakmark/remote-forward-deployed-engineer-mx-419021",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Forward Deployed Engineer",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-forward-deployed-engineer-170099",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Forward Deployed Engineer",
+      "empresa": "Breakmark",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/breakmark/remote-forward-deployed-engineer-296700",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Enterprise Account Manager",
+      "empresa": "Haut Ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/haut-ai/remote-enterprise-account-manager-168771",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Director, Experience Intelligence and Quality",
+      "empresa": "Spring Health",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/spring-health/remote-director-experience-intelligence-and-quality-306402",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Digital Project Manager (m/w/d) | 100 % Remote",
+      "empresa": "Claudia Buhl",
+      "lugar": "Schrobenhausen",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/claudia-buhl/digital-project-manager-100-remote-schrobenhausen-147531",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Digital Front Office | Empfangsmitarbeiter (m/w/d) | 100% Remote",
+      "empresa": "Claudia Buhl",
+      "lugar": "Schrobenhausen",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/claudia-buhl/digital-front-office-empfangsmitarbeiter-100-remote-schrobenhausen-109563",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Developer Advocate, Data Platform",
+      "empresa": "Helius",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/helius/remote-developer-advocate-data-platform-67607",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "DevOps Engineer",
+      "empresa": "Swarmaero",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/swarmaero/remote-devops-engineer-442792",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Customer Success Manager - 1 Year Maternity Cover, Jutland Denmark",
+      "empresa": "Teton",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/teton/remote-customer-success-manager-1-year-maternity-cover-jutland-denmark-201000",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Content Lead",
+      "empresa": "Duna",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.nl/jobs/companies/duna/remote-content-lead-208493",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Channel Account Executive - DACH",
+      "empresa": "Genetec Inc",
+      "lugar": "Germany",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/genetec-inc/remote-channel-account-executive-dach-germany-103047",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Call Center Agent - Kreditabsicherung im Homeoffice (w/m/d)",
+      "empresa": "Smava GmbH",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/smava-gmbh/call-center-agent-kreditabsicherung-im-homeoffice-berlin-198771",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "CTO CIS",
+      "empresa": "Breakmark",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/breakmark/remote-cto-cis-416416",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Bankkaufmann/-frau - als Kreditspezialist im Homeoffice (m/w/d)",
+      "empresa": "Smava GmbH",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/smava-gmbh/bankkaufmann-frau-als-kreditspezialist-im-homeoffice-berlin-1584",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Backend Engineer",
+      "empresa": "Duna",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.nl/jobs/companies/duna/remote-backend-engineer-400498",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Assistent/in in der Finanzberatung",
+      "empresa": "DeinFinanzexperte24.de",
+      "lugar": "Schwaikheim",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/deinfinanzexperte24de/assistent-in-in-der-finanzberatung-schwaikheim-253739",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Acuerdo de 5 de octubre de 2026, de la Comisión Permanente del Consejo General del Poder Judicial, por el que se convoca concurso para la provisión de plaza de Letrado/a titular del Gabinete Técnico del Tribunal Supremo para el orden civil.",
+      "empresa": "CONSEJO GENERAL DEL PODER JUDICIAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-13",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21258",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Account Executive",
+      "empresa": "Haut Ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/haut-ai/remote-account-executive-329659",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Absicherungsspezialist - Kredit im Homeoffice (w/m/d)",
+      "empresa": "Smava GmbH",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/smava-gmbh/absicherungsspezialist-kredit-im-homeoffice-berlin-182865",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "AI Platform Engineer (m/w/d)",
+      "empresa": "ANGEHEUERT GmbH",
+      "lugar": "Homeoffice",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/angeheuert-gmbh/remote-ai-platform-engineer-koln-155430",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "(Senior) Infrastructure & Security Engineer",
+      "empresa": "Duna",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.nl/jobs/companies/duna/remote-senior-infrastructure-security-engineer-449441",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "(Senior) AI Product Engineer (m/w/d)",
+      "empresa": "Legalhero",
+      "lugar": "Berlin",
+      "remoto": true,
+      "fecha": "2026-10-13",
+      "url": "https://www.arbeitnow.com/jobs/companies/legalhero/remote-senior-ai-product-engineer-berlin-355736",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Sales Account Executive - Cybersecurity",
+      "empresa": "Crowdsec",
+      "lugar": "Remote job",
+      "remoto": true,
+      "fecha": "2026-10-12",
+      "url": "https://www.arbeitnow.fr/jobs/companies/crowdsec/remote-sales-account-executive-cybersecurity-montrouge-440627",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Cabildo Insular de Fuerteventura (Las Palmas), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21189",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Xeraco (Valencia/València), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "Comunitat Valenciana",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21191",
+      "fuente": "boe",
+      "categoria": "comunitat_valenciana"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Vilafranca de Bonany (Illes Balears), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21192",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Sant Fruitós de Bages (Barcelona), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21194",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Las Palmas de Gran Canaria (Las Palmas), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21188",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Elx/Elche (Alicante/Alacant), referente a la convocatoria para proveer una plaza.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "Comunitat Valenciana",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21190",
+      "fuente": "boe",
+      "categoria": "comunitat_valenciana"
+    },
+    {
+      "titulo": "Resolución de 6 de octubre de 2026, del Ayuntamiento de Collado Mediano (Madrid), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21193",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 5 de octubre de 2026, de la Universidad de Granada, por la que se convoca proceso selectivo para ingreso, por el sistema general de acceso libre, en la Escala Auxiliar de Servicios Generales, para personas con discapacidad intelectual.",
+      "empresa": "UNIVERSIDADES",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21196",
+      "fuente": "boe",
+      "categoria": "investigacion_universidad"
+    },
+    {
+      "titulo": "Resolución de 5 de octubre de 2026, de la Subsecretaría, por la que se convoca la provisión de puestos de trabajo por el sistema de libre designación.",
+      "empresa": "MINISTERIO DE ECONOMÍA, COMERCIO Y EMPRESA",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21184",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 29 de septiembre de 2026, del Ayuntamiento de Alhama de Murcia (Murcia), referente a la convocatoria para proveer varias plazas.",
+      "empresa": "ADMINISTRACIÓN LOCAL",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21187",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 2 de octubre de 2026, de la Subsecretaría, por la que se convoca la provisión de puestos de trabajo por el sistema de libre designación.",
+      "empresa": "MINISTERIO DE INCLUSIÓN, SEGURIDAD SOCIAL Y MIGRACIONES",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21186",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 2 de octubre de 2026, de la Subsecretaría, por la que se convoca la provisión de puesto de trabajo por el sistema de libre designación.",
+      "empresa": "MINISTERIO DE SANIDAD",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21185",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Resolución de 2 de octubre de 2026, de la Subdirección de Gerencia del Museo Nacional Centro de Arte Reina Sofía, por la que se convoca proceso selectivo para ingreso, por el sistema de acceso libre, como personal laboral fijo, fuera de convenio.",
+      "empresa": "MINISTERIO DE CULTURA",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21183",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Product Marketing - ElevenAPI",
+      "empresa": "ElevenLabs",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-12",
+      "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-product-marketing-elevenapi-265736",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Partner Manager - Public Sector Partnerships",
+      "empresa": "ElevenLabs",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-12",
+      "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-partner-manager-public-sector-partnerships-97295",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Orden PJC/1074/2026, de 5 de octubre, por la que se convoca la provisión de puestos de trabajo por el sistema de libre designación, para el Cuerpo de Letrados de la Administración de Justicia.",
+      "empresa": "MINISTERIO DE LA PRESIDENCIA, JUSTICIA Y RELACIONES CON LAS CORTES",
+      "lugar": "España",
+      "remoto": false,
+      "fecha": "2026-10-12",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-21182",
+      "fuente": "boe",
+      "categoria": "empleo_publico"
+    },
+    {
+      "titulo": "Growth Marketer- Reception.ai",
+      "empresa": "ElevenLabs",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-12",
+      "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-growth-marketer-receptionai-129653",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Global Events Lead",
+      "empresa": "ElevenLabs",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-12",
+      "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-global-events-lead-250720",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Value Strategist",
+      "empresa": "ElevenLabs",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-10",
+      "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-value-strategist-187622",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Sales Engineer - UK",
+      "empresa": "Camunda",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-10",
+      "url": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-senior-sales-engineer-uk-496085",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Sales Engineer - UK",
+      "empresa": "Camunda",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-10",
+      "url": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-senior-sales-engineer-uk-45234",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Data Scientist",
+      "empresa": "Duck Duck Go",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-10",
+      "url": "https://www.arbeitnow.ch/jobs/companies/duck-duck-go/remote-senior-data-scientist-340621",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Enterprise Account Executive UKI",
+      "empresa": "Camunda",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-10",
+      "url": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-uki-426314",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Enterprise Account Executive II - DACH",
+      "empresa": "Camunda",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-10",
+      "url": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-ii-dach-180240",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Technical Customer Support Specialist",
+      "empresa": "Happyrobot.ai",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-09",
+      "url": "https://www.arbeitnow.ch/jobs/companies/happyrobotai/remote-technical-customer-support-specialist-54073",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Enterprise Sales Lead - Healthcare",
+      "empresa": "ElevenLabs",
+      "lugar": "Remote",
+      "remoto": true,
+      "fecha": "2026-10-08",
+      "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-enterprise-sales-lead-healthcare-270863",
+      "fuente": "arbeitnow",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior React Full-stack Developer",
+      "empresa": "Lemon.io",
+      "lugar": "Remoto (Europe, USA, Canada, APAC)",
+      "remoto": true,
+      "fecha": "2026-10-02",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-react-full-stack-developer-2091133",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior back-end Engineer",
+      "empresa": "Lemon.io",
+      "lugar": "Remoto (Europe, USA, UK, Canada, Australia, Ireland, Switzerland, Singapore, Mexico, Iceland, Norway)",
+      "remoto": true,
+      "fecha": "2026-09-30",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-back-end-engineer-2091132",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Shopify Developer",
+      "empresa": "Sanctuary Computer Inc",
+      "lugar": "Remoto (Worldwide)",
+      "remoto": true,
+      "fecha": "2026-09-18",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-shopify-developer-2091140",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior AI Engineer",
+      "empresa": "Lemon.io",
+      "lugar": "Remoto (Northern America, LATAM, Europe, APAC)",
+      "remoto": true,
+      "fecha": "2026-09-18",
+      "url": "https://remotive.com/remote-jobs/artificial-intelligence/senior-ai-engineer-2091131",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior .NET Full-stack Developer",
+      "empresa": "Lemon.io",
+      "lugar": "Remoto (Northern America, LATAM, Europe, APAC)",
+      "remoto": true,
+      "fecha": "2026-09-17",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-net-full-stack-developer-2091130",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Independent Software Developer",
+      "empresa": "A.Team",
+      "lugar": "Remoto (Americas, Europe, Israel)",
+      "remoto": true,
+      "fecha": "2026-09-16",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-independent-software-developer-1919265",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Independent AI Engineer / Architect",
+      "empresa": "A.Team",
+      "lugar": "Remoto (Americas, Europe, Israel)",
+      "remoto": true,
+      "fecha": "2026-09-16",
+      "url": "https://remotive.com/remote-jobs/software-development/senior-independent-ai-engineer-architect-1919266",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    },
+    {
+      "titulo": "Senior Data Scientist",
+      "empresa": "Lemon.io",
+      "lugar": "Remoto (Northern America, LATAM, Europe, APAC)",
+      "remoto": true,
+      "fecha": "2026-09-16",
+      "url": "https://remotive.com/remote-jobs/data/senior-data-scientist-2091129",
+      "fuente": "remotive",
+      "categoria": "remoto_europa"
+    }
+  ]
+}

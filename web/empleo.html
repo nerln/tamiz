@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <title>Ofertas de empleo · Tamiz</title>
+  <meta name="description" content="Ofertas de terceros, sin verificar. No son ayudas ni derechos.">
+  <link rel="stylesheet" href="css/empleo.css">
+  <script src="js/empleo.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+
+  <div class="envoltorio">
+    <header class="cabecera">
+      <p class="marca" id="marca">Tamiz</p>
+      <a class="volver" href="index.html">Volver al inicio</a>
+    </header>
+
+    <main id="contenido">
+      <h1>Ofertas de empleo</h1>
+
+      <div class="aviso" role="note">
+        <p><strong>Ofertas de terceros, sin verificar: no son ayudas ni derechos.</strong>
+        <span id="nombre-sitio">Tamiz</span> no recibe nada de ti al abrirlas.</p>
+      </div>
+
+      <p class="actualizacion" id="actualizacion" aria-live="polite">Cargando datos…</p>
+
+      <p class="error" id="error" hidden>No se han podido cargar las ofertas. Inténtalo de nuevo más tarde.</p>
+
+      <section class="filtros" id="filtros" aria-label="Filtrar ofertas" hidden>
+        <div class="campo">
+          <label for="buscar">Buscar por texto</label>
+          <input id="buscar" type="search" autocomplete="off" placeholder="Título, empresa o lugar">
+        </div>
+        <div class="campo">
+          <label for="categoria">Categoría</label>
+          <select id="categoria">
+            <option value="">Todas las categorías</option>
+            <option value="investigacion_universidad">Investigación y universidad</option>
+            <option value="remoto_europa">Remoto desde Europa</option>
+            <option value="comunitat_valenciana">Comunitat Valenciana</option>
+            <option value="empleo_publico">Empleo público</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="contador" id="contador" aria-live="polite" hidden></p>
+      <p class="vacio" id="vacio" hidden></p>
+      <div id="lista"></div>
+
+      <section class="bloque" id="bloque-fuentes" aria-labelledby="fuentes-titulo" hidden>
+        <h2 id="fuentes-titulo">Fuentes</h2>
+        <ul class="atribuciones" id="atribuciones"></ul>
+      </section>
+
+      <section class="bloque" aria-labelledby="portales-titulo">
+        <h2 id="portales-titulo">Portales oficiales</h2>
+        <p>Para buscar en los servicios públicos de empleo, abre directamente su portal:</p>
+        <ul class="portales">
+          <li><a href="https://empleate.gob.es/empleo/" target="_blank" rel="noopener noreferrer">Empléate (SEPE)<span class="sr"> (se abre en otra pestaña)</span></a></li>
+          <li><a href="https://puntlabora.gva.es/consoferta/consulta?lang=es" target="_blank" rel="noopener noreferrer">Punt LABORA<span class="sr"> (se abre en otra pestaña)</span></a></li>
+          <li><a href="https://euraxess.ec.europa.eu/jobs/search" target="_blank" rel="noopener noreferrer">EURAXESS (investigación)<span class="sr"> (se abre en otra pestaña)</span></a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="pie">
+      <div class="contenedor">
+        <nav aria-label="Páginas del sitio">
+          <ul>
+            <li><a href="avisos.html">Avisos y alertas</a></li>
+            <li><a href="empleo.html" aria-current="page">Ofertas de empleo</a></li>
+            <li><a href="privacidad.html">Privacidad</a></li>
+            <li><a href="condiciones.html">Condiciones de uso</a></li>
+            <li><a href="quien.html">Quién está detrás</a></li>
+            <li><a href="fuentes.html">Fuentes</a></li>
+          </ul>
+        </nav>
+        <p>Versión de prueba. No es asesoramiento legal ni administrativo.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

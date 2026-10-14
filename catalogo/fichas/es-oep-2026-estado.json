@@ -1,0 +1,74 @@
+{
+  "id": "es-oep-2026-estado",
+  "nombre": "Oferta de Empleo Público 2026 de la Administración General del Estado (oposiciones)",
+  "tipo": "oportunidad",
+  "subtipo": "empleo",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Ministerio de Hacienda y Función Pública",
+  "ambito": "ES",
+  "resumen": "El Real Decreto 387/2026 autoriza las plazas de empleo público de 2026 de la Administración General del Estado. Cada plaza se pide en la convocatoria de su cuerpo, que se publica en el BOE a lo largo de 2026.",
+  "cuantia": {
+    "texto": "16.988 plazas de nuevo ingreso (15.416 de cupo general, 1.312 de reserva para discapacidad y 260 para discapacidad intelectual), 4.959 de promoción interna y 346 de la oferta extraordinaria (RD 387/2026, anexos I, VI y VIII). Hay más plazas en los otros anexos (justicia, docentes, sanitarios...).",
+    "periodicidad": "variable"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 16,
+      "texto": "Tener 16 años o más",
+      "cita": "Art. 56.1.c EBEP"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener nacionalidad española o de la UE, ser familiar de una persona de la UE, o tener residencia legal en España",
+      "cita": "Arts. 56.1.a y 57 EBEP"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Nacionalidad española para la mayoría de las plazas de funcionario. Las personas de la UE, sus cónyuges y sus descendientes pueden ser funcionarias salvo en puestos con ejercicio de poder público; las extranjeras con residencia legal, solo como personal laboral (arts. 56 y 57 EBEP)",
+    "Cada convocatoria fija la titulación, las tasas, el temario y el plazo de solicitud; se publican una a una en el BOE",
+    "Capacidad funcional para las tareas, no haber sido separado del servicio ni estar inhabilitado, y no pasar la edad máxima de jubilación forzosa (art. 56.1 EBEP)"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "verificado": true,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-9946",
+    "nota": "El RD 387/2026 manda publicar las convocatorias dentro de 2026 y ejecutarlas en máximo 2 años (art. 3.4). Cada cuerpo tiene su propio plazo de solicitud, que fija su convocatoria en el BOE: mira la del cuerpo que te interese."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Busca en el BOE la convocatoria del cuerpo que te interese y mira su plazo, la titulación que piden y las tasas.",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-9946"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "Por vía electrónica, como fije cada convocatoria (art. 3.17 del RD 387/2026).",
+  "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-9946",
+  "url_oficial": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-9946",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

@@ -1,0 +1,105 @@
+{
+  "id": "es-vc-bono-alquiler-joven-2026",
+  "nombre": "Bono Alquiler Joven 2026 (Comunitat Valenciana)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana - Vicepresidencia Primera y Conselleria de Vivienda, Empleo, Juventud e Igualdad",
+  "ambito": "ES-VC",
+  "resumen": "Ayuda de 250 € al mes para pagar el alquiler a personas de hasta 35 años con rentas bajas que viven de alquiler en la Comunitat Valenciana. La convocatoria 2026 cerró el 11/09/2026; próxima convocatoria no confirmada.",
+  "cuantia": {
+    "texto": "250 € al mes (con el límite de la renta que pagues), durante 24 mensualidades seguidas: hasta 6.000 € por persona. El periodo empieza en enero de 2025 (con efecto retroactivo si ya tenías contrato). Presupuesto de la convocatoria: 29.800.000 €.",
+    "importe_eur": 250,
+    "periodicidad": "mensual",
+    "duracion_meses_max": 24
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": "<=",
+      "valor": 35,
+      "texto": "Tener 35 años o menos al pedirla (todas las personas titulares del contrato)",
+      "cita": "Base tercera 1.a de la Resolución de 18/08/2026"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener nacionalidad española, de la UE, del EEE o suiza, o estancia o residencia regular en España",
+      "cita": "Base tercera 1.b"
+    },
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Vivir de alquiler en la Comunitat Valenciana",
+      "cita": "Base tercera 1.c"
+    },
+    {
+      "campo": "vivienda.regimen",
+      "op": "in",
+      "valor": [
+        "alquiler",
+        "habitacion"
+      ],
+      "texto": "Alquilar una vivienda o una habitación como residencia habitual",
+      "cita": "Base tercera 1.c y 1.d"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ingresos de la unidad de convivencia iguales o inferiores a 3 veces el IPREM (4 con dos jóvenes beneficiarios en la vivienda y 5 con tres o más; no sube en alquiler de habitación). Se miden con la base imponible general y del ahorro del IRPF de 2024, no con el bruto (bases tercera 1.f y sexta)",
+    "Fuente regular de ingresos: trabajo por cuenta propia o ajena, personal investigador en formación o prestación periódica, con vida laboral de 3 meses en los 6 anteriores o ingresos previstos de al menos 6 meses (base tercera 1.f)",
+    "Contrato de alquiler o cesión de al menos un año, no turístico y sin subarriendo, con la renta dentro del máximo del anexo I (València: 900 € al mes la vivienda y 450 € la habitación)",
+    "Estar empadronado en la vivienda antes de pedirla (base cuarta 1)",
+    "Ni tú ni quienes vivan contigo pueden ser propietarios o usufructuarios de otra vivienda en España, salvo excepciones (base tercera 4.a)",
+    "Sin parentesco de 1.er o 2.º grado con la persona arrendadora, ni ser socio de ella; la vivienda no puede ser de una administración pública (base tercera 4.b, 4.c y 4.d)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-08-24",
+    "fin": "2026-09-11",
+    "verificado": true,
+    "fuente": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026/bases-i-convocatoria",
+    "nota": "Plazo de la convocatoria 2026: del 24/08/2026 al 11/09/2026, ambos incluidos (15 días hábiles según la base cuarta). Próxima convocatoria no confirmada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "compatible_con": [
+      "es-imv-ingreso-minimo-vital",
+      "es-vc-renta-valenciana-inclusion"
+    ],
+    "incompatible_con": [],
+    "texto": "No se puede cobrar con otra ayuda al alquiler de comunidades, ayuntamientos u otras administraciones, ni con el propio Bono de una convocatoria anterior si los periodos se solapan. Sí es compatible con el Ingreso Mínimo Vital, las prestaciones no contributivas y la Renta Valenciana de Inclusión (salvo su complemento de alquiler).",
+    "fuente": "https://dogv.gva.es/datos/2026/08/21/pdf/2026_27284_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "El plazo de esta convocatoria cerró el 11/09/2026. Vigila la web de Vivienda de la Generalitat por si se abre otra: no hay fecha confirmada.",
+    "url": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Sede electrónica de la Generalitat (procedimiento G110699), con identificación electrónica; también con cita previa en los servicios territoriales de Vivienda.",
+  "fuente": "https://dogv.gva.es/datos/2026/08/21/pdf/2026_27284_es.pdf",
+  "url_oficial": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

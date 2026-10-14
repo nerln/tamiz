@@ -1,0 +1,58 @@
+{
+  "id": "es-vc-carnet-jove",
+  "nombre": "Carnet Jove de la Comunitat Valenciana",
+  "tipo": "derecho",
+  "subtipo": "descuento",
+  "concesion": "desconocida",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana - IVAJ",
+  "ambito": "ES-VC",
+  "resumen": "Carnet gratuito para jóvenes de 14 a 30 años (ambas edades incluidas) con descuentos en comercios, actividades culturales y deportivas, transporte, viajes y alojamiento. Es digital y, si quieres, también tarjeta física.",
+  "cuantia": {
+    "texto": "Gratuito. Da descuentos en comercios, actividades culturales y deportivas, transporte urbano e interurbano, viajes y alojamiento; las ofertas cambian y cada entidad fija las suyas.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 14,
+      "texto": "Tener al menos 14 años",
+      "cita": "Sede GVA, trámite 206 (a quién va dirigido)"
+    },
+    {
+      "campo": "calc.edad",
+      "op": "<=",
+      "valor": 30,
+      "texto": "Tener 30 años o menos (hasta los 30 incluidos)",
+      "cita": "Sede GVA, trámite 206 (a quién va dirigido)"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "DNI, NIE o pasaporte en vigor; con pasaporte hay que registrarse antes en una oficina del IVAJ",
+    "Los carnés se expiden en la Comunitat Valenciana; la sede no pide vivir aquí, pero si vives en otra comunidad mira también el carnet joven de la tuya"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=206",
+    "nota": "Se puede pedir en cualquier momento (trámite abierto desde el 01/01/2013). Tiene validez de 2 años y después hay que renovarlo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pídelo en línea en la sede de la Generalitat con tu DNI o NIE (sin certificado digital). Con pasaporte, regístrate antes en una oficina del IVAJ.",
+    "url": "https://sede.gva.es/en/detall-tramit?id_proc=206"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Formulario en línea de la sede de la Generalitat con DNI o NIE; con pasaporte, registro previo en el IVAJ. Es digital; si quieres tarjeta física, la recoges en el IVAJ, un ayuntamiento o una mancomunidad.",
+  "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=206",
+  "url_oficial": "https://sede.gva.es/en/detall-tramit?id_proc=206",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

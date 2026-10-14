@@ -1,0 +1,14 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba sin hijos",
+    "descripcion": "Perfil inventado: dice que no tiene hijos ni hijas.",
+    "sintetico": true
+  },
+  "hogar": {
+    "miembros": 1,
+    "hijos": []
+  }
+}

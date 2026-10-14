@@ -1,0 +1,85 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba no lo sé",
+    "descripcion": "Perfil inventado: responde «No lo sé» (o «Prefiero no decirlo») a todo lo que lo admite.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": "no_lo_se",
+    "mes_nacimiento": "no_lo_se",
+    "nacionalidades": "no_lo_se",
+    "sexo": "prefiero_no_decirlo"
+  },
+  "residencia": {
+    "pais": "no_lo_se",
+    "region": "no_lo_se",
+    "provincia": "no_lo_se",
+    "municipio_ine": "no_lo_se",
+    "empadronado_desde": "no_lo_se"
+  },
+  "situacion_administrativa": {
+    "tipo": "no_lo_se",
+    "autoriza_trabajar": "no_lo_se",
+    "residencia_legal_desde": "no_lo_se",
+    "documento_desde": "no_lo_se",
+    "documento_hasta": "no_lo_se"
+  },
+  "empleo": {
+    "situaciones": "no_lo_se",
+    "tipo_contrato": "no_lo_se",
+    "contrato_hasta": "no_lo_se",
+    "meses_cotizados_6_anios": "no_lo_se",
+    "inscrito_demandante": "no_lo_se",
+    "cobra_prestacion": "no_lo_se"
+  },
+  "estudios": {
+    "nivel_max": "no_lo_se",
+    "matriculado_en": "no_lo_se",
+    "titulo_extranjero": "no_lo_se",
+    "titulo_pais": "no_lo_se",
+    "homologacion": "no_lo_se"
+  },
+  "hogar": {
+    "miembros": "no_lo_se",
+    "hijos": "no_lo_se",
+    "pareja": "prefiero_no_decirlo",
+    "monoparental": "no_lo_se",
+    "familia_numerosa": "no_lo_se"
+  },
+  "vivienda": {
+    "regimen": "no_lo_se",
+    "alquiler_mensual": "no_lo_se",
+    "contrato_a_su_nombre": "no_lo_se"
+  },
+  "ingresos": {
+    "individual": {
+      "tramo": "no_lo_se",
+      "importe": "no_lo_se"
+    },
+    "hogar": {
+      "tramo": "no_lo_se",
+      "importe": "no_lo_se"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "no_lo_se",
+      "importe": "no_lo_se"
+    }
+  },
+  "vinculos": {
+    "entidad_trabajo": {
+      "tipo": "no_lo_se",
+      "ambito": "no_lo_se"
+    },
+    "entidad_estudios": {
+      "tipo": "no_lo_se",
+      "ambito": "no_lo_se"
+    },
+    "paises_origen": "no_lo_se",
+    "paises_cotizacion": "no_lo_se",
+    "afiliaciones": "no_lo_se",
+    "permiso_conducir_pais": "no_lo_se"
+  }
+}

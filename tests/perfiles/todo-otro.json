@@ -1,0 +1,37 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Prueba otro",
+    "descripcion": "Perfil inventado: elige «Otra» en cada pregunta que la tiene.",
+    "sintetico": true
+  },
+  "persona": {
+    "sexo": "otro"
+  },
+  "situacion_administrativa": {
+    "tipo": "otro"
+  },
+  "empleo": {
+    "situaciones": [
+      "otro"
+    ],
+    "tipo_contrato": "otro"
+  },
+  "estudios": {
+    "nivel_max": "otro",
+    "matriculado_en": "otro"
+  },
+  "vivienda": {
+    "regimen": "otro"
+  },
+  "vinculos": {
+    "entidad_trabajo": {
+      "tipo": "otro"
+    },
+    "afiliaciones": [
+      "otro"
+    ]
+  }
+}
