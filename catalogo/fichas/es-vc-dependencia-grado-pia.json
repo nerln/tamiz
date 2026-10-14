@@ -1,0 +1,54 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "id": "es-vc-dependencia-grado-pia",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "nombre": "Dependencia en la Comunitat Valenciana: grado y PIA (Decreto 62/2017)",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "Conselleria de Servicios Sociales, Familia e Infancia (Generalitat Valenciana)",
+  "ambito": "ES-VC",
+  "resumen": "Solicitud de reconocimiento del grado de dependencia y de acceso al sistema público de servicios y prestaciones en la Comunitat Valenciana. Después del grado, la Generalitat resuelve el Programa Individual de Atención (PIA). Se pide todo el año.",
+  "cuantia": {
+    "texto": "La página del trámite no menciona ninguna tasa. Las cuantías de los servicios y prestaciones del PIA no se han leído en esta ficha.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Residir en la Comunitat Valenciana",
+      "cita": "Sede GVA, trámite G3256: derecho de las personas con residencia efectiva en la Comunitat Valenciana"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Encontrarse en situación de dependencia en grado 1, 2 o 3: lo decide la valoración, no se pregunta aquí",
+    "Nacionalidad española y 5 años de residencia en España, 2 de ellos inmediatamente antes de la solicitud; sin nacionalidad española se aplica la Ley Orgánica 4/2000 y los tratados",
+    "Informe de salud y certificados de empadronamiento histórico que acrediten la residencia"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.gva.es/es/detall-tramit?id_proc=G3256",
+    "nota": "Se puede pedir durante todo el año. Resolución del grado: 3 meses desde el registro de entrada; PIA: 3 meses desde la resolución de grado. Pasados 6 meses sin resolución, la sede indica silencio estimatorio."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Presenta la solicitud en el registro del ayuntamiento de tu domicilio, o en línea con firma electrónica avanzada en la sede de la Generalitat.",
+    "url": "https://sede.gva.es/es/detall-tramit?id_proc=G3256"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Telemática con firma electrónica avanzada, o presencial preferentemente en el registro oficial del ayuntamiento del domicilio; también en registros de la Generalitat o los medios del art. 16.4 de la Ley 39/2015. Documentos: modelo de solicitud, informe de salud, empadronamiento histórico, titularidad de cuenta bancaria.",
+  "fuente": "https://sede.gva.es/es/detall-tramit?id_proc=G3256",
+  "url_oficial": "https://sede.gva.es/es/detall-tramit?id_proc=G3256",
+  "confianza": "alta"
+}

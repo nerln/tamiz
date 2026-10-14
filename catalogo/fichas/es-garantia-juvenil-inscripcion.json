@@ -1,0 +1,112 @@
+{
+  "tipo": "derecho",
+  "subtipo": "servicio_gratuito",
+  "concesion": "no_aplica",
+  "solicita": "persona",
+  "ambito": "ES",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "empleo",
+  "id": "es-garantia-juvenil-inscripcion",
+  "organismo": "SEPE y servicios públicos de empleo autonómicos (LABORA)",
+  "nombre": "Inscripción en el Sistema Nacional de Garantía Juvenil",
+  "resumen": "Inscripción gratuita para personas de 16 a menos de 30 años que ni trabajan ni estudian ni se forman, que da acceso a los programas de empleo y formación para jóvenes. Se puede hacer en cualquier momento.",
+  "cuantia": {
+    "texto": "La inscripción es gratuita y no da dinero por sí sola: da acceso a programas de empleo y formación para jóvenes (por ejemplo, Talento Joven de LABORA).",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 16,
+      "texto": "Tener 16 años o más",
+      "cita": "Sede GVA, trámite 22896: más de 16 años"
+    },
+    {
+      "campo": "calc.edad",
+      "op": "<",
+      "valor": 30,
+      "texto": "Tener menos de 30 años",
+      "cita": "Sede GVA, trámite 22896; página SEPE: 16 a menos de 30",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Hasta los 30 años (incluidos) si tienes una discapacidad igual o superior al 33 %."
+    },
+    {
+      "any_of": [
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "nacional",
+            "ciudadano_ue",
+            "ciudadano_ue_permanente",
+            "ciudadano_ue_sin_registro"
+          ],
+          "texto": "Ser español o ciudadano de la UE",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "Los ciudadanos del EEE (Islandia, Liechtenstein, Noruega) y de Suiza también pueden inscribirse."
+        },
+        {
+          "campo": "situacion_administrativa.autoriza_trabajar",
+          "op": "==",
+          "valor": true,
+          "texto": "Tener autorización de residencia en España que permita trabajar"
+        }
+      ],
+      "texto": "Ser español, ciudadano de la UE, del EEE o de Suiza, o extranjero con autorización de residencia que permita trabajar",
+      "cita": "Sede GVA, trámite 22896"
+    },
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Estar empadronado en alguna localidad de España",
+      "cita": "Sede GVA, trámite 22896"
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains_none",
+      "valor": [
+        "asalariado",
+        "autonomo",
+        "estudiante"
+      ],
+      "texto": "No trabajar ni estudiar",
+      "cita": "Sede GVA, trámite 22896: no haber trabajado ni recibido formación el día natural anterior a la solicitud",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Lo que cuenta es el día natural anterior a la solicitud: si hoy estudias pero ese día no tenías clase ni formación, puedes inscribirte. Mira la página oficial."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "No haber trabajado ni recibido acciones educativas o formativas el día natural anterior a la solicitud",
+    "Firmar una declaración responsable de veracidad y de participación activa (quien está inscrito como demandante de empleo ya la cumple)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://sede.gva.es/es/detall-tramit?id_proc=22896",
+    "nota": "La inscripción está abierta todo el año (sede GVA, trámite 22896)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Inscríbete en línea en la aplicación de Garantía Juvenil del SEPE. Si necesitas ayuda, llama al 060 y pide «Apoyo para inscribirte en Garantía Juvenil».",
+    "url": "https://garantiajuvenil.sepe.es/login.action"
+  },
+  "como_pedirla": "En línea en la web de Garantía Juvenil del SEPE (certificado digital, Cl@ve o usuario y contraseña). Presencial solo para personas con riesgo de exclusión social o con discapacidad del 33 % o más, en un registro de entrada de la Administración. Ayuda: 060 o info.garantiajuvenil@sepe.es.",
+  "fuente": "https://sede.gva.es/es/detall-tramit?id_proc=22896",
+  "url_oficial": "https://www.sepe.es/HomeSepe/encontrar-trabajo/Garantia-Juvenil.html",
+  "confianza": "alta"
+}

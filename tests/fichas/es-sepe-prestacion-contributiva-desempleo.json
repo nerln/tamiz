@@ -3,6 +3,7 @@
   "nombre": "Prestación contributiva por desempleo (paro)",
   "tipo": "derecho",
   "subtipo": "prestacion",
+  "area": "empleo",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "SEPE — Servicio Público de Empleo Estatal",

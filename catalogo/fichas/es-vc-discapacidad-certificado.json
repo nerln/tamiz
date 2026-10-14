@@ -1,0 +1,56 @@
+{
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "solicita": "persona",
+  "id": "es-vc-discapacidad-certificado",
+  "nombre": "Certificado de discapacidad en la Comunitat Valenciana (reconocimiento, declaración y calificación del grado)",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "Generalitat Valenciana - Conselleria de Servicios Sociales, Familia e Infancia",
+  "ambito": "ES-VC",
+  "resumen": "Trámite para pedir el reconocimiento del grado de discapacidad si estás empadronado en la Comunitat Valenciana. Valoran tu caso los centros CVOD de València, Alicante y Castellón.",
+  "cuantia": {
+    "texto": "No es una ayuda en dinero: es el reconocimiento oficial (certificado y tarjeta con un 33 % o más) que da acceso a otras medidas.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Estar empadronado en la Comunitat Valenciana",
+      "cita": "Sede GVA, procedimiento 376, requisitos"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Tener nacionalidad española o residencia legal en España",
+    "Informes sanitarios actualizados que permitan aplicar el Real Decreto 888/2022",
+    "Número SIP (obligatorio en el formulario F423)",
+    "Informe de factores contextuales (trabajo social) o declaración responsable"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=376",
+    "nota": "Se puede presentar todo el año. Plazo máximo para resolver: 6 meses (la ficha menciona también 3 meses por la Ley 9/2016); el silencio es desestimatorio. Si se reconoce, el grado cuenta desde la fecha de la solicitud."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Inicia el trámite en la sede de la Generalitat (certificado digital) o pide cita previa en el 012 o el 963 866 000 para presentarlo en una oficina PROP.",
+    "url": "https://sede.gva.es/en/detall-tramit?id_proc=376"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia",
+    "ccoo-pv"
+  ],
+  "como_pedirla": "Telemática con certificado digital (botón TRAMITAR) o presencial en oficinas PROP, registros públicos o Correos, con cita previa en el 012 o 963 866 000.",
+  "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=376",
+  "url_oficial": "https://sede.gva.es/en/detall-tramit?id_proc=376",
+  "confianza": "alta"
+}

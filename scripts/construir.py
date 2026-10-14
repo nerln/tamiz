@@ -15,6 +15,10 @@ Fonde:
     sitio.json                     il nome del sito, copiato in catalogo.sitio
 Con --ejemplo le schede, ayuda_humana e glosario vengono da schema/esempi/.
 
+Le schede si copiano così come sono, con i campi `area`, `informativa` e `plazo.mes_habitual`
+(docs/ESQUEMA.md §4.2, §4.6): una scheda `informativa: true` entra nel catalogo come le altre e
+il motore la mette fra le `informativas` senza esito.
+
 Una scheda non "alta", senza leido_por_agente o con _revisar viene ESCLUSA e il build lo scrive
 (con --estricto, invece, il build si ferma). Alla fine chiama scripts/validar.py sul catalogo
 nuovo e sui profili d'esempio: solo se è verde il file viene scritto e gli esempi copiati.
@@ -159,7 +163,8 @@ def main(argv):
     EJEMPLOS_DESTINO.mkdir(parents=True, exist_ok=True)
     for p in PERFILES_EJEMPLO:
         shutil.copyfile(p, EJEMPLOS_DESTINO / p.name)
-    print(f"Scritto {_rel(SALIDA)}: {len(fichas)} schede, {len(escluse)} escluse, "
+    informative = sum(1 for f in fichas if f.get("informativa") is True)
+    print(f"Scritto {_rel(SALIDA)}: {len(fichas)} schede ({informative} informative), {len(escluse)} escluse, "
           f"{len(catalogo['ayuda_humana'])} ayuda_humana, {len(catalogo['glosario'])} voci di glosario, "
           f"actualizado_el {a.hoy}{' (SEGNAPOSTO da schema/esempi/)' if a.ejemplo else ''}.")
     print(f"Copiati in {_rel(EJEMPLOS_DESTINO)}/: " + ", ".join(p.name for p in PERFILES_EJEMPLO))

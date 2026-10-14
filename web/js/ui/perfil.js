@@ -1,6 +1,6 @@
 // Tu perfil: il riepilogo, il salvataggio sul dispositivo, il caricamento con controllo minimo, il cancellamento.
 import { el, fechaLarga } from "./dom.js";
-import { PANTALLAS, PAISES, TRAMOS, leer, escribir } from "../preguntas.js";
+import { PANTALLAS, PAISES, TRAMOS, leer, escribir, esValencia } from "../preguntas.js";
 import { prefieroNoDecirloIngreso } from "./cuestionario.js";
 
 const RE_PAIS = /^[A-Z]{2}$/;
@@ -22,12 +22,14 @@ function fechaValida(s) {
 }
 
 function valorValido(c, v) {
-  if (v === INDET) return true;
+  // Il comune non ha «no lo sé» nello schema: «No lo sé» sul comune si legge come campo vuoto.
+  if (v === INDET) return c.tipo !== "municipio";
   switch (c.tipo) {
     case "anio": return Number.isInteger(v) && v >= (c.min ?? 1900) && v <= (c.max ?? 2100);
     case "entero": return Number.isInteger(v) && v >= c.min && v <= c.max;
     case "fecha": return typeof v === "string" && fechaValida(v);
     case "texto": return typeof v === "string" && /^\d{5}$/.test(v);
+    case "municipio": return typeof v === "string" && v.trim().length > 0 && v.length <= 80;
     case "bool": return typeof v === "boolean";
     case "select":
       if (c.campo.endsWith("mes_nacimiento")) return Number.isInteger(v) && v >= 1 && v <= 12;
@@ -84,6 +86,13 @@ export function sanearPerfil(datos) {
   if (datos.ingresos && datos.ingresos.ejercicio !== undefined && Number.isInteger(datos.ingresos.ejercicio)) {
     nuevo = escribir(nuevo, "ingresos.ejercicio", datos.ingresos.ejercicio);
   }
+  // Un comune València senza codice INE lo ricava, se la provincia è quella di Valencia o non c'è: le regole usano il
+  // codice (docs/ESQUEMA.md §8.1). Con un'altra provincia il codice si chiede (vedi esValenciaCiudad in preguntas.js).
+  const provincia = leer(nuevo, "residencia.provincia");
+  if (esValencia(leer(nuevo, "residencia.municipio")) && leer(nuevo, "residencia.municipio_ine") === undefined
+    && (provincia === undefined || provincia === "ES-V")) {
+    nuevo = escribir(nuevo, "residencia.municipio_ine", "46250");
+  }
   if (datos.ejemplo && typeof datos.ejemplo === "object" && typeof datos.ejemplo.nombre_ficticio === "string") {
     nuevo = escribir(nuevo, "ejemplo", { nombre_ficticio: datos.ejemplo.nombre_ficticio,
       descripcion: typeof datos.ejemplo.descripcion === "string" ? datos.ejemplo.descripcion : "",
@@ -112,6 +121,8 @@ function formatea(c, v, perfil) {
     return v.map((x) => (c.opciones ? etiquetaCodigo(c.opciones, x) : etiquetaCodigo(PAISES, x))).join(", ");
   }
   if (c.tipo === "paises" || c.tipo === "pais") return etiquetaCodigo(PAISES, v);
+  // Il paese scelto con «En otro país» (il radio) si scrive come codice ISO: si mostra il nome.
+  if (c.opciones && RE_PAIS.test(v) && !c.opciones.some(([k]) => k === v)) return etiquetaCodigo(PAISES, v);
   if (c.opciones) return etiquetaCodigo(c.opciones, v);
   return String(v);
 }
@@ -126,6 +137,12 @@ export function renderPerfil(ctx) {
       const ruta = c.campo || c.base;
       if (c.si && !c.si(perfil)) continue;
       const v = c.tipo === "tramo" ? leer(perfil, c.base) : leer(perfil, c.campo);
+      // Il comune manca ma la provincia c'è: è «No lo sé» (lo schema non ha un codice per il comune, docs/ESQUEMA.md §2.5).
+      if (c.tipo === "municipio" && v === undefined && leer(perfil, "residencia.provincia") !== undefined && !visto.has(ruta)) {
+        visto.add(ruta);
+        lineas.push(el("li", null, el("span", { class: "linea-etiqueta", text: c.etiqueta + ": " }), el("span", { text: "No lo sé" })));
+        continue;
+      }
       if (v === undefined || v === null || (c.tipo === "tramo" && (!v.tramo && v.importe === undefined))) continue;
       if (c.opciones && typeof v === "string" && !c.opciones.some(([k]) => k === v) && !/^[A-Z]{2}$/.test(v)) continue;
       if (visto.has(ruta)) continue;

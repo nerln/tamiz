@@ -1,0 +1,72 @@
+{
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "empleo",
+  "id": "es-sepe-subsidio-emigrante-retornado",
+  "nombre": "Subsidio por desempleo para personas emigrantes retornadas",
+  "organismo": "SEPE - Servicio Público de Empleo Estatal",
+  "resumen": "Subsidio para personas españolas que vuelven a España para vivir, sin empleo, tras trabajar al menos 12 meses en los últimos 6 años en un país fuera del Espacio Económico Europeo o sin convenio de protección por desempleo. Hasta 18 meses.",
+  "cuantia": {
+    "texto": "Porcentaje del IPREM mensual: 95 % los primeros 180 días, 90 % del día 181 al 360 y 80 % desde el día 361 (la página no da el importe en euros). Duración máxima: 18 meses, en periodos trimestrales prorrogables.",
+    "periodicidad": "mensual",
+    "duracion_meses_max": 18
+  },
+  "requisitos": [
+    {
+      "campo": "persona.nacionalidades",
+      "op": "contains",
+      "valor": "ES",
+      "texto": "Tener nacionalidad española",
+      "cita": "Página SEPE «subsidio de emigrante retornado»: ser español y retornar a España para residir"
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "desempleado",
+      "texto": "Estar en desempleo",
+      "cita": "Página del SEPE: estar en desempleo total o trabajar a tiempo parcial con jornada inferior a una completa",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "El SEPE también admite trabajar a tiempo parcial con una suma de jornadas inferior a una jornada completa. Si es tu caso, mira la página oficial."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Volver a España para residir y tener el Certificado de Emigrante Retornado de la oficina de Trabajo e Inmigración de tu provincia (fecha de salida, de retorno, tiempo trabajado y que no cobraste desempleo en el país de trabajo)",
+    "Haber trabajado al menos 12 meses en los últimos 6 años desde la última salida de España, en un país fuera del EEE o sin convenio de protección por desempleo con España",
+    "No haber cobrado prestación por desempleo en ese país y no tener derecho a la prestación contributiva en España",
+    "Rentas del mes anterior a la solicitud que no superen el 75 % del salario mínimo interprofesional (sin la parte proporcional de las dos pagas extra), con declaración responsable",
+    "Estar inscrito como demandante de empleo y haber firmado el acuerdo de actividad cuando se concede"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-de-emigrante-retornado.html",
+    "nota": "Se puede pedir en los 6 meses siguientes al retorno (después se deniega). En los 15 días hábiles siguientes, nace el día después del retorno; después, el día de la solicitud."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Desde el 1/6/2025, si empiezas un trabajo por cuenta ajena a tiempo completo o parcial mientras cobras el subsidio, se compatibiliza como complemento de apoyo al empleo (CAE), de forma automática.",
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-de-emigrante-retornado.html"
+  },
+  "siguiente_paso": {
+    "texto": "Pide primero el Certificado de Emigrante Retornado en la oficina de Trabajo e Inmigración de tu provincia y después el subsidio en la sede electrónica del SEPE, dentro de los 6 meses siguientes al retorno.",
+    "url": "https://sede.sepe.gob.es/portalSede/procedimientos-y-servicios/personas/proteccion-por-desempleo/solicitud-de-prestaciones.html"
+  },
+  "como_pedirla": "Sede electrónica del SEPE; oficina de prestaciones con cita previa; cualquier registro público; correo administrativo. Documentos: modelo oficial con declaración responsable de rentas, documento de identidad, cuenta bancaria a tu nombre, Certificado de Emigrante Retornado, última declaración del IRPF.",
+  "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-de-emigrante-retornado.html",
+  "url_oficial": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-de-emigrante-retornado.html",
+  "confianza": "alta",
+  "informativa": true
+}

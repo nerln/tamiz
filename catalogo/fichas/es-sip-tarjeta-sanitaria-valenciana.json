@@ -1,0 +1,54 @@
+{
+  "id": "es-sip-tarjeta-sanitaria-valenciana",
+  "area": "salud_cuidados",
+  "nombre": "Tarjeta sanitaria SIP (Sistema de Información Poblacional)",
+  "tipo": "derecho",
+  "subtipo": "servicio_gratuito",
+  "concesion": "no_aplica",
+  "solicita": "persona",
+  "organismo": "Conselleria de Sanitat (Generalitat Valenciana)",
+  "ambito": "ES-VC",
+  "resumen": "La tarjeta SIP te identifica ante la sanidad pública valenciana. Se pide en el centro de salud o por internet con certificado digital o Cl@ve. Las personas sin cobertura pueden pedir la Asistencia Sanitaria Universal (3 meses de residencia efectiva) o el convenio especial (1 año).",
+  "cuantia": {
+    "texto": "La página no menciona ningún coste para la tarjeta SIP. Convenio especial (para quien no tiene otra cobertura): 60 €/mes con menos de 65 años y 157 €/mes con 65 o más, sin incluir farmacia.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Residir en la Comunitat Valenciana"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Documento de identidad (DNI, NIE o pasaporte); se recomienda certificado de empadronamiento reciente (validez de 6 meses) y el documento del INSS que acredita el derecho a asistencia",
+    "Con alta en la Seguridad Social, basta con el DNI o NIE en el centro de salud",
+    "Asistencia Sanitaria Universal: solicitud, pasaporte o NIE, empadronamiento y 3 meses de residencia efectiva en España, a valorar con una trabajadora social",
+    "Convenio especial: 1 año de residencia efectiva continuada, empadronamiento en un municipio valenciano al presentar la solicitud y no tener acceso a cobertura pública por otra vía"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://www.san.gva.es/es/web/tarjeta-sanitaria/preguntas-frecuentes",
+    "nota": "La página indica que el convenio especial se solicita todo el año; para la tarjeta SIP no indica plazo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide el alta en el SIP en tu centro de salud más cercano, o por internet con certificado digital o Cl@ve en el trámite «Alta de un ciudadano en el SIP». Sin cobertura sanitaria, pide que te deriven a la trabajadora social.",
+    "url": "https://www.san.gva.es/es/web/tarjeta-sanitaria/preguntas-frecuentes"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "En el centro de salud o por internet con certificado digital o Cl@ve (alta de un ciudadano en el SIP).",
+  "fuente": "https://www.san.gva.es/es/web/tarjeta-sanitaria/preguntas-frecuentes",
+  "url_oficial": "https://www.san.gva.es/es/web/tarjeta-sanitaria/preguntas-frecuentes",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta",
+  "informativa": false
+}

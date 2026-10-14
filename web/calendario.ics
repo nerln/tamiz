@@ -10,6 +10,22 @@ X-WR-CALDESC:Plazos leídos en el texto oficial. Compruébalos siempre en l
 REFRESH-INTERVAL;VALUE=DURATION:P1D
 X-PUBLISHED-TTL:P1D
 BEGIN:VEVENT
+UID:es-vc-eautom-trabajo-autonomo-mujeres-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+SUMMARY:Plazo: Ayudas al mantenimiento del trabajo autónomo de mujeres 202
+ 6 — solicitud de la persona
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-vc-eautom-trabaj
+ o-autonomo-mujeres-2026. Fecha leída en el texto oficial el 14/10/2026\; 
+ compruébala en la fuente: https://dogv.gva.es/datos/2026/10/08/pdf/2026_3
+ 1508_es.pdf. No es un texto oficial.
+URL:https://labora.gva.es/es/busque-ajudes-subvencions/ajudes-foment-de-l-o
+ cupacio-2026
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
 UID:es-aei-doctorados-industriales-2026.nerln.github.io
 DTSTAMP:20261014T000000Z
 LAST-MODIFIED:20261014T000000Z
@@ -23,6 +39,36 @@ DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-doctorados-i
  o es un texto oficial.
 URL:https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-cont
  ratos-formacion-doctores-doctoras-empresas-otras-20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-aei-torres-quevedo-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261029
+DTEND;VALUE=DATE:20261030
+SUMMARY:Plazo: Torres Quevedo 2026 — la presenta la empresa
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-torres-queve
+ do-2026. Fecha leída en el texto oficial el 14/10/2026\; compruébala en 
+ la fuente: https://www.aei.gob.es/sites/default/files/convocatory_info/ass
+ istants/2026-09/Resoluci%C3%B3n%20convocatoria%20PTQ%202026_firmada_0.pdf.
+  No es un texto oficial.
+URL:https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-cont
+ ratos-torres-quevedo-ptq-2026
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-estatal-bono-cultural-joven-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261031
+DTEND;VALUE=DATE:20261101
+SUMMARY:Plazo: Bono Cultural Joven 2026 — solicitud de la persona
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-estatal-bono-cul
+ tural-joven-2026. Fecha leída en el texto oficial el 14/10/2026\; compru
+ ébala en la fuente: https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-2
+ 1271. No es un texto oficial.
+URL:https://bonoculturajoven.gob.es/
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -52,6 +98,69 @@ DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-vc-apostd-2027.
  : https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf. No es un tex
  to oficial.
 URL:https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-aei-pid2026-predoctorales.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:Plazo: Proyectos de Generación de Conocimiento 2026 y contratos pr
+ edoctorales asociados — la presenta la universidad
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-pid2026-pred
+ octorales. Fecha leída en el texto oficial el 14/10/2026\; compruébala e
+ n la fuente: https://www.aei.gob.es/sites/default/files/convocatory_info/f
+ ile/2026-10/Convocatoria_ProyectosGeneraci%C3%B3nConocimiento_Predoc_2026_
+ fda.pdf. No es un texto oficial.
+URL:https://www.aei.gob.es/convocatorias/buscador-convocatorias/proyectos-g
+ eneracion-conocimiento-actuaciones-formacion-9
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-aei-juan-de-la-cierva-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:Plazo: Juan de la Cierva 2026 — la presenta otra entidad: mira la
+  ficha
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-juan-de-la-c
+ ierva-2026. Fecha leída en el texto oficial el 14/10/2026\; compruébala 
+ en la fuente: https://www.aei.gob.es/sites/default/files/convocatory_info/
+ assistants/2026-09/Convocatoria%20JDC%202026_firmada.pdf. No es un texto o
+ ficial.
+URL:https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-cont
+ ratos-juan-cierva-2026
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-vc-gent2-emgent.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+SUMMARY:Plazo: EMGENT — la presenta otra entidad: mira la ficha
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-vc-gent2-emgent.
+  Fecha leída en el texto oficial el 14/10/2026\; compruébala en la fuent
+ e: https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf. No es un te
+ xto oficial.
+URL:https://ceice.gva.es/ca/web/ciencia/-/pla-gent2-1
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:es-aei-ramon-y-cajal-2026.nerln.github.io
+DTSTAMP:20261014T000000Z
+LAST-MODIFIED:20261014T000000Z
+DTSTART;VALUE=DATE:20261210
+DTEND;VALUE=DATE:20261211
+SUMMARY:Plazo: Ramón y Cajal 2026 — solicitud de la persona
+DESCRIPTION:Ficha: https://nerln.github.io/tamiz/#ficha-es-aei-ramon-y-caja
+ l-2026. Fecha leída en el texto oficial el 14/10/2026\; compruébala en l
+ a fuente: https://www.aei.gob.es/sites/default/files/convocatory_info/file
+ /2026-09/convocatoria%20RYC%202026_.pdf. No es un texto oficial.
+URL:https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-cont
+ ratos-ramon-cajal-ryc-2026
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT

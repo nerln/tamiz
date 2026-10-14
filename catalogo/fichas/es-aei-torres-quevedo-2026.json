@@ -1,0 +1,62 @@
+{
+  "id": "es-aei-torres-quevedo-2026",
+  "nombre": "Torres Quevedo 2026 (AEI): contratos de doctores y doctoras en empresas",
+  "tipo": "oportunidad",
+  "subtipo": "empleo",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "empresa",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "area": "investigacion",
+  "informativa": false,
+  "resumen": "Ayuda a empresas, centros tecnológicos y parques científicos para contratar tres años a una persona con doctorado en un proyecto de I+D. La solicita la entidad, no la persona; sirve a quien quiere pasar al sector privado con una entidad dispuesta a presentarla.",
+  "cuantia": {
+    "texto": "Ayuda a la entidad para un contrato de tres años: coste de contratación financiable de hasta 57.000 € al año, solo para retribuciones brutas de 29.650 € al año o más, con una intensidad que depende del tipo de proyecto y de entidad (art. 8 de la convocatoria 2026). Presupuesto total: 20.100.000 €.",
+    "periodicidad": "anual",
+    "duracion_meses_max": 36
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor o doctora en la fecha de la solicitud",
+      "cita": "Art. 7.1.a de la convocatoria Torres Quevedo 2026"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Una empresa, centro tecnológico, centro de apoyo a la innovación tecnológica, asociación empresarial o parque científico y tecnológico debe presentar la solicitud y contratarte (art. 6 y 14)",
+    "No haber tenido vínculo laboral con la entidad solicitante, ni con otra relacionada por capital o socios, entre el 29/01/2025 y el 18/12/2025 (art. 7.1.b; hay excepción para spin-off y JEI)",
+    "No tener una participación en el capital de la entidad que suponga control efectivo (art. 7.1.c), ni figurar como candidato/a en la solicitud de más de una entidad (art. 7.1.d)",
+    "Si ya estás contratado/a por la entidad, el contrato debe ser posterior al 18/12/2025 (art. 7.2)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-10-08",
+    "fin": "2026-10-29",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Resoluci%C3%B3n%20convocatoria%20PTQ%202026_firmada_0.pdf",
+    "nota": "Hasta las 14:00 (hora peninsular española) del 29/10/2026 (art. 14). La presentan las entidades."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Los contratos financiados son incompatibles con cualquier otro contrato laboral de la persona contratada (art. 11.1 de la convocatoria).",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Resoluci%C3%B3n%20convocatoria%20PTQ%202026_firmada_0.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Si tienes el doctorado, pregunta ya a una empresa o centro tecnológico si puede presentar la solicitud contigo antes del 29/10/2026 a las 14:00.",
+    "url": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-torres-quevedo-ptq-2026"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "La entidad solicitante presenta la solicitud en la sede electrónica de la AEI, con la firma de su representante legal (art. 14).",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Resoluci%C3%B3n%20convocatoria%20PTQ%202026_firmada_0.pdf",
+  "url_oficial": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-torres-quevedo-ptq-2026",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-10-29",
+  "confianza": "alta"
+}

@@ -1,0 +1,110 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "familia",
+  "id": "es-irpf-maternidad-menores-3",
+  "nombre": "Deducción por maternidad (hijos menores de 3 años)",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "organismo": "Estado, Agencia Tributaria",
+  "ambito": "ES",
+  "resumen": "Hasta 1.200 € al año (100 € al mes) por cada hijo menor de 3 años para madres que trabajan (o cobran desempleo). Se puede pedir por adelantado a la Agencia Tributaria o aplicar en la Renta. Cifras del ejercicio 2025.",
+  "cuantia": {
+    "texto": "Hasta 1.200 € al año por hijo (100 € al mes, proporcional a los meses en que se cumplen los requisitos); 150 € más el mes en que se cumplen 30 días de cotización si el alta fue posterior al nacimiento (tope 1.350 €). No se aplica en los meses en que algún progenitor cobra el complemento de ayuda para la infancia del IMV por ese hijo. Hay además un incremento por gastos de guardería: mira el manual de la Agencia Tributaria.",
+    "importe_eur": 1200,
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Residir en España",
+      "cita": "Manual práctico de Renta 2025, deducción por maternidad"
+    },
+    {
+      "campo": "persona.sexo",
+      "op": "==",
+      "valor": "mujer",
+      "texto": "Ser mujer (madre)",
+      "cita": "Manual Renta 2025 modelo 100, apartado 8.8.2.1: la aplican las mujeres con hijos menores de 3 años",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Si la madre ha fallecido o la guarda y custodia es en exclusiva del padre o de un tutor, esa persona puede aplicar la deducción pendiente si cumple los demás requisitos."
+    },
+    {
+      "campo": "calc.hijos_menores_3",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener un hijo o hija de menos de 3 años",
+      "cita": "Manual Renta 2025, 8.8.2.1",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "En adopción o acogimiento permanente o preadoptivo la deducción se aplica durante los 3 años siguientes a la inscripción en el Registro Civil o a la resolución, sea cual sea la edad del menor."
+    },
+    {
+      "any_of": [
+        {
+          "campo": "empleo.situaciones",
+          "op": "contains_any",
+          "valor": [
+            "asalariado",
+            "autonomo"
+          ],
+          "texto": "Trabajar por cuenta ajena o propia",
+          "cita": "Manual Renta 2025 modelo 100, apartado 8.8.2.1: estar dada de alta en la Seguridad Social o mutualidad"
+        },
+        {
+          "campo": "empleo.cobra_prestacion",
+          "op": "==",
+          "valor": true,
+          "texto": "Cobrar una prestación por desempleo",
+          "cita": "Manual Renta 2025 modelo 100, apartado 8.8.2.1: cobrar prestaciones contributivas o asistenciales de desempleo en el momento del nacimiento",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "La deducción pide haber cobrado desempleo en el momento del nacimiento, o haber estado de alta en la Seguridad Social (o mutualidad) con 30 días cotizados en ese momento o después. Si hoy no trabajas ni cobras desempleo, comprueba si cumplías alguna de las dos cosas."
+        }
+      ],
+      "texto": "Trabajar o cobrar desempleo (alta en la Seguridad Social o prestación de desempleo)",
+      "cita": "Manual Renta 2025 modelo 100, apartado 8.8.2.1"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Tener derecho al mínimo por descendientes por ese hijo",
+    "Que el desempleo se cobrara en el momento del nacimiento, o que el alta en la Seguridad Social o mutualidad fuera en ese momento o después, con 30 días cotizados (el sitio solo sabe si trabajas o cobras desempleo hoy)",
+    "No cobrar ningún progenitor, ese mes, el complemento de ayuda para la infancia del IMV por el mismo hijo (con una excepción transitoria para quien ya lo tenía en 2022)"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica al presentar la declaración de la Renta, no se pide aparte. La campaña de la Renta 2025 fue del 08/04/2026 al 30/06/2026 (calendario de la Agencia Tributaria). La del ejercicio 2026 se presentará en 2027, con fechas aún no publicadas; mes habitual: abril, orientativo (solo se ha leído el calendario de 2026). También puedes pedir el abono anticipado a la Agencia Tributaria sin esperar a la declaración."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [
+      "es-imv-complemento-ayuda-infancia"
+    ],
+    "compatible_con": [],
+    "texto": "No se aplica en los meses en que algún progenitor cobra el complemento de ayuda para la infancia del Ingreso Mínimo Vital por el mismo hijo.",
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c18-cuota-liquida-resultante-autoliquidacion/resultado-declaracion/deduccion-maternidad-incremento-adicional-gastos-custodia/deduccion-maternidad/cuantia-limite-deduccion.html"
+  },
+  "siguiente_paso": {
+    "texto": "Aplícala en la declaración de la Renta (Renta WEB, con Cl@ve o certificado digital) o pide a la Agencia Tributaria el abono anticipado mensual; si lo pides, ajusta el importe al declarar.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/25Presentacion/100/8_8_2_1.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB), con Cl@ve o certificado digital, o con cita previa; o con el abono anticipado, que se pide a la Agencia Tributaria.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c18-cuota-liquida-resultante-autoliquidacion/resultado-declaracion/deduccion-maternidad-incremento-adicional-gastos-custodia/deduccion-maternidad/cuantia-limite-deduccion.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/Ayuda/25Presentacion/100/8_8_2_1.html",
+  "confianza": "alta"
+}

@@ -1,0 +1,66 @@
+{
+  "id": "es-vc-befpi-2027",
+  "nombre": "BEFPI: estancias de personal investigador predoctoral fuera de la Comunitat Valenciana (convocatoria 2027)",
+  "area": "investigacion",
+  "informativa": false,
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (Conselleria de Educación, Cultura y Universidades)",
+  "ambito": "ES-VC",
+  "resumen": "85 ayudas para estancias de 3 a 9 meses (1 a 3 meses si el destino está en España) en un centro de investigación fuera de la Comunitat Valenciana, para personal predoctoral con contrato financiado por una ayuda para tesis de la propia convocatoria o del Plan GenT. Estancia entre el 01/01 y el 31/12/2027.",
+  "cuantia": {
+    "texto": "900 € al mes si el destino está en España y 1.500 € al mes si está en el extranjero; viaje: 300 € (España), 600 € (Europa) o 1.200 € (resto del mundo).",
+    "periodicidad": "mensual",
+    "duracion_meses_max": 9
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.tipo_contrato",
+      "op": "==",
+      "valor": "predoctoral",
+      "texto": "Tener un contrato predoctoral financiado por una ayuda para tesis doctoral",
+      "cita": "DOGV 10412 de 24/07/2026, anexo II, apartado segundo.1",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Solo cuenta un contrato predoctoral financiado por una ayuda para tesis de la Generalitat (convocatoria ACIF/Grisolía o Plan GenT). Un contrato FPU u otro contrato predoctoral no sirve. Tamiz no pregunta quién financia tu contrato."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "El contrato predoctoral tiene que estar financiado por una subvención de esta convocatoria para tesis o del Plan GenT que no incluya estancias; un contrato de proyecto no cuenta",
+    "No haber disfrutado esta ayuda por un total de 12 meses en la etapa predoctoral",
+    "Aceptación del centro de destino, conformidad de la dirección de la tesis y del centro de investigación",
+    "Mantener la condición de persona contratada predoctoral durante toda la estancia"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-09-07",
+    "fin": "2026-09-25",
+    "verificado": true,
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+    "nota": "Plazo de la convocatoria 2027 (estancias en 2027): del 07 al 25/09/2026, cerrado. Resolución de la Dirección General de Ciencia e Investigación de 21/07/2026. Si habrá otra convocatoria, no está publicado."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con el contrato para la tesis financiado por la Generalitat e incompatible con cualquier otra subvención para la misma finalidad (anexo II, apartado octavo).",
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Si tienes un contrato predoctoral de la Generalitat, pregunta a tu grupo y a la oficina de investigación de tu universidad cuándo sale la siguiente convocatoria y busca con tiempo un centro de destino que te acepte.",
+    "url": "https://ceice.gva.es/va/web/ciencia/convocatories_2027"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "La presentas tú en la sede electrónica de la Generalitat (https://sede.gva.es) con firma digital, con la conformidad de la dirección de tesis y del centro.",
+  "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "url_oficial": "https://ceice.gva.es/va/web/ciencia/convocatories_2027",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

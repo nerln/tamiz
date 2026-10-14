@@ -1,0 +1,94 @@
+{
+  "area": "jovenes_ocio",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-estatal-bono-cultural-joven-2026",
+  "nombre": "Bono Cultural Joven 2026",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "desconocida",
+  "organismo": "Ministerio de Cultura",
+  "ambito": "ES",
+  "resumen": "400 € en una tarjeta prepago para gastar en cultura, para quienes cumplen 18 años en 2026. La solicitud se hace en línea y termina el 31/10/2026.",
+  "cuantia": {
+    "texto": "400 € por persona beneficiaria en tarjeta prepago personal; presupuesto de la convocatoria: 160.000.000 €.",
+    "importe_eur": 400,
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 17,
+      "texto": "Cumplir 18 años en 2026 (haber nacido en 2008)",
+      "cita": "Extracto de la convocatoria, BOE-B-2026-21271",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "El Bono es para quien cumple 18 años en 2026 (nacidos en 2008); con tu edad actual no podemos distinguir una persona nacida en 2008 de otra nacida a finales de 2007 o en 2009. Comprueba tu año de nacimiento en la convocatoria."
+    },
+    {
+      "campo": "calc.edad",
+      "op": "<=",
+      "valor": 18,
+      "texto": "Cumplir 18 años en 2026 (haber nacido en 2008)",
+      "cita": "Extracto de la convocatoria, BOE-B-2026-21271",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "El Bono es para quien cumple 18 años en 2026 (nacidos en 2008); con tu edad actual no podemos distinguir una persona nacida en 2008 de otra nacida a finales de 2007 o en 2009. Comprueba tu año de nacimiento en la convocatoria."
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener nacionalidad española o residencia legal en España en el momento de la solicitud",
+      "cita": "Extracto de la convocatoria, BOE-B-2026-21271"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "También pueden pedirlo quienes hayan solicitado asilo o protección temporal y las personas extranjeras extuteladas que estén tramitando su permiso de residencia",
+    "El extracto no dice si la concesión es por orden de llegada o por concurrencia: la resolución la dicta la Secretaría de Estado de Cultura en un máximo de seis meses desde la solicitud",
+    "Las dos modalidades de ayuda del Bono son incompatibles entre sí y, una vez presentada la solicitud, no se puede cambiar la elegida"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-06-22",
+    "fin": "2026-10-31",
+    "verificado": true,
+    "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-21271",
+    "nota": "Termina a las 23:59 (hora peninsular) del 31/10/2026. Solicitud solo por medios electrónicos."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide el Bono en línea en bonoculturajoven.gob.es con identificación electrónica antes del 31/10/2026 a las 23:59.",
+    "url": "https://bonoculturajoven.gob.es/"
+  },
+  "como_pedirla": "En línea en bonoculturajoven.gob.es con identificación electrónica (Cl@ve).",
+  "fuente": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-21271",
+  "url_oficial": "https://bonoculturajoven.gob.es/",
+  "bdns": "912379",
+  "revisar_antes_de": "2026-10-31",
+  "confianza": "alta"
+}

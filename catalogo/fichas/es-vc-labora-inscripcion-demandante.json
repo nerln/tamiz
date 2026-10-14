@@ -1,0 +1,101 @@
+{
+  "tipo": "derecho",
+  "subtipo": "servicio_gratuito",
+  "concesion": "no_aplica",
+  "solicita": "persona",
+  "ambito": "ES-VC",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "empleo",
+  "id": "es-vc-labora-inscripcion-demandante",
+  "organismo": "LABORA Servicio Valenciano de Empleo y Formación",
+  "nombre": "Inscripción como demandante de empleo en LABORA",
+  "resumen": "Inscripción en LABORA como persona demandante de empleo: es el paso previo para usar sus servicios (orientación, cursos, programas). Es obligatoria para quien cobra prestaciones o subsidios y voluntaria para el resto.",
+  "cuantia": {
+    "texto": "La página no indica ningún coste. Al inscribirte se genera el DARDE, el documento con la fecha de inscripción y la fecha en que debes renovar la demanda.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Vivir en la Comunitat Valenciana",
+      "cita": "Página LABORA «inscripción»: residir en la Comunitat Valenciana"
+    },
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 16,
+      "texto": "Tener 16 años cumplidos",
+      "cita": "Página LABORA «inscripción»"
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains_any",
+      "valor": [
+        "desempleado",
+        "asalariado",
+        "autonomo"
+      ],
+      "texto": "Estar en desempleo, o trabajar y querer mejorar tu empleo",
+      "cita": "Página LABORA «inscripción»: pueden inscribirse personas en desempleo y trabajadores/as que quieran mejorar su empleo",
+      "aclaracion": "La página de LABORA solo cita a personas en desempleo y a quienes trabajan y quieren mejorar su empleo."
+    },
+    {
+      "any_of": [
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "nacional",
+            "ciudadano_ue",
+            "ciudadano_ue_permanente",
+            "ciudadano_ue_sin_registro",
+            "familiar_ue",
+            "familiar_ue_permanente"
+          ],
+          "texto": "Ser español o ciudadano de la UE (o familiar)"
+        },
+        {
+          "campo": "situacion_administrativa.autoriza_trabajar",
+          "op": "==",
+          "valor": true,
+          "texto": "Tener autorización para trabajar en España",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "Las personas extranjeras que están legalmente en España y pueden obtener la autorización de trabajo también pueden inscribirse. Pregunta a LABORA."
+        }
+      ],
+      "texto": "Ser español o de la UE, o tener reconocido el acceso al mercado laboral",
+      "cita": "Página LABORA «inscripción»"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "No estar imposibilitado/a para el trabajo",
+    "Quien cobra prestaciones o subsidios debe inscribirse en 15 días hábiles desde el fin de la última relación laboral",
+    "Renovar la demanda en las fechas que indica el DARDE"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://labora.gva.es/es/ciutadania/busque-ocupacio/com-inscriuret/inscrpicio",
+    "nota": "No hay plazo para inscribirse, salvo para quien cobra prestaciones o subsidios: 15 días hábiles desde el fin de la última relación laboral. La demanda se renueva en las fechas del DARDE."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Inscríbete como demandante de empleo en LABORA (Punt LABORA o tu Espai LABORA d'Ocupació). Mira antes los requisitos en la página oficial.",
+    "url": "https://labora.gva.es/es/ciutadania/busque-ocupacio/com-inscriuret/inscrpicio"
+  },
+  "como_pedirla": "La página oficial no detalla los pasos; indica que al completar la inscripción se genera el DARDE.",
+  "fuente": "https://labora.gva.es/es/ciutadania/busque-ocupacio/com-inscriuret/inscrpicio",
+  "url_oficial": "https://labora.gva.es/es/ciutadania/busque-ocupacio/com-inscriuret/inscrpicio",
+  "confianza": "alta"
+}

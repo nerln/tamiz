@@ -3,6 +3,7 @@
   "nombre": "Deducción autonómica IRPF por alquiler al cambiar de municipio por trabajo (Comunitat Valenciana)",
   "tipo": "derecho",
   "subtipo": "deduccion_fiscal",
+  "area": "impuestos",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Generalitat Valenciana (Agencia Tributaria)",
@@ -44,6 +45,20 @@
       ],
       "texto": "Alquilar la vivienda donde vives",
       "cita": "Art. 4.Uno.ñ) Ley 13/1997"
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains_any",
+      "valor": [
+        "asalariado",
+        "autonomo"
+      ],
+      "texto": "Trabajar por cuenta ajena o propia en el municipio al que te mudaste",
+      "cita": "Art. 4.Uno.ñ) Ley 13/1997",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Solo vale si te mudaste por trabajo a una vivienda a más de 50 km de la anterior, en otro municipio: compruébalo antes de aplicar la deducción."
     },
     {
       "campo": "vivienda.contrato_a_su_nombre",

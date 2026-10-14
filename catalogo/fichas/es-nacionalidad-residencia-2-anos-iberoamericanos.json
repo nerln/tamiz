@@ -3,6 +3,7 @@
   "nombre": "Nacionalidad española por residencia en 2 años (nacionales de origen de países iberoamericanos)",
   "tipo": "derecho",
   "subtipo": "tramite_ventaja",
+  "area": "extranjeria",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Ministerio de la Presidencia, Justicia y Relaciones con las Cortes - Dirección General de Seguridad Jurídica y Fe Pública",
@@ -13,6 +14,13 @@
     "periodicidad": "no_monetaria"
   },
   "requisitos": [
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "!=",
+      "valor": "nacional",
+      "texto": "No tener ya la nacionalidad española",
+      "cita": "Art. 21 y 22 del Código Civil"
+    },
     {
       "campo": "vinculos.paises_origen",
       "op": "contains_any",

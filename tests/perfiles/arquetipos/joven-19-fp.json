@@ -1,0 +1,73 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Joven Prueba",
+    "descripcion": "Persona inventada. Chico de 19 años, español, estudia un ciclo de FP de grado medio y vive con sus padres en València, sin trabajo.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 2007,
+    "mes_nacimiento": 1,
+    "nacionalidades": [
+      "ES"
+    ],
+    "sexo": "hombre"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2007-02"
+  },
+  "situacion_administrativa": {
+    "tipo": "nacional"
+  },
+  "empleo": {
+    "situaciones": [
+      "estudiante"
+    ],
+    "tipo_contrato": "ninguno",
+    "meses_cotizados_6_anios": 0,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "eso",
+    "matriculado_en": "fp",
+    "titulo_extranjero": false
+  },
+  "hogar": {
+    "miembros": 4,
+    "hijos": [],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "cedida"
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "cero"
+    },
+    "hogar": {
+      "tramo": "de_30001_a_40000"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "cero"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "ES"
+    ],
+    "paises_cotizacion": [],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

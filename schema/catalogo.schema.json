@@ -78,6 +78,7 @@
         "nombre",
         "tipo",
         "subtipo",
+        "area",
         "concesion",
         "organismo",
         "ambito",
@@ -126,6 +127,28 @@
             "tramite_ventaja",
             "servicio_gratuito"
           ]
+        },
+        "area": {
+          "description": "Área temática de la ficha: agrupa los resultados y los filtros de la interfaz.",
+          "enum": [
+            "familia",
+            "vivienda",
+            "empleo",
+            "estudios",
+            "investigacion",
+            "impuestos",
+            "salud_cuidados",
+            "extranjeria",
+            "emprender",
+            "jovenes_ocio",
+            "servicios_sociales",
+            "empleo_publico"
+          ]
+        },
+        "informativa": {
+          "description": "true si la ficha depende de una situación que el sitio no pregunta (discapacidad, dependencia, salud, violencia de género, situaciones judiciales) o no tiene una regla evaluable sobre el grupo al que se dirige. No recibe un resultado: se muestra en «Otras ayudas que conviene conocer», por área. Si falta, vale false.",
+          "type": "boolean",
+          "default": false
         },
         "concesion": {
           "enum": [
@@ -403,6 +426,12 @@
           "type": "string",
           "minLength": 3,
           "maxLength": 500
+        },
+        "mes_habitual": {
+          "description": "Para convocatorias anuales: el mes (1-12) en que suele abrirse, leído en las convocatorias de años anteriores. Orientativo: se muestra como «suele abrirse en …».",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
         }
       },
       "allOf": [

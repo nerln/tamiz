@@ -1,0 +1,79 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "familia",
+  "id": "es-vc-titulo-familia-monoparental",
+  "nombre": "Título de familia monoparental (alta o renovación) y carné",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "Conselleria de Servicios Sociales, Familia e Infancia (Generalitat Valenciana)",
+  "ambito": "ES-VC",
+  "resumen": "Trámite gratuito para que la Generalitat reconozca tu familia como monoparental y te dé un título colectivo y un carné por persona. Hace falta residir en la Comunitat Valenciana los 12 meses anteriores. El alta se pide en cualquier momento; la resolución tarda como máximo seis meses.",
+  "cuantia": {
+    "texto": "Sin importe en euros: el título da acceso a ayudas y ventajas que lo exigen. La solicitud no genera tasa.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Residir en un municipio de la Comunitat Valenciana",
+      "cita": "Sede de la Generalitat, procedimiento 17032 (12 meses ininterrumpidos antes de la solicitud)"
+    },
+    {
+      "campo": "hogar.monoparental",
+      "op": "==",
+      "valor": true,
+      "texto": "Ser la única persona adulta a cargo de hijos o hijas menores",
+      "cita": "Sede de la Generalitat, procedimiento 17032: supuestos de familia monoparental"
+    },
+    {
+      "campo": "calc.num_hijos",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener al menos un hijo o hija a tu cargo",
+      "cita": "Sede de la Generalitat, procedimiento 17032: cada descendiente menor de 26 años o con discapacidad"
+    },
+    {
+      "campo": "calc.hijos_menores_25",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Que algún hijo o hija tenga menos de 26 años (o discapacidad)",
+      "cita": "Sede de la Generalitat, procedimiento 17032: cada descendiente debe ser menor de 26 años, o tener una discapacidad del 33 % o más, incapacidad permanente absoluta o gran invalidez",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La Generalitat pide descendientes menores de 26 años (o con discapacidad del 33 % o más, incapacidad permanente absoluta o gran invalidez). El sitio cuenta hijos de menos de 25 años y no pregunta por discapacidad: comprueba tu caso en la ficha."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Residencia efectiva en un municipio de la Comunitat Valenciana durante al menos 12 meses ininterrumpidos justo antes de la solicitud",
+    "Cada descendiente debe tener menos de 26 años (o discapacidad del 33 % o más, incapacidad permanente absoluta o gran invalidez), convivir con la unidad familiar y depender económicamente de ella",
+    "Estar en uno de los supuestos de la ficha: único progenitor en el Registro Civil, viudedad, patria potestad exclusiva, menores en acogida, o guarda y custodia exclusiva con ingresos por unidad de consumo inferiores al 150 % del IPREM, entre otros",
+    "La condición se pierde si quien encabeza la familia se casa o constituye una unión de hecho"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=17032",
+    "nota": "El alta se puede presentar cuando se quiera. La renovación y la comunicación de cambios: en un máximo de tres meses desde que se produzcan. Resolución: máximo seis meses; sin respuesta expresa se entiende estimada por silencio administrativo. Mientras tanto pueden expedirse títulos temporales de hasta seis meses."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Presenta el alta en la sede electrónica de la Generalitat (certificado digital o Cl@ve) o con el formulario oficial en la Dirección Territorial de Servicios Sociales, Familia e Infancia de Alicante, Castellón o València.",
+    "url": "https://sede.gva.es/en/detall-tramit?id_proc=17032"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Sede electrónica de la Generalitat con certificado digital o Cl@ve, o presencialmente en las Direcciones Territoriales de Servicios Sociales, Familia e Infancia (Alicante, Castellón, València) u otros lugares del art. 16.4 de la Ley 39/2015.",
+  "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=17032",
+  "url_oficial": "https://sede.gva.es/en/detall-tramit?id_proc=17032",
+  "confianza": "alta"
+}

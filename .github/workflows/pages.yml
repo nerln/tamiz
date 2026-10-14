@@ -37,6 +37,12 @@ jobs:
         continue-on-error: true
         run: python3 scripts/empleo.py
 
+      # L'indice delle convocatorie (BDNS e BOE) si rigenera ogni giorno. Se il passo fallisce
+      # resta il file del commit: indice.py non sovrascrive un file con dati vuoti.
+      - name: Indice delle convocatorie
+        continue-on-error: true
+        run: python3 scripts/indice.py
+
       - name: Costruisci il catalogo
         run: python3 scripts/construir.py
 

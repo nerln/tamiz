@@ -453,13 +453,22 @@ function calcPorMiembro(perfil, hogar) {
   };
 }
 
+// Chi ha la cittadinanza spagnola non ha una data di residenza legale da dare: la residenza in Spagna non
+// ha un limite di durata. La durata è senza tetto (lo e hi a Infinity) e le regole sulla durata
+// passano, senza chiedere la data (lotto U2b; la schermata «Residencia legal en España desde» si nasconde).
+function calcResidenciaLegal(misura, perfil, hoy) {
+  const tipo = leggiPercorso(perfil, "situacion_administrativa.tipo");
+  if (tipo.stato === "c_e" && tipo.valore === "nacional") {
+    return { ok: true, lo: Infinity, hi: Infinity, rango: { motivo: "rango", faltan: [] } };
+  }
+  return calcDurata("situacion_administrativa.residencia_legal_desde", misura, perfil, hoy);
+}
+
 function calcolaTutti(perfil, hoy) {
   const out = {};
   out["calc.edad"] = calcEdad(perfil, hoy);
-  out["calc.anios_residencia_legal"] = calcDurata(
-    "situacion_administrativa.residencia_legal_desde", "anni", perfil, hoy);
-  out["calc.meses_residencia_legal"] = calcDurata(
-    "situacion_administrativa.residencia_legal_desde", "mesi", perfil, hoy);
+  out["calc.anios_residencia_legal"] = calcResidenciaLegal("anni", perfil, hoy);
+  out["calc.meses_residencia_legal"] = calcResidenciaLegal("mesi", perfil, hoy);
   out["calc.anios_empadronado"] = calcDurata("residencia.empadronado_desde", "anni", perfil, hoy);
   out["calc.meses_empadronado"] = calcDurata("residencia.empadronado_desde", "mesi", perfil, hoy);
   out["calc.num_hijos"] = calcNumHijos(perfil);
@@ -763,11 +772,37 @@ function confrontaVoci(a, b) {
 
 const ESTADO = { cumple: "encaja", falta_dato: "falta_dato", no_cumple: "no_encaja" };
 
+// Le aree della scheda (catalogo.schema.json, $defs/ficha/area), nell'ordine in cui
+// l'interfaccia le mostra; un'area assente o sconosciuta va in fondo. Esportata (congelata)
+// perché l'interfaccia raggruppi nello stesso ordine e perché una prova la confronti con lo schema.
+export const AREAS = Object.freeze([
+  "familia", "vivienda", "empleo", "estudios", "investigacion", "impuestos", "salud_cuidados",
+  "extranjeria", "emprender", "jovenes_ocio", "servicios_sociales", "empleo_publico",
+]);
+const areaDi = (ficha) => (typeof ficha.area === "string" && AREAS.includes(ficha.area) ? ficha.area : null);
+const rangoArea = (a) => (a === null ? AREAS.length : AREAS.indexOf(a));
+
+// Informative: per area (ordine di AREAS), poi nome in spagnolo, poi id.
+function confrontaInformative(a, b) {
+  const ra = rangoArea(a.voce.area);
+  const rb = rangoArea(b.voce.area);
+  if (ra !== rb) return ra - rb;
+  const cn = a.nombre.localeCompare(b.nombre, "es");
+  if (cn !== 0) return cn;
+  const ia = a.voce.id === null ? "" : a.voce.id;
+  const ib = b.voce.id === null ? "" : b.voce.id;
+  if (ia !== ib) return ia < ib ? -1 : 1;
+  return a.indice - b.indice;
+}
+
 function valutaScheda(ficha, ctx) {
   let righe;
-  if (Array.isArray(ficha.requisitos)) {
+  if (Array.isArray(ficha.requisitos) && ficha.requisitos.length > 0) {
     righe = ficha.requisitos.map((n) => valutaNodo(n, ctx, 0));
   } else {
+    // Requisitos che non sono una lista, o una lista vuota in una scheda che non è
+    // informativa: senza nessuna regola la scheda darebbe «encaja» a chiunque, quindi
+    // resta visibile come «falta_dato» e rinvia alla fonte.
     righe = [riga("Requisitos de esta ficha", F, "regla_no_valida", ACLARACION_REGLA_NO_VALIDA, [])];
   }
   const esito = combina(righe.map((r) => r.resultado), "min");
@@ -781,6 +816,7 @@ function valutaScheda(ficha, ctx) {
   return {
     id: typeof ficha.id === "string" ? ficha.id : null,
     tipo: typeof ficha.tipo === "string" ? ficha.tipo : null,
+    area: areaDi(ficha),
     estado,
     apertura: apertura(ficha.plazo, ctx.hoy),
     por_revisar: porRevisar(ficha, ctx.hoy),
@@ -808,6 +844,7 @@ export function evaluar(catalogo, perfil, hoy) {
   const region = codiceTerritorio(prof, "residencia.region", RE_REGION);
 
   const voci = [];
+  const informative = [];
   let ocultas = 0;
   fichas.forEach((ficha, indice) => {
     if (!esOggetto(ficha)) return;
@@ -816,9 +853,16 @@ export function evaluar(catalogo, perfil, hoy) {
       return;
     }
     const nombre = typeof ficha.nombre === "string" ? ficha.nombre : "";
+    if (ficha.informativa === true) {
+      // Una scheda informativa non riceve nessun esito: le sue regole non si leggono.
+      const id = typeof ficha.id === "string" ? ficha.id : null;
+      informative.push({ voce: { id, area: areaDi(ficha) }, nombre, indice });
+      return;
+    }
     voci.push({ voce: valutaScheda(ficha, ctx), nombre, indice });
   });
   voci.sort(confrontaVoci);
+  informative.sort(confrontaInformative);
 
   const perfil_calculado = {};
   for (const k of CALC) {
@@ -829,6 +873,7 @@ export function evaluar(catalogo, perfil, hoy) {
   return {
     hoy,
     fichas: voci.map((v) => v.voce),
+    informativas: informative.map((v) => v.voce),
     ocultas_por_territorio: ocultas,
     perfil_calculado,
   };

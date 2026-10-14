@@ -1,0 +1,55 @@
+{
+  "id": "es-aei-pid2026-predoctorales",
+  "nombre": "Proyectos de Generación de Conocimiento 2026 y contratos predoctorales asociados (FPI)",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "universidad",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "area": "investigacion",
+  "informativa": true,
+  "resumen": "Los centros de I+D piden proyectos de investigación y, ligados a cada proyecto, un contrato predoctoral de cuatro años (las plazas llamadas FPI). Tú no solicitas esta convocatoria: cuando se concedan los proyectos, la universidad o el centro abre un proceso público para elegir a la persona que contrata.",
+  "cuantia": {
+    "texto": "Por cada contrato predoctoral asociado a un proyecto: 143.350 € en total (art. 14.3 de la convocatoria 2026): 32.500 € al año para el contrato, 3.350 € de indemnización al terminar y 10.000 € para estancias y matrícula del doctorado. Presupuesto total de la convocatoria: 724.000.000 € (incluye proyectos).",
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [],
+  "requisitos_no_evaluables": [
+    "Quien se contrata debe cumplir los requisitos del art. 21.a de la Ley 14/2011 para firmar un contrato predoctoral (o poder cumplirlos al formalizarlo) y no tener el título de doctor, de ninguna universidad española ni extranjera (art. 12.2 de la convocatoria)",
+    "La entidad beneficiaria elige a la persona con un proceso abierto y transparente, que debe publicarse en EURAXESS (art. 12.1); las plazas aparecen cuando se resuelven los proyectos, después de este plazo",
+    "Si has tenido antes un contrato predoctoral, la duración del nuevo no puede pasar del máximo del art. 21.c de la Ley 14/2011 (art. 12.4)",
+    "Las ofertas concretas, sus fechas y sus requisitos de titulación dependen de cada universidad o centro; en las búsquedas no hemos encontrado una oferta de la Universitat de València para esta convocatoria"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-11-03",
+    "fin": "2026-11-24",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-10/Convocatoria_ProyectosGeneraci%C3%B3nConocimiento_Predoc_2026_fda.pdf",
+    "nota": "Estas fechas son las de los centros de I+D que piden proyectos (art. 17), no las de la persona candidata, hasta las 14:00 (hora peninsular). Las plazas predoctorales se publican más adelante, con fechas propias de cada entidad. La convocatoria se publicó en la BDNS el 30/09/2026 y se corrigió el 14/10/2026 según la ficha de la AEI."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Los contratos predoctorales financiados siguen las normas de concurrencia y acumulación de ayudas del art. 16 de la convocatoria; consulta ese artículo antes de aceptar otra beca o ayuda predoctoral.",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-10/Convocatoria_ProyectosGeneraci%C3%B3nConocimiento_Predoc_2026_fda.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Sigue las ofertas de contratos predoctorales en EURAXESS y en las páginas de investigación de las universidades valencianas, y habla con grupos que hayan pedido proyectos en esta convocatoria.",
+    "url": "https://euraxess.ec.europa.eu/"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "No se pide a la AEI. Cuando un grupo tenga un proyecto concedido, la universidad o el centro publica la plaza y se presenta la candidatura allí.",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-10/Convocatoria_ProyectosGeneraci%C3%B3nConocimiento_Predoc_2026_fda.pdf",
+  "url_oficial": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/proyectos-generacion-conocimiento-actuaciones-formacion-9",
+  "bdns": "918664",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-11-24",
+  "confianza": "alta"
+}

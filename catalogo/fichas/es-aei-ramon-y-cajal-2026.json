@@ -1,0 +1,68 @@
+{
+  "id": "es-aei-ramon-y-cajal-2026",
+  "nombre": "Ramón y Cajal 2026 (AEI): contratos de cinco años para doctores/as",
+  "tipo": "oportunidad",
+  "subtipo": "empleo",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "area": "investigacion",
+  "informativa": false,
+  "resumen": "Contratos de cinco años en un centro de I+D español para personas con doctorado que quieren consolidar su carrera investigadora, con un proyecto propio. La solicitud la presentan la persona candidata y el centro de I+D que la acogería.",
+  "cuantia": {
+    "texto": "Ayuda para el contrato de 42.600 € al año durante un máximo de cinco años, con un salario bruto mínimo de 40.000 € al año que debe constar en el contrato (art. 8.3 de la convocatoria 2026). Además, una ayuda para un proyecto propio de I+D+i de cinco años, con el importe que fije la resolución de concesión (art. 8.4). Presupuesto total de la convocatoria: 240.000.000 €.",
+    "importe_eur": 42600,
+    "periodicidad": "anual",
+    "duracion_meses_max": 60
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor o doctora",
+      "cita": "Art. 6.1.a de la convocatoria RyC 2026 (Resolución de la AEI, tramitación anticipada)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Además hace falta haber defendido la tesis entre el 01/01/2016 y el 31/12/2024 (con ampliaciones por permisos o incapacidad temporal). Tamiz no pregunta esa fecha, así que no puede decirte si encajas: compruébalo en las bases."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Fecha de obtención del doctorado (defensa y aprobación de la tesis) entre el 01/01/2016 y el 31/12/2024 en el turno general y en el turno RyC-INIA-CCAA; entre el 01/01/2013 y el 31/12/2024 en el turno de personas con discapacidad. El límite inferior se amplía por incapacidad temporal, permisos de nacimiento o cuidado, y otras situaciones del art. 6.1.a",
+    "Un centro de I+D elegible (universidad, organismo público de investigación, instituto de investigación sanitaria, centro tecnológico u otro centro de I+D sin ánimo de lucro) debe acogerte y presentar su parte de la solicitud con la firma de su representante legal",
+    "Proyecto de investigación propio, individual y de cinco años, y CVA según los modelos de la convocatoria",
+    "Con tres años o más de experiencia posdoctoral al cierre del plazo, la persona seleccionada puede obtener la certificación R3 (art. 22.2 de la Ley 14/2011); es un resultado de la concesión, no un requisito"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-11-10",
+    "fin": "2026-12-10",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/convocatoria%20RYC%202026_.pdf",
+    "nota": "Hasta las 14:00 (hora peninsular española) del 10/12/2026. Candidatas y centros presentan cada uno su parte (art. 12). Es una convocatoria de tramitación anticipada: las ayudas se imputan a presupuestos de 2027 y siguientes."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "El contrato financiado es incompatible con cualquier otro contrato laboral de la persona contratada (art. 11.2 de la convocatoria). La ayuda se concede respetando las reglas de acumulación e incompatibilidad entre ayudas (art. 11).",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/convocatoria%20RYC%202026_.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Habla ya con un centro de I+D (por ejemplo, un grupo de la Universitat de València) para que te acoja, y prepara el CVA y la memoria del proyecto: el plazo termina el 10/12/2026 a las 14:00.",
+    "url": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-ramon-cajal-ryc-2026"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Por la sede electrónica de la AEI: la persona candidata rellena y firma el formulario y los documentos (RUS, CVA, propuesta) y el centro de I+D lo presenta con la firma electrónica de su representante legal (art. 12).",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/convocatoria%20RYC%202026_.pdf",
+  "url_oficial": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-ramon-cajal-ryc-2026",
+  "bdns": "918641",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-12-10",
+  "confianza": "alta"
+}

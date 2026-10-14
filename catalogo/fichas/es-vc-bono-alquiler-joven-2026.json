@@ -3,6 +3,7 @@
   "nombre": "Bono Alquiler Joven 2026 (Comunitat Valenciana)",
   "tipo": "oportunidad",
   "subtipo": "subvencion",
+  "area": "vivienda",
   "concesion": "concurrencia_competitiva",
   "solicita": "persona",
   "organismo": "Generalitat Valenciana - Vicepresidencia Primera y Conselleria de Vivienda, Empleo, Juventud e Igualdad",
@@ -60,6 +61,45 @@
       ],
       "texto": "Alquilar una vivienda o una habitación como residencia habitual",
       "cita": "Base tercera 1.c y 1.d"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "empleo.situaciones",
+          "op": "contains_any",
+          "valor": [
+            "asalariado",
+            "autonomo"
+          ],
+          "texto": "Trabajar por cuenta ajena o propia",
+          "cita": "Base tercera 1.f"
+        },
+        {
+          "campo": "empleo.cobra_prestacion",
+          "op": "==",
+          "valor": true,
+          "texto": "Cobrar una prestación o un subsidio por desempleo",
+          "cita": "Base tercera 1.f"
+        },
+        {
+          "campo": "empleo.situaciones",
+          "op": "contains_any",
+          "valor": [
+            "desempleado",
+            "inactivo",
+            "jubilado",
+            "estudiante"
+          ],
+          "texto": "Cobrar otra prestación pública periódica",
+          "cita": "Base tercera 1.f",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "También cuenta cobrar otra prestación pública periódica, contributiva o asistencial (por ejemplo, el Ingreso Mínimo Vital o una pensión). Una beca de estudios no cuenta como fuente regular de ingresos."
+        }
+      ],
+      "texto": "Tener una fuente regular de ingresos: trabajo por cuenta ajena o propia, contrato de investigación en formación o una prestación pública periódica",
+      "cita": "Base tercera 1.f"
     }
   ],
   "requisitos_no_evaluables": [

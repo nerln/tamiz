@@ -1,0 +1,60 @@
+[
+  {
+    "id": "oep-2026-estado",
+    "titulo": "Oferta de Empleo Público 2026 de la Administración General del Estado",
+    "ambito": "estado",
+    "organo": "Gobierno de España",
+    "plazas": 27232,
+    "plazas_nota": "Cifra total de la nota oficial del Gobierno. Según la prensa, las plazas de Policía Nacional, Guardia Civil y Fuerzas Armadas van aparte. El desglose por turno no es igual en todas las fuentes: mira el anexo I del BOE.",
+    "desglose": [],
+    "nota": "Según el preámbulo del propio real decreto, casi todas las convocatorias se publican en el mismo año natural de la oferta. Aprobada: algunas convocatorias ya están publicadas.",
+    "fecha": "2026-05-07",
+    "fuente": {
+      "nombre": "BOE: Real Decreto 387/2026, de 6 de mayo",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9946"
+    },
+    "verificado_el": "2026-10-14",
+    "verificacion": "Texto del BOE leído (fecha de publicación 07/05/2026, artículos 1 y 2, anexos). La cifra total de 27.232 viene de la nota oficial del Gobierno: no la he sumado de los anexos."
+  },
+  {
+    "id": "oep-2026-generalitat",
+    "titulo": "Oferta de Empleo Público 2026 de la Administración de la Generalitat",
+    "ambito": "comunitat",
+    "organo": "Consell de la Generalitat (Decreto 16/2026)",
+    "plazas": 2671,
+    "plazas_nota": "El total de 2.671 se puede cortar de dos maneras, y cada corte suma 2.671: por tasa (571 de tasa de reposición y 2.100 de tasa específica y extraordinaria) y por turno (1.603 de turno libre y 1.068 de promoción interna).",
+    "desglose": [
+      { "grupo": "Por tasa", "etiqueta": "Tasa de reposición", "plazas": 571 },
+      { "grupo": "Por tasa", "etiqueta": "Tasa específica y extraordinaria", "plazas": 2100 },
+      { "grupo": "Por turno", "etiqueta": "Turno libre", "plazas": 1603 },
+      { "grupo": "Por turno", "etiqueta": "Promoción interna", "plazas": 1068 }
+    ],
+    "nota": "Algunos cuerpos ya tienen su convocatoria propia (por ejemplo, la Orden 9/2026 para el cuerpo auxiliar C2-01). Antes de contar una plaza como libre, mira la convocatoria de su cuerpo.",
+    "fecha": "2026-02-09",
+    "fuente": {
+      "nombre": "DOGV núm. 10298 bis, Decreto 16/2026, de 9 de febrero",
+      "url": "https://dogv.gva.es/datos/2026/02/09/pdf/2026_3776_es.pdf"
+    },
+    "verificado_el": "2026-10-14",
+    "verificacion": "PDF del DOGV leído: cifras de la parte expositiva y del cuadro de totales. Los dos cortes suman 2.671 (571 + 2.100 y 1.603 + 1.068)."
+  },
+  {
+    "id": "oep-2026-valencia",
+    "titulo": "Oferta de Empleo Público 2026 del Ayuntamiento de València",
+    "ambito": "local",
+    "organo": "Ajuntament de València",
+    "plazas": 376,
+    "plazas_nota": "La nota del Ayuntamiento dice que 256 plazas son de turno libre y el resto, sobre todo de promoción interna (sin cifra). La misma nota destaca 100 plazas de agente de la Policía Local y 30 de Bomberos, sin decir en qué turno caen.",
+    "desglose": [
+      { "grupo": "Por turno", "etiqueta": "Turno libre", "plazas": 256 }
+    ],
+    "nota": null,
+    "fecha": "2026-06-12",
+    "fuente": {
+      "nombre": "Ajuntament de València: nota sobre la oferta de empleo público 2026",
+      "url": "https://www.valencia.es/cas/actualidad/-/content/oferta-empleo-p%C3%BAblico-ajuntament-val%C3%A8ncia"
+    },
+    "verificado_el": "2026-10-14",
+    "verificacion": "Nota del Ayuntamiento leída de nuevo el 14/10/2026: 376 plazas, 256 por turno libre y el resto principalmente por promoción interna; 100 plazas de Policía Local y 30 de Bomberos previstas. La nota no da un desglose completo por turno, por eso no se suma."
+  }
+]

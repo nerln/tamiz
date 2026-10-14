@@ -3,6 +3,7 @@
   "nombre": "Complemento de Ayuda para la Infancia (CAPI) del IMV",
   "tipo": "derecho",
   "subtipo": "prestacion",
+  "area": "familia",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Seguridad Social - INSS",

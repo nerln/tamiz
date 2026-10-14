@@ -1,0 +1,67 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "familia",
+  "id": "es-irpf-minimo-descendientes",
+  "nombre": "Mínimo por descendientes (IRPF)",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "organismo": "Estado, Agencia Tributaria",
+  "ambito": "ES",
+  "resumen": "Parte de tu renta que no tributa por cada hijo o hija menor de 25 años que vive contigo (sin límite de edad si tiene discapacidad del 33 % o más). Se aplica solo en la declaración de la Renta. Cifras del ejercicio 2025.",
+  "cuantia": {
+    "texto": "Ejercicio 2025, por año: 2.400 € por el primer descendiente, 2.700 € por el segundo, 4.000 € por el tercero y 4.500 € por el cuarto y siguientes, más 2.800 € por cada descendiente menor de 3 años. Es una cantidad que se excluye de la base sobre la que se calcula el impuesto, no un pago directo.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Residir en España",
+      "cita": "Manual práctico de Renta 2025, mínimo por descendientes"
+    },
+    {
+      "campo": "calc.hijos_menores_25",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener al menos un hijo o hija de menos de 25 años a 31 de diciembre que viva contigo",
+      "cita": "Manual práctico de Renta 2025, requisitos del mínimo por descendientes (menores de 25 años a la fecha de devengo)",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "No hay límite de edad si el descendiente tiene una discapacidad del 33 % o más; el sitio no pregunta por discapacidad."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que el descendiente conviva contigo (la ausencia esporádica por estudios no lo rompe) o dependa económicamente de ti",
+    "Que no haya obtenido en 2025 rentas superiores a 8.000 € anuales, sin contar las exentas",
+    "Que, si presenta declaración individual, sus rentas no superen 1.800 €; si no, ninguno de los progenitores aplica el mínimo",
+    "Con guarda y custodia compartida el mínimo se reparte al 50 % entre ambos progenitores; quien solo paga alimentos fijados por un juez no lo aplica",
+    "Para ver las condiciones de los menores de 3 años, de adopción o acogimiento y de discapacidad, mira el manual de la Agencia Tributaria"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica al presentar la declaración de la Renta, no se pide aparte. La campaña de la Renta 2025 fue del 08/04/2026 al 30/06/2026 (calendario de la Agencia Tributaria). La del ejercicio 2026 se presentará en 2027, con fechas aún no publicadas; mes habitual: abril, orientativo (solo se ha leído el calendario de 2026). "
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Declara a tus hijos en la Renta WEB de la Agencia Tributaria (con Cl@ve o certificado digital, o con cita previa): el programa aplica el mínimo si los datos de tus descendientes son correctos.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-descendientes/cuantias-aplicables.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB de la Agencia Tributaria), con Cl@ve o certificado digital, o con cita previa.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-descendientes/cuantias-aplicables.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-descendientes/concepto-requisitos-descendientes.html",
+  "confianza": "alta"
+}

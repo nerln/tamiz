@@ -1,0 +1,54 @@
+{
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "solicita": "persona",
+  "id": "es-vlc-tarjeta-estacionamiento-pmr",
+  "nombre": "Tarjeta de estacionamiento para personas con movilidad reducida (València)",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "Ajuntament de València",
+  "ambito": "ES-VC",
+  "resumen": "Tarjeta para aparcar en las plazas reservadas, para personas de València con movilidad reducida reconocida, con visión muy reducida o en casos excepcionales por enfermedad grave. Se tramita todo el año.",
+  "cuantia": {
+    "texto": "Trámite sin importe indicado en la ficha municipal; para costes, la ficha remite a la oficina OMAD (96 208 24 68, de lunes a viernes de 9 a 14 h).",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València",
+      "cita": "Sede del Ayuntamiento de València, BS.DI.25: personas residentes en València"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Movilidad reducida acreditada en la resolución de discapacidad (Real Decreto 1056/2014 y Decreto 72/2016 del Consell), o visión de 0,1 o menos o campo visual de 10° o menos",
+    "Casos excepcionales: personas usuarias de silla de ruedas con la solicitud de grado en trámite (tarjeta provisional de 2 años) y enfermedad grave con informe médico",
+    "Documentación según el caso: DNI, resolución de discapacidad y dos fotografías para recogerla"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.valencia.es/sede/registro/procedimiento/BS.DI.25?lang=1",
+    "nota": "Todo el año. Resolución en unos 30 días desde la solicitud. Validez: 10 años en adultos con grado definitivo y 5 en menores."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Inicia el trámite en la sede electrónica del Ayuntamiento («Iniciar trámite») o preséntalo en persona con el impreso de la ficha.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/BS.DI.25?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "En persona con el impreso de la ficha, en las oficinas que indica, o en la sede electrónica con firma electrónica. La recogida es en Amadeo de Saboya 11.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/BS.DI.25?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/BS.DI.25?lang=1",
+  "confianza": "alta"
+}

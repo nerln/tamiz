@@ -1,0 +1,67 @@
+{
+  "id": "es-aei-juan-de-la-cierva-2026",
+  "nombre": "Juan de la Cierva 2026 (AEI): contratos posdoctorales de tres años",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "otro",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
+  "ambito": "ES",
+  "area": "investigacion",
+  "informativa": false,
+  "resumen": "Contratos posdoctorales de tres años en un centro de I+D español para quien ha defendido la tesis hace poco. La persona rellena su formulario y el centro de I+D presenta la solicitud con un tutor o tutora.",
+  "cuantia": {
+    "texto": "Ayuda de 35.700 € al año durante tres años para cofinanciar el contrato, con un salario bruto mínimo de 31.200 € al año que debe constar en el contrato (art. 7.2 de la convocatoria 2026); el centro asume el coste que exceda de la ayuda. Además, 15.000 € para gastos de investigación y movilidad (art. 7.5). Presupuesto total: 61.050.000 € (art. 9).",
+    "importe_eur": 35700,
+    "periodicidad": "anual",
+    "duracion_meses_max": 36
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor o doctora",
+      "cita": "Art. 6.1.a de la convocatoria JdC 2026 (Resolución de la AEI, tramitación anticipada)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Además hace falta haber defendido la tesis entre el 01/01/2024 y el 31/12/2026 (con ampliaciones por permisos o incapacidad temporal). Tamiz no pregunta esa fecha, así que no puede decirte si encajas: compruébalo en las bases."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Fecha de obtención del doctorado (defensa y aprobación de la tesis) entre el 01/01/2024 y el 31/12/2026 en el turno general y en el JDC-INIA-CCAA; entre el 01/01/2023 y el 31/12/2026 en el turno de personas con discapacidad. El límite inferior se amplía por incapacidad temporal, permisos de nacimiento o cuidado y otras situaciones del art. 6.1.a",
+    "Un centro de I+D debe presentar la solicitud con un investigador o investigadora tutor, y una persona solo puede figurar en la solicitud de un centro (art. 12.2)",
+    "Documentación de la persona participante y del tutor (CVA e historial científico-técnico según los modelos de la convocatoria)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-11-12",
+    "fin": "2026-11-26",
+    "verificado": true,
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Convocatoria%20JDC%202026_firmada.pdf",
+    "nota": "La persona participante rellena, firma y envía su formulario del 12/11/2026 al 26/11/2026 a las 14:00 (hora peninsular). El centro de I+D presenta la solicitud hasta el 03/12/2026 a las 14:00 (art. 12.1 y 12.3)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "El contrato financiado es incompatible con cualquier otro contrato laboral de la persona contratada (art. 10.1 de la convocatoria).",
+    "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Convocatoria%20JDC%202026_firmada.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Busca un centro de I+D y un tutor o tutora que te acojan (por ejemplo, un grupo de la Universitat de València) y rellena tu formulario antes del 26/11/2026 a las 14:00.",
+    "url": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-juan-cierva-2026"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Por la sede electrónica de la AEI: la persona se acredita en el Registro Unificado de Solicitantes, rellena y firma su formulario, y el representante legal del centro de I+D presenta la solicitud (art. 12).",
+  "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Convocatoria%20JDC%202026_firmada.pdf",
+  "url_oficial": "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-juan-cierva-2026",
+  "bdns": "918644",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-11-26",
+  "confianza": "alta"
+}

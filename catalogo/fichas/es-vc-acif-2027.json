@@ -3,6 +3,7 @@
   "nombre": "ACIF — contratos predoctorales de la Generalitat Valenciana (convocatoria 2027)",
   "tipo": "oportunidad",
   "subtipo": "formacion_remunerada",
+  "area": "investigacion",
   "concesion": "concurrencia_competitiva",
   "solicita": "persona",
   "organismo": "Generalitat Valenciana — Conselleria de Educación, Cultura y Universidades (DG Ciencia e Investigación)",
@@ -78,7 +79,11 @@
           "op": "==",
           "valor": "master",
           "texto": "Tener el título de máster",
-          "cita": "Anexo I, apartado segundo 2.b.2"
+          "cita": "Anexo I, apartado segundo 2.b.2",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Con un máster solo puedes pedirla si te admiten en un programa de doctorado y terminaste los estudios dentro de las fechas que fija la convocatoria. Si no vas a hacer un doctorado, no es para ti."
         },
         {
           "campo": "estudios.matriculado_en",

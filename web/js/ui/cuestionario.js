@@ -1,6 +1,14 @@
 // La pantalla de las preguntas: una pantalla por vez, atrás sin perder nada, «no lo sé» siempre.
 import { el, nuovoId } from "./dom.js";
-import { PANTALLAS, PAISES, TRAMOS, controlesVisibles, pantallasVisibles, escribir, leer, tramoDeImporte } from "../preguntas.js";
+import { PANTALLAS, PAISES, TRAMOS, controlesVisibles, pantallasVisibles, escribir, leer, tramoDeImporte, esValencia } from "../preguntas.js";
+
+// Il comune «No lo sé» non ha un codice nello schema (docs/ESQUEMA.md §2.5): si ricorda sull'oggetto residencia
+// salvato, come il reddito con PREFIERO_INGRESO. Se residencia cambia oggetto (cioè si riscrive), il ricordo cade.
+const MUNICIPIO_NO_SE = new WeakSet();
+export function municipioNoSabe(perfil) {
+  const r = leer(perfil, "residencia");
+  return !!r && typeof r === "object" && MUNICIPIO_NO_SE.has(r);
+}
 
 const SIN_VALOR = "__vacio__";
 // «Prefiero no decirlo» per un reddito si salva come «no lo sé» (docs/ESQUEMA.md §2.5): lo schema non ha un altro
@@ -113,11 +121,17 @@ function controlloTexto(c, previo) {
   };
 }
 
-// Menu a tendina con «Elige una opción» e «No lo sé» dentro le opzioni del catalogo.
-function controlloSelect(c, previo) {
-  const select = el("select", { id: nuovoId("s"), "aria-label": c.etiqueta },
-    el("option", { value: "", text: "Elige una opción" }),
-    c.opciones.map(([codigo, texto]) => el("option", { value: String(codigo), text: texto })));
+// Menu a tendina con «Elige una opción» e «No lo sé» dentro le opzioni del catalogo. Con opciones_de le opzioni dipendono
+// dalla bozza (la provincia segue la comunità): actualiza() le riscrive e tiene la scelta, se è ancora fra le opzioni.
+function controlloSelect(c, previo, _hoy, perfil) {
+  const select = el("select", { id: nuovoId("s"), "aria-label": c.etiqueta });
+  const pinta = (lista) => {
+    const scelta = select.value;
+    select.replaceChildren(el("option", { value: "", text: "Elige una opción" }),
+      ...lista.map(([codigo, texto]) => el("option", { value: String(codigo), text: texto })));
+    select.value = lista.some(([codigo]) => String(codigo) === scelta) ? scelta : "";
+  };
+  pinta(c.opciones_de ? c.opciones_de(perfil) : c.opciones);
   if (previo !== undefined && previo !== null) select.value = String(previo);
   const leerValor = () => {
     if (select.value === "") return undefined;
@@ -127,12 +141,56 @@ function controlloSelect(c, previo) {
   const nodo = el("div", { class: "fila" }, el("label", { class: "campo-etiqueta", for: select.id, text: c.etiqueta }), select);
   return {
     nodo, nombre: select,
+    actualiza(b) { if (c.opciones_de) pinta(c.opciones_de(b)); },
     leer() {
       const v = leerValor();
+      if (v === undefined && c.opcional) return { ok: true, escrituras: [[c.campo, undefined]] };
       if (v === undefined) return { ok: false, error: `${c.etiqueta}: elige una opción.` };
       return { ok: true, escrituras: [[c.campo, v]] };
     },
     borrador: () => (leerValor() === undefined ? [] : [[c.campo, leerValor()]]),
+  };
+}
+
+// Comune in testo libero, con il suggerimento «València». «No lo sé» lascia il campo vuoto (vedi MUNICIPIO_NO_SE).
+// Il codice INE (c.ine) si scrive da sé solo per la ciudad de València (c.provincia_de: ES-V o non ancora scelta).
+// Se il comune scritto è un altro, il codice si chiede nel campo INE, e un codice 46250 già salvato resta lì.
+function controlloMunicipio(c, previo) {
+  const idLista = nuovoId("dl");
+  const campo = el("input", { type: "text", id: nuovoId("m"), "aria-label": c.etiqueta, maxlength: 80, autocomplete: "off",
+    list: idLista, placeholder: c.sugerencia });
+  const chk = el("input", { type: "checkbox", id: nuovoId("nls") });
+  if (typeof previo === "string" && previo !== "no_lo_se") campo.value = previo;
+  chk.checked = c.recuerda_no_se === true && (previo === undefined || previo === null);
+  if (chk.checked) campo.value = "";
+  campo.disabled = chk.checked;
+  chk.addEventListener("change", () => {
+    if (chk.checked) campo.value = "";
+    campo.disabled = chk.checked;
+  });
+  const nodo = el("div", { class: "fila" },
+    el("label", { class: "campo-etiqueta", for: campo.id, text: c.etiqueta }), campo,
+    el("datalist", { id: idLista }, el("option", { value: c.sugerencia })),
+    el("p", { class: "ayuda", text: `Escribe el nombre del municipio. Por ejemplo: ${c.sugerencia}.` }),
+    el("label", { class: "nls" }, chk, " No lo sé"));
+  const valorDi = () => (chk.checked ? undefined : (campo.value.trim() || undefined));
+  const escrituras = (t) => {
+    const esc = [[c.campo, t]];
+    const provincia = c.provincia_de ? c.provincia_de() : undefined;
+    const derivable = provincia === undefined || provincia === "ES-V";
+    if (t !== undefined && esValencia(t) && derivable) esc.push([c.ine, "46250"]);
+    else if (t !== undefined && c.ine_previo === "46250") esc.push([c.ine, undefined]);
+    return esc;
+  };
+  return {
+    nodo, nombre: campo,
+    leer() {
+      const t = valorDi();
+      if (t === undefined && !chk.checked) return { ok: false, error: `${c.etiqueta}: escribe el nombre del municipio o marca «No lo sé».` };
+      return { ok: true, escrituras: escrituras(t) };
+    },
+    borrador: () => escrituras(valorDi()),
+    noSabe: () => chk.checked,
   };
 }
 
@@ -160,18 +218,20 @@ function controlloRadio(c, previo, pantalla) {
     const sel = righe.find((r) => r.input.checked);
     return sel ? { codigo: sel.codigo } : undefined;
   };
+  // Scritture che la scelta porta con sé (c.extra), per esempio il permesso di lavoro di un documento.
+  const conExtra = (codigo) => [[c.campo, codigo], ...(c.extra ? c.extra(codigo) : [])];
   return {
     nodo, nombre: righe[0].input,
     leer() {
       const sel = valorDi();
       if (!sel) return { ok: false, error: `${c.etiqueta}: elige una opción.` };
       if (c.radio_pais_otro && sel.codigo === "otro") return { ok: true, escrituras: [] };
-      return { ok: true, escrituras: [[c.campo, sel.codigo]] };
+      return { ok: true, escrituras: conExtra(sel.codigo) };
     },
     borrador() {
       const sel = valorDi();
       if (!sel) return [];
-      return [[c.campo, sel.codigo]];
+      return conExtra(sel.codigo);
     },
   };
 }
@@ -454,10 +514,16 @@ const FABRICA = {
   anio: controlloNumero, entero: controlloNumero, fecha: controlloFecha, texto: controlloTexto,
   select: controlloSelect, radio: controlloRadio, bool: controlloBool, lista: controlloLista,
   paises: controlloPaises, pais: controlloPais, tramo: controlloTramo, hijos: controlloHijos,
+  municipio: controlloMunicipio,
 };
 
 // Ruta di un controllo per il riepilogo e per «hay algo que escribir».
 function rutaPrincipal(c) { return c.campo || c.base; }
+
+// Il testo «por qué lo preguntamos» di una pantalla: è una frase, o una funzione della bozza del profilo.
+function textoDePorque(pantalla, perfilo) {
+  return typeof pantalla.porque === "function" ? pantalla.porque(perfilo) : pantalla.porque;
+}
 
 export function renderCuestionario(ctx) {
   const { usados } = ctx;
@@ -470,19 +536,36 @@ export function renderCuestionario(ctx) {
   const posicion = visibili.findIndex((p) => p.id === actual) + 1;
 
   const titulo = el("h1", { tabindex: -1, id: "titulo-pantalla", text: pantalla.titulo });
-  const porque = el("p", { class: "porque" }, el("strong", { text: "¿Por qué lo preguntamos? " }), pantalla.porque);
+  const textoPorque = el("span", { text: textoDePorque(pantalla, ctx.perfil) });
+  const porque = el("p", { class: "porque" }, el("strong", { text: "¿Por qué lo preguntamos? " }), textoPorque);
   const error = el("div", { class: "error-form", role: "alert", "aria-live": "assertive" });
   const formulario = el("form", { novalidate: true, class: "pregunta-form" });
   const barra = el("div", { class: "barra-paso" }, el("span", { text: `Pregunta ${posicion}` }));
 
   // Controlli di questa pantalla: quelli visibili per l'uso delle schede (anche se nascosti per una condizione).
   const cosas = pantalla.controles.filter((c) => (c.siempre || (c.campo ? [c.campo] : [`${c.base}.tramo`, `${c.base}.importe`]).some((x) => usados.has(x))));
+  // Il valore che un controllo della pantalla scrive adesso (vuoto se nascosto o non scelto).
+  const valorDe = (campo) => {
+    const x = controles.find((y) => y.def.campo === campo);
+    if (!x || x.grupo.hidden) return undefined;
+    const d = x.borrador();
+    return d.length ? d[0][1] : undefined;
+  };
   const controles = cosas.map((c) => {
-    const previo = leer(ctx.perfil, c.campo || c.base);
-    if (c.tipo === "radio" && c.campo === "residencia.pais") c = { ...c, radio_pais_otro: true };
+    let previo = leer(ctx.perfil, c.campo || c.base);
+    if (c.tipo === "radio" && c.campo === "residencia.pais") {
+      c = { ...c, radio_pais_otro: true };
+      // Un paese scelto dal menu (per esempio FR) si ricorda come «En otro país».
+      if (typeof previo === "string" && /^[A-Z]{2}$/.test(previo) && previo !== "ES") previo = "otro";
+    }
     if (c.ong_si_otro) c = { ...c, ongs: (ctx.catalogo?.ayuda_humana || []).filter((a) => a.tipo === "ong").slice(0, 2) };
+    if (c.tipo === "municipio") {
+      c = { ...c, ine_previo: leer(ctx.perfil, c.ine), recuerda_no_se: municipioNoSabe(ctx.perfil),
+        provincia_de: () => valorDe("residencia.provincia") };
+    }
+    // Il codice INE 46250 salvato resta nel campo INE: si cancella solo se il comune cambia (vedi controlloMunicipio).
     const f = FABRICA[c.tipo];
-    const r = f(c, previo, ctx.hoy);
+    const r = f(c, previo, ctx.hoy, ctx.perfil);
     r.def = c;
     r.grupo = el("div", { class: "control", "data-campo": rutaPrincipal(c) }, r.nodo, el("p", { class: "error-control", role: "alert" }));
     return r;
@@ -491,17 +574,31 @@ export function renderCuestionario(ctx) {
   const nodosControles = controles.map((x) => x.grupo);
   formulario.append(...nodosControles);
 
-  // Visibilità: un controllo con «si» si mostra in base alla bozza degli altri controlli della pantalla.
-  const bozza = () => {
+  // Visibilità a punto fisso: la bozza è fatta solo dai controlli che si mostrano, e un controllo con «si» si mostra
+  // in base a quella bozza. Un controllo nascosto non scrive: un valore rimasto in un menu nascosto non può riaccenderlo.
+  const costruye = (visibles) => {
     let p = ctx.perfil;
-    for (const x of controles) for (const [ruta, valor] of x.borrador()) p = escribir(p, ruta, valor);
+    for (const x of controles) if (visibles.has(x)) for (const [ruta, valor] of x.borrador()) p = escribir(p, ruta, valor);
     return p;
   };
+  const calcVisibles = () => {
+    let vis = new Set(controles.filter((x) => !x.def.si));
+    let b = costruye(vis);
+    for (let giro = 0; giro <= controles.length; giro++) {
+      const nueva = new Set(controles.filter((x) => !x.def.si || x.def.si(b)));
+      const igual = nueva.size === vis.size && [...nueva].every((x) => vis.has(x));
+      if (igual) break;
+      vis = nueva;
+      b = costruye(vis);
+    }
+    return { vis, b };
+  };
   const aggiornaVisibili = () => {
-    const b = bozza();
+    const { vis, b } = calcVisibles();
+    textoPorque.textContent = textoDePorque(pantalla, b);
     for (const x of controles) {
-      const serve = !x.def.si || x.def.si(b);
-      x.grupo.hidden = !serve;
+      if (x.actualiza) x.actualiza(b);
+      x.grupo.hidden = !vis.has(x);
     }
   };
   formulario.addEventListener("change", aggiornaVisibili);
@@ -549,6 +646,13 @@ export function renderCuestionario(ctx) {
     // Ricorda «Prefiero no decirlo» sull'oggetto del reddito appena scritto (vedi PREFIERO_INGRESO).
     for (const x of controles) {
       if (!x.grupo.hidden && x.prefiere && x.prefiere()) PREFIERO_INGRESO.add(leer(nuevo, x.def.base));
+    }
+    // Ricorda «No lo sé» sul comune sull'oggetto residencia appena scritto (vedi MUNICIPIO_NO_SE).
+    for (const x of controles) {
+      if (!x.grupo.hidden && x.noSabe && x.noSabe()) {
+        const r = leer(nuevo, "residencia");
+        if (r && typeof r === "object") MUNICIPIO_NO_SE.add(r);
+      }
     }
     if (escrituras.some(([r]) => r.startsWith("ingresos.")) && nuevo.ingresos && nuevo.ingresos.ejercicio === undefined) {
       nuevo = escribir(nuevo, "ingresos.ejercicio", Number(ctx.hoy.slice(0, 4)) - 1);

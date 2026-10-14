@@ -3,6 +3,7 @@
   "nombre": "Ingreso Mínimo Vital (IMV)",
   "tipo": "derecho",
   "subtipo": "prestacion",
+  "area": "servicios_sociales",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Seguridad Social - INSS",

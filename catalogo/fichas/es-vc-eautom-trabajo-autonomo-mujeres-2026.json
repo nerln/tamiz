@@ -1,0 +1,54 @@
+{
+  "area": "emprender",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-vc-eautom-trabajo-autonomo-mujeres-2026",
+  "nombre": "Ayudas al mantenimiento del trabajo autónomo de mujeres 2026 (LABORA)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "concurrencia_competitiva",
+  "organismo": "LABORA Servicio Valenciano de Empleo y Formación",
+  "ambito": "ES-VC",
+  "informativa": true,
+  "resumen": "Subvención para autónomas embarazadas o en proceso de adopción que contratan a una persona desempleada para mantener la actividad durante la baja. El plazo de 2026 acaba el 20 de octubre.",
+  "cuantia": {
+    "texto": "1.500 € por un contrato temporal a jornada completa de al menos 3 meses, o 3.500 € si dura al menos 6 meses. Se suman 500 € si se contrata a una mujer o a una persona con discapacidad. Los contratos de al menos 30 horas semanales cobran de forma proporcional. Crédito total de 100.000 €.",
+    "importe_eur": 1500,
+    "periodicidad": "unica"
+  },
+  "requisitos": [],
+  "requisitos_no_evaluables": [
+    "Ser trabajadora autónoma y estar embarazada o en proceso de adopción en el momento de la contratación (apartado tercero)",
+    "Contratar a partir del 1 de enero de 2026 y antes de la baja maternal, para un centro de trabajo en la Comunitat Valenciana (apartados segundo y cuarto)",
+    "La persona contratada debe haber estado inscrita como demandante de empleo en LABORA hasta la contratación (no vale inscribirse el mismo día) y no ser familiar tuyo hasta el segundo grado (apartado cuarto)",
+    "Quedan excluidas las socias de sociedades mercantiles, cooperativas, sociedades civiles y laborales, las integrantes de comunidades de bienes y las autónomas colaboradoras (apartado tercero)",
+    "Presentar la solicitud después de la contratación y el alta en la Seguridad Social, nunca después del 20 de octubre de 2026 (apartado sexto)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "fin": "2026-10-20",
+    "verificado": true,
+    "fuente": "https://dogv.gva.es/datos/2026/10/08/pdf/2026_31508_es.pdf",
+    "nota": "El plazo se abre a las 10 h del día siguiente a la publicación del extracto en el DOGV; la página de LABORA lo da del 13 al 20 de octubre. La solicitud va después de la contratación."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con otras subvenciones para la misma finalidad u objeto (apartado decimoséptimo de la convocatoria), con el límite de las ayudas de minimis.",
+    "fuente": "https://dogv.gva.es/datos/2026/10/08/pdf/2026_31508_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Presenta la solicitud en la sede electrónica de la Generalitat con firma electrónica avanzada, antes del 20 de octubre.",
+    "url": "https://sede.gva.es/es/detall-tramit?id_proc=113116&id_caso=sollicitud"
+  },
+  "como_pedirla": "Solo por vía telemática en la sede electrónica de la Generalitat (sede.gva.es), con certificado reconocido de persona física.",
+  "fuente": "https://dogv.gva.es/datos/2026/10/08/pdf/2026_31508_es.pdf",
+  "url_oficial": "https://labora.gva.es/es/busque-ajudes-subvencions/ajudes-foment-de-l-ocupacio-2026",
+  "revisar_antes_de": "2026-10-20",
+  "confianza": "alta"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "es-vlc-ivtm-bonificacion-clase-motor",
+  "nombre": "IVTM de València: bonificación por clase de motor",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "descuento",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Ajuntament de València (Hacienda)",
+  "ambito": "ES-VC",
+  "informativa": true,
+  "resumen": "El Ajuntament de València bonifica el impuesto de circulación de turismos eléctricos, híbridos o de gas (75 %) y de gasolina de bajas emisiones (30 % durante 3 años).",
+  "cuantia": {
+    "texto": "75 % en turismos eléctricos, híbridos (eléctrico con gasolina, diésel o gas) y de GLP o gas natural comprimido; 30 % durante 3 años desde la matriculación en turismos de gasolina con emisiones de CO2 inferiores a 95 g/km. Solo una bonificación y solo para un vehículo.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València",
+      "cita": "Sede electrónica del Ajuntament de València, procedimiento HA.VE.20"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ser titular de un turismo eléctrico, híbrido, de GLP o gas natural comprimido, o de gasolina con menos de 95 g/km de CO2: el sitio no pregunta por tu vehículo",
+    "Estar al corriente en el pago de los tributos municipales (si luego se incumple, se pierde la bonificación)",
+    "Permiso de circulación y tarjeta ITV en vigor"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 12,
+    "verificado": false,
+    "nota": "Se pide como máximo el 31 de diciembre del año anterior a aquel en que debe surtir efecto; si se pide después, vale para el ejercicio siguiente. Vehículos recién matriculados: un mes desde el alta en la DGT."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide la bonificación por la sede electrónica del Ajuntament de València con el permiso de circulación y la tarjeta ITV, antes del 31 de diciembre.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/HA.VE.20?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Por la sede electrónica del Ajuntament de València (Iniciar trámite, con certificado digital o Cl@ve), presencialmente en la Oficina de Gestión Tributaria Integral (mejor con cita previa) o en los registros municipales con instancia general. Teléfono 96 389 50 79.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/HA.VE.20?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/HA.VE.20?lang=1",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

@@ -3,6 +3,7 @@
   "nombre": "FPU 2026 — contratos predoctorales para formación de profesorado universitario",
   "tipo": "oportunidad",
   "subtipo": "formacion_remunerada",
+  "area": "investigacion",
   "concesion": "concurrencia_competitiva",
   "solicita": "persona",
   "organismo": "Ministerio de Ciencia, Innovación y Universidades — Agencia Estatal de Investigación",
@@ -30,6 +31,44 @@
       ],
       "texto": "Tener un grado, una licenciatura o un máster que dé acceso al doctorado",
       "cita": "Art. 6.1 y anexo III.1 de la convocatoria"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "estudios.nivel_max",
+          "op": "==",
+          "valor": "master",
+          "texto": "Tener un máster",
+          "cita": "Art. 6.1 de la convocatoria (Resolución AEI de 25/09/2026)",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Con un máster solo puedes pedirla si te admiten en un programa de doctorado y terminaste los estudios dentro de las fechas que fija la convocatoria. Si no vas a hacer un doctorado, no es para ti."
+        },
+        {
+          "campo": "estudios.matriculado_en",
+          "op": "in",
+          "valor": [
+            "doctorado",
+            "master"
+          ],
+          "texto": "Estar ya matriculado/a o admitido/a en un doctorado, o cursando un máster que dé acceso a él",
+          "cita": "Art. 6.1 de la convocatoria (Resolución AEI de 25/09/2026)"
+        },
+        {
+          "campo": "estudios.nivel_max",
+          "op": "==",
+          "valor": "grado",
+          "texto": "Tener un grado que dé acceso directo al doctorado",
+          "cita": "Art. 6.1 de la convocatoria (Resolución AEI de 25/09/2026)",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Con un grado normalmente necesitas además un máster para entrar en un doctorado; algunos grados de 300 créditos o más (por ejemplo, Medicina) dan acceso directo. Compruébalo con el programa de doctorado."
+        }
+      ],
+      "texto": "Estar matriculado/a o admitido/a en un doctorado para el curso 2026/2027, o poder estarlo cuando se firme el contrato",
+      "cita": "Art. 6.1 de la convocatoria (Resolución AEI de 25/09/2026)"
     }
   ],
   "requisitos_no_evaluables": [

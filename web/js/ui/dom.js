@@ -82,3 +82,37 @@ export function sinFinTecnicoEn(nodo) {
   }
   return nodo;
 }
+
+// Le aree del catalogo (campo `area` della scheda), nell'ordine in cui si mostrano. Etichette in spagnolo.
+export const AREAS = [
+  ["familia", "Familia"], ["vivienda", "Vivienda"], ["empleo", "Empleo"], ["estudios", "Estudios"],
+  ["investigacion", "Investigación"], ["impuestos", "Impuestos"], ["salud_cuidados", "Salud y cuidados"],
+  ["extranjeria", "Extranjería"], ["emprender", "Emprender"], ["jovenes_ocio", "Jóvenes y ocio"],
+  ["servicios_sociales", "Servicios sociales"], ["empleo_publico", "Empleo público"],
+];
+const NOMBRE_AREA = new Map(AREAS);
+// Una scheda senza area (catalogo precedente a L20) finisce in «Otras», in fondo.
+export const SIN_AREA = "otras";
+export const areaValida = (a) => (NOMBRE_AREA.has(a) ? a : SIN_AREA);
+export const nombreArea = (a) => NOMBRE_AREA.get(a) || "Otras";
+export const ordenArea = (a) => { const i = AREAS.findIndex(([k]) => k === a); return i < 0 ? AREAS.length : i; };
+
+// Il simbolo di Tamiz (la T che accoglie) come SVG in linea: i colori vengono dal CSS, così cambia con il tema.
+// È decorativo: chi lo usa mette accanto il nome in testo.
+const NS = "http://www.w3.org/2000/svg";
+export function simbolo(clase = "simbolo") {
+  const s = document.createElementNS(NS, "svg");
+  s.setAttribute("viewBox", "0 0 64 64");
+  s.setAttribute("class", clase);
+  s.setAttribute("aria-hidden", "true");
+  s.setAttribute("focusable", "false");
+  const parte = (tag, attrs) => {
+    const n = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    s.appendChild(n);
+  };
+  parte("circle", { class: "simbolo-cabeza", cx: "32", cy: "11", r: "7.6" });
+  parte("path", { class: "simbolo-brazos", d: "M5 21 C9.5 25.5 18 27 32 27 C46 27 54.5 25.5 59 21" });
+  parte("path", { class: "simbolo-cuerpo", d: "M26.75 27 H37.25 L36.5 57.5 A4.5 4.5 0 0 1 27.5 57.5 Z" });
+  return s;
+}

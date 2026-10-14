@@ -1,0 +1,82 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Migrante Prueba",
+    "descripcion": "Persona inventada. Hombre marroquí de 32 años llegado hace 8 meses, con una autorización de residencia temporal desde entonces (menos de un año de residencia legal), trabaja con contrato temporal y vive en una habitación en València.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1994,
+    "mes_nacimiento": 4,
+    "nacionalidades": [
+      "MA"
+    ],
+    "sexo": "hombre"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2026-02"
+  },
+  "situacion_administrativa": {
+    "tipo": "residencia_temporal",
+    "autoriza_trabajar": true,
+    "residencia_legal_desde": "2026-02",
+    "documento_desde": "2026-02",
+    "documento_hasta": "2027-02"
+  },
+  "empleo": {
+    "situaciones": [
+      "asalariado"
+    ],
+    "tipo_contrato": "temporal",
+    "contrato_hasta": "2027-01",
+    "meses_cotizados_6_anios": 7,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "eso",
+    "matriculado_en": "ninguno",
+    "titulo_extranjero": true,
+    "titulo_pais": "MA",
+    "homologacion": "no_pedida"
+  },
+  "hogar": {
+    "miembros": 3,
+    "hijos": [],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "habitacion",
+    "alquiler_mensual": 300,
+    "contrato_a_su_nombre": false
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "cero"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "cero"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "MA"
+    ],
+    "paises_cotizacion": [
+      "MA"
+    ],
+    "afiliaciones": [],
+    "permiso_conducir_pais": "MA"
+  },
+  "solicitudes": []
+}

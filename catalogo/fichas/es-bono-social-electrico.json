@@ -3,6 +3,7 @@
   "nombre": "Bono social eléctrico",
   "tipo": "derecho",
   "subtipo": "descuento",
+  "area": "vivienda",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Ministerio para la Transición Ecológica y el Reto Demográfico (MITECO); comercializadoras de referencia",

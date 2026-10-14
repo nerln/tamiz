@@ -1,0 +1,65 @@
+{
+  "id": "es-vlc-tasa-basura-bonificacion-familia-numerosa",
+  "nombre": "Tasa de basura de València: bonificación del 30 % para familias numerosas",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "descuento",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Ajuntament de València (Hacienda)",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "El Ajuntament de València bonifica con un 30 % la tasa de basura de la vivienda habitual de las familias numerosas. También hay bonificaciones por pocos recursos y por usar los ecoparques.",
+  "cuantia": {
+    "texto": "30 % de bonificación en la vivienda habitual de familias numerosas. Otras bonificaciones del mismo procedimiento: 30 % con ingresos de la unidad familiar por debajo del IPREM y 10 € fijos por usar los ecoparques municipales.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València",
+      "cita": "Sede electrónica del Ajuntament de València, procedimiento HA.TA.15"
+    },
+    {
+      "campo": "hogar.familia_numerosa",
+      "op": "in",
+      "valor": [
+        "general",
+        "especial"
+      ],
+      "texto": "Tener el título de familia numerosa",
+      "cita": "Procedimiento HA.TA.15 y Ley 40/2003"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ser titular de la vivienda habitual con la condición de familia numerosa; el inquilino también puede pedirla si el propietario le repercute la tasa",
+    "Declaración responsable de que todos los miembros están empadronados en el mismo domicilio y de no tener deudas con el Ajuntament",
+    "Título o certificado de familia numerosa y documento que acredite el uso de la vivienda si no eres propietario",
+    "Bonificación por pocos recursos: ingresos de la unidad familiar por debajo del IPREM, con la última declaración del IRPF de todos los miembros (no se comprueba aquí)"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 3,
+    "verificado": false,
+    "nota": "Para las liquidaciones de 2025 y 2026 el plazo fue hasta el 31 de mayo de 2026; para el resto de ejercicios, hasta el 31 de marzo de cada año. No hace falta pedirla si el IBI ya tiene reconocida la bonificación por familia numerosa."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide la bonificación por la sede electrónica o en la Oficina de Tasa de Basuras (c/ Gran Vía Germanías, 49) antes del 31 de marzo, con el título de familia numerosa.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/HA.TA.15?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Por la sede electrónica del Ajuntament de València (Iniciar trámite, con certificado digital o Cl@ve), presencialmente en la Oficina de Gestión Tributaria Integral (mejor con cita previa) o en los registros municipales con instancia general. Teléfono 96 389 50 79.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/HA.TA.15?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/HA.TA.15?lang=1",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

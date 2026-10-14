@@ -1,0 +1,80 @@
+{
+  "area": "emprender",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-vlc-emprende-concilia-2026",
+  "nombre": "Emprende y Concilia 2026 (Ajuntament de València)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "orden_de_llegada",
+  "organismo": "Ajuntament de València - Servicio de Emprendimiento",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Ayuda de pago único para quien se dio de alta como autónomo entre el 8 de octubre de 2025 y la solicitud, con actividad en València y 5 años de empadronamiento. Se concede por orden de presentación hasta agotar el crédito. La convocatoria de 2026 cerró el 22 de septiembre.",
+  "cuantia": {
+    "texto": "3.000 € fijos, más 500 € si tienes hijos de hasta 12 años o familiares dependientes a cargo (o una persona trabajadora con medidas de conciliación), y otros 500 € si eras menor de 36 años al darte de alta. Crédito total de 3.122.000 €.",
+    "importe_eur": 3000,
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "autonomo",
+      "texto": "Ser autónomo",
+      "cita": "Convocatoria, base 4.1.a y c: alta en el RETA entre el 8 de octubre de 2025 y la solicitud",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La ayuda es solo para quien se dio de alta como autónomo desde el 8 de octubre de 2025 y no estuvo de alta en los 2 meses anteriores. Con lo que has dicho no podemos saber cuándo te diste de alta: mira la base 4.1.a y c de la convocatoria."
+    },
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València"
+    },
+    {
+      "campo": "calc.anios_empadronado",
+      "op": ">=",
+      "valor": 5,
+      "texto": "Estar empadronado en València desde hace 5 años o más",
+      "cita": "Convocatoria, base 4.1.i: antigüedad mínima de empadronamiento de 5 años contados desde el 1 de enero de 2016"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Alta en el RETA entre el 8 de octubre de 2025 y la fecha de la solicitud, sin haber estado de alta en los 2 meses anteriores (base 4.1.a y c)",
+    "Estar dado de alta en el IAE, con el local de la actividad (o el domicilio fiscal, si no hay local) en el término municipal de València (base 4.1.b y d)",
+    "Plantilla media inferior a 10 personas en los 12 meses anteriores (base 4.1.j)",
+    "Estar al corriente con la AEAT, la Seguridad Social y el Ajuntament, y no superar 300.000 € de ayudas de minimis en 3 años (base 4.1.l a p)",
+    "Mantener el alta en el RETA al menos 12 meses seguidos (base 8.1). Quedan excluidos los autónomos colaboradores y quienes se den de alta en una mutualidad profesional (base 4.2)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-09-03",
+    "fin": "2026-09-22",
+    "verificado": true,
+    "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010454437",
+    "nota": "Plazo de la convocatoria 2026 (base 6.3), ya terminado. Si el Ajuntament abre una nueva convocatoria, las fechas serán otras."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con cualquier otra ayuda concedida en 2026 por el Ajuntament de València o por otra entidad, con los límites de la Ley General de Subvenciones (base 10.2).",
+    "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010454437"
+  },
+  "siguiente_paso": {
+    "texto": "La convocatoria de 2026 está cerrada. Vigila la sede electrónica del Ajuntament por si se abre una nueva.",
+    "url": "https://www.valencia.es/es/-/emprende-y-concilia"
+  },
+  "como_pedirla": "Solo por vía telemática en la sede electrónica del Ajuntament de València, con firma electrónica avanzada (certificado de persona física).",
+  "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010454437",
+  "url_oficial": "https://www.valencia.es/es/-/emprende-y-concilia",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

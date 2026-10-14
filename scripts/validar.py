@@ -373,6 +373,21 @@ def controlla_ficha(r, file, f, dove, richiede_alta, prefisso=()):
                      f"è {f.get('confianza')!r}: una scheda pubblicata (o in fichas/) deve essere \"alta\"")
         if "_revisar" in f:
             r.errore(file, dove, "_revisar", "una scheda con _revisar non si pubblica")
+    # §4.2: una scheda senza regole darebbe «Parece que encajas» a chiunque. Solo una scheda
+    # informativa (che non riceve esito) può avere requisitos vuoti.
+    informativa = f.get("informativa") is True
+    requisitos = f.get("requisitos")
+    if isinstance(requisitos, list):
+        if not requisitos and not informativa:
+            r.errore(file, dove, "requisitos",
+                     "lista vuota in una scheda non informativa: darebbe «encaja» a chiunque; "
+                     "serve almeno una regola sul gruppo a cui si rivolge, oppure informativa: true")
+        elif requisitos and informativa:
+            r.avviso(file, dove, "requisitos",
+                     "scheda informativa con regole: il motore non le valuta (§4.2, non blocca)")
+    if "mes_habitual" in plazo and plazo.get("tipo") == "abierto_todo_el_ano":
+        r.avviso(file, dove, "plazo.mes_habitual",
+                 "una scheda aperta tutto l'anno non ha un mese di apertura (§4.6, non blocca)")
     ident = f.get("id")
     comp = f.get("compatibilidad") if isinstance(f.get("compatibilidad"), dict) else {}
     for lista in ("incompatible_con", "compatible_con"):

@@ -1,0 +1,68 @@
+{
+  "tipo": "oportunidad",
+  "concesion": "concurrencia_competitiva",
+  "area": "investigacion",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-vc-gent2-emgent",
+  "nombre": "EMGENT — doctores/as en empresas y administraciones (Plan GenT2, convocatoria 2027)",
+  "subtipo": "empleo",
+  "solicita": "otro",
+  "informativa": false,
+  "organismo": "Generalitat Valenciana, Dirección General de Ciencia e Investigación",
+  "ambito": "ES-VC",
+  "resumen": "10 subvenciones de hasta 3 años para contratar a un doctor o doctora que desarrolle un proyecto de transferencia en una empresa o administración valenciana. La solicitud la presenta un centro de investigación o universidad.",
+  "cuantia": {
+    "texto": "Subvención anual de 61.000 € por contrato, con una retribución mínima de 45.750 € brutos al año, hasta 36 meses (Anexo V, convocatoria 2027).",
+    "importe_eur": 61000,
+    "periodicidad": "anual",
+    "duracion_meses_max": 36
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor/a",
+      "cita": "Art. 51 Orden 7/2025, modificado por la Orden 10/2026; Anexo V.3.3.a) de la convocatoria",
+      "aclaracion": "Además hacen falta al menos 3 años desde el doctorado y 2 años de estancias postdoctorales fuera de la Comunitat Valenciana; Tamiz no los pregunta.",
+      "no_concluyente": [
+        "cumple"
+      ]
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Al menos 3 años de experiencia desde la obtención del título de doctor/a al terminar el plazo de solicitudes",
+    "Una o varias estancias postdoctorales en centros de prestigio internacional fuera de la Comunitat Valenciana que sumen al menos 2 años",
+    "Un convenio o contrato de transferencia tecnológica entre un centro de investigación o universidad valenciana y una empresa o administración valenciana",
+    "Que un centro de investigación o universidad valenciana presente la solicitud, firmada también por el investigador o investigadora principal doctor/a",
+    "Cumplir las demás condiciones de las bases (Orden 7/2025 y Orden 10/2026)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-11-02",
+    "fin": "2026-11-27",
+    "verificado": true,
+    "fuente": "https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf",
+    "nota": "Del 02/11 al 27/11/2026 (resolución de 23/09/2026, DOGV núm. 10459, resuelvo cuarto.e). La edición anterior cerró el 29/12/2025 según el calendario de la Conselleria, sin leer su resolución."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con otras subvenciones o ayudas para la misma finalidad que financien los mismos gastos, de cualquier administración o entidad pública o privada, nacional, de la UE o internacional (Resolución de 23/09/2026, resuelvo primero, apartado 3).",
+    "fuente": "https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Si tienes un doctorado de hace 3 años o más y una empresa o administración valenciana interesada, pide a un centro de investigación valenciano que presente la solicitud entre el 02/11 y el 27/11/2026 en la sede electrónica (sede.gva.es).",
+    "url": "https://ceice.gva.es/ca/web/ciencia/-/pla-gent2-1"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "La presenta el centro de investigación o universidad en la sede electrónica de la Generalitat (sede.gva.es) con firma digital.",
+  "fuente": "https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf",
+  "url_oficial": "https://ceice.gva.es/ca/web/ciencia/-/pla-gent2-1",
+  "revisar_antes_de": "2026-11-27",
+  "confianza": "alta"
+}

@@ -1,0 +1,57 @@
+{
+  "id": "es-isciii-miguel-servet",
+  "nombre": "Contratos Miguel Servet (Acción Estratégica en Salud 2026)",
+  "area": "investigacion",
+  "informativa": true,
+  "tipo": "oportunidad",
+  "subtipo": "empleo",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "otro",
+  "organismo": "Instituto de Salud Carlos III",
+  "ambito": "ES",
+  "resumen": "Contratos de 5 años para doctores y doctoras con trayectoria investigadora en centros del Sistema Nacional de Salud, con el compromiso de crear una plaza permanente al final. 25 contratos en 2026. La presenta el centro.",
+  "cuantia": {
+    "texto": "Salario bruto de 40.500 € al año pagado por el ISCIII, más 40.000 € para gastos de investigación; el centro recibe 66.100 € por crear y cubrir la plaza permanente. Convocatoria 2026.",
+    "periodicidad": "anual",
+    "importe_eur": 40500,
+    "duracion_meses_max": 60
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor/a",
+      "cita": "Art. 46.1 de la resolución de 19/12/2025"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Haber leído la tesis entre el 01/01/2014 y el 31/12/2021 (o haber completado o estar en el último año de un Sara Borrell, o haber completado un Río Hortega y tener el doctorado)",
+    "No estar disfrutando de un contrato Miguel Servet ni haberlo completado antes",
+    "Un centro del SNS con actividad asistencial presenta la solicitud (máximo 5 por IIS y 2 por otros centros clínicos)",
+    "La segunda fase de hasta 2 años se accede tras una evaluación positiva según los criterios R3 del HRS4R"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "verificado": false,
+    "mes_habitual": 2,
+    "nota": "Convocatoria 2026: del 11/02 al 04/03/2026, leída en la resolución de 19/12/2025. Plazos anteriores: del 13/02 al 06/03 en 2025 y en 2024. La de 2027 no está publicada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Habla con la unidad de investigación de tu hospital o instituto de investigación sanitaria: el centro presenta la solicitud y suele pedir manifestación de interés antes del cierre.",
+    "url": "https://www.isciii.es/financiacion/aes/como-solicitar"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Aplicación de solicitudes del ISCIII; la presenta con certificado electrónico el representante legal del centro.",
+  "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true",
+  "url_oficial": "https://www.isciii.es/financiacion/aes/como-solicitar",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

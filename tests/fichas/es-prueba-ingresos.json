@@ -3,6 +3,7 @@
   "nombre": "Prueba: ingresos",
   "tipo": "oportunidad",
   "subtipo": "beca",
+  "area": "estudios",
   "concesion": "concurrencia_competitiva",
   "solicita": "persona",
   "organismo": "Organismo inventado para las pruebas del motor",

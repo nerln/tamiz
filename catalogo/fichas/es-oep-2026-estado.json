@@ -3,6 +3,7 @@
   "nombre": "Oferta de Empleo Público 2026 de la Administración General del Estado (oposiciones)",
   "tipo": "oportunidad",
   "subtipo": "empleo",
+  "area": "empleo_publico",
   "concesion": "concurrencia_competitiva",
   "solicita": "persona",
   "organismo": "Ministerio de Hacienda y Función Pública",
@@ -21,32 +22,90 @@
       "cita": "Art. 56.1.c EBEP"
     },
     {
-      "campo": "situacion_administrativa.tipo",
-      "op": "in",
-      "valor": [
-        "nacional",
-        "ciudadano_ue",
-        "ciudadano_ue_permanente",
-        "ciudadano_ue_sin_registro",
-        "familiar_ue",
-        "familiar_ue_permanente",
-        "residencia_temporal",
-        "residencia_larga_duracion",
-        "residencia_larga_duracion_ue",
-        "estancia_estudios",
-        "proteccion_internacional_solicitante",
-        "proteccion_internacional",
-        "proteccion_temporal",
-        "residencia_art50_tue"
+      "campo": "calc.edad",
+      "op": "<",
+      "valor": 65,
+      "texto": "Tener menos de 65 años, la edad de jubilación forzosa del personal funcionario",
+      "cita": "Arts. 56.1.c y 67.3 EBEP"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "persona.nacionalidades",
+          "op": "contains_any",
+          "valor_grupo": "UE",
+          "texto": "Tener la nacionalidad española o la de otro país de la UE",
+          "cita": "Arts. 56.1.a y 57.1 EBEP"
+        },
+        {
+          "campo": "persona.nacionalidades",
+          "op": "contains_any",
+          "valor_grupo": "EEE_no_UE",
+          "texto": "Tener la nacionalidad de Islandia, Liechtenstein o Noruega",
+          "cita": "Art. 57.3 EBEP"
+        },
+        {
+          "campo": "persona.nacionalidades",
+          "op": "contains_any",
+          "valor_grupo": "Suiza",
+          "texto": "Tener la nacionalidad suiza",
+          "cita": "Art. 57.3 EBEP"
+        },
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "nacional",
+            "ciudadano_ue",
+            "ciudadano_ue_permanente",
+            "ciudadano_ue_sin_registro"
+          ],
+          "texto": "Ser español/a, o ciudadano/a de la UE, del EEE o de Suiza",
+          "cita": "Arts. 56.1.a, 57.1 y 57.3 EBEP"
+        },
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "familiar_ue",
+            "familiar_ue_permanente"
+          ],
+          "texto": "Ser cónyuge o descendiente de una persona española o de la UE",
+          "cita": "Art. 57.2 EBEP",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Vale para el cónyuge no separado y para los descendientes menores de 21 años o que vivan a su cargo. Otros familiares con residencia legal pueden presentarse solo a plazas de personal laboral."
+        },
+        {
+          "campo": "situacion_administrativa.tipo",
+          "op": "in",
+          "valor": [
+            "residencia_temporal",
+            "residencia_larga_duracion",
+            "residencia_larga_duracion_ue",
+            "residencia_art50_tue",
+            "proteccion_internacional",
+            "proteccion_temporal",
+            "estancia_estudios",
+            "proteccion_internacional_solicitante"
+          ],
+          "texto": "Tener residencia legal en España (solo para plazas de personal laboral)",
+          "cita": "Art. 57.4 EBEP",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Con otra nacionalidad y residencia legal puedes presentarte a plazas de personal laboral, no a las de funcionario. Mira en cada convocatoria si la plaza es laboral y si tu documento cuenta como residencia legal."
+        }
       ],
-      "texto": "Tener nacionalidad española o de la UE, ser familiar de una persona de la UE, o tener residencia legal en España",
+      "texto": "Tener la nacionalidad española o de la UE, del EEE o de Suiza; con otra nacionalidad y residencia legal, solo plazas de personal laboral",
       "cita": "Arts. 56.1.a y 57 EBEP"
     }
   ],
   "requisitos_no_evaluables": [
     "Nacionalidad española para la mayoría de las plazas de funcionario. Las personas de la UE, sus cónyuges y sus descendientes pueden ser funcionarias salvo en puestos con ejercicio de poder público; las extranjeras con residencia legal, solo como personal laboral (arts. 56 y 57 EBEP)",
-    "Cada convocatoria fija la titulación, las tasas, el temario y el plazo de solicitud; se publican una a una en el BOE",
-    "Capacidad funcional para las tareas, no haber sido separado del servicio ni estar inhabilitado, y no pasar la edad máxima de jubilación forzosa (art. 56.1 EBEP)"
+    "La titulación depende del cuerpo o escala al que te presentes (art. 76 EBEP): la fija cada convocatoria, junto con las tasas, el temario y el plazo, y se publican una a una en el BOE",
+    "Capacidad funcional para las tareas, y no haber sido separado/a del servicio ni estar inhabilitado/a (art. 56.1 EBEP)"
   ],
   "plazo": {
     "tipo": "convocatoria_anual",

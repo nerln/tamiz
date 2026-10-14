@@ -3,6 +3,7 @@
   "nombre": "Deducción autonómica IRPF por alquiler de la vivienda habitual (Comunitat Valenciana)",
   "tipo": "derecho",
   "subtipo": "deduccion_fiscal",
+  "area": "impuestos",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Generalitat Valenciana (se aplica en la declaración de la Renta, Agencia Tributaria)",

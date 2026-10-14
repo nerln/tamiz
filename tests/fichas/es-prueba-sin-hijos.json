@@ -3,6 +3,7 @@
   "nombre": "Prueba: sin hijos",
   "tipo": "derecho",
   "subtipo": "prestacion",
+  "area": "familia",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "Organismo inventado para las pruebas del motor",

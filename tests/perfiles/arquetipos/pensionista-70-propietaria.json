@@ -1,0 +1,77 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Pensionista Prueba",
+    "descripcion": "Persona inventada. Pensionista de jubilación de 70 años, española, viuda, vive sola en su piso en propiedad en València.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1956,
+    "mes_nacimiento": 1,
+    "nacionalidades": [
+      "ES"
+    ],
+    "sexo": "mujer"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "1980"
+  },
+  "situacion_administrativa": {
+    "tipo": "nacional"
+  },
+  "empleo": {
+    "situaciones": [
+      "jubilado"
+    ],
+    "tipo_contrato": "ninguno",
+    "meses_cotizados_6_anios": 0,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "primaria",
+    "matriculado_en": "ninguno",
+    "titulo_extranjero": false
+  },
+  "hogar": {
+    "miembros": 1,
+    "hijos": [
+      {
+        "anio_nacimiento": 1982
+      },
+      {
+        "anio_nacimiento": 1985
+      }
+    ],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "propiedad"
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "de_15001_a_18000"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "de_12001_a_15000"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "ES"
+    ],
+    "paises_cotizacion": [],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

@@ -1,0 +1,68 @@
+{
+  "id": "es-vc-gent2-degent",
+  "nombre": "DEGENT (Plan GenT2): doctores y doctoras de excelencia en la Comunitat Valenciana",
+  "tipo": "oportunidad",
+  "subtipo": "empleo",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "otro",
+  "organismo": "Generalitat Valenciana, Dirección General de Ciencia e Investigación",
+  "ambito": "ES-VC",
+  "area": "investigacion",
+  "informativa": false,
+  "resumen": "Subvención para que un centro de investigación o universidad valenciana contrate hasta cuatro años (con posible prórroga de dos) a un doctor o doctora de excelencia que desarrolle un proyecto de I+D+i propio. La solicitud la presenta el centro con la persona investigadora principal.",
+  "cuantia": {
+    "texto": "Convocatoria para 2027 (DOGV 10459, Anexo I): coste anual subvencionable del contrato de 70.000 €, financiado al 70 % por la Generalitat, con un salario bruto mínimo de 53.000 € al año, más una dotación adicional para el proyecto de hasta 100.000 € al año. Se convocan 20 subvenciones.",
+    "importe_eur": 70000,
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor o doctora",
+      "cita": "Art. 27 de la Orden 7/2025 (redacción de la Orden 10/2026) y Anexo I de la convocatoria: personal investigador doctor de excelencia",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Además hace falta no tener vinculación con ningún centro de investigación y cumplir una de las vías de las bases (por ejemplo, una ERC o una Ramón y Cajal, o 6 años o más desde el doctorado con estancias fuera de la Comunitat Valenciana). Tamiz no lo pregunta: compruébalo en las bases."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Al cierre del plazo, no mantener vinculación con ningún centro de investigación (art. 27.1)",
+    "Además, una de estas vías: ser beneficiario/a de una ERC Starting o Consolidator fuera de la Comunitat Valenciana; haber superado la Fase 1 de ERC o ser beneficiario/a de una Ramón y Cajal o MSCA-PF; o tener 6 años o más desde el doctorado con estancias internacionales fuera de la Comunitat Valenciana por un total de tres años (art. 27.1)",
+    "Si el doctorado lo emitió una universidad valenciana, haber estado separado/a contractualmente de ella al menos dos años desde el título (art. 27.1)",
+    "También pueden contratarse personas que hayan disfrutado, o estén terminando (12 meses o menos), una subvención EIGENT o JIGENT, una Ramón y Cajal o un programa de atracción de talento de las universidades públicas valencianas (art. 27.2)",
+    "Un centro de investigación o universidad valenciana presenta la solicitud con el CVA abreviado, la memoria del proyecto y el informe de vida laboral (Anexo I)",
+    "No formar parte de grupos de investigación con financiación vigente de la Conselleria para grupos emergentes o consolidados (Anexo I, segundo)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-09-28",
+    "fin": "2026-10-27",
+    "verificado": false,
+    "nota": "La resolución (DOGV 10459, 25/09/2026, apartado cuarto.a) fija veinte días hábiles desde el día siguiente a su publicación; la página oficial de la Conselleria indica del 28/09/2026 al 27/10/2026, y el cómputo coincide. Las fechas no están escritas en el texto de la resolución."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "La subvención es incompatible con otras subvenciones o ayudas para la misma finalidad y los mismos gastos, de cualquier administración o entidad (resolución de convocatoria, apartado primero.3).",
+    "fuente": "https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Si crees encajar en una de las vías del art. 27, contacta ya con un centro valenciano que presente la solicitud: el plazo termina el 27/10/2026. Para dudas, escribe a politica_cientifica@gva.es.",
+    "url": "https://ceice.gva.es/ca/web/ciencia/-/pla-gent2-1"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Lo presenta el centro de investigación o la universidad en la sede electrónica de la Generalitat (sede.gva.es), con firma digital de su representante legal y de la persona investigadora principal.",
+  "fuente": "https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf",
+  "url_oficial": "https://ceice.gva.es/ca/web/ciencia/-/pla-gent2-1",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-10-27",
+  "confianza": "alta"
+}

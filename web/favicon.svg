@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="Tamiz">
+  <title>Tamiz</title>
+  <!-- Favicon pensato per 16 px: la T che accoglie senza la testa (a 16 px sarebbe un puntino staccato),
+       solo braccia aperte e asta. Su barre scure il terracotta schiarisce, come nel tema scuro del sito. -->
+  <style>.t { fill: #A3401C; } .b { fill: none; stroke: #A3401C; } @media (prefers-color-scheme: dark) { .t { fill: #F0956D; } .b { stroke: #F0956D; } }</style>
+  <path class="b" d="M1.6 4.6 C3 6.3 5 6.8 8 6.8 C11 6.8 13 6.3 14.4 4.6" stroke-width="3.2" stroke-linecap="round"/>
+  <path class="t" d="M6.4 6.4 H9.6 L9.3 13.6 A1.3 1.3 0 0 1 6.7 13.6 Z"/>
+</svg>

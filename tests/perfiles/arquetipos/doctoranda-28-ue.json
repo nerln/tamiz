@@ -1,0 +1,82 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Doctoranda Prueba",
+    "descripcion": "Persona inventada. Doctoranda italiana de 28 años con máster, matriculada en un doctorado en una universidad pública de València, sin contrato predoctoral todavía; vive de alquiler.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1998,
+    "mes_nacimiento": 6,
+    "nacionalidades": [
+      "IT"
+    ],
+    "sexo": "mujer"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2025-09"
+  },
+  "situacion_administrativa": {
+    "tipo": "ciudadano_ue",
+    "autoriza_trabajar": true,
+    "residencia_legal_desde": "2025-09"
+  },
+  "empleo": {
+    "situaciones": [
+      "estudiante"
+    ],
+    "tipo_contrato": "ninguno",
+    "meses_cotizados_6_anios": 0,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "master",
+    "matriculado_en": "doctorado",
+    "titulo_extranjero": true,
+    "titulo_pais": "IT",
+    "homologacion": "no_pedida"
+  },
+  "hogar": {
+    "miembros": 1,
+    "hijos": [],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "alquiler",
+    "alquiler_mensual": 600,
+    "contrato_a_su_nombre": true
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "de_9001_a_12000"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "hasta_6000"
+    }
+  },
+  "vinculos": {
+    "entidad_estudios": {
+      "tipo": "universidad_publica",
+      "ambito": "ES-VC"
+    },
+    "paises_origen": [
+      "IT"
+    ],
+    "paises_cotizacion": [
+      "IT"
+    ],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

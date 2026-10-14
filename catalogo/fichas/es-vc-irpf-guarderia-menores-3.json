@@ -1,0 +1,97 @@
+{
+  "id": "es-vc-irpf-guarderia-menores-3",
+  "nombre": "Deducción autonómica IRPF por guardería o custodia de menores de 3 años (Comunitat Valenciana)",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (se aplica en la declaración de la Renta, Agencia Tributaria)",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Se descuenta de la cuota autonómica del IRPF el 15 % de lo pagado por la guardería o el primer ciclo de educación infantil de un hijo menor de 3 años, hasta 297 € por niño.",
+  "cuantia": {
+    "texto": "15 % de lo pagado en el año por la custodia en guarderías y centros de primer ciclo de educación infantil, con un máximo de 297 € por hijo o persona acogida menor de 3 años (ejercicio 2025). El máximo se reduce entre 27.000 € y 30.000 € de base liquidable (44.000 € y 47.000 € en conjunta) y se prorratea por días si el niño nace o cumple 3 años durante el año.",
+    "periodicidad": "anual",
+    "importe_eur": 297
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Tener tu residencia habitual en la Comunitat Valenciana",
+      "cita": "Art. 4.Uno.e) Ley 13/1997"
+    },
+    {
+      "campo": "calc.hijos_menores_3",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener un hijo menor de 3 años",
+      "cita": "Art. 4.Uno.e) Ley 13/1997",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La deducción cuenta los meses del año en que el niño tenía menos de 3 años, por lo que un niño que los cumplió durante el año también puede dar derecho."
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains_any",
+      "valor": [
+        "asalariado",
+        "autonomo"
+      ],
+      "texto": "Trabajar por cuenta ajena o propia (los progenitores que conviven con el menor deben tener rendimientos del trabajo o de actividades económicas)",
+      "cita": "Manual práctico Renta 2025 de la AEAT; art. 4.Uno.e) Ley 13/1997",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La guía pide que trabajen quienes conviven con el menor; si trabaja tu pareja y tú no, comprueba tu caso en el manual."
+    },
+    {
+      "campo": "calc.ingresos_individuales",
+      "op": "<=",
+      "valor": 30000,
+      "texto": "Ingresos brutos de 30.000 € o menos al año",
+      "cita": "Art. 4.Uno, Cuatro y Cinco Ley 13/1997 (manual práctico Renta 2025 de la AEAT)",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La deducción mira la base liquidable (casillas 0500 y 0510 de tu declaración), que es menor que el bruto; con más ingresos brutos puedes encajar igual. Mira tu declaración de la Renta."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que el niño esté inscrito en una guardería o centro de primer ciclo de educación infantil y que tú pagues esa custodia",
+    "Que los padres, acogedores o guardadores trabajen por cuenta propia o ajena (rendimientos del trabajo o de actividades económicas)",
+    "Suma de base liquidable general y del ahorro (casillas 0500 y 0510) de 30.000 € o menos en individual (47.000 € en conjunta); el máximo completo solo por debajo de 27.000 € (44.000 € en conjunta)",
+    "Pagar con tarjeta, transferencia, cheque nominativo o ingreso en cuenta de una entidad de crédito (disposición adicional decimosexta Ley 13/1997)"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica en la declaración de la Renta, no se pide aparte. La campaña del ejercicio 2025 fue del 8 de abril al 30 de junio de 2026 (ya cerrada); la del ejercicio 2026 será en 2027, con fechas aún no publicadas."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con la deducción autonómica por contratar de manera indefinida a personas empleadas del hogar para el cuidado de personas.",
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/cantidades-destinadas-custodia-no-ocasional-guarderias.html"
+  },
+  "siguiente_paso": {
+    "texto": "Al presentar la Renta del ejercicio 2026 (en 2027), marca la deducción en las deducciones autonómicas de la Comunitat Valenciana. Guarda las facturas de la guardería y el justificante de pago.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/cantidades-destinadas-custodia-no-ocasional-guarderias.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB, Renta DIRECTA o la app de la Agencia Tributaria), en el apartado de deducciones autonómicas de la Comunitat Valenciana. No se solicita aparte.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/cantidades-destinadas-custodia-no-ocasional-guarderias.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/cantidades-destinadas-custodia-no-ocasional-guarderias.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

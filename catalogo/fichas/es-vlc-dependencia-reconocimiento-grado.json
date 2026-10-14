@@ -1,0 +1,56 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "id": "es-vlc-dependencia-reconocimiento-grado",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "nombre": "Reconocimiento del grado de dependencia y acceso a servicios y prestaciones (trámite municipal)",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "Ajuntament de València",
+  "ambito": "ES-VC",
+  "resumen": "Trámite del Ayuntamiento de València para pedir el reconocimiento de la situación de dependencia y el acceso al sistema público de servicios y prestaciones económicas. Se puede pedir todo el año, en línea o en el Centro de Servicios Sociales.",
+  "cuantia": {
+    "texto": "La página del trámite no indica ninguna tasa. El trámite reconoce un grado; los servicios y las prestaciones se fijan después en el Programa Individual de Atención (PIA).",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado/a en València",
+      "cita": "Trámite BS.DP.10 del Ajuntament de València; la Generalitat indica que la solicitud se presenta ante los servicios sociales del ayuntamiento donde estás empadronado (sede GVA, G3256)",
+      "aclaracion": "Si estás empadronado/a en otro municipio, la solicitud se presenta en los servicios sociales de ese municipio."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar en situación de dependencia: lo decide la valoración, no se pregunta aquí",
+    "Nacionalidad española; si no la tienes, se aplica la Ley Orgánica 4/2000 y los tratados aplicables, con reglas propias para menores",
+    "Residir en España durante cinco años, dos de ellos inmediatamente antes de la solicitud (para menores de cinco años, se exige a quien ejerce la guarda y custodia)",
+    "Informe de salud original (no se pide si ya tienes un grado de discapacidad con al menos 45 puntos en el baremo de necesidad de ayuda de otra persona)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.10?lang=1",
+    "nota": "Se puede pedir a lo largo de todo el año. Plazo máximo para resolver y notificar el grado: 3 meses desde el registro. Silencio administrativo: estimatorio (según la página del trámite)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide cita en tu Centro de Servicios Sociales o inicia el trámite en la sede electrónica con certificado digital. Información telefónica: 900 927 567.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.10?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Presencial en el Centro de Servicios Sociales (con cita), en línea con «Iniciar trámite» (certificado digital o firma electrónica) o por la central de llamadas 900 927 567. No se aceptan fotografías de los documentos.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.10?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.10?lang=1",
+  "confianza": "alta"
+}

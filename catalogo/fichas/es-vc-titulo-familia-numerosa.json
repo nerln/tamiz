@@ -1,0 +1,88 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "familia",
+  "id": "es-vc-titulo-familia-numerosa",
+  "nombre": "Título de familia numerosa (alta o renovación) y carné",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "Conselleria de Servicios Sociales, Familia e Infancia (Generalitat Valenciana)",
+  "ambito": "ES-VC",
+  "resumen": "Trámite gratuito para que la Generalitat reconozca tu familia como numerosa (general o especial) y te dé el título y los carnés individuales. Es la llave de muchos descuentos y ayudas. Se pide en cualquier momento; la resolución tarda como máximo tres meses.",
+  "cuantia": {
+    "texto": "Sin importe en euros: el título da acceso a ventajas y ayudas que lo exigen. El trámite no devenga tasas.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Tener el domicilio de la unidad familiar en la Comunitat Valenciana",
+      "cita": "Sede de la Generalitat, procedimiento 377"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "calc.hijos_menores_18",
+          "op": ">=",
+          "valor": 3,
+          "texto": "Tener tres o más hijos o hijas menores de 18 años",
+          "cita": "Art. 2.1 y 3.1.a Ley 40/2003: tres o más hijos solteros menores de 21 años"
+        },
+        {
+          "campo": "calc.hijos_menores_25",
+          "op": ">=",
+          "valor": 3,
+          "texto": "Tener tres o más hijos o hijas de menos de 25 años",
+          "cita": "Art. 2.1 y 3.1.a Ley 40/2003: menores de 21 años, o hasta 25 si cursan estudios, o con discapacidad a cualquier edad",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "La ley cuenta a los hijos solteros menores de 21 años (hasta 25 si estudian) y a los que tienen discapacidad o incapacidad para trabajar a cualquier edad. Con hijos de 18 a 24 años, comprueba su edad y si estudian."
+        },
+        {
+          "campo": "calc.hijos_menores_25",
+          "op": "==",
+          "valor": 2,
+          "texto": "Tener dos hijos o hijas en una situación que la ley equipara a familia numerosa",
+          "cita": "Art. 2.2 Ley 40/2003: dos hijos si alguno tiene discapacidad o incapacidad para trabajar, o un progenitor fallecido",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Con dos hijos solo se reconoce en casos concretos (discapacidad de un hijo, otro progenitor fallecido, etc.); el sitio no puede comprobarlo."
+        }
+      ],
+      "texto": "Tres hijos o más, o dos en los casos que la ley equipara",
+      "cita": "Art. 2 Ley 40/2003"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Hijos solteros y menores de 21 años, o con discapacidad o incapacidad para trabajar a cualquier edad, o de hasta 25 años si cursan estudios adecuados (art. 3.1.a Ley 40/2003)",
+    "Otros supuestos equiparados: progenitor separado o divorciado con tres o más hijos que dependen económicamente de él, hermanos huérfanos bajo tutela, acogimiento o guarda (art. 2.2 Ley 40/2003)",
+    "Categoría especial: cinco o más hijos, o cuatro si tres proceden de partos, adopciones o acogimientos múltiples, o cuatro con ingresos por miembro no superiores al 75 % del SMI según el art. 4 de la Ley 40/2003 (la ficha de la Generalitat habla del 75 % del IPREM: comprueba cuál aplica); cada hijo con discapacidad cuenta como dos"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=377",
+    "nota": "El alta se puede presentar cuando la familia quiera el reconocimiento. La renovación por cambio del número de personas o de la categoría, en cualquier momento (mejor antes de que venza el título); si cambian las circunstancias de un título vigente, dentro de los tres meses siguientes. Resolución: tres meses; sin respuesta se entiende estimada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Presenta la solicitud de alta en la sede electrónica de la Generalitat (certificado digital o Cl@ve), o descarga el formulario y llévalo a la Dirección Territorial de la Conselleria.",
+    "url": "https://sede.gva.es/en/detall-tramit?id_proc=377"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Sede electrónica de la Generalitat con certificado digital o Cl@ve, o presencialmente en las Direcciones Territoriales de la Conselleria u otros lugares del art. 16.4 de la Ley 39/2015. Puede pedirlo cualquier ascendiente, tutor, acogedor o guardador de la unidad familiar.",
+  "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=377",
+  "url_oficial": "https://sede.gva.es/en/detall-tramit?id_proc=377",
+  "confianza": "alta"
+}

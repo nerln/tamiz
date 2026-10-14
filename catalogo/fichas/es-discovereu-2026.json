@@ -1,0 +1,113 @@
+{
+  "area": "jovenes_ocio",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-discovereu-2026",
+  "nombre": "DiscoverEU: pase de viaje en tren por Europa para jóvenes de 18 años (convocatoria de otoño 2026)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "concurrencia_competitiva",
+  "organismo": "Comisión Europea (Erasmus+)",
+  "ambito": "EU",
+  "resumen": "Bono de viaje en transporte sostenible, sobre todo tren, y tarjeta de descuentos, para jóvenes nacidos en 2008. Quien resulte seleccionado viaja hasta 7 días y como máximo un mes entre el 01/03/2027 y el 31/05/2028. Se pide del 1 al 15 de octubre de 2026.",
+  "cuantia": {
+    "texto": "Bono de viaje en transporte sostenible (otros medios solo en casos concretos, por ejemplo islas o zonas remotas) y tarjeta DiscoverEU con descuentos en alojamiento, cultura, deporte y transporte local. La página no indica un importe.",
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 17,
+      "texto": "Haber nacido en 2008",
+      "cita": "Página oficial DiscoverEU, convocatoria de otoño 2026",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Se necesita haber nacido en 2008; con tu edad actual no podemos distinguirlo de finales de 2007 o de 2009. Comprueba tu fecha de nacimiento en la convocatoria."
+    },
+    {
+      "campo": "calc.edad",
+      "op": "<=",
+      "valor": 18,
+      "texto": "Haber nacido en 2008",
+      "cita": "Página oficial DiscoverEU, convocatoria de otoño 2026",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Se necesita haber nacido en 2008; con tu edad actual no podemos distinguirlo de finales de 2007 o de 2009. Comprueba tu fecha de nacimiento en la convocatoria."
+    },
+    {
+      "any_of": [
+        {
+          "campo": "residencia.pais",
+          "op": "in",
+          "valor_grupo": "UE",
+          "texto": "Residir en un país de la UE"
+        },
+        {
+          "campo": "residencia.pais",
+          "op": "in",
+          "valor": [
+            "IS",
+            "LI",
+            "MK",
+            "NO",
+            "RS",
+            "TR"
+          ],
+          "texto": "Residir en Islandia, Liechtenstein, Macedonia del Norte, Noruega, Serbia o Turquía"
+        },
+        {
+          "campo": "persona.nacionalidades",
+          "op": "contains_any",
+          "valor_grupo": "UE",
+          "texto": "Tener la ciudadanía de un país de la UE"
+        },
+        {
+          "campo": "persona.nacionalidades",
+          "op": "contains_any",
+          "valor": [
+            "IS",
+            "LI",
+            "MK",
+            "NO",
+            "RS",
+            "TR"
+          ],
+          "texto": "Tener la ciudadanía de Islandia, Liechtenstein, Macedonia del Norte, Noruega, Serbia o Turquía"
+        }
+      ],
+      "texto": "Ser ciudadano o residente de un país de la UE o de un país asociado a Erasmus+",
+      "cita": "Página oficial DiscoverEU, convocatoria de otoño 2026: ciudadano o residente"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "La página pide ser ciudadano o residente de un Estado miembro (incluidas regiones ultraperiféricas), de un país o territorio de ultramar asociado o de Islandia, Liechtenstein, Macedonia del Norte, Noruega, Serbia o Turquía",
+    "Hay que enviar la solicitud entre el 1 y el 15 de octubre de 2026 a las 12:00 (hora de Bruselas); la selección no está garantizada"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-10-01",
+    "fin": "2026-10-15",
+    "verificado": false,
+    "fuente": "https://youth.europa.eu/discovereu_es",
+    "nota": "Cierra el 15/10/2026 a las 12:00, hora de Bruselas. Viajes entre el 01/03/2027 y el 31/05/2028."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Entra en la página de DiscoverEU y envía la solicitud antes del 15/10/2026 a las 12:00 (hora de Bruselas).",
+    "url": "https://youth.europa.eu/discovereu_es"
+  },
+  "como_pedirla": "En línea, desde el botón de solicitud de la página oficial de DiscoverEU.",
+  "fuente": "https://youth.europa.eu/discovereu_es",
+  "url_oficial": "https://youth.europa.eu/discovereu_es",
+  "revisar_antes_de": "2026-10-15",
+  "confianza": "alta"
+}

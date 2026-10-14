@@ -1,0 +1,75 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Estudiante Prueba",
+    "descripcion": "Persona inventada. Estudiante de grado de 21 años, española, sin trabajo, vive en una habitación alquilada en València con dos personas cuyos ingresos no conoce; sus padres viven en otra provincia.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 2005,
+    "mes_nacimiento": 2,
+    "nacionalidades": [
+      "ES"
+    ],
+    "sexo": "mujer"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2024-09"
+  },
+  "situacion_administrativa": {
+    "tipo": "nacional"
+  },
+  "empleo": {
+    "situaciones": [
+      "estudiante"
+    ],
+    "tipo_contrato": "ninguno",
+    "meses_cotizados_6_anios": 0,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "bachillerato",
+    "matriculado_en": "grado",
+    "titulo_extranjero": false
+  },
+  "hogar": {
+    "miembros": 3,
+    "hijos": [],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "habitacion",
+    "alquiler_mensual": 350,
+    "contrato_a_su_nombre": true
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "cero"
+    },
+    "hogar": {
+      "tramo": "no_lo_se"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "hasta_6000"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "ES"
+    ],
+    "paises_cotizacion": [],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

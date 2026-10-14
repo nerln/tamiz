@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tamiz">
+  <title>Tamiz</title>
+  <!-- La T que acoge: cabeza ocre, brazos abiertos en curva, cuerpo en asta que se afina. -->
+  <circle cx="32" cy="11" r="7.6" fill="#B06A10"/>
+  <path d="M5 21 C9.5 25.5 18 27 32 27 C46 27 54.5 25.5 59 21" fill="none" stroke="#A3401C" stroke-width="10" stroke-linecap="round"/>
+  <path d="M26.75 27 H37.25 L36.5 57.5 A4.5 4.5 0 0 1 27.5 57.5 Z" fill="#A3401C"/>
+</svg>

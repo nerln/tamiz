@@ -1,0 +1,82 @@
+{
+  "id": "es-vlc-ibi-bonificacion-familia-numerosa",
+  "nombre": "IBI de València: bonificación por familia numerosa",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "descuento",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Ajuntament de València (Hacienda)",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "El Ajuntament de València bonifica la cuota del IBI de la vivienda habitual de las familias numerosas: 60 % en categoría general y 90 % en especial.",
+  "cuantia": {
+    "texto": "60 % de bonificación anual sobre la cuota íntegra del IBI en categoría general y 90 % en categoría especial.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València",
+      "cita": "Sede electrónica del Ajuntament de València, procedimiento HA.BI.15"
+    },
+    {
+      "campo": "hogar.familia_numerosa",
+      "op": "in",
+      "valor": [
+        "general",
+        "especial"
+      ],
+      "texto": "Tener el título de familia numerosa",
+      "cita": "Ley 40/2003; procedimiento HA.BI.15"
+    },
+    {
+      "campo": "vivienda.regimen",
+      "op": "in",
+      "valor": [
+        "propiedad",
+        "hipoteca"
+      ],
+      "texto": "Ser propietario de la vivienda habitual",
+      "cita": "Procedimiento HA.BI.15: el titular del inmueble debe tener la condición de familia numerosa",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Debe ser titular del inmueble quien tiene el título de familia numerosa; si vives de alquiler mira la bonificación de la tasa de basura."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que todos los miembros de la unidad familiar residan habitualmente en la vivienda",
+    "Estar al corriente en el pago de los tributos municipales (si luego se incumple, se pierde la bonificación)",
+    "Los garajes y trasteros no cuentan como vivienda habitual",
+    "Título de familia numerosa (o el justificante de haberlo pedido) y referencia catastral del inmueble"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "nota": "La primera solicitud puede presentarse en cualquier momento antes de que acabe el periodo de la bonificación y surte efecto desde el periodo impositivo siguiente. La renovación puede acreditarse hasta que termine el plazo de recursos contra las deudas periódicas de ese ejercicio. Resolución en un máximo de 6 meses; el silencio es desestimatorio."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con la bonificación del IBI por vivienda de protección oficial. Si ya tienes esta bonificación reconocida, no hace falta pedir aparte la de la tasa de basura por familia numerosa.",
+    "fuente": "https://sede.valencia.es/sede/registro/procedimiento/HA.BI.15?lang=1"
+  },
+  "siguiente_paso": {
+    "texto": "Pide la bonificación por la sede electrónica del Ajuntament de València con el título de familia numerosa y la referencia catastral.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/HA.BI.15?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Por la sede electrónica del Ajuntament de València (Iniciar trámite, con certificado digital o Cl@ve), presencialmente en la Oficina de Gestión Tributaria Integral (mejor con cita previa) o en los registros municipales con instancia general. Teléfono 96 389 50 79.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/HA.BI.15?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/HA.BI.15?lang=1",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

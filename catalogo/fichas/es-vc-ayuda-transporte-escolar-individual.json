@@ -1,0 +1,73 @@
+{
+  "solicita": "persona",
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "id": "es-vc-ayuda-transporte-escolar-individual",
+  "nombre": "Ayudas individuales de transporte escolar (Generalitat Valenciana)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "desconocida",
+  "organismo": "Conselleria de Educación, Cultura y Universidades",
+  "ambito": "ES-VC",
+  "area": "estudios",
+  "informativa": false,
+  "resumen": "Ayuda para familias de alumnado de infantil (2.º ciclo), primaria, ESO o educación especial en centros públicos que no tienen ruta de transporte colectivo autorizada.",
+  "cuantia": {
+    "texto": "Máximo por curso según distancia: educación general de 340,02 € (hasta 6 km) a 797,07 € (más de 20 km); educación especial de 680,03 € a 1.594,14 €. Curso 2026/2027.",
+    "importe_eur": 797,
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Vivir en la Comunitat Valenciana (la ayuda es para alumnado de centros públicos de la Generalitat)",
+      "cita": "Resolución de 26/06/2026 (DOGV 10395), resuelvo primero: centros públicos dependientes de la Generalitat; el empadronamiento solo se pide si la administración lo solicita"
+    },
+    {
+      "campo": "calc.hijos_menores_18",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener hijos o hijas menores de 18 años a tu cargo",
+      "cita": "Resolución de 26/06/2026 (DOGV 10395)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La ayuda es para alumnado de infantil (2.º ciclo), primaria, ESO o educación especial en un centro público; comprueba que el curso de tu hijo o hija entra."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que el alumno o alumna curse infantil (2.º ciclo), primaria, ESO o educación especial en un centro público de la Generalitat",
+    "Que no esté incluido en ninguna ruta de transporte colectivo autorizada",
+    "Requisitos del anexo I, apartado segundo, de la Orden 37/2016 (distancia mínima, etc.)",
+    "Quien la pide es el padre, la madre o el tutor legal"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-07-02",
+    "fin": "2026-07-31",
+    "mes_habitual": 7,
+    "verificado": false,
+    "nota": "Curso 2026/2027: solicitud del 02 al 31/07/2026, cerrada. Quien se incorpore por circunstancias excepcionales puede pedirla en 10 días hábiles desde la matrícula, si hay fondos. Se abrió en julio; orientativo. El DOGV 10395 (resuelvo cuarto, punto 3) fija el plazo ordinario desde el día siguiente a la publicación (02/07/2026) hasta que acabe el periodo de matrícula del centro; la sede lo muestra cerrado el 31/07/2026."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con otras subvenciones, ayudas o ingresos de otras administraciones o entidades privadas para la misma finalidad, siempre que la suma no supere el coste del servicio de transporte escolar.",
+    "fuente": "https://dogv.gva.es/datos/2026/07/01/pdf/2026_22364_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Pregunta en el centro escolar de tu hijo o hija: la solicitud se entrega allí; si pediste el curso anterior, hay un borrador en ITACA Web Familia.",
+    "url": "https://sede.gva.es/es/detall-tramit?id_proc=G1244"
+  },
+  "como_pedirla": "Solo presencial: formulario de la web de la Conselleria entregado en el centro escolar con la documentación.",
+  "fuente": "https://sede.gva.es/es/detall-tramit?id_proc=G1244",
+  "url_oficial": "https://sede.gva.es/es/detall-tramit?id_proc=G1244",
+  "confianza": "alta"
+}

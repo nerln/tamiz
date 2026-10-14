@@ -1,0 +1,82 @@
+{
+  "tipo": "oportunidad",
+  "concesion": "concurrencia_competitiva",
+  "area": "investigacion",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-vc-grisolia-2027",
+  "nombre": "Santiago Grisolía — contratos predoctorales para titulados de fuera de la UE (convocatoria 2027)",
+  "subtipo": "formacion_remunerada",
+  "solicita": "director_tesis",
+  "informativa": false,
+  "organismo": "Generalitat Valenciana, Conselleria de Educación, Cultura y Universidades",
+  "ambito": "ES-VC",
+  "resumen": "40 contratos predoctorales de hasta 4 años para titulados universitarios de un país no UE, más un año de orientación postdoctoral si defiendes la tesis antes de la última anualidad. Solicita quien dirigirá la tesis y el centro de investigación te selecciona.",
+  "cuantia": {
+    "texto": "24.300 € los dos primeros años, 25.760 € el tercero y 32.550 € el cuarto; hasta 2.760 € de indemnización; 1.600 € extra el primer año para viaje y establecimiento; orientación postdoctoral de un año: 32.550 € (Anexo III, convocatoria 2027).",
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.titulo_extranjero",
+      "op": "==",
+      "valor": true,
+      "texto": "Tener una titulación universitaria obtenida fuera de España",
+      "cita": "Anexo III, apartado segundo 4.a)"
+    },
+    {
+      "campo": "estudios.titulo_pais",
+      "op": "not_in",
+      "valor_grupo": "UE",
+      "texto": "Que el título lo haya expedido una universidad o institución de un país que no sea de la UE",
+      "cita": "Anexo III, apartado primero 1 y segundo 4.a)"
+    },
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": [
+        "grado",
+        "master"
+      ],
+      "texto": "Tener un grado, licenciatura, ingeniería o diplomatura (o equivalente) y no ser doctor/a",
+      "cita": "Anexo III, apartado segundo 4.a) y 4.d)"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Haber terminado los estudios después del 1 de enero de 2022 (ampliable un año por permisos de maternidad o paternidad, dependencia, enfermedad grave o violencia de género, y hasta 2019 si has cuidado de hijos menores de 6 años al menos un año)",
+    "Título en el ámbito científico del proyecto de investigación al que se vincule el contrato",
+    "Estar admitido/a en un programa de doctorado de una universidad de la Comunitat Valenciana al contratarte",
+    "Conocimiento de español, valenciano o inglés a nivel de conversación",
+    "No haber disfrutado antes de una ayuda del programa Santiago Grisolía",
+    "Que un grupo de investigación valenciano presente el proyecto y el centro te seleccione: la solicitud no la haces tú"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-09-07",
+    "fin": "2026-09-25",
+    "verificado": true,
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+    "nota": "Convocatoria 2027 cerrada: la solicitud de quien dirige la tesis se presentaba del 07/09 al 25/09/2026 (Anexo III, apartado tercero.1). Cada año se convoca por esas fechas, pero no se ha leído una edición anterior."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con cualquier otra beca, ayuda o salario financiado con fondos públicos españoles o comunitarios, salvo las subvenciones para estancias predoctorales del proyecto de tesis, y con otras percepciones económicas cuando su normativa lo establezca (Anexo III, apartado noveno).",
+    "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "La convocatoria 2027 ya está cerrada. Para la siguiente, contacta pronto con un grupo de investigación valenciano que quiera dirigir tu tesis y presentar el proyecto a través de su universidad.",
+    "url": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "La solicita la persona que dirigirá la tesis, con la conformidad del centro de investigación, en la sede electrónica de la Generalitat (sede.gva.es).",
+  "fuente": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "url_oficial": "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf",
+  "bdns": "920701",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

@@ -47,6 +47,53 @@ export const PROVINCIAS = [
   ["ES-Z", "Zaragoza"], ["ES-CE", "Ceuta"], ["ES-ML", "Melilla"],
 ].sort((a, b) => a[1].localeCompare(b[1], "es"));
 
+// Province di ogni comunità autonoma (codici ISO 3166-2 senza «ES-»). Scelta la comunità, la lista delle province si restringe.
+const PROVINCIAS_DE = {
+  "ES-AN": ["AL", "CA", "CO", "GR", "H", "J", "MA", "SE"], "ES-AR": ["HU", "TE", "Z"], "ES-AS": ["O"],
+  "ES-IB": ["PM"], "ES-PV": ["VI", "SS", "BI"], "ES-CN": ["GC", "TF"], "ES-CB": ["S"],
+  "ES-CL": ["AV", "BU", "LE", "P", "SA", "SG", "SO", "VA", "ZA"], "ES-CM": ["AB", "CR", "CU", "GU", "TO"],
+  "ES-CT": ["B", "GI", "L", "T"], "ES-EX": ["BA", "CC"], "ES-GA": ["C", "LU", "OR", "PO"], "ES-RI": ["LO"],
+  "ES-MD": ["M"], "ES-MC": ["MU"], "ES-NC": ["NA"], "ES-VC": ["A", "CS", "V"], "ES-CE": ["CE"], "ES-ML": ["ML"],
+};
+export function provinciasPara(region) {
+  const codigos = PROVINCIAS_DE[region];
+  const lista = codigos ? PROVINCIAS.filter(([k]) => codigos.includes(k.slice(3))) : PROVINCIAS;
+  return [...lista, ["no_lo_se", "No lo sé"]];
+}
+
+// Il comune «València» ha il codice INE 46250: quando è questo il comune, il codice si scrive da sé (docs/ESQUEMA.md §8.1).
+export const MUNICIPIO_VLC = "València";
+export function esValencia(texto) {
+  return typeof texto === "string" && texto.normalize("NFD").replace(/[̀-ͯ]/g, "").trim().toLowerCase() === "valencia";
+}
+// Il codice 46250 si scrive da sé solo se il comune è la ciudad de València e la provincia è quella di Valencia (o non
+// c'è ancora): «Valencia» scritto per Torrent o Gandia, con provincia Madrid, chiede il codice INE.
+export function esValenciaCiudad(p) {
+  const prov = leer(p, "residencia.provincia");
+  return esValencia(leer(p, "residencia.municipio")) && (prov === undefined || prov === "ES-V");
+}
+// Paese di residenza che non è Spagna né «no lo sé»: la voce «En otro país» del radio e il menu del paese.
+function esOtroPais(p) {
+  const v = leer(p, "residencia.pais");
+  return v !== undefined && v !== "ES" && v !== "no_lo_se";
+}
+// Il documento che non richiede un permesso di lavoro: la domanda «¿Tu documento te permite trabajar?» non si mostra
+// e il dato è vero per legge (cittadinanza spagnola o UE, docs/ESQUEMA.md §2.4).
+export const SIN_PERMISO_TRABAJO = ["nacional", "ciudadano_ue", "ciudadano_ue_permanente", "ciudadano_ue_sin_registro"];
+
+// «Por qué lo preguntamos» della pantalla di residencia e di empadronamiento: cambia con il paese e la comunità scelti.
+function porqueResidencia(b) {
+  const pais = leer(b, "residencia.pais");
+  const region = leer(b, "residencia.region");
+  if (esOtroPais(b)) {
+    return "Dónde vives decide qué ayudas son tuyas. Si vives fuera de España, las preguntas sobre el municipio y el empadronamiento no se aplican.";
+  }
+  if (pais === "ES" && region && region !== "no_lo_se" && region !== "ES-VC") {
+    return "Dónde vives decide qué ayudas son tuyas. Fuera de la Comunitat Valenciana, las ayudas de tu comunidad y de tu municipio también suelen pedir un tiempo mínimo de empadronamiento. Escribe el año, o el año y el mes (2019 o 2019-06).";
+  }
+  return "Dónde vives decide qué ayudas son tuyas. Muchas ayudas piden estar empadronado y, a veces, un tiempo mínimo (por ejemplo, la Renta Valenciana de Inclusión). Escribe el año, o el año y el mes (2019 o 2019-06).";
+}
+
 export const TRAMOS = [
   ["cero", "Nada (0 €)"], ["hasta_6000", "Hasta 6.000 €"], ["de_6001_a_9000", "De 6.001 a 9.000 €"],
   ["de_9001_a_12000", "De 9.001 a 12.000 €"], ["de_12001_a_15000", "De 12.001 a 15.000 €"],
@@ -234,43 +281,52 @@ export const OPC_AMBITO = [["EU", "Unión Europea"], ["ES", "España (todo el te
 // Ogni controllo: { tipo, campo, etichetta, … , siempre?, si?(perfil) }.
 // Tipi: anio, mes, entero, fecha, bool, radio, lista, pais, paises, tramo, hijos, texto, select.
 export const PANTALLAS = [
-  { id: "anio", titulo: "¿En qué año naciste?", porque: "La edad decide a qué ayudas puedes pedir. Basta el año; si sabes el mes, lo añadimos en la siguiente pantalla.",
-    controles: [{ tipo: "anio", campo: "persona.anio_nacimiento", siempre: true, etiqueta: "Año de nacimiento", min: 1900, max: 2100 }] },
-  { id: "mes", titulo: "¿En qué mes naciste?", porque: "Cuando la edad está justo en el límite de una ayuda, el mes puede cambiar la respuesta. Es opcional.",
-    controles: [{ tipo: "select", campo: "persona.mes_nacimiento", etiqueta: "Mes de nacimiento",
-      opciones: [...MESES.map((m, i) => [i + 1, m[0].toUpperCase() + m.slice(1)]), ["no_lo_se", "No lo sé"]] }] },
-  { id: "nacionalidad", titulo: "¿Qué nacionalidades tienes?", porque: "Muchas ayudas dependen de la nacionalidad o del país de origen. Puedes añadir más de una.",
-    controles: [{ tipo: "paises", campo: "persona.nacionalidades", siempre: true, etiqueta: "Nacionalidades",
-      nadie: [[], "No tengo ninguna nacionalidad"] }] },
-  { id: "origen", titulo: "¿De qué países eras cuando naciste?", porque: "Algunas ayudas tienen acuerdos con países concretos según el origen de nacimiento.",
-    controles: [{ tipo: "paises", campo: "vinculos.paises_origen", etiqueta: "Países de origen", nadie: [[], "Ninguno de ellos"] }] },
-  { id: "sexo", titulo: "¿Cómo te identificas?", porque: "Solo lo preguntamos porque alguna ayuda lo tiene en cuenta. Puedes no contestar.",
-    controles: [{ tipo: "radio", campo: "persona.sexo", etiqueta: "Sexo", opciones: OPC_SEXO }] },
-  { id: "residencia", titulo: "¿Dónde vives ahora?", porque: "Dónde vives decide qué ayudas son tuyas: las de tu comunidad, las de tu municipio y las del Estado.",
+  { id: "anio", titulo: "¿En qué año y mes naciste?", porque: "La edad decide a qué ayudas puedes pedir. Basta el año de nacimiento; el mes es opcional y cuenta solo cuando la edad está justo en el límite de una ayuda.",
+    controles: [
+      { tipo: "anio", campo: "persona.anio_nacimiento", siempre: true, etiqueta: "Año de nacimiento", min: 1900, max: 2100 },
+      { tipo: "select", campo: "persona.mes_nacimiento", etiqueta: "Mes de nacimiento", opcional: true,
+        opciones: [...MESES.map((m, i) => [i + 1, m[0].toUpperCase() + m.slice(1)]), ["no_lo_se", "No lo sé"]] },
+    ] },
+  { id: "residencia", titulo: "¿Dónde vives y desde cuándo estás empadronado/a?", porque: porqueResidencia,
     controles: [
       { tipo: "radio", campo: "residencia.pais", siempre: true, etiqueta: "País de residencia",
         opciones: [["ES", "En España"], ["otro", "En otro país"], ["no_lo_se", "No lo sé"]] },
+      // Il menu del paese vale per ogni paese diverso da Spagna e da «no lo sé»: non dipende dal valore che scrive lui
+      // stesso (altrimenti, scelto «FR», il menu si nasconderebbe da solo).
       { tipo: "pais", campo: "residencia.pais", siempre: true, etiqueta: "¿En qué país vives?",
-        si: (p) => leer(p, "residencia.pais") === "otro" },
+        si: esOtroPais },
       { tipo: "select", campo: "residencia.region", siempre: true, etiqueta: "Comunidad autónoma",
-        opciones: [...CCAA, ["no_lo_se", "No lo sé"]], si: (p) => leer(p, "residencia.pais") === "ES" },
-    ] },
-  { id: "domicilio", titulo: "¿En qué provincia y municipio?", porque: "Algunas ayudas son de la provincia o del municipio. El código INE del municipio tiene 5 cifras.",
-    controles: [
-      { tipo: "select", campo: "residencia.provincia", etiqueta: "Provincia", opciones: [...PROVINCIAS, ["no_lo_se", "No lo sé"]],
-        si: (p) => leer(p, "residencia.pais") === "ES" },
+        opciones: [...CCAA, ["no_lo_se", "No lo sé"]], si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
+      { tipo: "select", campo: "residencia.provincia", siempre: true, etiqueta: "Provincia",
+        opciones: [...PROVINCIAS, ["no_lo_se", "No lo sé"]], opciones_de: (b) => provinciasPara(leer(b, "residencia.region")),
+        si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
+      { tipo: "municipio", campo: "residencia.municipio", ine: "residencia.municipio_ine", siempre: true, etiqueta: "Municipio",
+        sugerencia: MUNICIPIO_VLC, si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
       { tipo: "texto", campo: "residencia.municipio_ine", etiqueta: "Código INE del municipio (5 cifras)", patron: /^\d{5}$/,
-        error: "El código INE tiene 5 cifras.", si: (p) => leer(p, "residencia.pais") === "ES" },
+        error: "El código INE tiene 5 cifras.",
+        si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) && !esValenciaCiudad(p) },
+      { tipo: "fecha", campo: "residencia.empadronado_desde", siempre: true, etiqueta: "Empadronado/a desde",
+        si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
     ] },
-  { id: "empadronado", titulo: "¿Desde cuándo estás empadronado/a donde vives?", porque: "El empadronamiento en un municipio cuenta en muchas ayudas. Escribe el año, o el año y el mes (por ejemplo 2019 o 2019-06).",
-    controles: [{ tipo: "fecha", campo: "residencia.empadronado_desde", etiqueta: "Empadronado/a desde" }] },
-  { id: "documento", titulo: "¿Qué documento tienes?", porque: "El documento que tienes decide a qué ayudas puedes acceder. Elige el que aparece en tu tarjeta o certificado.",
-    controles: [{ tipo: "radio", campo: "situacion_administrativa.tipo", siempre: true, etiqueta: "Documento", opciones: OPC_DOCUMENTO, ong_si_otro: true }] },
-  { id: "autorizacion", titulo: "¿Tu documento te permite trabajar?", porque: "Algunas ayudas exigen poder trabajar en España.",
-    controles: [{ tipo: "bool", campo: "situacion_administrativa.autoriza_trabajar", etiqueta: "Puedo trabajar con mi documento" }] },
-  { id: "fechas_documento", titulo: "Fechas de tu documento y de tu residencia", porque: "Cuántos años llevas con residencia legal, y cuándo empieza y acaba tu documento, son datos que algunas ayudas piden.",
+  { id: "nacionalidad", titulo: "¿Qué nacionalidades tienes y de qué países eras al nacer?", porque: "Muchas ayudas dependen de la nacionalidad o del país de origen. Puedes añadir más de uno en cada lista.",
     controles: [
-      { tipo: "fecha", campo: "situacion_administrativa.residencia_legal_desde", etiqueta: "Residencia legal en España desde" },
+      { tipo: "paises", campo: "persona.nacionalidades", siempre: true, etiqueta: "Nacionalidades",
+        nadie: [[], "No tengo ninguna nacionalidad"] },
+      { tipo: "paises", campo: "vinculos.paises_origen", etiqueta: "Países de origen", nadie: [[], "Ninguno de ellos"] },
+    ] },
+  { id: "sexo", titulo: "¿Cómo te identificas?", porque: "Solo lo preguntamos porque alguna ayuda lo tiene en cuenta. Puedes no contestar.",
+    controles: [{ tipo: "radio", campo: "persona.sexo", etiqueta: "Sexo", opciones: OPC_SEXO }] },
+  { id: "documento", titulo: "¿Qué documento tienes y desde cuándo?", porque: "El documento que tienes decide a qué ayudas puedes acceder. Elige el que aparece en tu tarjeta o certificado. Si una ayuda lo pide, también preguntamos si puedes trabajar y las fechas de tu documento y de tu residencia.",
+    controles: [
+      // Il documento scrive da sé il permesso di lavoro: vero per la cittadinanza spagnola o UE, da chiedere negli altri casi.
+      { tipo: "radio", campo: "situacion_administrativa.tipo", siempre: true, etiqueta: "Documento", opciones: OPC_DOCUMENTO, ong_si_otro: true,
+        extra: (codigo) => (codigo === undefined ? [] : [["situacion_administrativa.autoriza_trabajar",
+          SIN_PERMISO_TRABAJO.includes(codigo) ? true : undefined]]) },
+      { tipo: "bool", campo: "situacion_administrativa.autoriza_trabajar", etiqueta: "¿Tu documento te permite trabajar?",
+        si: (p) => !SIN_PERMISO_TRABAJO.includes(leer(p, "situacion_administrativa.tipo")) },
+      // Chi ha la cittadinanza spagnola non ha una data di residenza da dare: il motore non la chiede (calc.*_residencia_legal).
+      { tipo: "fecha", campo: "situacion_administrativa.residencia_legal_desde", etiqueta: "Residencia legal en España desde",
+        si: (p) => leer(p, "situacion_administrativa.tipo") !== "nacional" },
       { tipo: "fecha", campo: "situacion_administrativa.documento_desde", etiqueta: "Fecha de concesión del documento" },
       { tipo: "fecha", campo: "situacion_administrativa.documento_hasta", etiqueta: "Fecha de caducidad del documento", futuro: true },
     ] },
@@ -290,49 +346,45 @@ export const PANTALLAS = [
   { id: "nivel", titulo: "¿Cuál es tu título más alto terminado?", porque: "El nivel de estudios decide a qué becas y contratos puedes presentarte.",
     controles: [{ tipo: "radio", campo: "estudios.nivel_max", siempre: true, etiqueta: "Nivel de estudios", opciones: OPC_NIVEL }] },
   { id: "matricula", titulo: "¿Qué estudias ahora?", porque: "Muchas becas y contratos piden estar matriculado en un tipo de estudio concreto.",
-    controles: [{ tipo: "radio", campo: "estudios.matriculado_en", etiqueta: "Estudios actuales", opciones: OPC_MATRICULA }] },
+    controles: [{ tipo: "radio", campo: "estudios.matriculado_en", siempre: true, etiqueta: "Estudios actuales", opciones: OPC_MATRICULA }] },
   { id: "titulo", titulo: "¿Tu título más alto es de otro país?", porque: "Un título obtenido fuera de España puede necesitar homologación o equivalencia.",
     controles: [
       { tipo: "bool", campo: "estudios.titulo_extranjero", etiqueta: "Lo obtuve fuera de España" },
       { tipo: "pais", campo: "estudios.titulo_pais", etiqueta: "País donde lo obtuviste", si: (p) => leer(p, "estudios.titulo_extranjero") !== false },
       { tipo: "radio", campo: "estudios.homologacion", etiqueta: "Homologación o equivalencia", opciones: OPC_HOMOLOGACION, si: (p) => leer(p, "estudios.titulo_extranjero") !== false },
     ] },
-  { id: "hogar", titulo: "¿Con cuántas personas vives?", porque: "Contamos a la familia que vive contigo, incluida tú. Las personas que comparten piso sin ser familia no cuentan.",
+  { id: "hogar", titulo: "¿Con cuántas personas vives?", porque: "Contamos a la familia que vive contigo, incluida tú. Las personas que comparten piso sin ser familia no cuentan. Algunas ayudas cambian con la familia numerosa o la monoparental.",
     controles: [
-      { tipo: "entero", campo: "hogar.miembros", etiqueta: "Personas de la familia que viven contigo (tú incluida)", min: 1, max: 30 },
+      { tipo: "entero", campo: "hogar.miembros", siempre: true, etiqueta: "Personas de la familia que viven contigo (tú incluida)", min: 1, max: 30 },
       { tipo: "radio", campo: "hogar.pareja", etiqueta: "Pareja", opciones: OPC_PAREJA },
-    ] },
-  { id: "hijos", titulo: "¿Tienes hijos o hijas que viven contigo o están a tu cargo?", porque: "Cuenta a los hijos aunque sean mayores de edad. Para cada uno basta el año de nacimiento.",
-    controles: [{ tipo: "hijos", campo: "hogar.hijos", etiqueta: "Hijos e hijas" }] },
-  { id: "familia", titulo: "Tu familia", porque: "Un título de familia numerosa o ser familia monoparental cambian las condiciones de algunas ayudas.",
-    controles: [
       { tipo: "bool", campo: "hogar.monoparental", etiqueta: "Soy el único adulto a cargo de hijos menores" },
       { tipo: "radio", campo: "hogar.familia_numerosa", etiqueta: "Título de familia numerosa", opciones: OPC_FAMILIA },
     ] },
+  { id: "hijos", titulo: "¿Tienes hijos o hijas que viven contigo o están a tu cargo?", porque: "Cuenta a los hijos aunque sean mayores de edad. Para cada uno basta el año de nacimiento.",
+    controles: [{ tipo: "hijos", campo: "hogar.hijos", siempre: true, etiqueta: "Hijos e hijas" }] },
   { id: "vivienda", titulo: "¿Cómo es tu vivienda?", porque: "El régimen de la vivienda decide algunas ayudas de alquiler y de vivienda.",
     controles: [
-      { tipo: "radio", campo: "vivienda.regimen", etiqueta: "Régimen de la vivienda", opciones: OPC_REGIMEN },
+      { tipo: "radio", campo: "vivienda.regimen", siempre: true, etiqueta: "Régimen de la vivienda", opciones: OPC_REGIMEN },
       { tipo: "entero", campo: "vivienda.alquiler_mensual", etiqueta: "Alquiler mensual que pagas tú (€)", min: 0, max: 100000,
         si: (p) => !NO_ALQUILER.includes(leer(p, "vivienda.regimen")) },
       { tipo: "bool", campo: "vivienda.contrato_a_su_nombre", etiqueta: "El contrato de alquiler está a mi nombre",
         si: (p) => !NO_ALQUILER.includes(leer(p, "vivienda.regimen")) },
     ] },
-  { id: "ingresos", titulo: "Tus ingresos del año pasado", porque: "Tus ingresos brutos (antes de impuestos) sirven para calcular prestaciones como el ingreso mínimo vital (IMV) o algunas deducciones. Si no sabes la cifra exacta, elige un tramo.",
-    controles: [{ tipo: "tramo", base: "ingresos.individual", etiqueta: "Ingresos brutos anuales de la persona" }] },
-  { id: "ingresos_hogar", titulo: "Ingresos de tu familia", porque: "Los ingresos de tu familia sirven para calcular prestaciones como el ingreso mínimo vital (IMV) o algunas deducciones. Son los ingresos brutos de todas las personas de tu familia que viven contigo.",
-    controles: [{ tipo: "tramo", base: "ingresos.hogar", etiqueta: "Ingresos brutos anuales de la familia",
-      si: (p) => leer(p, "hogar.miembros") !== 1 }] },
-  { id: "patrimonio", titulo: "Ahorros y bienes", porque: "Ahorros e inversiones, sin contar la casa en la que vives. Algunas ayudas tienen un límite.",
-    controles: [{ tipo: "tramo", base: "ingresos.patrimonio_sin_vivienda", etiqueta: "Ahorros y bienes, sin la casa en la que vives" }] },
-  { id: "trabajo_entidad", titulo: "¿Dónde trabajas?", porque: "Algunas ayudas están ligadas al tipo de entidad y al territorio donde trabajas.",
+  { id: "ingresos", titulo: "Tus ingresos del año pasado", porque: "Tus ingresos brutos (antes de impuestos) sirven para calcular prestaciones como el ingreso mínimo vital (IMV) o algunas deducciones. Si no sabes la cifra exacta, elige un tramo. Los ahorros, sin contar la casa en la que vives, cuentan en algunas ayudas con límite.",
     controles: [
-      { tipo: "radio", campo: "vinculos.entidad_trabajo.tipo", etiqueta: "Tipo de entidad", opciones: OPC_ENTIDAD },
-      { tipo: "select", campo: "vinculos.entidad_trabajo.ambito", etiqueta: "Territorio de la entidad", opciones: OPC_AMBITO },
+      { tipo: "tramo", base: "ingresos.individual", siempre: true, etiqueta: "Ingresos brutos anuales de la persona" },
+      { tipo: "tramo", base: "ingresos.patrimonio_sin_vivienda", etiqueta: "Ahorros y bienes, sin la casa en la que vives" },
     ] },
-  { id: "estudios_entidad", titulo: "¿Dónde estudias?", porque: "Algunas ayudas están ligadas al tipo de centro donde estudias y a su territorio.",
+  { id: "ingresos_hogar", titulo: "Ingresos de tu familia", porque: "Los ingresos de tu familia sirven para calcular prestaciones como el ingreso mínimo vital (IMV) o algunas deducciones. Son los ingresos brutos de todas las personas de tu familia que viven contigo.",
+    controles: [{ tipo: "tramo", base: "ingresos.hogar", siempre: true, etiqueta: "Ingresos brutos anuales de la familia",
+      si: (p) => leer(p, "hogar.miembros") !== 1 }] },
+  // Trabajo e estudi nella stessa schermata: ognuno dei due gruppi si mostra solo se una scheda lo usa.
+  { id: "trabajo_entidad", titulo: "¿Dónde trabajas o estudias?", porque: "Algunas ayudas están ligadas al tipo de entidad y al territorio donde trabajas o estudias.",
     controles: [
-      { tipo: "radio", campo: "vinculos.entidad_estudios.tipo", etiqueta: "Tipo de centro", opciones: OPC_ENTIDAD },
-      { tipo: "select", campo: "vinculos.entidad_estudios.ambito", etiqueta: "Territorio del centro", opciones: OPC_AMBITO },
+      { tipo: "radio", campo: "vinculos.entidad_trabajo.tipo", etiqueta: "Tipo de entidad donde trabajas", opciones: OPC_ENTIDAD },
+      { tipo: "select", campo: "vinculos.entidad_trabajo.ambito", etiqueta: "Territorio de la entidad donde trabajas", opciones: OPC_AMBITO },
+      { tipo: "radio", campo: "vinculos.entidad_estudios.tipo", etiqueta: "Tipo de centro donde estudias", opciones: OPC_ENTIDAD },
+      { tipo: "select", campo: "vinculos.entidad_estudios.ambito", etiqueta: "Territorio del centro donde estudias", opciones: OPC_AMBITO },
     ] },
   { id: "cotizacion", titulo: "¿Has trabajado y cotizado en otro país?", porque: "Los años cotizados en otro país pueden contar para algunas prestaciones.",
     controles: [{ tipo: "paises", campo: "vinculos.paises_cotizacion", etiqueta: "Países donde has cotizado", nadie: [[], "No he cotizado en otro país"] }] },

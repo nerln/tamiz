@@ -1,0 +1,120 @@
+{
+  "id": "es-vc-irpf-familia-numerosa-monoparental",
+  "nombre": "Deducción autonómica IRPF por familia numerosa o monoparental (Comunitat Valenciana)",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (se aplica en la declaración de la Renta, Agencia Tributaria)",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Se descuentan 330 € (categoría general) o 660 € (especial) de la cuota autonómica del IRPF si tienes el título de familia numerosa o la condición de familia monoparental reconocida a 31 de diciembre.",
+  "cuantia": {
+    "texto": "330 € en categoría general y 660 € en categoría especial (ejercicio 2025). Con base liquidable entre 27.000 € y 30.000 € (general, individual) o entre 31.000 € y 35.000 € (especial, individual) el importe baja; en conjunta, entre 44.000 € y 47.000 € (general) y entre 54.000 € y 58.000 € (especial). Si varios declarantes conviven con la familia, a partes iguales.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Tener tu residencia habitual en la Comunitat Valenciana",
+      "cita": "Art. 4.Uno.d) Ley 13/1997"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "hogar.familia_numerosa",
+          "op": "in",
+          "valor": [
+            "general",
+            "especial"
+          ],
+          "texto": "Tener el título de familia numerosa",
+          "cita": "Art. 4.Uno.d) Ley 13/1997 y Ley 40/2003"
+        },
+        {
+          "campo": "hogar.monoparental",
+          "op": "==",
+          "valor": true,
+          "texto": "Ser familia monoparental",
+          "cita": "Art. 4.Uno.d) Ley 13/1997 y Decreto 19/2018 del Consell",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Hace falta que la Generalitat tenga reconocida la condición de familia monoparental a 31 de diciembre (Decreto 19/2018)."
+        }
+      ],
+      "texto": "Ser familia numerosa o monoparental",
+      "cita": "Art. 4.Uno.d) Ley 13/1997"
+    },
+    {
+      "campo": "calc.ingresos_individuales",
+      "op": "<=",
+      "valor": 35000,
+      "texto": "Ingresos brutos de 35.000 € o menos al año",
+      "cita": "Art. 4.Uno.d), Cuatro y Cinco Ley 13/1997: límite de 30.000 € (general) o 35.000 € (especial) de base liquidable en individual",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "El límite es 30.000 € en categoría general y 35.000 € en especial, y se mide sobre la base liquidable (casillas 0500 y 0510), menor que el bruto. En conjunta, 47.000 € y 58.000 €. Con más ingresos brutos puedes encajar igual."
+    },
+    {
+      "any_of": [
+        {
+          "campo": "hogar.familia_numerosa",
+          "op": "==",
+          "valor": "especial",
+          "texto": "Tener título de familia numerosa de categoría especial",
+          "cita": "Art. 4.Uno.d), Cuatro y Cinco Ley 13/1997: tope de 35.000 € solo en categoría especial"
+        },
+        {
+          "campo": "calc.ingresos_individuales",
+          "op": "<=",
+          "valor": 30000,
+          "texto": "Ingresos brutos de 30.000 € o menos al año",
+          "cita": "Art. 4.Uno.d), Cuatro y Cinco Ley 13/1997: base liquidable máxima de 30.000 € en individual en categoría general",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "En categoría general el límite es 30.000 € de base liquidable en individual (47.000 € en conjunta), y la base liquidable es menor que el bruto. Con más ingresos brutos puedes encajar igual: mira tu declaración."
+        }
+      ],
+      "texto": "Categoría especial, o ingresos de 30.000 € o menos al año",
+      "cita": "Art. 4.Uno.d), Cuatro y Cinco Ley 13/1997"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que la condición de familia numerosa (Ley 40/2003) o monoparental (Decreto 19/2018) esté reconocida en la fecha de devengo, normalmente el 31 de diciembre",
+    "Suma de base liquidable general y del ahorro (casillas 0500 y 0510) por debajo del límite de tu categoría para el importe íntegro, y por debajo del máximo para tener alguna deducción (30.000 € general y 35.000 € especial en individual; 47.000 € y 58.000 € en conjunta)"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica en la declaración de la Renta, no se pide aparte. La campaña del ejercicio 2025 fue del 8 de abril al 30 de junio de 2026 (ya cerrada); la del ejercicio 2026 será en 2027, con fechas aún no publicadas."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con las deducciones autonómicas por nacimiento, adopción, delegación de guarda con fines de adopción o acogimiento; por nacimiento o adopción múltiples; y por nacimiento, adopción, acogimiento o delegación de guarda de personas con discapacidad. La página no recoge incompatibilidades.",
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/familia-numerosa-monoparental.html"
+  },
+  "siguiente_paso": {
+    "texto": "Al presentar la Renta del ejercicio 2026 (en 2027), marca la deducción en las deducciones autonómicas de la Comunitat Valenciana. Ten a mano el título de familia numerosa o el reconocimiento de familia monoparental.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/familia-numerosa-monoparental.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB, Renta DIRECTA o la app de la Agencia Tributaria), en el apartado de deducciones autonómicas de la Comunitat Valenciana. No se solicita aparte.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/familia-numerosa-monoparental.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/familia-numerosa-monoparental.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

@@ -1,0 +1,72 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Parado Prueba",
+    "descripcion": "Persona inventada. Hombre de 50 años, español, en paro desde hace dos meses tras 6 años en la misma empresa, inscrito como demandante, cobra el paro, vive solo de alquiler en València.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1976,
+    "mes_nacimiento": 7,
+    "nacionalidades": [
+      "ES"
+    ],
+    "sexo": "hombre"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2015-06"
+  },
+  "situacion_administrativa": {
+    "tipo": "nacional"
+  },
+  "empleo": {
+    "situaciones": [
+      "desempleado"
+    ],
+    "tipo_contrato": "ninguno",
+    "meses_cotizados_6_anios": 70,
+    "inscrito_demandante": true,
+    "cobra_prestacion": true
+  },
+  "estudios": {
+    "nivel_max": "eso",
+    "matriculado_en": "ninguno",
+    "titulo_extranjero": false
+  },
+  "hogar": {
+    "miembros": 1,
+    "hijos": [],
+    "pareja": "no",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "alquiler",
+    "alquiler_mensual": 750,
+    "contrato_a_su_nombre": true
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "de_21001_a_25000"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "hasta_6000"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "ES"
+    ],
+    "paises_cotizacion": [],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

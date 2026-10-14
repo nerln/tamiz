@@ -1,0 +1,56 @@
+{
+  "solicita": "persona",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-10-30",
+  "id": "es-dependencia-reconocimiento-grado",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "nombre": "Reconocimiento de la situación de dependencia (Ley 39/2006)",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "organismo": "IMSERSO / comunidades autónomas",
+  "ambito": "ES",
+  "resumen": "Procedimiento para que la comunidad autónoma donde vives reconozca si estás en situación de dependencia y en qué grado (I, II o III). El grado abre el acceso a servicios y prestaciones del sistema público. La resolución vale en todo el Estado.",
+  "cuantia": {
+    "texto": "El reconocimiento del grado no es una cantidad de dinero: la resolución fija qué servicios o prestaciones corresponden según el grado. Las cuantías las fija cada administración y no se han leído en esta ficha.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Residir en territorio español",
+      "cita": "Art. 5.1.c Ley 39/2006",
+      "aclaracion": "La ley pide haber residido 5 años en España, 2 de ellos justo antes de la solicitud. Hay excepciones (solicitantes de asilo, protección internacional o temporal)."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Encontrarse en situación de dependencia en alguno de los grados (I, II o III): lo decide la valoración de la administración, no se pregunta aquí (art. 5.1.a y art. 26)",
+    "Nacionalidad española; si no la tienes, se aplica la Ley Orgánica 4/2000 y los tratados con tu país (art. 5.2)",
+    "Haber residido en España 5 años, 2 de ellos inmediatamente anteriores a la solicitud (art. 5.1.c); para menores de 5 años, se exige a quien ejerce la guarda y custodia",
+    "Para menores de 6 años se aplica la disposición adicional decimotercera (art. 5.1.b)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-21990",
+    "nota": "El procedimiento se inicia a instancia de la persona afectada o de su representante, con un plazo máximo de 3 meses para resolver (art. 28.1). El plazo máximo hasta la resolución de la prestación es de 6 meses (disposición final primera, apartado 2)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "La solicitud se presenta ante la administración de la comunidad autónoma donde vives (art. 28.2). Si vives en la Comunitat Valenciana, mira la ficha de la Generalitat o pide cita en los servicios sociales de tu ayuntamiento.",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-21990"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Ante la comunidad autónoma de residencia. No se encontró una página operativa estatal única; el BOE recoge la norma.",
+  "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-21990",
+  "url_oficial": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-21990",
+  "confianza": "alta"
+}

@@ -2,6 +2,7 @@
   "id": "es-vc-bono-alquiler-joven-2026",
   "nombre": "Bono Alquiler Joven 2026 (Comunitat Valenciana)",
   "tipo": "oportunidad",
+  "area": "vivienda",
   "subtipo": "subvencion",
   "concesion": "desconocida",
   "solicita": "persona",
@@ -51,7 +52,10 @@
     {
       "campo": "vivienda.regimen",
       "op": "in",
-      "valor": ["alquiler", "habitacion"],
+      "valor": [
+        "alquiler",
+        "habitacion"
+      ],
       "texto": "Vivir de alquiler (vivienda o habitación) en tu residencia habitual"
     }
   ],
@@ -84,7 +88,9 @@
     "texto": "Ahora no se puede pedir. Cuando salga la próxima convocatoria, se pedirá en la sede electrónica de la Generalitat.",
     "url": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026"
   },
-  "ayuda_humana": ["gva-vivienda"],
+  "ayuda_humana": [
+    "gva-vivienda"
+  ],
   "como_pedirla": "Sede electrónica de la Generalitat, con identificación electrónica, o en persona con cita previa.",
   "fuente": "https://dogv.gva.es/datos/2026/08/21/pdf/2026_27284_es.pdf",
   "url_oficial": "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026",

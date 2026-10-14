@@ -1,0 +1,57 @@
+{
+  "tipo": "derecho",
+  "subtipo": "servicio_gratuito",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES-VC",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta",
+  "area": "extranjeria",
+  "id": "es-vlc-empadronamiento",
+  "nombre": "Alta en el Padrón municipal de València (empadronamiento)",
+  "organismo": "Ajuntament de València",
+  "resumen": "Toda persona que vive en España debe inscribirse en el padrón del municipio donde reside. El alta en València se hace por cambio de residencia (desde otro municipio o el extranjero) o por omisión. Es gratuita, y el certificado de empadronamiento sirve de prueba de residencia para muchos trámites, también de extranjería.",
+  "cuantia": {
+    "texto": "Gratuito: todos los trámites del Padrón Municipal de València son gratuitos.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Vivir en València",
+      "cita": "Art. 15 Ley 7/1985; procedimiento PA.GP.11 del Ajuntament de València"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ser mayor de edad o menor emancipado; los menores no emancipados tienen el mismo padrón que quien tiene su guarda y custodia (procedimiento PA.GP.11)",
+    "Documento de identidad en vigor: DNI, tarjeta de residencia o pasaporte según el caso; los solicitantes de protección internacional usan los documentos de solicitante (procedimiento PA.GP.11)",
+    "Documento que acredite que vives en la vivienda: escritura o nota simple, contrato de alquiler de más de 6 meses con referencia catastral y último recibo, o la autorización de quien es propietario o arrendatario si vives en vivienda ajena (procedimiento PA.GP.11)",
+    "Si no puedes acreditar la vivienda o no tienes domicilio fijo y los Servicios Sociales del Ayuntamiento conocen tu situación de exclusión social, existe un procedimiento de casos especiales (PA.GP.65)",
+    "Las personas extranjeras sin autorización de residencia de larga duración y no pertenecientes a la UE, al EEE o a otros Estados con régimen equivalente deben renovar la inscripción cada 2 años; si no, caduca (art. 16.1 Ley 7/1985)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.valencia.es/sede/registro/procedimiento/PA.GP.11?lang=1",
+    "nota": "Se puede pedir en cualquier momento. Plazo máximo de resolución: 3 meses (silencio estimatorio si se cumplen los requisitos). Información de la sede a 14/11/2025."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide el alta por la sede electrónica del Ajuntament de València con certificado digital, o acude a la Oficina del Padrón (Plaza del Ayuntamiento, entrada por Periodista Azzati, 2; de lunes a viernes, de 8:30 a 14:00). Puedes pedir cita previa en el 010 o en el 96 310 00 10.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/PA.GP.11?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia",
+    "accem",
+    "cepaim"
+  ],
+  "como_pedirla": "En línea con firma digital en la sede electrónica, o en persona en la Oficina del Padrón o en otra oficina de gestión padronal (lunes a viernes, de 8:30 a 14:00; cita previa en la web municipal o en el 010). Lleva los documentos originales.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/PA.GP.11?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/PA.GP.11?lang=1"
+}

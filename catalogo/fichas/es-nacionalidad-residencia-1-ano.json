@@ -1,0 +1,79 @@
+{
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta",
+  "area": "extranjeria",
+  "id": "es-nacionalidad-residencia-1-ano",
+  "nombre": "Nacionalidad española por residencia en 1 año (nacidos en España, casados con español/a y otros casos)",
+  "organismo": "Ministerio de la Presidencia, Justicia y Relaciones con las Cortes - Dirección General de Seguridad Jurídica y Fe Pública",
+  "resumen": "Basta 1 año de residencia legal, continuada e inmediatamente anterior a la solicitud si has nacido en España, llevas un año casado/a con una persona española, eres viudo/a de español/a, has estado bajo tutela o acogimiento de una persona o institución españolas dos años, no ejerciste a tiempo la opción, o has nacido fuera de España de padre, madre, abuelo o abuela que fueron españoles de origen.",
+  "cuantia": {
+    "texto": "Sin importe de ayuda. Se paga la tasa de la solicitud y, en su caso, los exámenes del Instituto Cervantes; los importes actuales no están comprobados aquí: míralos en la sede del Ministerio y en el Instituto Cervantes.",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Tener hoy una residencia legal en España",
+      "cita": "Art. 22.3 Código Civil"
+    },
+    {
+      "campo": "calc.anios_residencia_legal",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Llevar al menos 1 año con residencia legal en España, seguido y justo antes de pedirla",
+      "cita": "Art. 22.2 y 22.3 Código Civil"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar en uno de los casos del art. 22.2 del Código Civil: haber nacido en España; no haber ejercido a tiempo la facultad de optar; haber estado dos años consecutivos bajo tutela, curatela con representación plena, guarda o acogimiento de una persona o institución españolas",
+    "O llevar un año casado/a con español/a sin separación legal o de hecho; ser viudo/a de español/a sin separación a la muerte del cónyuge; o haber nacido fuera de España de padre, madre, abuelo o abuela que fueron españoles de origen. Tamiz no pregunta por estos casos y no puede comprobarlos",
+    "Residencia legal, continuada e inmediatamente anterior a la petición (art. 22.3 Código Civil)",
+    "Buena conducta cívica y suficiente grado de integración en la sociedad española (art. 22.4 Código Civil)",
+    "Exámenes DELE A2 y CCSE del Instituto Cervantes, con las dispensas del art. 6 del RD 1004/2015",
+    "Jurar o prometer fidelidad al Rey y obediencia a la Constitución y a las leyes, renunciar a la nacionalidad anterior (salvo los casos del art. 24.1 del Código Civil) e inscribir la adquisición en el Registro Civil (art. 23 Código Civil)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-12047",
+    "nota": "No hay convocatoria: el procedimiento empieza cuando presentas la solicitud (art. 4 del RD 1004/2015). Se resuelve en máximo 1 año; si pasa sin respuesta expresa, se entiende desestimada (art. 11.3)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Comprueba en el art. 22.2 del Código Civil si estás en uno de los casos y presenta la solicitud en la sede electrónica del Ministerio de Justicia, con certificado digital o Cl@ve.",
+    "url": "https://sede.mjusticia.gob.es/es/tramites/nacionalidad-espanola"
+  },
+  "ayuda_humana": [
+    "oficina-extranjeria-valencia",
+    "accem",
+    "cepaim"
+  ],
+  "como_pedirla": "Sede electrónica del Ministerio de Justicia, con certificado digital o Cl@ve (art. 4 del RD 1004/2015).",
+  "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-1889-4763",
+  "url_oficial": "https://sede.mjusticia.gob.es/es/tramites/nacionalidad-espanola",
+  "informativa": true
+}

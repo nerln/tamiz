@@ -1,0 +1,80 @@
+{
+  "area": "emprender",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-vlc-inversion-emprendimiento-2026",
+  "nombre": "Subvención a la inversión para el emprendimiento 2026 (Ajuntament de València)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "orden_de_llegada",
+  "organismo": "Ajuntament de València - Servicio de Emprendimiento",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Ayuda de hasta 2.500 € para gastos de inversión de autónomos y empresas de València con actividad iniciada entre 2023 y el 7 de octubre de 2025. Pide 5 años de empadronamiento. La convocatoria de 2026 cerró el 30 de junio.",
+  "cuantia": {
+    "texto": "Hasta 2.500 € por solicitud: el 100 % de los gastos de inversión subvencionables justificados, sin los impuestos recuperables. Pago único.",
+    "importe_eur": 2500,
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "autonomo",
+      "texto": "Ser autónomo",
+      "cita": "Convocatoria, base 4.1.a y b: actividad iniciada entre el 1 de enero de 2023 y el 7 de octubre de 2025, y alta en la Seguridad Social",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La ayuda es solo para actividades que empezaron entre el 1 de enero de 2023 y el 7 de octubre de 2025, sin haber cesado desde entonces. Con lo que has dicho no podemos saber cuándo empezaste: mira la base 4.1.a de la convocatoria."
+    },
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València"
+    },
+    {
+      "campo": "calc.anios_empadronado",
+      "op": ">=",
+      "valor": 5,
+      "texto": "Estar empadronado en València desde hace 5 años o más",
+      "cita": "Convocatoria, base 4.1.c: antigüedad mínima de empadronamiento de 5 años contados desde el 1 de enero de 2016"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Comienzo efectivo de la actividad entre el 1 de enero de 2023 y el 7 de octubre de 2025, sin haber cesado desde entonces (base 4.1.a); no se aplica al sector agrícola, ganadero ni pesquero",
+    "Local de la actividad (o domicilio fiscal, si no hay local) en el término municipal de València (base 4.1.d)",
+    "Gastos de inversión realizados y devengados desde el 9 de julio de 2025 hasta la publicación de la convocatoria (bases 4.1.i y 5.1)",
+    "Plantilla media inferior a 10 personas en los 12 meses anteriores (base 4.1.j)",
+    "Estar al corriente con la AEAT, la Seguridad Social y el Ajuntament, y no superar 300.000 € de ayudas de minimis en 3 años (base 4.1.l a p)",
+    "Quedan excluidos los autónomos colaboradores y las entidades públicas y sin ánimo de lucro (base 4.2)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-06-11",
+    "fin": "2026-06-30",
+    "verificado": false,
+    "nota": "Fechas de la convocatoria 2026 tomadas de la ficha del trámite en la sede electrónica y de la página municipal (extracto en el BOP n.º 109 de 10/06/2026), ya terminadas."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con el resto de subvenciones municipales, sin que la suma con otras ayudas para la misma finalidad supere el coste de la inversión (base 12.2, art. 19.3 Ley General de Subvenciones).",
+    "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010209190"
+  },
+  "siguiente_paso": {
+    "texto": "La convocatoria de 2026 está cerrada. Vigila la sede electrónica del Ajuntament por si se abre una nueva.",
+    "url": "https://www.valencia.es/cas/campañas-municipales/-/content/subvencion-inversion-emprendimiento"
+  },
+  "como_pedirla": "Solo por vía telemática en la sede electrónica del Ajuntament de València («Iniciar trámite»), con firma electrónica avanzada.",
+  "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010209190",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/AE.IE.245?lang=1",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

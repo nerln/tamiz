@@ -1,0 +1,56 @@
+{
+  "id": "es-vlc-dependencia-revision-pia",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "nombre": "Revisión del grado de dependencia (BS.DP.30) y ampliación del PIA (BS.DP.40)",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "no_aplica",
+  "solicita": "persona",
+  "organismo": "Ajuntament de València (Servicios Sociales)",
+  "ambito": "ES-VC",
+  "resumen": "Si ya tienes reconocido un grado de dependencia, puedes pedir que se revise porque tu situación ha mejorado o empeorado o hay un error. Con un PIA vigente puedes pedir cambiar tus preferencias, cambiar de cuidador no profesional o más horas de ayuda a domicilio. Se pide todo el año.",
+  "cuantia": {
+    "texto": "Trámite sin importe propio",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Vivir en València (el trámite se hace en el centro municipal de servicios sociales de tu domicilio)",
+      "cita": "Página del procedimiento en sede.valencia.es"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Revisión de grado (BS.DP.30): tener una resolución que reconoce un grado de dependencia",
+    "Cambio de preferencias del PIA (BS.DP.40): tener una resolución del PIA con un servicio o una prestación",
+    "Cambio de cuidador no profesional: PIA con prestación económica para cuidados en el entorno familiar",
+    "Más horas de ayuda a domicilio o prestación vinculada: PIA con ese servicio e informe técnico del centro de servicios sociales",
+    "Documentos: solicitud de revisión, informe de salud para el reconocimiento de prestaciones sociales y, si actúas en nombre de otra persona, documento de representación"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.30?lang=1",
+    "nota": "Todo el año. BS.DP.30: resolución en 3 meses; BS.DP.40: en 6 meses; en ambos el silencio es estimatorio (páginas del procedimiento, leídas el 2026-10-14)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Acude al centro municipal de servicios sociales de tu domicilio (el 010 te dice cuál es) o inicia el trámite en la sede electrónica con certificado digital o Cl@ve. Para ampliar el PIA, mira el trámite BS.DP.40.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.30?lang=1"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "En el centro municipal de servicios sociales de tu domicilio o en la sede electrónica del Ajuntament de València.",
+  "fuente": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.30?lang=1",
+  "url_oficial": "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.30?lang=1",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "es-isciii-rio-hortega",
+  "nombre": "Contratos Río Hortega (Acción Estratégica en Salud 2026)",
+  "area": "investigacion",
+  "informativa": true,
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "otro",
+  "organismo": "Instituto de Salud Carlos III",
+  "ambito": "ES",
+  "resumen": "Contratos de 2 años para profesionales que han terminado la formación sanitaria especializada (MIR, FIR, BIR, QIR, PIR, EIR, RIR) y quieren hacer investigación a la vez que su trabajo asistencial en un hospital público. 76 contratos en 2026. La solicitud la presenta el centro sanitario.",
+  "cuantia": {
+    "texto": "El ISCIII paga el salario bruto: 20.600 € el primer año y 21.800 € el segundo si la especialidad duró hasta 3 años; 30.000 € y 35.000 € si duró más. La Seguridad Social y el resto del coste los paga el centro. Convocatoria 2026.",
+    "periodicidad": "anual",
+    "importe_eur": 20600,
+    "duracion_meses_max": 24
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": [
+        "grado",
+        "master",
+        "doctorado"
+      ],
+      "texto": "Tener un título universitario de ciencias de la salud",
+      "cita": "Art. 34 de la resolución de 19/12/2025: título de especialista (MIR, FIR, BIR, QIR, PIR, EIR, RIR)"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Tener el título oficial de especialista (MIR, FIR, BIR, QIR, Bioquímica, PIR, EIR o RIR); si es extranjero, estar reconocido u homologado (no vale haber solicitado el reconocimiento)",
+    "Haber terminado la formación sanitaria especializada en 2021 o después (o terminarla en 2026 antes del fin del plazo de alegaciones)",
+    "No haber disfrutado ni completado antes un Contrato Río Hortega",
+    "Un centro sanitario público con actividad asistencial presenta la solicitud, con un jefe o jefa de grupo vinculado al centro (art. 32)",
+    "El centro tiene cupo máximo de solicitudes por convocatoria y puede hacer una preselección interna"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "verificado": false,
+    "mes_habitual": 2,
+    "nota": "Convocatoria 2026: del 10/02 al 05/03/2026 hasta las 15:00 (hora peninsular), leída en la resolución de 19/12/2025. Plazos anteriores: del 12/02 al 05/03/2025 y del 14/02 al 07/03/2024. La de 2027 no está publicada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Habla con la unidad de investigación de tu hospital o instituto de investigación sanitaria: son ellos quienes presentan la solicitud y suelen fijar un plazo interno antes del cierre.",
+    "url": "https://www.isciii.es/financiacion/aes/como-solicitar"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Aplicación de solicitudes del ISCIII; la presenta con certificado electrónico el representante legal del centro.",
+  "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true",
+  "url_oficial": "https://www.isciii.es/financiacion/aes/como-solicitar",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

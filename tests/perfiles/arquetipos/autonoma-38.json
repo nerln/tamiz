@@ -1,0 +1,75 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Autónoma Prueba",
+    "descripcion": "Persona inventada. Diseñadora autónoma de 38 años, española, con grado universitario, vive con su pareja (sin hijos) en un piso de alquiler en València.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1988,
+    "mes_nacimiento": 11,
+    "nacionalidades": [
+      "ES"
+    ],
+    "sexo": "mujer"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2016-01"
+  },
+  "situacion_administrativa": {
+    "tipo": "nacional"
+  },
+  "empleo": {
+    "situaciones": [
+      "autonomo"
+    ],
+    "tipo_contrato": "ninguno",
+    "meses_cotizados_6_anios": 72,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "grado",
+    "matriculado_en": "ninguno",
+    "titulo_extranjero": false
+  },
+  "hogar": {
+    "miembros": 2,
+    "hijos": [],
+    "pareja": "pareja_de_hecho",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "alquiler",
+    "alquiler_mensual": 900,
+    "contrato_a_su_nombre": true
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "de_25001_a_30000"
+    },
+    "hogar": {
+      "tramo": "de_50001_a_70000"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "de_9001_a_12000"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "ES"
+    ],
+    "paises_cotizacion": [],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

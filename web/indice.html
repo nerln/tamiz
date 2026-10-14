@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <title>Todas las convocatorias · Tamiz</title>
+  <meta name="description" content="Índice automático de convocatorias de la BDNS y del BOE, para el Estado y la Comunitat Valenciana. Sin revisar.">
+  <link rel="stylesheet" href="css/indice.css">
+  <script src="js/indice.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Ir al contenido</a>
+
+  <div class="envoltorio">
+    <header class="cabecera">
+      <p class="marca">Tamiz</p>
+      <a class="volver" href="index.html">Volver al inicio</a>
+    </header>
+
+    <main id="contenido">
+      <h1>Todas las convocatorias</h1>
+
+      <div class="aviso" role="note">
+        <p><strong>Índice automático, sin revisar: no evaluamos si encajan contigo.</strong>
+        Son convocatorias tal como aparecen en la BDNS y en el BOE. Para saber si te corresponden, lee las bases.</p>
+      </div>
+
+      <p class="actualizacion" id="actualizacion" aria-live="polite">Cargando datos…</p>
+
+      <p class="aviso-viejo" id="viejo" hidden>Los datos tienen más de 3 días: puede que no estén al día. Una fuente puede haber fallado (mira abajo, en «Fuentes y atribución»).</p>
+
+      <p class="error" id="error" hidden>No se han podido cargar los datos. Inténtalo de nuevo más tarde.</p>
+
+      <section class="controles" id="controles" aria-label="Buscar y filtrar" hidden>
+        <div class="campo">
+          <label for="buscar">Buscar por texto</label>
+          <input id="buscar" type="search" autocomplete="off" placeholder="Título u organismo">
+        </div>
+
+        <fieldset class="grupo">
+          <legend>Plazo</legend>
+          <div class="pestanas" role="radiogroup" aria-label="Plazo">
+            <label><input type="radio" name="plazo" value="todas" checked> Todas <span class="conteo" id="n-todas"></span></label>
+            <label><input type="radio" name="plazo" value="abiertas"> Abiertas ahora <span class="conteo" id="n-abiertas"></span></label>
+            <label><input type="radio" name="plazo" value="proximas"> Próximamente <span class="conteo" id="n-proximas"></span></label>
+          </div>
+        </fieldset>
+
+        <div class="campo">
+          <label for="ambito">Ámbito</label>
+          <select id="ambito">
+            <option value="todos">Todos</option>
+            <option value="estado">Estado</option>
+            <option value="comunitat">Comunitat Valenciana</option>
+            <option value="local">Local</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="nota" id="nota-fuera" aria-live="polite" hidden></p>
+
+      <section id="proximas" aria-labelledby="titulo-proximas" hidden>
+        <h2 id="titulo-proximas">Próximamente</h2>
+        <p class="nota">Convocatorias que abren más adelante, y plazas previstas: ofertas de empleo público aprobadas. Algunas convocatorias ya están publicadas.</p>
+        <h3>Convocatorias que abren más adelante</h3>
+        <ol class="lista" id="lista-proximas"></ol>
+        <p class="vacio" id="vacio-proximas" hidden>No hay convocatorias que abran más adelante con estos filtros.</p>
+        <h3>Plazas previstas</h3>
+        <ol class="lista" id="lista-previstas"></ol>
+        <p class="vacio" id="vacio-previstas" hidden>No hay plazas previstas con estos filtros.</p>
+      </section>
+
+      <section id="convocatorias" aria-labelledby="titulo-convocatorias" hidden>
+        <h2 id="titulo-convocatorias">Convocatorias</h2>
+        <p class="contador" id="contador" aria-live="polite"></p>
+        <p class="nota" id="recorte" hidden></p>
+        <ol class="lista" id="lista"></ol>
+        <p class="vacio" id="vacio" hidden>No hay convocatorias con estos filtros.</p>
+        <p><button type="button" class="ver-mas" id="ver-mas" hidden>Ver más</button></p>
+      </section>
+
+      <section class="fuentes" aria-labelledby="titulo-fuentes">
+        <h2 id="titulo-fuentes">Fuentes y atribución</h2>
+        <ul id="fuentes"></ul>
+        <p>Tamiz no es un organismo oficial. Las convocatorias son de las administraciones que las publican. El índice no evalúa si te encajan: lee siempre las bases.</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

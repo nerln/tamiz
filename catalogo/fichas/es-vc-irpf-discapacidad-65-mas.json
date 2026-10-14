@@ -1,0 +1,66 @@
+{
+  "id": "es-vc-irpf-discapacidad-65-mas",
+  "area": "salud_cuidados",
+  "informativa": true,
+  "nombre": "Deducción IRPF CV por discapacidad: contribuyentes de 65 años o más (≥ 33 %)",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (se aplica en la declaración de la Renta, Agencia Tributaria)",
+  "ambito": "ES-VC",
+  "resumen": "Descuento de 197 € en la cuota autonómica del IRPF para quien tiene 65 años o más a fecha de devengo y una discapacidad reconocida igual o superior al 33 %. Se pierde de forma gradual entre 27.000 € y 30.000 € de base liquidable. Ficha informativa.",
+  "cuantia": {
+    "texto": "197 € por contribuyente (ejercicio 2025). Íntegro con base liquidable inferior a 27.000 € (44.000 € en conjunta); parcial hasta 30.000 € (47.000 €); nada por encima.",
+    "importe_eur": 197,
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Residir en la Comunitat Valenciana"
+    },
+    {
+      "campo": "calc.edad",
+      "op": ">=",
+      "valor": 65,
+      "texto": "Tener 65 años o más a fecha de devengo del impuesto (normalmente el 31 de diciembre)",
+      "cita": "Art. 4.Uno.g) Ley 13/1997 (manual práctico AEAT Renta 2025)",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La edad se mide el 31 de diciembre del ejercicio: si llegas a los 65 años antes de esa fecha, puede encajar igual."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Discapacidad igual o superior al 33 %, acreditada con certificado de la Generalitat, del Estado o de otra comunidad (hay reglas específicas para curatela, incapacidad judicial y discapacidad intelectual o mental permanente)",
+    "No aplicar si la discapacidad da lugar a una prestación exenta del IRPF",
+    "Base liquidable (casillas 0500 + 0510) inferior a 27.000 € en individual o 44.000 € en conjunta para el importe íntegro; entre 27.000 y 30.000 € (44.000 y 47.000 € en conjunta) se reduce; por encima, no se aplica"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica al presentar la Renta, sin solicitud aparte. La campaña del ejercicio 2025 fue del 08/04 al 30/06/2026 (calendario AEAT, leído en una ficha anterior de este catálogo); la del ejercicio 2026 se presentará en 2027, con fechas aún no publicadas. Orientativo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Al presentar la Renta, marca la deducción en el apartado de deducciones autonómicas de la Comunitat Valenciana. Ten a mano el certificado de discapacidad. Mira antes la guía de la Agencia Tributaria.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-discapacidad-grado-igual-superior.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB o app), en deducciones autonómicas de la Comunitat Valenciana. No se solicita aparte.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-discapacidad-grado-igual-superior.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-discapacidad-grado-igual-superior.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

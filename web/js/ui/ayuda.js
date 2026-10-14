@@ -3,7 +3,7 @@ import { el, fechaLarga } from "./dom.js";
 
 export function renderAyuda(ctx) {
   const lista = ctx.catalogo.ayuda_humana || [];
-  return el("div", { class: "ayuda" },
+  return el("div", { class: "pagina-ayuda" },
     el("header", { class: "cabecera-seccion" },
       el("h1", { tabindex: -1, id: "titulo-ayuda", text: "Ayuda humana" }),
       el("p", { text: "Personas y organizaciones que pueden orientarte de forma gratuita. No somos nosotros, y no tienes que dar datos personales para ver esta lista." })),
@@ -19,7 +19,7 @@ export function renderAyuda(ctx) {
 }
 
 export function renderEmpleo() {
-  return el("div", { class: "empleo" },
+  return el("div", { class: "pagina-empleo" },
     el("header", { class: "cabecera-seccion" },
       el("h1", { tabindex: -1, id: "titulo-empleo", text: "Empleo" }),
       el("p", { text: "Estos enlaces llevan a ofertas de terceros, no son derechos ni garantías de nada. Revisa siempre la oferta en la web de quien la publica." })),

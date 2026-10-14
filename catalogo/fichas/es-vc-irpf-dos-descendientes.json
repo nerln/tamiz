@@ -1,0 +1,87 @@
+{
+  "id": "es-vc-irpf-dos-descendientes",
+  "nombre": "Deducción autonómica IRPF por tener dos o más descendientes (Comunitat Valenciana)",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (se aplica en la declaración de la Renta, Agencia Tributaria)",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Se descuenta de la cuota autonómica del IRPF el 10 % de esa cuota si tienes dos o más descendientes que den derecho al mínimo por descendientes y las bases imponibles de la familia suman 30.000 € o menos.",
+  "cuantia": {
+    "texto": "10 % de la cuota íntegra autonómica (ejercicio 2025), en declaración individual o conjunta, calculada después de restar las demás minoraciones de la cuota autonómica.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Tener tu residencia habitual en la Comunitat Valenciana",
+      "cita": "Art. 4.Uno.t) Ley 13/1997"
+    },
+    {
+      "campo": "calc.num_hijos",
+      "op": ">=",
+      "valor": 2,
+      "texto": "Tener dos o más hijos",
+      "cita": "Art. 4.Uno.t) Ley 13/1997 (título de la deducción en el manual Renta 2025: contribuyentes con dos o más descendientes)"
+    },
+    {
+      "campo": "calc.hijos_menores_25",
+      "op": ">=",
+      "valor": 2,
+      "texto": "Que al menos dos de tus hijos o descendientes tengan menos de 25 años (los que dan derecho al mínimo por descendientes)",
+      "cita": "Art. 4.Uno.t) Ley 13/1997 (descendientes que dan derecho al mínimo) y manual Renta 2025 del mínimo por descendientes: menos de 25 años o discapacidad",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "El mínimo por descendientes exige, en general, tener menos de 25 años a 31 de diciembre; no hay límite de edad con una discapacidad del 33 % o más, y el sitio no pregunta por ella. Si tus hijos tienen 25 años o más, mira si dan derecho al mínimo."
+    },
+    {
+      "campo": "calc.ingresos_hogar",
+      "op": "<=",
+      "valor": 30000,
+      "texto": "Ingresos brutos de 30.000 € o menos al año",
+      "cita": "Art. 4.Uno.t) Ley 13/1997: suma de bases imponibles general y del ahorro (casillas 0435 y 0460) de 30.000 € o menos",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La deducción suma las bases imponibles de los contribuyentes con derecho al mínimo, de los descendientes que lo generan y de los demás miembros de la unidad familiar en conjunta. Con más ingresos brutos puedes encajar igual."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que los descendientes den derecho al mínimo por descendientes de la normativa estatal del IRPF (edad, convivencia y rentas propias)",
+    "Que la suma de las bases imponibles general y del ahorro (casillas 0435 y 0460) de los contribuyentes con derecho al mínimo, de los propios descendientes y de los demás miembros de la unidad familiar que tributen conjuntamente no supere 30.000 €"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica en la declaración de la Renta, no se pide aparte. La campaña del ejercicio 2025 fue del 8 de abril al 30 de junio de 2026 (ya cerrada); la del ejercicio 2026 será en 2027, con fechas aún no publicadas."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "La página de la Agencia Tributaria no recoge incompatibilidades. Se calcula sobre la cuota íntegra autonómica después de restar otras deducciones autonómicas (sin contar esta misma).",
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-dos-descendientes.html"
+  },
+  "siguiente_paso": {
+    "texto": "Al presentar la Renta del ejercicio 2026 (en 2027), marca la deducción en las deducciones autonómicas de la Comunitat Valenciana. Mira antes la guía de la Agencia Tributaria.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-dos-descendientes.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB, Renta DIRECTA o la app de la Agencia Tributaria), en el apartado de deducciones autonómicas de la Comunitat Valenciana. No se solicita aparte.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-dos-descendientes.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-dos-descendientes.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

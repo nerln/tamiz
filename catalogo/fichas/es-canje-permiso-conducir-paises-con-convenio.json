@@ -1,0 +1,117 @@
+{
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta",
+  "area": "extranjeria",
+  "id": "es-canje-permiso-conducir-paises-con-convenio",
+  "nombre": "Canje del permiso de conducir de un país con convenio por el español",
+  "organismo": "Dirección General de Tráfico (DGT)",
+  "resumen": "Si resides en España y tu permiso de conducir lo expidió uno de los 33 países con convenio de canje con España, lo cambias por el español: sin examen para moto y coche, con pruebas para camión y autobús. El permiso extranjero solo vale 6 meses desde que fijas tu residencia normal aquí.",
+  "cuantia": {
+    "texto": "Tasa de la DGT: 28,87 € (moto o coche, sin pruebas) o 94,05 € (camión o autobús, con pruebas), según la tabla de la DGT actualizada el 26/06/2026.",
+    "importe_eur": 28.87,
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "vinculos.permiso_conducir_pais",
+      "op": "in",
+      "valor": [
+        "AD",
+        "DZ",
+        "AR",
+        "BO",
+        "BR",
+        "CL",
+        "CO",
+        "KR",
+        "CR",
+        "EC",
+        "PH",
+        "GE",
+        "GT",
+        "HN",
+        "JP",
+        "MK",
+        "MA",
+        "MD",
+        "MC",
+        "NI",
+        "NZ",
+        "PA",
+        "PY",
+        "PE",
+        "GB",
+        "DO",
+        "SV",
+        "RS",
+        "CH",
+        "TN",
+        "TR",
+        "UA",
+        "UY"
+      ],
+      "texto": "Tener un permiso de conducir expedido por un país con convenio de canje con España",
+      "cita": "Tabla de países con convenio de canje de la DGT (actualizada el 26/06/2026)"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "Ser residente en España con documento en vigor",
+      "cita": "DGT, canje de permisos extracomunitarios (28/04/2025): acreditar la residencia con tarjeta de residencia en vigor",
+      "aclaracion": "La DGT pide la tarjeta de residencia en vigor; quien tiene DNI puede canjear aportando un certificado de baja consular si obtuvo la nacionalidad en su país de origen antes de residir en España."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Países con convenio (tabla de la DGT, 26/06/2026): Andorra, Argelia, Argentina, Bolivia, Brasil, Chile, Colombia, Corea del Sur, Costa Rica, Ecuador, Filipinas, Georgia, Guatemala, Honduras, Japón, Macedonia del Norte, Marruecos",
+    "Y también: Moldavia, Mónaco, Nicaragua, Nueva Zelanda, Panamá, Paraguay, Perú, Reino Unido e Irlanda del Norte, República Dominicana, El Salvador, Serbia, Suiza, Túnez, Turquía, Ucrania y Uruguay. Los permisos de la UE y del EEE se canjean por un tratado distinto, sin examen",
+    "El permiso se debe haber obtenido antes de ser residente legal en España (o antes de la firma del convenio). Con Corea del Sur, la fecha de obtención puede ser posterior a la residencia legal (DGT)",
+    "No se puede canjear un permiso que a su vez se obtuvo por canje de otro país sin convenio con España (DGT)",
+    "Pasados 6 meses desde que fijas tu residencia normal en España, tu permiso extranjero deja de valer para conducir aquí hasta que lo canjees (DGT)",
+    "Informe de aptitud psicofísica de un centro de reconocimiento de conductores autorizado, válido 90 días: hay que presentar la solicitud antes de que caduque (DGT)",
+    "Para camión o autobús (clases C y D) hay pruebas que dependen del país: por ejemplo, prueba específica y de circulación, solo de circulación o de destreza y circulación (tabla de la DGT)",
+    "Los permisos de Venezuela solo se canjean si se expidieron en tarjeta de plástico; los de Argentina necesitan un certificado de legalidad y antigüedad apostillado (DGT, 28/04/2025). Atención: la tabla de países con convenio de la DGT (26/06/2026) no incluye Venezuela, así que comprueba antes si tu caso entra"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/canjes-de-permisos-extranjeros/canje-de-permisos-de-otros-paises",
+    "nota": "No hay convocatoria ni fecha límite para pedir el canje, pero tu permiso extranjero solo vale 6 meses para conducir desde que adquieres la residencia normal en España. La DGT entrega un permiso provisional al hacer el trámite y el definitivo tarda cerca de mes y medio."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide el informe psicofísico en un centro de reconocimiento y solicita el canje en la DGT, en línea o con cita previa en la Jefatura Provincial de Tráfico, con tu tarjeta de residencia y tu permiso.",
+    "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/canjes-de-permisos-extranjeros/canje-de-permisos-de-otros-paises"
+  },
+  "ayuda_humana": [
+    "accem",
+    "cepaim"
+  ],
+  "como_pedirla": "En línea (sede de la DGT) o de forma presencial en la Jefatura Provincial de Tráfico. Hay que acreditar la residencia y la fecha de obtención del permiso, y presentar el informe psicofísico.",
+  "fuente": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/index.html",
+  "url_oficial": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/canjes-de-permisos-extranjeros/canje-de-permisos-de-otros-paises"
+}

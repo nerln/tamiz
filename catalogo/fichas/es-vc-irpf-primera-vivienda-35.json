@@ -1,0 +1,96 @@
+{
+  "id": "es-vc-irpf-primera-vivienda-35",
+  "nombre": "Deducción autonómica IRPF por primera vivienda habitual con 35 años o menos (Comunitat Valenciana)",
+  "area": "impuestos",
+  "tipo": "derecho",
+  "subtipo": "deduccion_fiscal",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana (se aplica en la declaración de la Renta, Agencia Tributaria)",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Se descuenta de la cuota autonómica del IRPF el 5 % de lo que pagas en el año por comprar tu primera vivienda habitual, sin contar los intereses, si tienes 35 años o menos.",
+  "cuantia": {
+    "texto": "5 % de las cantidades pagadas en el año por la primera adquisición de la vivienda habitual, sin los intereses (ejercicio 2025); construir o ampliar la vivienda se equipara a comprarla. Se reduce entre 27.000 € y 30.000 € de base liquidable (44.000 € y 47.000 € en conjunta).",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Tener tu residencia habitual en la Comunitat Valenciana",
+      "cita": "Art. 4.Uno.k) Ley 13/1997"
+    },
+    {
+      "campo": "calc.edad",
+      "op": "<=",
+      "valor": 35,
+      "texto": "Tener 35 años o menos",
+      "cita": "Art. 4.Uno.k) Ley 13/1997: 35 años o menos en la fecha de devengo",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La edad cuenta a 31 de diciembre del año que declaras."
+    },
+    {
+      "campo": "vivienda.regimen",
+      "op": "in",
+      "valor": [
+        "propiedad",
+        "hipoteca"
+      ],
+      "texto": "Ser propietario de tu vivienda habitual (con o sin hipoteca)",
+      "cita": "Art. 4.Uno.k) Ley 13/1997",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La deducción es por lo que pagas el año de la compra y los siguientes; si todavía vives de alquiler, mira si compras este año."
+    },
+    {
+      "campo": "calc.ingresos_individuales",
+      "op": "<=",
+      "valor": 30000,
+      "texto": "Ingresos brutos de 30.000 € o menos al año",
+      "cita": "Art. 4.Uno, Cuatro y Cinco Ley 13/1997 (manual práctico Renta 2025 de la AEAT)",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La deducción mira la base liquidable (casillas 0500 y 0510 de tu declaración), que es menor que el bruto; con más ingresos brutos puedes encajar igual. Mira tu declaración de la Renta."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que sea la primera adquisición de vivienda habitual, según los conceptos de la normativa estatal del IRPF",
+    "Que el patrimonio al final del periodo supere al del inicio en al menos el importe invertido",
+    "Pagar con tarjeta, transferencia, cheque nominativo o ingreso en cuenta de una entidad de crédito (disposición adicional decimosexta Ley 13/1997)",
+    "Suma de base liquidable general y del ahorro (casillas 0500 y 0510) de 30.000 € o menos en individual (47.000 € en conjunta)"
+  ],
+  "plazo": {
+    "tipo": "convocatoria_anual",
+    "mes_habitual": 4,
+    "verificado": false,
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html",
+    "nota": "Se aplica en la declaración de la Renta, no se pide aparte. La campaña del ejercicio 2025 fue del 8 de abril al 30 de junio de 2026 (ya cerrada); la del ejercicio 2026 será en 2027, con fechas aún no publicadas."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible, para las mismas cantidades, con la deducción autonómica por adquisición o rehabilitación de vivienda habitual con ayudas públicas. Es compatible con la deducción por adquisición de vivienda habitual por personas con discapacidad y con la de arrendamientos de vivienda con renta por debajo del precio de referencia.",
+    "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/primera-adquisicion-vivienda-habitual-igual-anos.html"
+  },
+  "siguiente_paso": {
+    "texto": "Al presentar la Renta del ejercicio 2026 (en 2027), marca la deducción en las deducciones autonómicas de la Comunitat Valenciana. Guarda la escritura y los justificantes de pago.",
+    "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/primera-adquisicion-vivienda-habitual-igual-anos.html"
+  },
+  "ayuda_humana": [
+    "ccoo-pv"
+  ],
+  "como_pedirla": "En la declaración de la Renta (Renta WEB, Renta DIRECTA o la app de la Agencia Tributaria), en el apartado de deducciones autonómicas de la Comunitat Valenciana. No se solicita aparte.",
+  "fuente": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/primera-adquisicion-vivienda-habitual-igual-anos.html",
+  "url_oficial": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/primera-adquisicion-vivienda-habitual-igual-anos.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

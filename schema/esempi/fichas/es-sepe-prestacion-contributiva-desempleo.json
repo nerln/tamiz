@@ -2,6 +2,7 @@
   "id": "es-sepe-prestacion-contributiva-desempleo",
   "nombre": "Prestación contributiva por desempleo (paro)",
   "tipo": "derecho",
+  "area": "empleo",
   "subtipo": "prestacion",
   "concesion": "reglada",
   "solicita": "persona",
@@ -44,7 +45,9 @@
     "texto": "Inscríbete como demandante de empleo en LABORA y pide la prestación en la sede electrónica del SEPE, dentro de los 15 días hábiles.",
     "url": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html"
   },
-  "ayuda_humana": ["sepe"],
+  "ayuda_humana": [
+    "sepe"
+  ],
   "como_pedirla": "Sede electrónica del SEPE con certificado digital, Cl@ve o cita previa.",
   "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",
   "url_oficial": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html",

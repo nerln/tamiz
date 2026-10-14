@@ -2,6 +2,7 @@
   "id": "es-aei-fpu-2026",
   "nombre": "FPU 2026: contratos predoctorales para formación de profesorado universitario",
   "tipo": "oportunidad",
+  "area": "investigacion",
   "subtipo": "formacion_remunerada",
   "concesion": "concurrencia_competitiva",
   "solicita": "persona",
@@ -18,7 +19,10 @@
     {
       "campo": "estudios.nivel_max",
       "op": "in",
-      "valor": ["grado", "master"],
+      "valor": [
+        "grado",
+        "master"
+      ],
       "texto": "Tener un grado o un máster y no tener el doctorado",
       "cita": "Convocatoria FPU 2026"
     },
@@ -28,7 +32,9 @@
       "valor": "predoctoral",
       "texto": "No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)",
       "cita": "Convocatoria FPU 2026",
-      "no_concluyente": ["no_cumple"],
+      "no_concluyente": [
+        "no_cumple"
+      ],
       "aclaracion": "Con un contrato predoctoral ahora depende de los meses: las bases no admiten haber tenido más de 12 meses de contrato predoctoral antes de la solicitud."
     }
   ],
@@ -58,7 +64,9 @@
     "texto": "Date de alta en el registro de la AEI y rellena el formulario electrónico; después tu universidad presenta la solicitud.",
     "url": "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026"
   },
-  "ayuda_humana": ["uv-servei-investigacio"],
+  "ayuda_humana": [
+    "uv-servei-investigacio"
+  ],
   "como_pedirla": "Formulario electrónico en la web de la AEI y presentación por la universidad con la firma de su representante.",
   "fuente": "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf",
   "url_oficial": "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026",

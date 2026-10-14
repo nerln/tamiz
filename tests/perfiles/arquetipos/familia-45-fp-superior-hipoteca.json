@@ -1,0 +1,83 @@
+{
+  "esquema": "tamiz-perfil",
+  "version": 1.1,
+  "actualizado_el": "2026-10-14",
+  "ejemplo": {
+    "nombre_ficticio": "Familia Prueba",
+    "descripcion": "Persona inventada. Madre de 45 años, española, asalariada indefinida con FP de grado superior; pareja casada, dos hijos de 12 y 9 años, vivienda con hipoteca en València.",
+    "sintetico": true
+  },
+  "persona": {
+    "anio_nacimiento": 1981,
+    "mes_nacimiento": 5,
+    "nacionalidades": [
+      "ES"
+    ],
+    "sexo": "mujer"
+  },
+  "residencia": {
+    "pais": "ES",
+    "region": "ES-VC",
+    "provincia": "ES-V",
+    "municipio": "València",
+    "municipio_ine": "46250",
+    "empadronado_desde": "2010-03"
+  },
+  "situacion_administrativa": {
+    "tipo": "nacional"
+  },
+  "empleo": {
+    "situaciones": [
+      "asalariado"
+    ],
+    "tipo_contrato": "indefinido",
+    "meses_cotizados_6_anios": 72,
+    "inscrito_demandante": false,
+    "cobra_prestacion": false
+  },
+  "estudios": {
+    "nivel_max": "fp_superior",
+    "matriculado_en": "ninguno",
+    "titulo_extranjero": false
+  },
+  "hogar": {
+    "miembros": 4,
+    "hijos": [
+      {
+        "anio_nacimiento": 2014,
+        "mes_nacimiento": 3
+      },
+      {
+        "anio_nacimiento": 2017,
+        "mes_nacimiento": 9
+      }
+    ],
+    "pareja": "matrimonio",
+    "monoparental": false,
+    "familia_numerosa": "no"
+  },
+  "vivienda": {
+    "regimen": "hipoteca"
+  },
+  "ingresos": {
+    "ejercicio": 2025,
+    "individual": {
+      "tramo": "de_25001_a_30000"
+    },
+    "hogar": {
+      "tramo": "de_40001_a_50000"
+    },
+    "patrimonio_sin_vivienda": {
+      "tramo": "de_6001_a_9000"
+    }
+  },
+  "vinculos": {
+    "paises_origen": [
+      "ES"
+    ],
+    "permiso_conducir_pais": "ES",
+    "paises_cotizacion": [],
+    "afiliaciones": []
+  },
+  "solicitudes": []
+}

@@ -3,6 +3,7 @@
   "nombre": "Prestación contributiva por desempleo (paro) entre contratos",
   "tipo": "derecho",
   "subtipo": "prestacion",
+  "area": "empleo",
   "concesion": "reglada",
   "solicita": "persona",
   "organismo": "SEPE — Servicio Público de Empleo Estatal",
@@ -21,6 +22,13 @@
       "texto": "Haber cotizado por desempleo al menos 360 días (12 meses) en los últimos 6 años",
       "cita": "Arts. 266.b y 269.1 LGSS; página SEPE «prestación contributiva»",
       "aclaracion": "Cuentan los días cotizados por la contingencia de desempleo: míralo en tu vida laboral."
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "desempleado",
+      "texto": "Estar en paro: haber perdido tu empleo por cuenta ajena",
+      "cita": "Arts. 266 y 267 LGSS; página SEPE «prestación contributiva»"
     },
     {
       "campo": "empleo.situaciones",

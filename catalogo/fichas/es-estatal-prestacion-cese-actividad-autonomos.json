@@ -1,0 +1,88 @@
+{
+  "area": "emprender",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-estatal-prestacion-cese-actividad-autonomos",
+  "nombre": "Prestación por cese de actividad de los autónomos",
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "organismo": "Seguridad Social, a través de la mutua colaboradora o el ISM",
+  "ambito": "ES",
+  "informativa": false,
+  "resumen": "Prestación mensual para autónomos que dejan su actividad por una causa que la ley reconoce (motivos económicos, fuerza mayor, entre otras) y tienen cubierto el periodo mínimo de cotización por cese de actividad. Se pide a la mutua.",
+  "cuantia": {
+    "texto": "El 70 % de la base reguladora (promedio de las bases de los 12 últimos meses), con un máximo del 175 % del IPREM (200 % o 225 % con hijos a cargo) y un mínimo del 80 % del IPREM (107 % con hijos a cargo). Dura de 4 a 24 meses según los meses cotizados por cese de actividad en los 48 anteriores (art. 338-339 LGSS).",
+    "periodicidad": "mensual",
+    "duracion_meses_max": 24
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Vivir en España"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "empleo.situaciones",
+          "op": "contains",
+          "valor": "autonomo",
+          "texto": "Ser autónomo/a",
+          "cita": "Art. 327 y 330.1.a) LGSS: estar afiliado y en alta en el RETA",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Solo si cesas o has cesado la actividad por motivos económicos, técnicos, de fuerza mayor u otros de la ley, y tienes cotizado el cese: compruébalo en tu mutua."
+        },
+        {
+          "campo": "empleo.situaciones",
+          "op": "contains",
+          "valor": "desempleado",
+          "texto": "Haber dejado hace poco la actividad por cuenta propia",
+          "cita": "Art. 327 y 330.1.a) LGSS: estar afiliado y en alta en el RETA",
+          "no_concluyente": [
+            "cumple"
+          ],
+          "aclaracion": "Si acabas de cesar ya no figuras como autónomo, pero puedes pedirla hasta el último día del mes siguiente al cese."
+        }
+      ],
+      "texto": "Ser autónomo/a que cesa la actividad, o haberla dejado hace poco",
+      "cita": "Art. 327 y 330.1.a) LGSS: estar afiliado y en alta en el RETA"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar en situación legal de cese de actividad: motivos económicos, técnicos, productivos u organizativos (por ejemplo, pérdidas de más del 10 % de los ingresos en un año completo), fuerza mayor, pérdida de licencia, violencia de género, divorcio u otras causas del art. 331 LGSS",
+    "Tener cubierto el periodo mínimo de cotización por cese de actividad: al menos 12 meses, dentro de los 24 anteriores al cese (art. 330.1.b y 338 LGSS)",
+    "Estar al corriente en el pago de las cuotas, y en cese definitivo no haber alcanzado la edad ordinaria de jubilación (art. 330.1.d y e)",
+    "Suscribir el acuerdo de actividad y mostrar disponibilidad para volver a trabajar (art. 330.1.c)",
+    "Si tienes trabajadores a tu cargo, cumplir antes las obligaciones de la legislación laboral (art. 330.2)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724",
+    "nota": "El reconocimiento de la situación legal de cese se pide hasta el último día del mes siguiente al que se produjo el cese (art. 337.4 LGSS); hay plazos distintos en algunos supuestos."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "La prestación se suspende mientras haces un trabajo por cuenta propia o ajena, salvo en los supuestos de reducción de jornada previstos en el art. 331.1.a).4.º y 5.º y en el cese parcial por fuerza mayor (art. 340.1.c y 342 LGSS).",
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724"
+  },
+  "siguiente_paso": {
+    "texto": "Pide el reconocimiento a tu mutua colaboradora con la Seguridad Social, antes del último día del mes siguiente al cese.",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724"
+  },
+  "como_pedirla": "A la mutua colaboradora con la Seguridad Social con la que tengas la cobertura de contingencias profesionales (o la entidad gestora).",
+  "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724",
+  "url_oficial": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

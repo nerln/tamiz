@@ -1,0 +1,89 @@
+{
+  "solicita": "persona",
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "id": "es-vc-beca-manuela-solis",
+  "nombre": "Beca Manuela Solís (estudios universitarios, Generalitat Valenciana)",
+  "tipo": "oportunidad",
+  "subtipo": "beca",
+  "concesion": "concurrencia_competitiva",
+  "organismo": "Conselleria de Educación, Cultura y Universidades",
+  "ambito": "ES-VC",
+  "area": "estudios",
+  "informativa": false,
+  "resumen": "Beca para estudiantes de grado, máster habilitante o enseñanzas artísticas superiores presenciales, empadronados en la Comunitat Valenciana, con 3.500 € fijos y un extra por nota media.",
+  "cuantia": {
+    "texto": "3.500 € fijos; más 1.000 € con nota media de 9,00 a 9,49 o 2.500 € con 9,50 o más (hasta 6.000 €). Curso 2025-2026.",
+    "importe_eur": 3500,
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Estar empadronado en un municipio de la Comunitat Valenciana",
+      "cita": "Convocatoria 2025-2026 (DOGV 10237)"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "not_in",
+      "valor": [
+        "estancia_estudios"
+      ],
+      "texto": "Ser español, ciudadano de la UE o extranjero con residencia que no sea solo de estancia por estudios",
+      "cita": "Convocatoria 2025-2026 (DOGV 10237)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La convocatoria pide nacionalidad española o de la UE; los extranjeros no comunitarios se rigen por la normativa de extranjería. Comprueba tu caso en la convocatoria."
+    },
+    {
+      "campo": "estudios.matriculado_en",
+      "op": "not_in",
+      "valor": [
+        "ninguno",
+        "secundaria",
+        "fp",
+        "doctorado",
+        "idiomas"
+      ],
+      "texto": "Estar matriculado en un grado, en un máster que habilite para una profesión regulada o en un grado de enseñanzas artísticas superiores",
+      "cita": "Convocatoria 2025-2026 (DOGV 10237), resuelvo segundo: grado, máster habilitante o grado de enseñanzas artísticas superiores",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Solo valen el grado, los másteres habilitantes presenciales y el grado de enseñanzas artísticas superiores; los másteres no habilitantes quedan fuera. Si estudias enseñanzas artísticas o no sabes qué máster haces, comprueba tu caso en la convocatoria."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estudios presenciales en el curso de la convocatoria, en una universidad del Sistema Universitario Valenciano o en enseñanzas artísticas superiores",
+    "No tener ya un título del mismo nivel o superior ni que solo te falte un examen de idioma para titularte",
+    "Renta familiar de 2024 no superior a 7.560 € (1 miembro), 11.340 € (2), 15.910 € (3), 20.691 € (4), 25.462 € (5), 29.575 € (6), 34.133 € (7), 37.885 € (8) (resuelvo noveno); se calcula con bases imponibles menos cuota, no con el bruto. Hay también umbrales de patrimonio (resuelvo décimo)",
+    "Nacionalidad española o de la UE (o familiar) a 31/12/2024, según la convocatoria 2025-2026",
+    "Si el dinero no alcanza para todas las solicitudes, se ordenan por nota media"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2025-11-14",
+    "fin": "2025-12-15",
+    "mes_habitual": 11,
+    "verificado": false,
+    "nota": "Última convocatoria leída (curso 2025-2026): solicitud del 14/11 al 15/12/2025, ya cerrada. La del curso 2026-2027 no está publicada; la anterior se abrió en noviembre, orientativo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Mira la ficha de la sede y las bases de la próxima convocatoria; se pide solo por vía telemática.",
+    "url": "https://sede.gva.es/detall-tramit?id_proc=G95885"
+  },
+  "como_pedirla": "Solo por vía telemática en la sede electrónica de la Generalitat; la presentación es gratuita.",
+  "fuente": "https://sede.gva.es/detall-tramit?id_proc=G95885",
+  "url_oficial": "https://sede.gva.es/detall-tramit?id_proc=G95885",
+  "confianza": "alta"
+}

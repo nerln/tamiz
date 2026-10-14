@@ -48,6 +48,17 @@ questo file.
 | catalogo | — | `redactado_con_ia`, `revision_humana` obbligatori; `sitio` (lo scrive `construir.py`) |
 | motore | `evaluar(perfil, ficha, grupos_paises, hoy)` | `evaluar(catalogo, perfil, hoy)`, sezione «Contrato de evaluar()» |
 
+**Aggiunte dell'ondata universale (14/10/2026, decisione U2 del coordinatore).** Restano nella
+versione 1.1 (nessun convertitore: una scheda si aggiorna aggiungendo `area`):
+
+| dove | prima | dopo |
+|---|---|---|
+| scheda | — | `area` (obbligatorio, enum di 12 aree, §4.2) |
+| scheda | — | `informativa` (bool, facoltativo, default `false`): la scheda non riceve un esito (§4.2) |
+| scheda | `requisitos: []` ammesso («per chiunque») | ammesso **solo** con `informativa: true`; `validar.py` rifiuta il resto (§7) e il motore lo tratta come regola non valida (§5.6) |
+| plazo | — | `mes_habitual` (intero 1-12, facoltativo, §4.6) |
+| motore | ogni scheda in `fichas` | le informative vanno in `informativas: [{id, area}]`; ogni voce di `fichas` porta `area` |
+
 ---
 
 ## 1. I principi che decidono tutto il resto
@@ -534,13 +545,15 @@ contro `#/$defs/ficha`.
 | `nombre` | sì | testo | nome ufficiale o il più vicino |
 | `tipo` | sì | `derecho` \| `oportunidad` | §4.5 |
 | `subtipo` | sì | enum | `beca`, `subvencion`, `prestacion`, `deduccion_fiscal`, `descuento`, `premio`, `empleo`, `formacion_remunerada`, `tramite_ventaja`, `servicio_gratuito` |
+| `area` | sì | enum | l'area tematica, per raggruppare e filtrare i risultati: `familia`, `vivienda`, `empleo`, `estudios`, `investigacion`, `impuestos`, `salud_cuidados`, `extranjeria`, `emprender`, `jovenes_ocio`, `servicios_sociales`, `empleo_publico` (in quest'ordine l'interfaccia le mostra). Una scheda sta in una sola area: quella di chi la cerca (il CAPI dell'IMV è `familia`, l'IMV è `servicios_sociales`, il bono social eléctrico è `vivienda`) |
+| `informativa` | no | booleano, default `false` | `true` se la scheda dipende da una situazione che il sito **non chiede** (discapacidad, dependencia, salute, violencia de género, situazioni giudiziarie: le categorie dell'art. 9 GDPR non si chiedono mai) o non ha una regola valutabile sul gruppo a cui si rivolge. Non riceve un esito: il motore la mette in `informativas` e l'interfaccia la mostra in «Otras ayudas que conviene conocer», per area. Le sue `requisitos` non si valutano (di solito `[]`) |
 | `concesion` | sì | enum | `reglada`, `orden_de_llegada`, `concurrencia_competitiva`, `no_aplica`, `desconocida` (§4.5) |
 | `solicita` | no | enum | chi presenta la domanda: `persona` (default, anche se il campo manca), `empresa`, `universidad`, `director_tesis`, `otro`. Se non è `persona`, l'interfaccia lo dice («La presenta la empresa») |
 | `organismo` | sì | testo | chi la concede |
 | `ambito` | sì | `EU`, ISO 3166-1 (`ES`) o ISO 3166-2 **di primo livello** (`ES-VC`) | territorio dell'organismo. Le ayudas di una provincia o di un comune hanno come `ambito` la loro comunità autonoma, e la provincia o il comune vanno in una regola (`residencia.provincia`, `residencia.municipio_ine`). **Non** genera regole da solo: serve a filtrare (§6.4) |
 | `resumen` | sì | testo ≤ 400 | una o due frasi semplici |
 | `cuantia` | sì | `{texto, importe_eur?, periodicidad?, duracion_meses_max?}` | `texto` è quello che si mostra; il resto serve a ordinare. `periodicidad`: `unica`, `mensual`, `anual`, `variable`, `no_monetaria` |
-| `requisitos` | sì | lista di nodi (§4.3) | tutti devono valere (AND). `[]` è ammesso solo se la scheda è davvero per chiunque |
+| `requisitos` | sì | lista di nodi (§4.3) | tutti devono valere (AND). `[]` è ammesso **solo** con `informativa: true`: una scheda senza regole darebbe «Parece que encajas» a chiunque. Una scheda valutabile ha almeno una regola sul gruppo a cui si rivolge (età, studi, situazione lavorativa…), non solo sul territorio |
 | `requisitos_no_evaluables` | sì | lista di testi | requisiti che il motore non sa controllare; si mostrano sempre sotto «Además, comprueba en las bases:» |
 | `plazo` | sì | §4.6 | |
 | `compatibilidad` | sì | §4.7 | |
@@ -702,6 +715,11 @@ vincoli.
   nell'ICS** (§6.6).
 - `fuente`: URL del testo ufficiale da cui vengono le date. **Obbligatorio se `verificado` è
   `true`** (lo schema lo impone), anche quando coincide con `ficha.fuente`.
+- `mes_habitual` (facoltativo, intero 1-12): per le convocatorie annuali, il mese in cui di
+  solito si aprono, letto sulle convocatorie degli anni precedenti (non su notizie). Ha senso
+  con `convocatoria_anual`, `cerrado` e `fechas`; con `abierto_todo_el_ano` `validar.py` dà un
+  avviso. L'interfaccia lo mostra come «Suele abrirse en {mes}» con la nota «orientativo»; non
+  entra nell'ICS, non cambia `apertura` né l'esito.
 - Il `plazo` **non cambia mai l'esito**: una scheda chiusa che «encaja» resta «Parece que
   encajas», con la riga del plazo che dice che è chiusa.
 
@@ -809,7 +827,9 @@ gruppo che non esiste rende la regola non valida (§5.6).
 
 Ordine: `no_cumple` < `falta_dato` < `cumple`.
 
-- `requisitos` (la scheda) e `all_of`: il **minimo** dei figli. Lista vuota → `cumple`.
+- `requisitos` (la scheda) e `all_of`: il **minimo** dei figli. Una lista vuota non dà mai
+  `cumple`: `requisitos: []` in una scheda non informativa vale `falta_dato` con motivo
+  `regla_no_valida` (§5.6), e un `all_of` vuoto è un gruppo non valido.
 - `any_of`: il **massimo** dei figli.
 - `no_concluyente` si applica alla regola **prima** di combinarla.
 - Si valutano **tutti** i nodi (niente corto circuito): servono tutti i perché.
@@ -860,7 +880,9 @@ Con motivo `no_concluyente`, `dato_no_valido` (domanda = il campo da correggere)
   al sito: la build si ferma (§7). Se arriva lo stesso, la regola vale `falta_dato` con
   motivo `regla_no_valida`, l'interfaccia scrive «No hemos podido comprobar este requisito:
   léelo en la fuente», e la console registra l'errore. Mai `no_cumple`, mai nascondere la
-  scheda.
+  scheda. Lo stesso vale per `requisitos` che non è una lista, e per `requisitos: []` in una
+  scheda che non è `informativa`: la scheda ha una riga sola, «Requisitos de esta ficha»,
+  `falta_dato` con motivo `regla_no_valida`, mai `encaja`.
 
 ---
 
@@ -888,21 +910,33 @@ La funzione è **pura e sincrona**: niente DOM, niente rete, niente `Date.now()`
 `console.log` dentro; per dati strani del profilo o del catalogo non lancia eccezioni (il
 problema diventa `falta_dato`, §5.6). Stesso input, stessa uscita, anche nell'ordine.
 
+Il modulo esporta anche `AREAS`: l'elenco congelato delle 12 aree di §4.2 nell'ordine in cui
+l'interfaccia le mostra (lo stesso dell'enum dello schema; una prova li confronta).
+
 ### Uscita
 
 ```json
 {
   "hoy": "2026-10-14",
-  "fichas": [ { "id": "…", "tipo": "…", "estado": "…", "apertura": "…", "por_revisar": false,
-                "proximo_plazo": null, "razones": [], "faltan": [], "requisitos": [] } ],
+  "fichas": [ { "id": "…", "tipo": "…", "area": "…", "estado": "…", "apertura": "…",
+                "por_revisar": false, "proximo_plazo": null, "razones": [], "faltan": [],
+                "requisitos": [] } ],
+  "informativas": [ { "id": "…", "area": "…" } ],
   "ocultas_por_territorio": 0,
   "perfil_calculado": { "calc.edad": [28, 28], "…": null }
 }
 ```
 
 - `hoy`: l'argomento, ricopiato.
-- `fichas`: una voce per ogni scheda che passa il filtro di §6.4, **già in ordine** (sotto).
-- `ocultas_por_territorio`: quante schede il filtro di §6.4 ha tolto. Se è > 0 l'interfaccia
+- `fichas`: una voce per ogni scheda **non informativa** che passa il filtro di §6.4, **già in
+  ordine** (sotto).
+- `informativas`: una voce `{id, area}` per ogni scheda con `informativa: true` che passa il
+  filtro di §6.4. **Nessun esito**: niente `estado`, `razones`, `faltan` né `requisitos`, e le
+  sue regole non si leggono. Ordine: per `area` nell'ordine di §4.2 (un'area assente o
+  sconosciuta vale `null` e va in fondo), poi `nombre` (`localeCompare(…, "es")`), poi `id`.
+  L'interfaccia le mostra in «Otras ayudas que conviene conocer», raggruppate per area, con
+  `nombre`, `resumen`, `siguiente_paso` e `ayuda_humana` presi da `catalogo.fichas`.
+- `ocultas_por_territorio`: quante schede il filtro di §6.4 ha tolto (informative comprese). Se è > 0 l'interfaccia
   scrive «Hay N fichas de otros territorios que no se muestran».
 - `perfil_calculado`: **tutte e tredici** le chiavi `calc.*` della tabella di §4.3, in
   quell'ordine. Valore `[lo, hi]` (numeri; `hi` è `null` quando non c'è limite superiore, per
@@ -915,11 +949,12 @@ Ogni voce di `fichas`:
 |---|---|---|
 | `id` | stringa | l'`id` della scheda. Tutto il resto da mostrare (`nombre`, `cuantia`, `plazo`, `siguiente_paso`, `ayuda_humana`, `fuente`, `leido_por_agente`, `verificado_el`, `requisitos_no_evaluables`, `compatibilidad`, `solicita`) l'interfaccia lo prende da `catalogo.fichas` con questo `id` |
 | `tipo` | `"derecho"` \| `"oportunidad"` | copiato dalla scheda: gruppi «Derechos» e «Oportunidades» |
+| `area` | stringa di §4.2 o `null` | copiata dalla scheda (`null` se manca o non è fra le 12): per raggruppare e filtrare i risultati per area. Non cambia né l'esito né l'ordine |
 | `estado` | `"encaja"` \| `"falta_dato"` \| `"no_encaja"` | l'esito della scheda (§5.4: `cumple` → `encaja`, `no_cumple` → `no_encaja`). A schermo: «Parece que encajas», «Te falta un dato», «No encaja» |
 | `apertura` | `"abierta"` \| `"cerrada"` \| `"por_abrir"` \| `"desconocida"` | dal `plazo` e da `hoy` (tabella sotto). **Non cambia mai `estado`** |
 | `por_revisar` | booleano | `hoy > revisar_antes_de` (§6.5) |
 | `proximo_plazo` | `"AAAA-MM-DD"` o `null` | `plazo.fin` se `plazo.tipo == "fechas"` e `hoy ≤ plazo.fin`; altrimenti `null` |
-| `razones` | lista di testi | i `texto` dei requisiti di **primo livello** che decidono l'esito, nell'ordine della scheda: con `encaja` tutti; con `falta_dato` quelli `falta_dato`; con `no_encaja` quelli `no_cumple`. `[]` se la scheda non ha requisiti |
+| `razones` | lista di testi | i `texto` dei requisiti di **primo livello** che decidono l'esito, nell'ordine della scheda: con `encaja` tutti; con `falta_dato` quelli `falta_dato`; con `no_encaja` quelli `no_cumple`. Mai vuota: una scheda non informativa senza requisiti ha la riga «Requisitos de esta ficha» (§5.6) |
 | `faltan` | lista di percorsi del profilo | le domande che possono cambiare l'esito (§5.5), senza ripetizioni, nell'ordine dei requisiti. È **sempre `[]` se `estado` non è `falta_dato`**. Può essere `[]` anche con `falta_dato`: succede quando il dato c'è ma non basta (`no_concluyente`, `depende_del_dia`, `regla_no_valida`); allora l'interfaccia non fa domande, mostra l'`aclaracion` e rinvia alla `fuente` e all'aiuto umano |
 | `requisitos` | lista | un elemento per ogni requisito di **primo livello** della scheda, nello stesso ordine (un gruppo `any_of`/`all_of` è una riga sola, col suo `texto`) |
 
@@ -961,6 +996,30 @@ i `calc.*`) più quelli che §5.5 chiede al posto dei `calc.*`:
 
 Se lo schema aggiunge un campo a §4.3, questa lista cambia con lui (e con la versione).
 
+### Schede informative: un esempio
+
+`catalogo` = le tre schede d'esempio (sotto, «Tre esempi») più due schede informative di prova
+di `tests/fichas/`: `es-vc-prueba-informativa-cuidados` (`area: salud_cuidados`, `ambito`
+`ES-VC`, `requisitos: []`) e `es-prueba-informativa-familia` (`area: familia`, `ambito` `ES`, una
+regola su `calc.num_hijos` che il motore **non legge**, `plazo.mes_habitual: 3`).
+`evaluar(catalogo, perfilLucia, "2026-10-14")` dà le stesse tre voci di `fichas`
+dell'Esempio 1 e:
+
+```json
+{
+  "informativas": [
+    { "id": "es-prueba-informativa-familia", "area": "familia" },
+    { "id": "es-vc-prueba-informativa-cuidados", "area": "salud_cuidados" }
+  ],
+  "ocultas_por_territorio": 0
+}
+```
+
+`familia` viene prima di `salud_cuidados` per l'ordine delle aree di §4.2, non per l'ordine
+alfabetico. Lucía non ha figli, ma la scheda di famiglia non diventa «No encaja»: non ha esito.
+Chi vive in Francia non vede nessuna delle due (filtro di §6.4) e le conta in
+`ocultas_por_territorio`.
+
 ### `apertura`
 
 | `plazo.tipo` | `apertura` |
@@ -999,6 +1058,14 @@ Per le tre sezioni dei risultati l'interfaccia filtra l'array senza cambiarne l'
 `es-vc-bono-alquiler-joven-2026` (oportunidad, `cerrado`); paro e Bono hanno
 `revisar_antes_de` 2027-01-12. Gli esempi sono anche test del motore.
 
+**Debito aperto (L20).** Dalla versione 1.1 `area` è obbligatoria, ma i tre file di
+`schema/esempi/fichas/` non l'hanno ancora: finché un lotto non la aggiunge (`empleo`,
+`investigacion`, `vivienda`, come nelle copie di `tests/fichas/`), `construir.py --ejemplo` e
+`validar.py schema/esempi/fichas` sono rossi e il catalogo segnaposto non si può costruire. Gli
+esempi qui sotto mostrano l'`area` che quelle schede avranno; il test li riproduce prendendo
+l'area dalle copie in `tests/fichas/` (rattoppo dichiarato in `tests/motor.test.mjs`) e una prova
+`todo` in `tests/validar.test.mjs` resta fallita finché il debito non si chiude.
+
 **Esempio 1 — Lucía oggi.** `evaluar(catalogo, perfilLucia, "2026-10-14")` con
 `schema/esempi/perfil-lucia.json`:
 
@@ -1006,7 +1073,7 @@ Per le tre sezioni dei risultati l'interfaccia filtra l'array senza cambiarne l'
 {
   "hoy": "2026-10-14",
   "fichas": [
-    { "id": "es-sepe-prestacion-contributiva-desempleo", "tipo": "derecho",
+    { "id": "es-sepe-prestacion-contributiva-desempleo", "tipo": "derecho", "area": "empleo",
       "estado": "no_encaja", "apertura": "abierta", "por_revisar": false, "proximo_plazo": null,
       "razones": ["Estar sin trabajo (en situación legal de desempleo)"],
       "faltan": [],
@@ -1014,7 +1081,7 @@ Per le tre sezioni dei risultati l'interfaccia filtra l'array senza cambiarne l'
         { "texto": "Estar sin trabajo (en situación legal de desempleo)", "resultado": "no_cumple", "motivo": null, "aclaracion": null, "faltan": [] },
         { "texto": "Haber cotizado por desempleo al menos 360 días en los últimos 6 años", "resultado": "cumple", "motivo": null, "aclaracion": null, "faltan": [] }
       ] },
-    { "id": "es-aei-fpu-2026", "tipo": "oportunidad",
+    { "id": "es-aei-fpu-2026", "tipo": "oportunidad", "area": "investigacion",
       "estado": "falta_dato", "apertura": "por_abrir", "por_revisar": false, "proximo_plazo": "2026-11-12",
       "razones": ["No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)"],
       "faltan": [],
@@ -1022,7 +1089,7 @@ Per le tre sezioni dei risultati l'interfaccia filtra l'array senza cambiarne l'
         { "texto": "Tener un grado o un máster y no tener el doctorado", "resultado": "cumple", "motivo": null, "aclaracion": null, "faltan": [] },
         { "texto": "No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)", "resultado": "falta_dato", "motivo": "no_concluyente", "aclaracion": "Con un contrato predoctoral ahora depende de los meses: las bases no admiten haber tenido más de 12 meses de contrato predoctoral antes de la solicitud.", "faltan": [] }
       ] },
-    { "id": "es-vc-bono-alquiler-joven-2026", "tipo": "oportunidad",
+    { "id": "es-vc-bono-alquiler-joven-2026", "tipo": "oportunidad", "area": "vivienda",
       "estado": "encaja", "apertura": "cerrada", "por_revisar": false, "proximo_plazo": null,
       "razones": ["Tener 35 años o menos al pedirla",
                   "Tener la nacionalidad española o de la UE, o estancia o residencia legal en España",
@@ -1036,6 +1103,7 @@ Per le tre sezioni dei risultati l'interfaccia filtra l'array senza cambiarne l'
         { "texto": "Vivir de alquiler (vivienda o habitación) en tu residencia habitual", "resultado": "cumple", "motivo": null, "aclaracion": null, "faltan": [] }
       ] }
   ],
+  "informativas": [],
   "ocultas_por_territorio": 0,
   "perfil_calculado": {
     "calc.edad": [28, 28], "calc.anios_residencia_legal": [3, 3], "calc.meses_residencia_legal": [36, 37],
@@ -1064,7 +1132,7 @@ già goduti sta in `requisitos_no_evaluables`, e per chi ha un altro contratto l
 {
   "hoy": "2026-10-14",
   "fichas": [
-    { "id": "es-sepe-prestacion-contributiva-desempleo", "tipo": "derecho",
+    { "id": "es-sepe-prestacion-contributiva-desempleo", "tipo": "derecho", "area": "empleo",
       "estado": "falta_dato", "apertura": "abierta", "por_revisar": false, "proximo_plazo": null,
       "razones": ["Estar sin trabajo (en situación legal de desempleo)",
                   "Haber cotizado por desempleo al menos 360 días en los últimos 6 años"],
@@ -1073,7 +1141,7 @@ già goduti sta in `requisitos_no_evaluables`, e per chi ha un altro contratto l
         { "texto": "Estar sin trabajo (en situación legal de desempleo)", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["empleo.situaciones"] },
         { "texto": "Haber cotizado por desempleo al menos 360 días en los últimos 6 años", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["empleo.meses_cotizados_6_anios"] }
       ] },
-    { "id": "es-aei-fpu-2026", "tipo": "oportunidad",
+    { "id": "es-aei-fpu-2026", "tipo": "oportunidad", "area": "investigacion",
       "estado": "falta_dato", "apertura": "por_abrir", "por_revisar": false, "proximo_plazo": "2026-11-12",
       "razones": ["Tener un grado o un máster y no tener el doctorado",
                   "No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)"],
@@ -1082,7 +1150,7 @@ già goduti sta in `requisitos_no_evaluables`, e per chi ha un altro contratto l
         { "texto": "Tener un grado o un máster y no tener el doctorado", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["estudios.nivel_max"] },
         { "texto": "No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["empleo.tipo_contrato"] }
       ] },
-    { "id": "es-vc-bono-alquiler-joven-2026", "tipo": "oportunidad",
+    { "id": "es-vc-bono-alquiler-joven-2026", "tipo": "oportunidad", "area": "vivienda",
       "estado": "falta_dato", "apertura": "cerrada", "por_revisar": false, "proximo_plazo": null,
       "razones": ["Tener 35 años o menos al pedirla",
                   "Tener la nacionalidad española o de la UE, o estancia o residencia legal en España",
@@ -1096,6 +1164,7 @@ già goduti sta in `requisitos_no_evaluables`, e per chi ha un altro contratto l
         { "texto": "Vivir de alquiler (vivienda o habitación) en tu residencia habitual", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["vivienda.regimen"] }
       ] }
   ],
+  "informativas": [],
   "ocultas_por_territorio": 0,
   "perfil_calculado": {
     "calc.edad": null, "calc.anios_residencia_legal": null, "calc.meses_residencia_legal": null,
@@ -1119,7 +1188,7 @@ sconosciuto) è `[35, 36]`: per «35 años o menos» serve il mese.
 {
   "hoy": "2027-01-15",
   "fichas": [
-    { "id": "es-sepe-prestacion-contributiva-desempleo", "tipo": "derecho",
+    { "id": "es-sepe-prestacion-contributiva-desempleo", "tipo": "derecho", "area": "empleo",
       "estado": "no_encaja", "apertura": "abierta", "por_revisar": true, "proximo_plazo": null,
       "razones": ["Estar sin trabajo (en situación legal de desempleo)"],
       "faltan": [],
@@ -1127,7 +1196,7 @@ sconosciuto) è `[35, 36]`: per «35 años o menos» serve il mese.
         { "texto": "Estar sin trabajo (en situación legal de desempleo)", "resultado": "no_cumple", "motivo": null, "aclaracion": null, "faltan": [] },
         { "texto": "Haber cotizado por desempleo al menos 360 días en los últimos 6 años", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["empleo.meses_cotizados_6_anios"] }
       ] },
-    { "id": "es-vc-bono-alquiler-joven-2026", "tipo": "oportunidad",
+    { "id": "es-vc-bono-alquiler-joven-2026", "tipo": "oportunidad", "area": "vivienda",
       "estado": "falta_dato", "apertura": "cerrada", "por_revisar": true, "proximo_plazo": null,
       "razones": ["Tener 35 años o menos al pedirla"],
       "faltan": ["persona.mes_nacimiento"],
@@ -1137,7 +1206,7 @@ sconosciuto) è `[35, 36]`: per «35 años o menos» serve il mese.
         { "texto": "Vivir en la Comunitat Valenciana", "resultado": "cumple", "motivo": null, "aclaracion": null, "faltan": [] },
         { "texto": "Vivir de alquiler (vivienda o habitación) en tu residencia habitual", "resultado": "cumple", "motivo": null, "aclaracion": null, "faltan": [] }
       ] },
-    { "id": "es-aei-fpu-2026", "tipo": "oportunidad",
+    { "id": "es-aei-fpu-2026", "tipo": "oportunidad", "area": "investigacion",
       "estado": "no_encaja", "apertura": "cerrada", "por_revisar": true, "proximo_plazo": null,
       "razones": ["Tener un grado o un máster y no tener el doctorado"],
       "faltan": [],
@@ -1146,6 +1215,7 @@ sconosciuto) è `[35, 36]`: per «35 años o menos» serve il mese.
         { "texto": "No tener ahora un contrato predoctoral (si lo tienes, cuentan los meses que llevas)", "resultado": "falta_dato", "motivo": "falta", "aclaracion": null, "faltan": ["empleo.tipo_contrato"] }
       ] }
   ],
+  "informativas": [],
   "ocultas_por_territorio": 0,
   "perfil_calculado": {
     "calc.edad": [35, 36], "calc.anios_residencia_legal": [5, 5], "calc.meses_residencia_legal": [66, 67],
@@ -1190,6 +1260,9 @@ quella.
   regola `no_concluyente` mostra `aclaracion` e rimanda alla `fuente` e all'aiuto umano.
 - «No encaja»: solo le regole `no_cumple`, con il loro `texto` («Tener 35 años o menos —
   No, según lo que has dicho»).
+- Le schede `informativas` (nessun esito): in fondo, sotto «Otras ayudas que conviene
+  conocer», raggruppate per area, con `resumen`, `siguiente_paso` e `ayuda_humana`; mai
+  un'etichetta di esito.
 
 ### 6.3 Ordine
 
@@ -1279,6 +1352,10 @@ due profili d'esempio). Riconosce dal contenuto catalogo, profilo, scheda sola, 
    del catalogo), non il controllo.
 9. Avviso (non blocca): scheda con `ambito` diverso da `EU` senza nessuna regola su
    `residencia.*`.
+10. `requisitos: []` solo con `informativa: true` (errore: una scheda valutabile senza regole
+    darebbe «encaja» a chiunque). Avvisi (non bloccano): scheda informativa con regole (il
+    motore non le legge); `plazo.mes_habitual` con `abierto_todo_el_ano`. `area` obbligatoria e
+    nell'enum, `mes_habitual` intero 1-12: li controlla lo schema (punto 1).
 
 **`scripts/construir.py [--ejemplo] [--hoy AAAA-MM-DD] [--estricto]`** fonde
 `catalogo/fichas/*.json` (una scheda per file, un oggetto JSON come lo vuole `validar.py`; un
@@ -1294,7 +1371,9 @@ tutte le schede di `fichas/` devono entrare (prove di L5, rilascio). Poi chiama 
 due profili d'esempio: solo se è verde scrive `web/data/catalogo.json` e copia
 `perfil-lucia.json` e `perfil-rodrigo.json` in `web/data/ejemplos/`; se è rosso non tocca
 niente ed esce con 1. `--ejemplo` prende schede, `ayuda_humana` e glosario da
-`schema/esempi/` (il catalogo segnaposto per l'interfaccia).
+`schema/esempi/` (il catalogo segnaposto per l'interfaccia). Le schede si copiano così come
+sono: una scheda `informativa` entra nel catalogo con il suo flag, e il messaggio finale dice
+quante sono.
 
 ---
 

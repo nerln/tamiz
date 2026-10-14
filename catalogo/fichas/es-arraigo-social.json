@@ -1,0 +1,132 @@
+{
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta",
+  "area": "extranjeria",
+  "id": "es-arraigo-social",
+  "nombre": "Autorización de residencia por arraigo social (Hoja 28)",
+  "organismo": "Ministerio de Inclusión, Seguridad Social y Migraciones - Oficinas de Extranjería",
+  "resumen": "Permiso de residencia de un año para quien lleva al menos 2 años en España de forma continuada y tiene familia con autorización de residencia (cónyuge, pareja registrada o familiares de primer grado en línea directa) con medios económicos suficientes, o un informe favorable de integración social de la Comunidad Autónoma o del Ayuntamiento.",
+  "cuantia": {
+    "texto": "Un año de autorización de residencia temporal (art. 125.2 y 132 del Reglamento), prorrogable. La tasa es el modelo 790 código 052, epígrafe 2.3.1; el importe no está comprobado aquí.",
+    "periodicidad": "no_monetaria",
+    "duracion_meses_max": 12
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Vivir en España",
+      "cita": "Art. 126.a Reglamento (RD 1155/2024)"
+    },
+    {
+      "campo": "persona.nacionalidades",
+      "op": "contains_none",
+      "valor": [
+        "AT",
+        "BE",
+        "BG",
+        "CY",
+        "CZ",
+        "DE",
+        "DK",
+        "EE",
+        "ES",
+        "FI",
+        "FR",
+        "GR",
+        "HR",
+        "HU",
+        "IE",
+        "IT",
+        "LT",
+        "LU",
+        "LV",
+        "MT",
+        "NL",
+        "PL",
+        "PT",
+        "RO",
+        "SE",
+        "SI",
+        "SK",
+        "IS",
+        "LI",
+        "NO",
+        "CH"
+      ],
+      "texto": "No tener la nacionalidad de un país de la UE, del EEE o de Suiza",
+      "cita": "Hoja informativa del Ministerio de Inclusión: no ser ciudadano de la UE/EEE/Suiza ni familiar al que se aplique el régimen de la UE"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "not_in",
+      "valor": [
+        "nacional",
+        "ciudadano_ue",
+        "ciudadano_ue_permanente",
+        "ciudadano_ue_sin_registro",
+        "familiar_ue",
+        "familiar_ue_permanente",
+        "residencia_temporal",
+        "residencia_larga_duracion",
+        "residencia_larga_duracion_ue",
+        "estancia_estudios",
+        "proteccion_internacional_solicitante",
+        "proteccion_internacional",
+        "proteccion_temporal",
+        "residencia_art50_tue"
+      ],
+      "texto": "No tener ahora una autorización de estancia o residencia ni haber pedido protección internacional",
+      "cita": "Art. 126.a y 126.h Reglamento (RD 1155/2024)",
+      "aclaracion": "Si no te reconoces en ninguna opción de documento, déjalo en blanco: la ficha te dirá que falta un dato. Una ONG de Ayuda humana puede orientarte."
+    },
+    {
+      "campo": "calc.anios_empadronado",
+      "op": ">=",
+      "valor": 2,
+      "texto": "Llevar al menos 2 años seguidos en España (el empadronamiento sirve de pista)",
+      "cita": "Art. 126.b Reglamento (RD 1155/2024)",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "La ley pide 2 años de permanencia continuada, que se puede probar con otros documentos públicos además del padrón (hospitalización, consulta médica pública, documentos municipales o estatales). Las ausencias no pueden pasar de 90 días (Hoja informativa)."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Vínculos familiares con personas extranjeras con autorización de residencia (cónyuge o pareja registrada, o familiares de primer grado en línea directa) y medios económicos suficientes, de al menos el 100 % del IPREM (art. 127.c Reglamento). La Hoja informativa aclara que se acredita el 100 % por la persona familiar con residencia legal y otro 100 % por quien pide el arraigo",
+    "Si no hay esos vínculos familiares, informe favorable de integración social de la Comunidad Autónoma o, si ella lo ha establecido, del Ayuntamiento donde vives; se emite en un mes desde que lo pides y, si no llega a tiempo, se puede probar por cualquier medio (art. 127.c Reglamento)",
+    "Las ausencias de España durante los 2 años de permanencia no pueden pasar de 90 días (Hoja informativa del Ministerio, abril de 2026)",
+    "Carecer de antecedentes penales en España y en los países donde has residido los 5 últimos años, por delitos que también lo sean en España (art. 126.d y 130.2 Reglamento)",
+    "No suponer una amenaza para el orden público, la seguridad o la salud pública, no figurar como rechazable en países con convenio y no estar dentro de un plazo de compromiso de no retorno (art. 126.c, e, f)",
+    "Pagar la tasa (modelo 790 código 052, epígrafe 2.3.1) en los 10 días hábiles siguientes a presentar la solicitud (Hoja informativa del Ministerio)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2024-24099",
+    "nota": "No hay convocatoria: se puede presentar en cualquier momento si reúnes los requisitos. Se resuelve en 3 meses; sin notificación en ese plazo, se puede entender desestimada (Hoja informativa del Ministerio, abril de 2026)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Reúne los documentos de la Hoja informativa y presenta el formulario EX-10 en la Oficina de Extranjería de tu provincia o por la sede electrónica del Ministerio de Política Territorial y Memoria Democrática (Mercurio).",
+    "url": "https://www.inclusion.gob.es/web/migraciones/w/autorizacion-residencia-temporal-por-circunstancias-excepcionales.-arraigo-social"
+  },
+  "ayuda_humana": [
+    "oficina-extranjeria-valencia",
+    "accem",
+    "cepaim"
+  ],
+  "como_pedirla": "Formulario EX-10, en persona en la Oficina de Extranjería de la provincia donde vives o por la sede electrónica Mercurio. Tienes que pedir la tarjeta de identidad de extranjero (TIE) en el mes siguiente a la concesión (art. 130.6 Reglamento).",
+  "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2024-24099",
+  "url_oficial": "https://www.inclusion.gob.es/web/migraciones/w/autorizacion-residencia-temporal-por-circunstancias-excepcionales.-arraigo-social"
+}

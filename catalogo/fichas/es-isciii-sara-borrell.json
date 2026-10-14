@@ -1,0 +1,67 @@
+{
+  "tipo": "oportunidad",
+  "concesion": "concurrencia_competitiva",
+  "area": "investigacion",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-isciii-sara-borrell",
+  "nombre": "Contratos Sara Borrell (ISCIII, Acción Estratégica en Salud 2026)",
+  "subtipo": "empleo",
+  "informativa": true,
+  "solicita": "otro",
+  "organismo": "Instituto de Salud Carlos III (ISCIII)",
+  "ambito": "ES",
+  "resumen": "Contratos de hasta 3 años para doctores recién titulados en ciencias y tecnologías de la salud, que se incorporan a un grupo de un centro del Sistema Nacional de Salud distinto al de su tesis. La solicitud la presentan el centro y el jefe o jefa de grupo.",
+  "cuantia": {
+    "texto": "Retribución bruta de 30.000 € en cada uno de los dos primeros años y 35.000 € el tercero, que financia el ISCIII; la Seguridad Social de la empresa y otros gastos de contratación corren a cargo del centro (art. 39.2, convocatoria AES 2026).",
+    "importe_eur": 30000,
+    "periodicidad": "anual",
+    "duracion_meses_max": 36
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Tener el título de doctor/a, con la tesis leída y aprobada después del 1 de enero de 2022",
+      "cita": "Art. 40.1.a) Resolución ISCIII, convocatoria AES 2026",
+      "aclaracion": "La fecha de lectura de la tesis (posterior al 01/01/2022, con ampliaciones por permisos, incapacidad o dependencia) no se pregunta en Tamiz: compruébala en las bases."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Fecha de lectura y aprobación de la tesis posterior al 01/01/2022 (ampliable por permisos de maternidad o paternidad, incapacidad temporal de 3 meses o más, o atención a personas dependientes), y como mucho en el cierre del plazo",
+    "Doctorado en el campo de las ciencias y tecnologías de la salud",
+    "No estar disfrutando de un contrato Sara Borrell ni haberlo completado antes",
+    "Grupo receptor distinto y de un centro distinto al de la tesis, salvo estancia postdoctoral en el extranjero de al menos un año continuado",
+    "Que un centro del SNS admitido en la convocatoria (hospitales, institutos de investigación sanitaria y similares) presente la solicitud, con un jefe o jefa de grupo doctor",
+    "Límites por centro: 10 solicitudes y 5 concesiones en institutos de investigación sanitaria; 5 y 2 en otros centros clínico-asistenciales; 3 y 1 en los demás"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-02-10",
+    "fin": "2026-03-05",
+    "verificado": true,
+    "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true",
+    "mes_habitual": 2,
+    "nota": "Convocatoria 2026 cerrada (del 10/02/2026 al 05/03/2026, art. 7 y calendario de la resolución del 19/12/2025). La de 2025 fue del 12/02 al 05/03/2025: suele abrirse en febrero (orientativo). La de 2027 no está publicada."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "El contrato es incompatible con otro contrato de trabajo y con cualquier otra percepción económica por cuenta propia. Se permiten colaboraciones docentes o asistenciales complementarias de hasta 80 horas al año (y guardias o continuidad asistencial en los límites de la resolución) (art. 24).",
+    "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true"
+  },
+  "siguiente_paso": {
+    "texto": "Si tu tesis es de 2022 o posterior y en salud, busca un grupo de un centro del SNS distinto al de tu tesis que quiera presentarte. La próxima convocatoria (AES 2027) se espera hacia febrero, sin fechas todavía: sigue la página de convocatorias del ISCIII.",
+    "url": "https://www.isciii.es/financiacion/aes/como-solicitar"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Solicitud telemática en la sede electrónica del ISCIII (sede.isciii.gob.es), presentada por la entidad del SNS con el jefe o jefa de grupo y la persona candidata.",
+  "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true",
+  "url_oficial": "https://www.isciii.es/financiacion/aes/como-solicitar",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

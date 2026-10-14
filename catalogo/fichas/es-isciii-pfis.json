@@ -1,0 +1,101 @@
+{
+  "id": "es-isciii-pfis",
+  "nombre": "PFIS e i-PFIS 2026 (ISCIII): contratos predoctorales de formación en investigación en salud",
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "otro",
+  "organismo": "Instituto de Salud Carlos III (ISCIII)",
+  "ambito": "ES",
+  "area": "investigacion",
+  "informativa": false,
+  "resumen": "Contratos predoctorales de hasta cuatro años para hacer una tesis doctoral en ciencias y tecnologías de la salud, en un grupo del sistema sanitario público (PFIS) o en un entorno instituto-empresa (i-PFIS). La solicitud la presenta el centro con un jefe o jefa de grupo, que dirige tu tesis.",
+  "cuantia": {
+    "texto": "Retribución bruta de 20.600 € en cada uno de los dos primeros años, 21.800 € el tercero y 26.900 € el cuarto, financiada por el ISCIII (art. 27.1.c de la convocatoria 2026); 27.398 € / 28.994 € / 35.777 € con cuotas de la Seguridad Social cuando el grupo lo dirige una persona nacida en 1981 o después, o con contrato Miguel Servet o Juan Rodés. En i-PFIS hay una estancia obligatoria de 12 a 24 meses en una empresa a partir del tercer año.",
+    "periodicidad": "anual",
+    "duracion_meses_max": 48
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": [
+        "grado",
+        "master"
+      ],
+      "texto": "Tener un grado, licenciatura, diplomatura o máster y no el título de doctor",
+      "cita": "Art. 28 de la convocatoria AES 2026: estar matriculado/a o admitido/a en un doctorado y no tener el título de doctor (el título previo es la vía normal para acceder al doctorado: DEDUCIDO)"
+    },
+    {
+      "campo": "estudios.matriculado_en",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Estar matriculado/a o admitido/a en un programa de doctorado",
+      "cita": "Art. 28 de la convocatoria AES 2026"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "vinculos.entidad_trabajo.tipo",
+          "op": "==",
+          "valor": "hospital_o_instituto_sanitario",
+          "texto": "Trabajar o investigar en un hospital o instituto de investigación sanitaria",
+          "cita": "Art. 28 de la convocatoria AES 2026",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "La solicitud la presenta un centro sanitario o un instituto de investigación sanitaria acreditado con un grupo que te acoge: pregunta en tu grupo si se presenta."
+        },
+        {
+          "campo": "vinculos.entidad_estudios.tipo",
+          "op": "==",
+          "valor": "hospital_o_instituto_sanitario",
+          "texto": "Hacer el doctorado en un hospital o instituto de investigación sanitaria",
+          "cita": "Art. 28 de la convocatoria AES 2026",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "La solicitud la presenta un centro sanitario o un instituto de investigación sanitaria acreditado con un grupo que te acoge: pregunta en tu grupo si se presenta."
+        }
+      ],
+      "texto": "Hacer el doctorado en un grupo de un centro de investigación sanitaria",
+      "cita": "Art. 28 de la convocatoria AES 2026"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar matriculado/a en un programa de doctorado oficial en una universidad española para el curso 2025-2026, o admitido/a o preadmitido/a para el 2026-2027 (art. 28.1)",
+    "No haber iniciado la formación predoctoral con financiación de otras ayudas predoctorales del Plan Estatal ni de planes anteriores, y no haber disfrutado antes de un contrato predoctoral de más de doce meses (art. 28.2)",
+    "Un jefe o jefa de grupo que obtuvo un proyecto como IP en la AES 2025, adscrito/a a un centro elegible, te presenta como candidato o candidata y dirige tu tesis (art. 26); cada grupo presenta una sola persona",
+    "En i-PFIS, el grupo debe pertenecer a un instituto de investigación sanitaria acreditado, con una empresa colaboradora (art. 26.2)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-02-18",
+    "fin": "2026-03-12",
+    "verificado": true,
+    "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true",
+    "nota": "Convocatoria AES 2026 (BOE-B-2025-47164): del 18/02/2026 al 12/03/2026 hasta las 15:00 (hora peninsular). Cerrada. La AES 2025 tuvo el plazo del 20/02 al 13/03/2025 (resumen de una universidad, fuente secundaria); la siguiente convocatoria es previsible hacia febrero de 2027, pero aún no está publicada.",
+    "mes_habitual": 2
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Los contratos financiados son incompatibles con cualquier otro contrato de trabajo vigente y con cualquier otra percepción económica por cuenta propia, con excepciones limitadas para colaboraciones docentes o asistenciales (art. 24 de la convocatoria AES 2026).",
+    "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true"
+  },
+  "siguiente_paso": {
+    "texto": "Habla con un jefe o jefa de grupo de un hospital o instituto de investigación sanitaria que pueda presentarte en la próxima convocatoria (se espera hacia febrero de 2027) y asegura tu admisión a un doctorado.",
+    "url": "https://www.isciii.es/financiacion/aes/como-solicitar"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Lo presenta el centro en la aplicación SAyS del ISCIII, con certificado electrónico de su representante legal; la persona candidata aporta sus datos y documentos a través del grupo.",
+  "fuente": "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true",
+  "url_oficial": "https://www.isciii.es/financiacion/aes/como-solicitar",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

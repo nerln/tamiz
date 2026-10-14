@@ -48,9 +48,15 @@ const CAT_TEST = catalogoCon(FICHAS_TEST);
 // quello è un artefatto di build e cambia quando il catalogo vero viene costruito.
 const CAT_ESEMPI = (() => {
   const dir = "schema/esempi/fichas/";
+  // RATTOPPO DICHIARATO (debito L20, vedi tests/validar.test.mjs e ESQUEMA.md «Tre esempi»):
+  // schema/esempi/fichas/ non è fra i file del lotto L20 che ha reso obbligatorio `area`, quindi
+  // le tre schede sui file non l'hanno, `construir.py --ejemplo` e `validar.py schema/esempi/fichas`
+  // sono ROSSI e il catalogo segnaposto vero darebbe area null. Qui l'area si prende dalla loro
+  // copia in tests/fichas/ (stesso id). Quando le tre schede avranno area questa riga si toglie.
   const fichas = readdirSync(new URL(dir, RAIZ))
     .filter((f) => f.endsWith(".json")).sort()
     .map((f) => leer(dir + f))
+    .map((f) => (f.area === undefined ? { ...f, area: leer(`tests/fichas/${f.id}.json`).area } : f))
     .sort((a, b) => String(a.id).localeCompare(String(b.id)));
   return {
     esquema: "tamiz-catalogo", version: 1.1, actualizado_el: HOY, redactado_con_ia: true,
@@ -113,7 +119,7 @@ const ESITO_DI = { encaja: "cumple", falta_dato: "falta_dato", no_encaja: "no_cu
 // Controlli di forma che valgono per qualunque uscita del motore.
 function controllaForma(res) {
   for (const v of res.fichas) {
-    assert.deepEqual(Object.keys(v), ["id", "tipo", "estado", "apertura", "por_revisar",
+    assert.deepEqual(Object.keys(v), ["id", "tipo", "area", "estado", "apertura", "por_revisar",
       "proximo_plazo", "razones", "faltan", "requisitos"]);
     assert.ok(ESTADI.has(v.estado), v.estado);
     if (v.estado !== "falta_dato") assert.deepEqual(v.faltan, [], `${v.id}: faltan con ${v.estado}`);
@@ -136,6 +142,9 @@ function controllaForma(res) {
     }
   }
   assert.deepEqual(Object.keys(res.perfil_calculado), CALC);
+  assert.deepEqual(Object.keys(res), ["hoy", "fichas", "informativas", "ocultas_por_territorio",
+    "perfil_calculado"]);
+  for (const i of res.informativas) assert.deepEqual(Object.keys(i), ["id", "area"]);
 }
 
 const CALC = ["calc.edad", "calc.anios_residencia_legal", "calc.meses_residencia_legal",
@@ -223,7 +232,8 @@ describe("regola d'oro: un dato che manca non dà mai encaja né no_encaja", () 
       const res = evaluar(CAT_TEST, PERFILES["todo-no-lo-se"], hoy);
       controllaForma(res);
       assert.equal(res.ocultas_por_territorio, 0);
-      assert.equal(res.fichas.length, FICHAS_TEST.length);
+      assert.equal(res.fichas.length + res.informativas.length, FICHAS_TEST.length);
+      assert.equal(res.informativas.length, FICHAS_TEST.filter((f) => f.informativa === true).length);
       for (const v of res.fichas) {
         assert.equal(v.estado, "falta_dato", v.id);
         for (const r of v.requisitos) {
@@ -696,11 +706,20 @@ describe("regole non valide nel catalogo (§5.6): falta_dato, mai no_cumple", ()
     assert.equal(v.estado, "falta_dato");
     assert.equal(v.requisitos[0].motivo, "regla_no_valida");
   });
-  test("requisitos [] → encaja (scheda per chiunque) e razones []", () => {
+  test("requisitos [] in una scheda non informativa → falta_dato con regla_no_valida, mai encaja", () => {
     const cat = catalogoCon([{ ...clona(base), requisitos: [] }]);
-    const v = evaluar(cat, VACIO, HOY).fichas[0];
-    assert.equal(v.estado, "encaja");
-    assert.deepEqual(v.razones, []);
+    for (const p of [VACIO, LUCIA, RODRIGO]) {
+      const v = evaluar(cat, p, HOY).fichas[0];
+      assert.equal(v.estado, "falta_dato");
+      assert.equal(v.requisitos[0].motivo, "regla_no_valida");
+      assert.deepEqual(v.faltan, []);
+    }
+  });
+  test("informativa: true con requisitos [] → nessun esito, solo in informativas", () => {
+    const cat = catalogoCon([{ ...clona(base), requisitos: [], informativa: true }]);
+    const res = evaluar(cat, LUCIA, HOY);
+    assert.deepEqual(res.fichas, []);
+    assert.deepEqual(res.informativas, [{ id: base.id, area: base.area }]);
   });
 });
 
@@ -937,8 +956,8 @@ describe("catalogo vero: homologación e LABORA", () => {
     // Rodrigo non è iscritto come demandante: con la scheda pubblicata dava «no encaja» per un corso già fatto.
     assert.equal(voce(evaluar(CAT_REAL, RODRIGO, HOY), ID), undefined);
     assert.equal(voce(evaluar(CAT_REAL, con(RODRIGO, "empleo.inscrito_demandante", true), HOY), ID), undefined);
-    assert.doesNotMatch(readFileSync(new URL("web/fuentes.html", RAIZ), "utf8"), /LABORA/);
-    assert.doesNotMatch(readFileSync(new URL("web/calendario.ics", RAIZ), "utf8"), /LABORA/i);
+    assert.equal(readFileSync(new URL("web/fuentes.html", RAIZ), "utf8").includes("Formación gratuita de LABORA para personas desempleadas, con becas y ayudas"), false);
+    assert.doesNotMatch(readFileSync(new URL("web/calendario.ics", RAIZ), "utf8"), /es-labora-formacion-becas-desempleados/);
   });
   // catalogo/por-revisar/ non si pubblica: nell'esportazione questa prova non ha il file e salta.
   const PR_LABORA = new URL("catalogo/por-revisar/es-labora-formacion-becas-desempleados.json", RAIZ);
@@ -957,5 +976,164 @@ describe("catalogo vero: homologación e LABORA", () => {
       assert.notEqual(f.plazo.tipo, "desconocido", `${f.id}: plazo sconosciuto con confianza alta`);
       assert.doesNotMatch(f.requisitos_no_evaluables.join(" "), /requisito central/i, `${f.id}: requisito centrale non valutabile`);
     }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Prove di guardia dell'ondata universale (U5): niente «encaja» falso.
+// Gli otto profili tipici di tests/perfiles/arquetipos/ sono inventati.
+
+const DIR_ARQ = "tests/perfiles/arquetipos/";
+const ARQUETIPOS = Object.fromEntries(readdirSync(new URL(DIR_ARQ, RAIZ))
+  .filter((f) => f.endsWith(".json")).sort()
+  .map((f) => [f.replace(/\.json$/, ""), leer(DIR_ARQ + f)]));
+// Chi è nella ricerca fra i profili tipici: solo la dottoranda.
+// LIMITE: la guardia «nessuna scheda di investigacion dà encaja a chi non è nella ricerca» vale
+// per questi otto profili, nessuno dei quali (fuori dalla dottoranda) ha un master. Le schede di
+// ricerca controllano gli studi (nivel_max), non il lavoro: una persona con un master che lavora
+// in banca riceverebbe «encaja» con FPU e Doctorados Industriales. Il resto (iscrizione al
+// dottorato, centro, borsa) sta in requisitos_no_evaluables. Non è una prova per ogni profilo.
+const NELLA_RICERCA = new Set(["doctoranda-28-ue"]);
+const ID_RICERCA = ["es-aei-doctorados-industriales-2026", "es-aei-fpu-2026", "es-vc-acif-2027",
+  "es-vc-apostd-2027"];
+// Le schede del catalogo vero che possono dare «Parece que encajas» a ogni profilo tipico,
+// controllate una per una (L20, 14/10/2026). Se una scheda nuova dà «encaja» a un profilo,
+// la prova diventa rossa: si guarda se è fuori luogo e, solo se non lo è, si aggiunge qui.
+const ENCAJA_AMMESSE = {
+  // Ondata universale (14/10/2026, coordinatore): empadronamiento a València, tarjeta SIP e
+  // iscrizione come demandante in LABORA sono servizi aperti a chi vive nella CV; il mínimo por
+  // descendientes vale per chi ha figli; il canje vale per chi ha un permesso di un paese con convenio.
+  "autonoma-38": ["es-oep-2026-estado", "es-vc-deduccion-irpf-alquiler-vivienda-habitual",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana", "es-vc-labora-inscripcion-demandante"],
+  "doctoranda-28-ue": ["es-aei-doctorados-industriales-2026", "es-aei-fpu-2026", "es-bono-social-electrico",
+    "es-homologacion-titulo-universitario-extranjero", "es-oep-2026-estado", "es-vc-acif-2027",
+    "es-vc-carnet-jove", "es-vc-deduccion-irpf-alquiler-vivienda-habitual",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana"],
+  "estudiante-grado-21-habitacion": ["es-oep-2026-estado", "es-vc-carnet-jove",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana"],
+  "familia-45-fp-superior-hipoteca": ["es-oep-2026-estado", "es-irpf-minimo-descendientes",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana", "es-vc-labora-inscripcion-demandante"],
+  "joven-19-fp": ["es-oep-2026-estado", "es-vc-carnet-jove",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana"],
+  "migrante-8-meses": ["es-vc-bono-alquiler-joven-2026", "es-canje-permiso-conducir-paises-con-convenio",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana", "es-vc-labora-inscripcion-demandante"],
+  "parado-50-alquiler": ["es-oep-2026-estado", "es-sepe-prestacion-contributiva-desempleo",
+    "es-vc-deduccion-irpf-alquiler-vivienda-habitual",
+    "es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana", "es-vc-labora-inscripcion-demandante"],
+  "pensionista-70-propietaria": ["es-vlc-empadronamiento", "es-sip-tarjeta-sanitaria-valenciana"],
+};
+const encajan = (res) => res.fichas.filter((v) => v.estado === "encaja").map((v) => v.id);
+
+describe("guardia U5: gli otto profili tipici contro il catalogo vero", () => {
+  test("ci sono gli otto profili tipici, tutti sintetici", () => {
+    assert.deepEqual(Object.keys(ARQUETIPOS), Object.keys(ENCAJA_AMMESSE).sort());
+    for (const p of Object.values(ARQUETIPOS)) assert.equal(p.ejemplo.sintetico, true);
+  });
+  test("le quattro schede di ricerca hanno area investigacion", () => {
+    for (const id of ID_RICERCA) {
+      const f = FICHAS_REALES.find((x) => x.id === id);
+      if (f) assert.equal(f.area, "investigacion", `${id}: area ${f.area}`);
+    }
+    assert.ok(FICHAS_REALES.some((f) => f.area === "investigacion"), "nessuna scheda con area investigacion");
+  });
+  for (const [nome, perfil] of Object.entries(ARQUETIPOS)) {
+    test(`${nome}: nessuna scheda «encaja» fuori luogo`, () => {
+      const res = evaluar(CAT_REAL, perfil, HOY);
+      controllaForma(res);
+      const fuori = encajan(res).filter((id) => !ENCAJA_AMMESSE[nome].includes(id));
+      assert.deepEqual(fuori, [], `${nome}: encaja anche ${fuori.join(", ")}`);
+    });
+    if (!NELLA_RICERCA.has(nome)) {
+      test(`${nome}: nessuna scheda di area investigacion dà encaja a chi non è nella ricerca`, () => {
+        const ricerca = new Set(FICHAS_REALES
+          .filter((f) => f.area === "investigacion" || ID_RICERCA.includes(f.id)).map((f) => f.id));
+        const res = evaluar(CAT_REAL, perfil, HOY);
+        const male = encajan(res).filter((id) => ricerca.has(id));
+        assert.deepEqual(male, [], `${nome}: encaja con ${male.join(", ")}`);
+      });
+    }
+  }
+  test("controllo positivo: la dottoranda encaja con almeno una scheda di ricerca", () => {
+    const res = evaluar(CAT_REAL, ARQUETIPOS["doctoranda-28-ue"], HOY);
+    const ricerca = FICHAS_REALES.filter((f) => f.area === "investigacion").map((f) => f.id);
+    assert.ok(encajan(res).some((id) => ricerca.includes(id)));
+  });
+  test("nessuna scheda pubblicata non informativa ha requisitos vuoti", () => {
+    const vuote = FICHAS_REALES
+      .filter((f) => f.informativa !== true && (!Array.isArray(f.requisitos) || f.requisitos.length === 0))
+      .map((f) => f.id);
+    assert.deepEqual(vuote, []);
+  });
+  test("nessun encaja con un dato mancante: togliere un solo dato a un profilo tipico non crea mai un encaja", () => {
+    const foglie = (o, pref = []) => Object.entries(o).flatMap(([k, v]) =>
+      (v !== null && typeof v === "object" && !Array.isArray(v) ? foglie(v, [...pref, k]) : [[...pref, k].join(".")]));
+    for (const [nome, perfil] of Object.entries(ARQUETIPOS)) {
+      const prima = new Set(encajan(evaluar(CAT_REAL, perfil, HOY)));
+      for (const percorso of foglie(perfil).filter((p) => !p.startsWith("ejemplo."))) {
+        const res = evaluar(CAT_REAL, con(perfil, percorso, undefined), HOY);
+        controllaForma(res);
+        for (const id of encajan(res)) {
+          assert.ok(prima.has(id), `${nome} senza ${percorso}: ${id} diventa encaja`);
+        }
+      }
+    }
+  });
+  test("profilo vuoto e profilo tutto «no lo sé»: nessun encaja nel catalogo vero", () => {
+    for (const p of [VACIO, PERFILES["todo-no-lo-se"], PERFILES["todo-otro"]]) {
+      assert.deepEqual(encajan(evaluar(CAT_REAL, p, HOY)), []);
+    }
+  });
+});
+
+describe("guardia U5: le schede informative non hanno esito", () => {
+  const INFO = FICHAS_TEST.filter((f) => f.informativa === true);
+  test("ci sono schede informative di prova", () => assert.ok(INFO.length >= 2));
+  for (const [nome, perfil] of [["Lucía", LUCIA], ["Rodrigo", RODRIGO], ["vuoto", VACIO],
+    ...Object.entries(ARQUETIPOS)]) {
+    test(`${nome}: le informative stanno solo in informativas, senza estado né razones`, () => {
+      const res = evaluar(CAT_TEST, perfil, HOY);
+      controllaForma(res);
+      const ids = new Set(res.fichas.map((v) => v.id));
+      for (const f of INFO) assert.ok(!ids.has(f.id), `${f.id} ha un esito`);
+      for (const i of res.informativas) assert.deepEqual(Object.keys(i), ["id", "area"]);
+    });
+  }
+  test("una scheda vera marcata informativa esce dalle fichas e entra in informativas", () => {
+    const oep = clona(FICHAS_REALES.find((f) => f.id === "es-oep-2026-estado"));
+    const cat = catalogoCon([{ ...oep, informativa: true }]);
+    const res = evaluar(cat, ARQUETIPOS["familia-45-fp-superior-hipoteca"], HOY);
+    assert.deepEqual(res.fichas, []);
+    assert.deepEqual(res.informativas, [{ id: "es-oep-2026-estado", area: "empleo_publico" }]);
+  });
+  test("informativas in ordine di area (ordine dello schema) e poi di nome", () => {
+    const base = clona(ficha("es-vc-prueba-informativa-cuidados"));
+    const mk = (id, nombre, area) => ({ ...clona(base), id, nombre, area });
+    const cat = catalogoCon([mk("es-c", "Zeta", "familia"), mk("es-a", "Alfa", "salud_cuidados"),
+      mk("es-b", "Ábaco", "familia"), mk("es-d", "Beta", undefined)]);
+    const res = evaluar(cat, VACIO, HOY);
+    assert.deepEqual(res.informativas, [{ id: "es-b", area: "familia" }, { id: "es-c", area: "familia" },
+      { id: "es-a", area: "salud_cuidados" }, { id: "es-d", area: null }]);
+  });
+  test("il filtro di territorio vale anche per le informative", () => {
+    const p = con(con(VACIO, "residencia.pais", "FR"), "residencia.region", "FR-IDF");
+    assert.deepEqual(evaluar(CAT_TEST, p, HOY).informativas, []);
+  });
+});
+
+describe("l'esempio delle schede informative in ESQUEMA.md, riprodotto esattamente", () => {
+  const doc = readFileSync(new URL("docs/ESQUEMA.md", RAIZ), "utf8");
+  const sezione = doc.slice(doc.indexOf("### Schede informative: un esempio"), doc.indexOf("### `apertura`"));
+  const blocchi = [...sezione.matchAll(/```json\n([\s\S]*?)```/g)].map((m) => JSON.parse(m[1]));
+  test("un esempio, e Lucía con le tre schede d'esempio più le due informative lo riproduce", () => {
+    assert.equal(blocchi.length, 1);
+    const info = ["es-vc-prueba-informativa-cuidados", "es-prueba-informativa-familia"].map(ficha);
+    const res = evaluar(catalogoCon([...ID_EJEMPLO.map(ficha), ...info]), LUCIA, HOY);
+    assert.deepStrictEqual(res.informativas, blocchi[0].informativas);
+    assert.equal(res.ocultas_por_territorio, blocchi[0].ocultas_por_territorio);
+    assert.deepStrictEqual(res.fichas, evaluar(CAT_EJEMPLO, LUCIA, HOY).fichas);
+    const fr = con(con(LUCIA, "residencia.pais", "FR"), "residencia.region", "FR-IDF");
+    const resFr = evaluar(catalogoCon(info), fr, HOY);
+    assert.deepEqual(resFr.informativas, []);
+    assert.equal(resFr.ocultas_por_territorio, 2);
   });
 });

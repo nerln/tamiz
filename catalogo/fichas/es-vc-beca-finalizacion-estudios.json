@@ -1,0 +1,80 @@
+{
+  "solicita": "persona",
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "id": "es-vc-beca-finalizacion-estudios",
+  "nombre": "Beca para finalizar estudios universitarios (máximo 24 créditos, Generalitat Valenciana)",
+  "tipo": "oportunidad",
+  "subtipo": "beca",
+  "concesion": "concurrencia_competitiva",
+  "organismo": "Conselleria de Educación, Cultura y Universidades",
+  "ambito": "ES-VC",
+  "area": "estudios",
+  "informativa": false,
+  "resumen": "Ayuda para estudiantes de grado empadronados en la Comunitat Valenciana a quienes faltan como máximo 24 créditos, en tercera matrícula o sucesivas.",
+  "cuantia": {
+    "texto": "En universidad pública, exención de los créditos en tercera matrícula o sucesivas (Decreto 101/2024); en privada, ayuda igual al precio mínimo de un estudio de la misma experimentalidad. Curso 2025-2026.",
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Estar empadronado en un municipio de la Comunitat Valenciana",
+      "cita": "Convocatoria 2026 (DOGV 10362)"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "not_in",
+      "valor": [
+        "estancia_estudios"
+      ],
+      "texto": "Ser español, ciudadano de la UE o extranjero con residencia que no sea solo de estancia por estudios",
+      "cita": "Convocatoria 2026 (DOGV 10362)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La convocatoria pide nacionalidad española o de la UE; los extranjeros no comunitarios se rigen por la normativa de extranjería. Comprueba tu caso en la convocatoria."
+    },
+    {
+      "campo": "estudios.matriculado_en",
+      "op": "in",
+      "valor": [
+        "grado"
+      ],
+      "texto": "Estar matriculado en un grado",
+      "cita": "Convocatoria 2026 (DOGV 10362)"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Que te falten como máximo 24 créditos para terminar, y que sean de tercera matrícula o sucesivas (prioridad a quienes faltan 18 o menos)",
+    "Estudios oficiales presenciales en el Sistema Universitario Valenciano o centro adscrito",
+    "No tener ya un título del mismo nivel o superior ni que solo falte un idioma",
+    "No haber sido beneficiario en convocatorias anteriores",
+    "Renta familiar de 2024 no superior a 22.017 € (1 miembro), 35.146 € (2), 46.448 € (3), 54.747 € (4), 59.343 € (5), 63.375 € (6), 67.317 € (7), 71.205 € (8) (resuelvo décimo); se calcula con bases imponibles menos cuota, no con el bruto. Hay también umbrales de patrimonio (resuelvo undécimo)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-05-15",
+    "fin": "2026-06-15",
+    "mes_habitual": 5,
+    "verificado": false,
+    "nota": "Convocatoria del curso 2025-2026: solicitud del 15/05 al 15/06/2026, cerrada. Se abrió en mayo; orientativo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Mira la ficha de la sede cuando se publique la siguiente convocatoria; se presenta con el formulario F158024 y la ficha de datos de la unidad familiar.",
+    "url": "https://sede.gva.es/detall-tramit?id_proc=G110949"
+  },
+  "como_pedirla": "Presencialmente en oficinas de registro, Correos o consulados (para quien no esté obligado a la vía electrónica); formularios F158024 y F149177.",
+  "fuente": "https://sede.gva.es/detall-tramit?id_proc=G110949",
+  "url_oficial": "https://sede.gva.es/detall-tramit?id_proc=G110949",
+  "confianza": "alta"
+}

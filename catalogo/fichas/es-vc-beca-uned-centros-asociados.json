@@ -1,0 +1,90 @@
+{
+  "solicita": "persona",
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "id": "es-vc-beca-uned-centros-asociados",
+  "nombre": "Becas de grado en centros asociados de la UNED en la Comunitat Valenciana",
+  "tipo": "oportunidad",
+  "subtipo": "beca",
+  "concesion": "concurrencia_competitiva",
+  "organismo": "Conselleria de Educación, Cultura y Universidades",
+  "ambito": "ES-VC",
+  "area": "estudios",
+  "informativa": false,
+  "resumen": "Exención del coste de los créditos de primera matrícula para quien estudia un grado oficial en un centro asociado de la UNED en la Comunitat Valenciana y tiene menos de 55 años.",
+  "cuantia": {
+    "texto": "Exención del coste de los créditos en primera matrícula, a los precios de la Orden CNU/731/2025. Curso 2025-2026.",
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.region",
+      "op": "==",
+      "valor": "ES-VC",
+      "texto": "Estar empadronado en un municipio de la Comunitat Valenciana",
+      "cita": "Resolución de 27/07/2026 (DOGV 10417)"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "not_in",
+      "valor": [
+        "estancia_estudios"
+      ],
+      "texto": "Ser español, ciudadano de la UE o extranjero con residencia que no sea solo de estancia por estudios",
+      "cita": "Resolución de 27/07/2026 (DOGV 10417)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La convocatoria pide nacionalidad española o de la UE; los extranjeros no comunitarios se rigen por la normativa de extranjería. Comprueba tu caso en la convocatoria."
+    },
+    {
+      "campo": "calc.edad",
+      "op": "<",
+      "valor": 55,
+      "texto": "Tener menos de 55 años al terminar el plazo de solicitud",
+      "cita": "Resolución de 27/07/2026 (DOGV 10417)"
+    },
+    {
+      "campo": "estudios.matriculado_en",
+      "op": "in",
+      "valor": [
+        "grado"
+      ],
+      "texto": "Estar matriculado en un grado oficial",
+      "cita": "Resolución de 27/07/2026 (DOGV 10417)",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "La ayuda es solo para un grado oficial en un centro asociado de la UNED en la Comunitat Valenciana."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Matrícula en un grado oficial de la UNED en un centro asociado de la Comunitat Valenciana (no valen el curso de acceso para mayores de 25, máster, doctorado ni títulos propios)",
+    "No tener ya un título del mismo nivel o superior",
+    "Renta familiar de 2024 no superior a 22.017 € (1 miembro), 35.146 € (2), 46.448 € (3), 54.747 € (4), 59.343 € (5), 63.375 € (6), 67.317 € (7), 71.205 € (8) (resuelvo noveno); se calcula con bases imponibles menos cuota, no con el bruto. Hay también umbrales de patrimonio (resuelvo décimo)",
+    "Mantener el empadronamiento durante todo el curso; documentos referidos a 31/12/2024"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-07-31",
+    "fin": "2026-08-31",
+    "mes_habitual": 7,
+    "verificado": false,
+    "nota": "Solicitud del 31/07 al 31/08/2026, cerrada; subsanación desde el 01/09/2026. Se abrió a finales de julio; orientativo."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Mira la ficha de la sede y la convocatoria del curso siguiente; se pide por vía telemática.",
+    "url": "https://sede.gva.es/detall-tramit?id_proc=G112223"
+  },
+  "como_pedirla": "Por vía telemática en la sede electrónica de la Generalitat (tramita.gva.es); gratuito.",
+  "fuente": "https://sede.gva.es/detall-tramit?id_proc=G112223",
+  "url_oficial": "https://sede.gva.es/detall-tramit?id_proc=G112223",
+  "confianza": "alta"
+}

@@ -1,0 +1,87 @@
+{
+  "area": "emprender",
+  "solicita": "persona",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "id": "es-vlc-primeros-pasos-2026",
+  "nombre": "Primeros Pasos 2026: ayuda a autónomos por nacimiento o adopción (Ajuntament de València)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "orden_de_llegada",
+  "organismo": "Ajuntament de València - Servicio de Emprendimiento",
+  "ambito": "ES-VC",
+  "informativa": false,
+  "resumen": "Ayuda de pago único para autónomos de València que han tenido o adoptado un hijo desde el 1 de enero de 2024. Pide 5 años de empadronamiento. Se concede por orden de presentación hasta agotar el crédito. El plazo de 2026 acaba el 27 de octubre.",
+  "cuantia": {
+    "texto": "1.200 € por cada nacimiento o adopción desde el 1 de enero de 2024, más 300 € por el segundo hijo, otros 300 € por el tercero, y así sucesivamente. Crédito total de 848.000 €. Pago único.",
+    "importe_eur": 1200,
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "autonomo",
+      "texto": "Ser autónomo"
+    },
+    {
+      "campo": "residencia.municipio_ine",
+      "op": "==",
+      "valor": "46250",
+      "texto": "Estar empadronado en València"
+    },
+    {
+      "campo": "calc.anios_empadronado",
+      "op": ">=",
+      "valor": 5,
+      "texto": "Estar empadronado en València desde hace 5 años o más",
+      "cita": "Convocatoria, base 4.1.e: antigüedad mínima de empadronamiento de 5 años contados desde el 1 de enero de 2016"
+    },
+    {
+      "campo": "calc.hijos_menores_3",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Haber tenido un hijo o hija (o adoptado) desde el 1 de enero de 2024",
+      "cita": "Convocatoria, base 4.1.a",
+      "no_concluyente": [
+        "cumple",
+        "no_cumple"
+      ],
+      "aclaracion": "Hace falta un hijo o hija nacido o adoptado desde el 1 de enero de 2024. Con la edad de tus hijos no podemos distinguir un nacimiento de finales de 2023 de uno de 2024, ni una adopción reciente de un menor de más de 3 años. Mira la base 4.1.a de la convocatoria."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar dado de alta en el IAE y en el RETA antes de la publicación del acuerdo de la convocatoria en el Tablón de Edictos (base 4.1.b y c)",
+    "Domicilio fiscal o local de la actividad en el término municipal de València (base 4.1.d)",
+    "Plantilla media inferior a 10 personas en los 12 meses anteriores (base 4.1.f)",
+    "Estar al corriente con la AEAT, la Seguridad Social y el Ajuntament, y no superar 300.000 € de ayudas de minimis en 3 años (base 4.1.g a k)",
+    "Quedan excluidos los autónomos que trabajan a través de una sociedad o comunidad de bienes, los autónomos colaboradores y quienes se den de alta en una mutualidad profesional (base 4.2). Si los dos progenitores son autónomos, cada uno puede pedirla (base 3.3)"
+  ],
+  "plazo": {
+    "tipo": "fechas",
+    "inicio": "2026-10-08",
+    "fin": "2026-10-27",
+    "verificado": false,
+    "mes_habitual": 10,
+    "nota": "20 días naturales desde el día siguiente a la publicación del extracto en el BOP (base 6.3). La página municipal da el BOP n.º 193 de 07/10/2026, es decir, del 08 al 27 de octubre; la ficha del trámite aún marcaba la publicación como pendiente."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con cualquier otra subvención concedida en 2026 por el Ajuntament de València o por otra entidad, con los límites de la Ley General de Subvenciones (base 11.2).",
+    "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010704231"
+  },
+  "siguiente_paso": {
+    "texto": "Presenta la solicitud en la sede electrónica del Ajuntament antes del 27 de octubre, con firma electrónica avanzada.",
+    "url": "https://sede.valencia.es/sede/registro/procedimiento/AE.IE.175?lang=1"
+  },
+  "como_pedirla": "Solo por vía telemática en la sede electrónica del Ajuntament de València («Iniciar trámite»), con firma electrónica avanzada.",
+  "fuente": "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010704231",
+  "url_oficial": "https://www.valencia.es/cas/campañas-municipales/-/content/subvencion-autonomos-nacimiento-adopcion-primeros-pasos",
+  "revisar_antes_de": "2026-10-27",
+  "confianza": "alta"
+}

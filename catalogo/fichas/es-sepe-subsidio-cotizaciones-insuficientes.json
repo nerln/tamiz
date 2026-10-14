@@ -1,0 +1,81 @@
+{
+  "tipo": "derecho",
+  "subtipo": "prestacion",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES",
+  "ayuda_humana": [
+    "labora"
+  ],
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "area": "empleo",
+  "id": "es-sepe-subsidio-cotizaciones-insuficientes",
+  "nombre": "Subsidio por desempleo por cotizaciones insuficientes (menos de un año trabajado)",
+  "organismo": "SEPE - Servicio Público de Empleo Estatal",
+  "resumen": "Subsidio para quien ha trabajado al menos 90 días pero no los 360 que pide el paro contributivo, está en desempleo desde el 1/11/2024 y acredita carencia de rentas y/o responsabilidades familiares.",
+  "cuantia": {
+    "texto": "Porcentaje del IPREM mensual: 95 % los primeros 180 días, 90 % del día 181 al 360 y 80 % desde el día 361 (la página del SEPE no da el importe en euros). Duración sin responsabilidades familiares: 3 meses con 90 días cotizados, 4 con 120, 5 con 150 y 6 con 180; con responsabilidades familiares, hasta 21 meses.",
+    "periodicidad": "mensual",
+    "duracion_meses_max": 21
+  },
+  "requisitos": [
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "desempleado",
+      "texto": "Estar en desempleo",
+      "cita": "Página del SEPE: estar en desempleo total o trabajar a tiempo parcial con jornada inferior a una completa",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "El SEPE también admite trabajar a tiempo parcial con una suma de jornadas inferior a una jornada completa. Si es tu caso, mira la página oficial."
+    },
+    {
+      "campo": "empleo.meses_cotizados_6_anios",
+      "op": ">=",
+      "valor": 3,
+      "texto": "Haber trabajado al menos 90 días (unos 3 meses) cotizados",
+      "cita": "Página SEPE «cotizaciones insuficientes»: haber trabajado al menos 90 días",
+      "aclaracion": "El perfil cuenta meses y la ley cuenta días: con justo 3 meses, mira tu vida laboral."
+    },
+    {
+      "campo": "empleo.meses_cotizados_6_anios",
+      "op": "<",
+      "valor": 12,
+      "texto": "No llegar a los 360 días (12 meses) cotizados que piden el paro contributivo",
+      "cita": "Página SEPE «cotizaciones insuficientes»: sin tener cubiertos 360 días para la prestación contributiva",
+      "aclaracion": "Con 360 días o más corresponde la prestación contributiva, no este subsidio."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar en situación legal de desempleo a partir del 1/11/2024 y no tener derecho a la prestación contributiva",
+    "Carencia de rentas propias y/o responsabilidades familiares, mantenidas en la solicitud y en las prórrogas (la página remite a otra, no leída, para el límite de rentas); los 21 meses exigen responsabilidades familiares pero no carencia de rentas",
+    "Firmar el acuerdo de actividad y estar inscrito como demandante de empleo cuando se resuelve",
+    "Firmar una declaración responsable de las rentas del mes natural anterior, propias y de la unidad familiar",
+    "Si has trabajado después: cese involuntario (por cuenta propia) o en situación legal de desempleo (por cuenta ajena)",
+    "No estar en ningún supuesto de incompatibilidad; si te corresponde el subsidio para mayores de 52 años, se cobra ese"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-cotizaciones-insuficientes-he-trabajado-menos-de-un-anyo.html",
+    "nota": "Alta inicial en los 6 meses siguientes al hecho causante (si no, se deniega). Dentro de los 15 días hábiles siguientes, el subsidio nace al día siguiente; después, el día de la solicitud. Cada prórroga trimestral se pide en los 15 días hábiles posteriores al fin del trimestre."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es compatible con un trabajo a tiempo parcial si la suma de las jornadas es inferior a una jornada completa, y con el trabajo por cuenta propia o ajena solo en las condiciones de cese que indica la página. Las incompatibilidades están en otra página del SEPE.",
+    "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-cotizaciones-insuficientes-he-trabajado-menos-de-un-anyo.html"
+  },
+  "siguiente_paso": {
+    "texto": "Pide el subsidio en la sede electrónica del SEPE o con cita previa, en los 15 días hábiles siguientes a quedarte sin empleo para que nazca al día siguiente (el límite son 6 meses).",
+    "url": "https://sede.sepe.gob.es/portalSede/procedimientos-y-servicios/personas/proteccion-por-desempleo/solicitud-de-prestaciones.html"
+  },
+  "como_pedirla": "Sede electrónica del SEPE (certificado digital, DNI electrónico o Cl@ve); oficina de prestaciones con cita previa; cualquier registro público; correo administrativo. Documentos: modelo oficial con declaración responsable de rentas, documento de identidad, cuenta bancaria a tu nombre, libro de familia o certificado del Registro Civil, última declaración del IRPF.",
+  "fuente": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-cotizaciones-insuficientes-he-trabajado-menos-de-un-anyo.html",
+  "url_oficial": "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-cotizaciones-insuficientes-he-trabajado-menos-de-un-anyo.html",
+  "confianza": "alta"
+}

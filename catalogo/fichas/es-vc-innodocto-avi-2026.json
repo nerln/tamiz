@@ -1,0 +1,79 @@
+{
+  "id": "es-vc-innodocto-avi-2026",
+  "nombre": "Innodocto (AVI): doctorandos empresariales, convocatoria 2026",
+  "area": "investigacion",
+  "informativa": false,
+  "tipo": "oportunidad",
+  "subtipo": "formacion_remunerada",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "empresa",
+  "organismo": "Agència Valenciana de la Innovació (AVI)",
+  "ambito": "ES-VC",
+  "resumen": "Ayuda a una empresa de la Comunitat Valenciana que contrata, o ya tiene, a una persona que hace una tesis doctoral ligada a un proyecto de I+D+i de la empresa. La solicita la empresa, no la persona doctoranda. Hasta 6 anualidades seguidas por persona.",
+  "cuantia": {
+    "texto": "Hasta el 50 % de los gastos subvencionables en pymes y el 30 % en grandes empresas (hasta 5 puntos más si la persona contratada es mujer): salario hasta 4.500 €/mes, consultoría hasta 14.000 €/año, matrícula de doctorado hasta 1.000 €/año, formación hasta 10.000 €/año. Convocatoria 2026.",
+    "periodicidad": "anual"
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.nivel_max",
+      "op": "in",
+      "valor": [
+        "grado",
+        "master"
+      ],
+      "texto": "Tener el título que da acceso al doctorado (grado o máster) y no ser doctor/a todavía",
+      "cita": "DOGV 2026/9192, línea 3, apartado 4.4: estar admitido o matriculado en un programa de doctorado"
+    },
+    {
+      "campo": "estudios.matriculado_en",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Estar matriculado/a o admitido/a en un programa de doctorado",
+      "cita": "DOGV 2026/9192, línea 3, apartado 4.4"
+    },
+    {
+      "campo": "empleo.situaciones",
+      "op": "contains",
+      "valor": "asalariado",
+      "texto": "Trabajar con contrato en la empresa o entidad que presenta el proyecto",
+      "cita": "DOGV 2026/9192, línea 3, apartado 4.4"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Estar admitido o matriculado en un doctorado al presentar la solicitud, o poder matricularse dentro del primer año del proyecto",
+    "Contrato por cuenta ajena (no de prácticas), grupo 1 de cotización del Régimen General, en un centro de trabajo de la Comunitat Valenciana",
+    "Una empresa con sede o centro en la Comunitat Valenciana presenta la solicitud, con un proyecto de I+D+i ligado a la tesis y alineado con la S3CV",
+    "Convenio marco empresa-universidad (art. 15 bis del RD 99/2011)",
+    "No tener más del 25 % del capital de la empresa solicitante (salvo spin-off)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-04-01",
+    "fin": "2026-04-28",
+    "verificado": false,
+    "fuente": "https://innoavi.es/es/promocion-del-talento-agentes-de-innovacion-incorporacion-de-tecnologos-en-empresas-y-doctorandos-empresariales-2026/",
+    "nota": "La convocatoria (DOGV 10333, 31/03/2026) da 15 días hábiles desde el extracto; la página de la AVI indica del 01 al 28/04/2026 y una reapertura del procedimiento el 07/05/2026. Resolución de concesión del 31/07/2026. Si habrá convocatoria 2027, no está publicado."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Es incompatible con otras subvenciones, ayudas, ingresos o recursos para los mismos costes subvencionables, de cualquier administración o entidad pública o privada (resuelvo decimosegundo).",
+    "fuente": "https://innoavi.es/wp-content/uploads/2026/03/260331_DOGV_convo2026_es.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Habla con la empresa donde trabajas, o con una que quiera contratarte, y con tu universidad: la empresa presenta la solicitud en la sede electrónica de la Generalitat. Vigila la página de la AVI por si se abre otra convocatoria.",
+    "url": "https://innoavi.es/es/promocion-del-talento-agentes-de-innovacion-incorporacion-de-tecnologos-en-empresas-y-doctorandos-empresariales-2026/"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "La empresa solicitante, en la sede electrónica de la Generalitat.",
+  "fuente": "https://innoavi.es/wp-content/uploads/2026/03/260331_DOGV_convo2026_es.pdf",
+  "url_oficial": "https://innoavi.es/es/promocion-del-talento-agentes-de-innovacion-incorporacion-de-tecnologos-en-empresas-y-doctorandos-empresariales-2026/",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

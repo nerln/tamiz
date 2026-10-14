@@ -1,0 +1,73 @@
+{
+  "id": "es-aei-movilidad-fpu-2026",
+  "nombre": "Ayudas complementarias FPU 2026: estancias breves y traslados temporales",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades",
+  "ambito": "ES",
+  "area": "investigacion",
+  "informativa": false,
+  "resumen": "Ayudas para quienes ya tienen un contrato FPU de convocatorias anteriores a 2022: estancias breves de 2 a 3 meses en otros centros, o traslados temporales de 6 a 9 meses a centros extranjeros. No sirven si no tienes ya una ayuda FPU.",
+  "cuantia": {
+    "texto": "Alojamiento y manutención de hasta 1.500 € al mes según el país de destino, viaje de hasta 600 € a Europa o 1.200 € al resto del mundo, y hasta 200 € al mes de seguro si el destino no acepta la tarjeta sanitaria europea (art. 18 y 19 de la convocatoria 2026). Se convocaron 325 estancias breves y 15 traslados temporales.",
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.matriculado_en",
+      "op": "==",
+      "valor": "doctorado",
+      "texto": "Estar matriculado/a en un doctorado",
+      "cita": "Art. 3 y 20 de la convocatoria: personas con una ayuda FPU activa, que se concede para hacer la tesis doctoral"
+    },
+    {
+      "campo": "empleo.tipo_contrato",
+      "op": "==",
+      "valor": "predoctoral",
+      "texto": "Tener un contrato predoctoral (el de la ayuda FPU)",
+      "cita": "Art. 3 y 20 de la convocatoria: beneficiarios en activo de ayudas FPU",
+      "no_concluyente": [
+        "cumple"
+      ],
+      "aclaracion": "Solo vale una ayuda FPU de una convocatoria anterior a 2022 que siga activa. Cualquier contrato predoctoral de otra financiación no sirve. Tamiz no pregunta qué ayuda tienes."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ser beneficiario/a en activo de una ayuda FPU de una convocatoria anterior a 2022 en la fecha de cierre del plazo (art. 3 y 20)",
+    "Para estancia breve, tener al menos 9 meses de ayuda FPU cumplidos; para traslado temporal, al menos 24 meses (art. 20)",
+    "Informe favorable del director de tesis y del presidente de la comisión académica en el último informe anual de seguimiento (art. 20)",
+    "La estancia debe caber dentro del periodo de la ayuda FPU, sin pasar a sus últimos seis meses, y con autorización del centro de adscripción y carta de admisión del centro receptor (art. 17)"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-01-16",
+    "fin": "2026-02-13",
+    "verificado": true,
+    "fuente": "https://www.ciencia.gob.es/dam/jcr:13a7493e-be01-4992-90a4-0ea8bc4e8da6/Resolucion%20convocatoria%20ayudas%20complementarias.pdf",
+    "nota": "La convocatoria 2026 se pidió del 16/01/2026 al 13/02/2026 a las 14:00 (art. 21); las estancias debían hacerse entre el 01/03/2026 y el 31/12/2026. Cerrada; no hemos encontrado una convocatoria posterior."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Las ayudas son incompatibles con cualesquiera otras ayudas, subvenciones, ingresos o recursos financiados por otra entidad para la misma finalidad (art. 26 de la convocatoria).",
+    "fuente": "https://www.ciencia.gob.es/dam/jcr:13a7493e-be01-4992-90a4-0ea8bc4e8da6/Resolucion%20convocatoria%20ayudas%20complementarias.pdf"
+  },
+  "siguiente_paso": {
+    "texto": "Si tienes una ayuda FPU, consulta la página del Ministerio para ver si se abre una nueva convocatoria y habla con tu director de tesis sobre el centro receptor.",
+    "url": "https://www.ciencia.gob.es/Convocatorias/2026/MovilidadFPU2026.html"
+  },
+  "ayuda_humana": [
+    "universitat-de-valencia"
+  ],
+  "como_pedirla": "Por la sede electrónica del Ministerio de Educación (sede.educacion.gob.es), con firma electrónica (DNI-e, certificado o usuario registrado), con la autorización del centro de adscripción, la admisión del centro receptor y la memoria de objetivos.",
+  "fuente": "https://www.ciencia.gob.es/dam/jcr:13a7493e-be01-4992-90a4-0ea8bc4e8da6/Resolucion%20convocatoria%20ayudas%20complementarias.pdf",
+  "url_oficial": "https://www.ciencia.gob.es/Convocatorias/2026/MovilidadFPU2026.html",
+  "bdns": "879115",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

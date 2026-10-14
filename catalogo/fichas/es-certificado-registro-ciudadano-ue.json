@@ -1,0 +1,102 @@
+{
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "ambito": "ES",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta",
+  "area": "extranjeria",
+  "id": "es-certificado-registro-ciudadano-ue",
+  "nombre": "Certificado de registro de ciudadano de la Unión (ciudadanos de la UE, del EEE y de Suiza)",
+  "organismo": "Dirección General de la Policía - Oficinas de Extranjería",
+  "resumen": "Las personas ciudadanas de la UE, del EEE o de Suiza que van a residir en España más de tres meses deben pedir su inscripción en el Registro Central de Extranjeros, en los tres meses siguientes a su entrada. Se entrega en el momento un certificado con nombre, nacionalidad, domicilio y número de identidad de extranjero.",
+  "cuantia": {
+    "texto": "Sin importe de ayuda. Tasa modelo 790 código 012; el importe no está comprobado aquí (en la sede de la Policía, enlace «Ver importe de tasas»).",
+    "periodicidad": "no_monetaria"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Vivir en España",
+      "cita": "Art. 7.5 Real Decreto 240/2007"
+    },
+    {
+      "campo": "persona.nacionalidades",
+      "op": "contains_any",
+      "valor": [
+        "AT",
+        "BE",
+        "BG",
+        "CY",
+        "CZ",
+        "DE",
+        "DK",
+        "EE",
+        "FI",
+        "FR",
+        "GR",
+        "HR",
+        "HU",
+        "IE",
+        "IT",
+        "LT",
+        "LU",
+        "LV",
+        "MT",
+        "NL",
+        "PL",
+        "PT",
+        "RO",
+        "SE",
+        "SI",
+        "SK",
+        "IS",
+        "LI",
+        "NO",
+        "CH"
+      ],
+      "texto": "Ser ciudadano/a de un país de la UE, del EEE o de Suiza (distinto de España)",
+      "cita": "Art. 7 Real Decreto 240/2007; sede de la Policía Nacional"
+    },
+    {
+      "campo": "situacion_administrativa.tipo",
+      "op": "==",
+      "valor": "ciudadano_ue_sin_registro",
+      "texto": "Estar todavía sin certificado de registro",
+      "cita": "Art. 7.5 Real Decreto 240/2007",
+      "aclaracion": "Si ya tienes el certificado, no hace falta pedirlo otra vez; para la residencia permanente hay otro certificado tras 5 años (art. 10)."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Ir a residir en España más de tres meses y cumplir una de estas condiciones: trabajar por cuenta ajena o propia; tener recursos suficientes para ti y tu familia y un seguro de enfermedad que cubra todos los riesgos en España; o estar matriculado en un centro de estudios reconocido con seguro de enfermedad y recursos suficientes (art. 7.1 Real Decreto 240/2007)",
+    "Pasaporte o documento nacional de identidad en vigor y la documentación que acredite la condición elegida (art. 7 Real Decreto 240/2007; sede de la Policía Nacional)",
+    "Formulario EX18 y justificante de pago de la tasa modelo 790 código 012 (sede de la Policía Nacional)",
+    "Solicitud personal ante la Oficina de Extranjeros de la provincia o, en su defecto, la Comisaría de Policía (sede de la Policía Nacional)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": true,
+    "fuente": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_certificadoregistro_ciudadanoue.php",
+    "nota": "Hay que pedirlo en los tres meses siguientes a la fecha de entrada en España. El certificado se expide de forma inmediata (sede de la Policía Nacional, consultada el 14/10/2026). Tras 5 años de residencia legal continuada se puede pedir el certificado de residencia permanente."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Rellena el formulario EX18, paga la tasa 790 código 012 y presenta la solicitud en persona en la Oficina de Extranjería de tu provincia o en la Comisaría de Policía, con tu pasaporte o DNI.",
+    "url": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_certificadoregistro_ciudadanoue.php"
+  },
+  "ayuda_humana": [
+    "oficina-extranjeria-valencia",
+    "accem",
+    "cepaim"
+  ],
+  "como_pedirla": "En persona, en la Oficina de Extranjería de la provincia donde vayas a residir o, si no, en la Comisaría de Policía. Formulario EX18 y tasa 790 código 012.",
+  "fuente": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_certificadoregistro_ciudadanoue.php",
+  "url_oficial": "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_certificadoregistro_ciudadanoue.php"
+}
