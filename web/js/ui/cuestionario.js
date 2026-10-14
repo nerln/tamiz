@@ -1,6 +1,7 @@
 // La pantalla de las preguntas: una pantalla por vez, atrás sin perder nada, «no lo sé» siempre.
 import { el, nuovoId } from "./dom.js";
-import { PANTALLAS, PAISES, TRAMOS, controlesVisibles, pantallasVisibles, escribir, leer, tramoDeImporte, esValencia } from "../preguntas.js";
+import { PANTALLAS, PAISES, TRAMOS, controlesVisibles, pantallasVisibles, escribir, leer, tramoDeImporte, esValencia,
+  previoAutorizaTrabajar } from "../preguntas.js";
 
 // Il comune «No lo sé» non ha un codice nello schema (docs/ESQUEMA.md §2.5): si ricorda sull'oggetto residencia
 // salvato, come il reddito con PREFIERO_INGRESO. Se residencia cambia oggetto (cioè si riscrive), il ricordo cade.
@@ -10,7 +11,32 @@ export function municipioNoSabe(perfil) {
   return !!r && typeof r === "object" && MUNICIPIO_NO_SE.has(r);
 }
 
+// «En otro país» con «No lo sé» nel menu del paese: il paese si salva come «no lo sé» (lo schema non ha un altro codice),
+// e per ricordare la scelta al ritorno (Atrás) si tiene l'oggetto residencia così salvato, come per il comune.
+const OTRO_NO_SE = new WeakSet();
+export function otroPaisNoSabe(perfil) {
+  const r = leer(perfil, "residencia");
+  return !!r && typeof r === "object" && OTRO_NO_SE.has(r);
+}
+
 const SIN_VALOR = "__vacio__";
+
+// L'anno massimo di nascita (o di un figlio) è l'anno corrente: un anno futuro non si accetta (hoy è AAAA-MM-DD).
+function anioMaximo(max, hoy) {
+  const y = Number(String(hoy || "").slice(0, 4));
+  return Number.isInteger(y) && y > 0 ? Math.min(max, y) : max;
+}
+
+// «No lo sé» sta in cima al menu, subito dopo il segnaposto: in una lista lunga (69 paesi) non deve finire in fondo.
+export function opcionesConNoSe(lista) {
+  const nls = lista.find(([v]) => v === "no_lo_se");
+  return nls ? [nls, ...lista.filter(([v]) => v !== "no_lo_se")] : lista;
+}
+// Il menu di un paese: il segnaposto, «No lo sé» in cima, la risposta extra del campo (per esempio «No tengo permiso…»)
+// e poi i paesi, «Otro país» compreso.
+export function opcionesPaisMenu(extra) {
+  return [["", "Elige un país"], ["no_lo_se", "No lo sé"], ...(extra ? [extra] : []), ...PAISES];
+}
 // «Prefiero no decirlo» per un reddito si salva come «no lo sé» (docs/ESQUEMA.md §2.5): lo schema non ha un altro
 // codice. Per ricordare la scelta al ritorno si tiene l'oggetto del reddito così salvato. Se il reddito cambia,
 // l'oggetto cambia (escribir ne crea uno nuovo) e il ricordo cade da solo: nel profilo non entra nulla di nuovo.
@@ -86,7 +112,8 @@ function leerMesCampo(mes) {
   return v >= 1 && v <= 12 ? v : null;
 }
 
-function controlloMesAnio(c, previo) {
+function controlloMesAnio(c, previo, hoy) {
+  const maxAnio = anioMaximo(c.max, hoy);
   const anio = campoAnio(c.etiqueta);
   const mes = campoMes(c.etiqueta);
   const chk = el("input", { type: "checkbox", id: nuovoId("nls") });
@@ -107,7 +134,7 @@ function controlloMesAnio(c, previo) {
     const t = anio.value.trim();
     if (!/^\d{4}$/.test(t)) return undefined;
     const v = Number(t);
-    return v >= c.min && v <= c.max ? v : undefined;
+    return v >= c.min && v <= maxAnio ? v : undefined;
   };
   const escrituras = (a, m) => {
     if (a === "no_lo_se") return [[c.campo, "no_lo_se"], [c.campo_mes, undefined]];
@@ -119,7 +146,7 @@ function controlloMesAnio(c, previo) {
       if (chk.checked) return { ok: true, escrituras: escrituras("no_lo_se") };
       if (anio.value.trim() === "") return { ok: false, error: `${c.etiqueta}: escribe el año (4 cifras) o marca «No lo sé».` };
       const a = anioDi();
-      if (a === undefined) return { ok: false, error: `${c.etiqueta}: el año tiene 4 cifras y va de ${c.min} a ${c.max}.` };
+      if (a === undefined) return { ok: false, error: `${c.etiqueta}: el año tiene 4 cifras y va de ${c.min} a ${maxAnio}.` };
       const m = leerMesCampo(mes);
       if (m === null) return { ok: false, error: `${c.etiqueta}: el mes va de 1 a 12, o déjalo vacío.` };
       return { ok: true, escrituras: escrituras(a, m) };
@@ -198,7 +225,7 @@ function controlloTexto(c, previo) {
     nodo, nombre: campo,
     leer() {
       const v = valorDi();
-      if (v === undefined) return { ok: false, error: `${c.etiqueta}: ${c.error || "revisa el dato"}, o marca «No lo sé».` };
+      if (v === undefined) return { ok: false, error: `${c.etiqueta}: ${String(c.error || "revisa el dato").replace(/\.$/, "")}, o marca «No lo sé».` };
       return { ok: true, escrituras: [[c.campo, v]] };
     },
     borrador: () => (valorDi() === undefined ? [] : [[c.campo, valorDi()]]),
@@ -212,7 +239,7 @@ function controlloSelect(c, previo, _hoy, perfil) {
   const pinta = (lista) => {
     const scelta = select.value;
     select.replaceChildren(el("option", { value: "", text: "Elige una opción" }),
-      ...lista.map(([codigo, texto]) => el("option", { value: String(codigo), text: texto })));
+      ...opcionesConNoSe(lista).map(([codigo, texto]) => el("option", { value: String(codigo), text: texto })));
     select.value = lista.some(([codigo]) => String(codigo) === scelta) ? scelta : "";
   };
   pinta(c.opciones_de ? c.opciones_de(perfil) : c.opciones);
@@ -278,14 +305,20 @@ function controlloMunicipio(c, previo) {
   };
 }
 
-// Pulsanti radio con etichette. Il codice null (Otra situación) cancella il campo.
+// Il codice null (Otra situación) non si salva come valore: il campo resta vuoto. Per ricordare la scelta al ritorno
+// (Atrás) si tiene il campo in questo insieme, finché la risposta non cambia o si toglie.
+const OPCION_NULA = new Set();
+
+// Pulsanti radio con etichette. Il codice null (Otra situación) cancella il campo. «Quitar respuesta» toglie la scelta.
 function controlloRadio(c, previo, pantalla) {
   const nome = nuovoId("r");
+  const recuerda = previo === undefined && OPCION_NULA.has(c.campo);
   const righe = c.opciones.map(([codigo, texto]) => {
     const valore = codigo === null ? SIN_VALOR : codigo;
     const input = el("input", { type: "radio", name: nome, value: valore, id: nuovoId("ro") });
     const previoVal = previo === null ? SIN_VALOR : previo;
     if (previo !== undefined && previoVal === valore) input.checked = true;
+    if (recuerda && codigo === null) input.checked = true;
     return { input, codigo, nodo: el("label", { class: "opcion" }, input, texto) };
   });
   const ayuda = el("div", { class: "ayuda-ong", hidden: true });
@@ -297,21 +330,34 @@ function controlloRadio(c, previo, pantalla) {
   righe.forEach((r) => r.input.addEventListener("change", cambio));
   const legenda = el("legend", { class: "campo-etiqueta", text: c.etiqueta });
   const spiegazione = c.ayuda ? botonAyuda(c.ayuda, nuovoId("ayp"), legenda) : null;
+  const quitar = el("button", { type: "button", class: "secundario", text: "Quitar respuesta", onclick: () => {
+    for (const r of righe) r.input.checked = false;
+    OPCION_NULA.delete(c.campo);
+    cambio();
+    nodo.dispatchEvent(new Event("change", { bubbles: true }));
+  } });
   const nodo = el("fieldset", { class: "grupo" }, legenda, spiegazione ? spiegazione.panel : null,
-    righe.map((r) => r.nodo), ayuda);
+    righe.map((r) => r.nodo), quitar, ayuda);
   cambio();
   const valorDi = () => {
     const sel = righe.find((r) => r.input.checked);
     return sel ? { codigo: sel.codigo } : undefined;
   };
   // Scritture che la scelta porta con sé (c.extra), per esempio il permesso di lavoro di un documento.
-  const conExtra = (codigo) => [[c.campo, codigo], ...(c.extra ? c.extra(codigo) : [])];
+  // «En otro país» non scrive un paese: il paese lo scrive il menu che si apre sotto (vedi renderCuestionario). Il campo
+  // si svuota, così un paese vecchio non riapre il menu né la CV.
+  const conExtra = (codigo) => {
+    if (c.radio_pais_otro && codigo === "otro") return [[c.campo, undefined]];
+    return [[c.campo, codigo], ...(c.extra ? c.extra(codigo) : [])];
+  };
+  const alternativa = c.opciones.some(([k]) => k === "prefiero_no_decirlo");
   return {
     nodo, nombre: righe[0].input,
+    esOtro: () => { const sel = valorDi(); return !!sel && sel.codigo === "otro"; },
     leer() {
       const sel = valorDi();
-      if (!sel) return { ok: false, error: `${c.etiqueta}: elige una opción.` };
-      if (c.radio_pais_otro && sel.codigo === "otro") return { ok: true, escrituras: [] };
+      if (!sel) return { ok: false, error: `${c.etiqueta}: elige una opción${alternativa ? " o «Prefiero no decirlo»" : ""}.` };
+      if (sel.codigo === null) OPCION_NULA.add(c.campo); else OPCION_NULA.delete(c.campo);
       return { ok: true, escrituras: conExtra(sel.codigo) };
     },
     borrador() {
@@ -350,7 +396,7 @@ function pintaOng(nodo, ongs) {
   }
   nodo.append(el("a", { href: "#ayuda", text: "Ver la ayuda humana" }));
   nodo.append(" ");
-  nodo.append("Deja el campo vacío si prefieres no decirlo.");
+  nodo.append("Elige esta opción si prefieres no decirlo.");
 }
 
 function controlloBool(c, previo) {
@@ -361,7 +407,11 @@ function controlloBool(c, previo) {
     if (previo !== undefined && String(previo) === v) input.checked = true;
     return { input, nodo: el("label", { class: "opcion" }, input, t), v };
   });
-  const nodo = el("fieldset", { class: "grupo" }, el("legend", { class: "campo-etiqueta", text: c.etiqueta }), inputs.map((x) => x.nodo));
+  const quitar = el("button", { type: "button", class: "secundario", text: "Quitar respuesta", onclick: () => {
+    for (const x of inputs) x.input.checked = false;
+    nodo.dispatchEvent(new Event("change", { bubbles: true }));
+  } });
+  const nodo = el("fieldset", { class: "grupo" }, el("legend", { class: "campo-etiqueta", text: c.etiqueta }), inputs.map((x) => x.nodo), quitar);
   const valorDi = () => {
     const s = inputs.find((x) => x.input.checked);
     if (!s) return undefined;
@@ -468,7 +518,8 @@ function controlloPaises(c, previo) {
     nodo, nombre: menu,
     leer() {
       const v = leerDi();
-      if (v === undefined) return { ok: false, error: `${c.etiqueta}: añade un país, marca «${c.nadie ? c.nadie[1] : "No lo sé"}» o «No lo sé».` };
+      const pide = c.nadie ? `añade un país, marca «${c.nadie[1]}» o «No lo sé».` : "añade un país o marca «No lo sé».";
+      if (v === undefined) return { ok: false, error: `${c.etiqueta}: ${pide}` };
       return { ok: true, escrituras: [[c.campo, v]] };
     },
     borrador: () => (leerDi() === undefined ? [] : [[c.campo, leerDi()]]),
@@ -476,19 +527,19 @@ function controlloPaises(c, previo) {
 }
 
 // Un solo paese, con «No lo sé» (menu).
+// Con «nadie» (il permiso di guida) il menu offre anche la sua risposta, dopo «No lo sé».
 function controlloPais(c, previo) {
   const menu = el("select", { id: nuovoId("pm1"), "aria-label": c.etiqueta },
-    el("option", { value: "", text: "Elige un país" }),
-    PAISES.map(([k, t]) => el("option", { value: k, text: t })),
-    el("option", { value: "no_lo_se", text: "No lo sé" }));
+    opcionesPaisMenu(c.nadie || null).map(([k, t]) => el("option", { value: k, text: t })));
   if (typeof previo === "string") menu.value = previo;
   const nodo = el("div", { class: "fila" }, el("label", { class: "campo-etiqueta", for: menu.id, text: c.etiqueta }), menu);
   const leerDi = () => (menu.value ? menu.value : undefined);
   return {
     nodo, nombre: menu,
+    vacia: () => { menu.value = ""; },
     leer() {
       const v = leerDi();
-      if (v === undefined) return { ok: false, error: `${c.etiqueta}: elige un país o «No lo sé».` };
+      if (v === undefined) return { ok: false, error: `${c.etiqueta}: elige un país${c.nadie ? `, «${c.nadie[1]}»` : ""} o «No lo sé».` };
       return { ok: true, escrituras: [[c.campo, v]] };
     },
     borrador: () => (leerDi() === undefined ? [] : [[c.campo, leerDi()]]),
@@ -550,7 +601,8 @@ function controlloTramo(c, previo) {
 }
 
 // Figli: lista di {anio_nacimiento, mes_nacimiento}, o «ninguno» o «no lo sé».
-function controlloHijos(c, previo) {
+function controlloHijos(c, previo, hoy) {
+  const maxAnio = anioMaximo(2100, hoy);
   const nls = el("input", { type: "checkbox", id: nuovoId("hnls") });
   const ninguno = el("input", { type: "checkbox", id: nuovoId("hnin") });
   nls.checked = previo === "no_lo_se";
@@ -577,8 +629,9 @@ function controlloHijos(c, previo) {
     filas.append(x.fila);
   };
   if (Array.isArray(previo)) previo.forEach(agregar);
+  // Aggiungere un figlio toglie «No tengo hijos» e «No lo sé»: altrimenti il figlio si scarta in silenzio.
   const anadir = el("button", { type: "button", class: "secundario", text: "Añadir hijo o hija",
-    onclick: () => agregar(null) });
+    onclick: () => { ninguno.checked = false; nls.checked = false; agregar(null); } });
   nls.addEventListener("change", () => { if (nls.checked) { ninguno.checked = false; filas.replaceChildren(); filasHijos.length = 0; } });
   ninguno.addEventListener("change", () => { if (ninguno.checked) { nls.checked = false; filas.replaceChildren(); filasHijos.length = 0; } });
   const nodo = el("fieldset", { class: "grupo" }, el("legend", { class: "campo-etiqueta", text: c.etiqueta }),
@@ -587,9 +640,11 @@ function controlloHijos(c, previo) {
     el("label", { class: "nls" }, nls, " No lo sé"));
   const leerDi = () => {
     if (nls.checked) return "no_lo_se";
-    if (ninguno.checked) return [];
+    const vive = filasHijos.filter((x) => x.fila.isConnected);
+    // Con «No tengo hijos» spunta e figli in lista, la risposta è contraddittoria: si chiede di scegliere.
+    if (ninguno.checked) return vive.length ? undefined : [];
     if (!filasHijos.length) return undefined;
-    return filasHijos.filter((x) => x.fila.isConnected).map((x) => {
+    return vive.map((x) => {
       const h = { anio_nacimiento: x.anioNls.checked ? "no_lo_se" : (/^\d{4}$/.test(x.anio.value.trim()) ? Number(x.anio.value.trim()) : "err") };
       const m = leerMesCampo(x.mes);
       if (m === null) h.mes_nacimiento = "err";
@@ -601,10 +656,10 @@ function controlloHijos(c, previo) {
     nodo, nombre: ninguno,
     leer() {
       const v = leerDi();
-      if (v === undefined) return { ok: false, error: `${c.etiqueta}: marca «No tengo hijos…», añade cada hijo o marca «No lo sé».` };
+      if (v === undefined) return { ok: false, error: `${c.etiqueta}: marca «No tengo hijos que vivan conmigo o estén a mi cargo», añade cada hijo o marca «No lo sé».` };
       if (Array.isArray(v) && v.some((h) => h.anio_nacimiento === "err" || h.mes_nacimiento === "err"
-        || (typeof h.anio_nacimiento === "number" && (h.anio_nacimiento < 1900 || h.anio_nacimiento > 2100)))) {
-        return { ok: false, error: `${c.etiqueta}: escribe el año (4 cifras) de cada hijo o marca «No lo sé», y el mes solo si lo sabes (1 a 12).` };
+        || (typeof h.anio_nacimiento === "number" && (h.anio_nacimiento < 1900 || h.anio_nacimiento > maxAnio)))) {
+        return { ok: false, error: `${c.etiqueta}: escribe el año (4 cifras, no posterior a ${maxAnio}) de cada hijo o marca «No lo sé», y el mes solo si lo sabes (1 a 12).` };
       }
       return { ok: true, escrituras: [[c.campo, v]] };
     },
@@ -616,7 +671,7 @@ function controlloHijos(c, previo) {
   };
 }
 
-const FABRICA = {
+export const FABRICA = {
   anio: controlloNumero, mesanio: controlloMesAnio, entero: controlloNumero, fecha: controlloFecha, texto: controlloTexto,
   select: controlloSelect, radio: controlloRadio, bool: controlloBool, lista: controlloLista,
   paises: controlloPaises, pais: controlloPais, tramo: controlloTramo, hijos: controlloHijos,
@@ -627,8 +682,8 @@ const FABRICA = {
 function rutaPrincipal(c) { return c.campo || c.base; }
 
 // Il testo «por qué lo preguntamos» di una pantalla: è una frase, o una funzione della bozza del profilo.
-function textoDePorque(pantalla, perfilo) {
-  return typeof pantalla.porque === "function" ? pantalla.porque(perfilo) : pantalla.porque;
+function textoDePorque(pantalla, perfilo, ui) {
+  return typeof pantalla.porque === "function" ? pantalla.porque(perfilo, ui) : pantalla.porque;
 }
 
 export function renderCuestionario(ctx) {
@@ -642,7 +697,7 @@ export function renderCuestionario(ctx) {
   const posicion = visibili.findIndex((p) => p.id === actual) + 1;
 
   const titulo = el("h1", { tabindex: -1, id: "titulo-pantalla", text: pantalla.titulo });
-  const textoPorque = el("span", { text: textoDePorque(pantalla, ctx.perfil) });
+  const textoPorque = el("span", { text: textoDePorque(pantalla, ctx.perfil, { otroPais: false }) });
   const porque = el("p", { class: "porque" }, el("strong", { text: "¿Por qué lo preguntamos? " }), textoPorque);
   const error = el("div", { class: "error-form", role: "alert", "aria-live": "assertive" });
   const formulario = el("form", { novalidate: true, class: "pregunta-form" });
@@ -662,9 +717,16 @@ export function renderCuestionario(ctx) {
     if (c.tipo === "mesanio") c = { ...c, previo_mes: leer(ctx.perfil, c.campo_mes) };
     if (c.tipo === "radio" && c.campo === "residencia.pais") {
       c = { ...c, radio_pais_otro: true };
-      // Un paese scelto dal menu (per esempio FR) si ricorda come «En otro país».
+      // Un paese scelto dal menu (per esempio FR) si ricorda come «En otro país»; così anche «No lo sé» scelto nel menu.
       if (typeof previo === "string" && /^[A-Z]{2}$/.test(previo) && previo !== "ES") previo = "otro";
+      else if (previo === "no_lo_se" && otroPaisNoSabe(ctx.perfil)) previo = "otro";
     }
+    // Il menu del paese: «ES» non lo riapre; «No lo sé» lo riapre solo se il radio era «En otro país» (vedi OTRO_NO_SE).
+    if (c.tipo === "pais" && c.campo === "residencia.pais" && (previo === "ES" || (previo === "no_lo_se" && !otroPaisNoSabe(ctx.perfil)))) {
+      previo = undefined;
+    }
+    // «¿Tu documento te permite trabajar?»: con un documento che lo dà per legge il valore è automatico, non una risposta.
+    if (c.campo === "situacion_administrativa.autoriza_trabajar") previo = previoAutorizaTrabajar(ctx.perfil);
     if (c.ong_si_otro) c = { ...c, ongs: (ctx.catalogo?.ayuda_humana || []).filter((a) => a.tipo === "ong").slice(0, 2) };
     if (c.tipo === "municipio") {
       c = { ...c, ine_previo: leer(ctx.perfil, c.ine), recuerda_no_se: municipioNoSabe(ctx.perfil),
@@ -680,6 +742,10 @@ export function renderCuestionario(ctx) {
 
   const nodosControles = controles.map((x) => x.grupo);
   formulario.append(...nodosControles);
+  // Il radio «En otro país» e il menu del paese: il radio dice se il menu è aperto (ui.otroPais), il menu scrive il paese.
+  const radioPais = controles.find((x) => x.def.campo === "residencia.pais" && x.def.radio_pais_otro);
+  const menuPais = controles.find((x) => x.def.tipo === "pais" && x.def.campo === "residencia.pais");
+  const uiDe = () => ({ otroPais: !!(radioPais && radioPais.esOtro()) });
 
   // Visibilità a punto fisso: la bozza è fatta solo dai controlli che si mostrano, e un controllo con «si» si mostra
   // in base a quella bozza. Un controllo nascosto non scrive: un valore rimasto in un menu nascosto non può riaccenderlo.
@@ -689,20 +755,23 @@ export function renderCuestionario(ctx) {
     return p;
   };
   const calcVisibles = () => {
+    const ui = uiDe();
     let vis = new Set(controles.filter((x) => !x.def.si));
     let b = costruye(vis);
     for (let giro = 0; giro <= controles.length; giro++) {
-      const nueva = new Set(controles.filter((x) => !x.def.si || x.def.si(b)));
+      const nueva = new Set(controles.filter((x) => !x.def.si || x.def.si(b, ui)));
       const igual = nueva.size === vis.size && [...nueva].every((x) => vis.has(x));
       if (igual) break;
       vis = nueva;
       b = costruye(vis);
     }
-    return { vis, b };
+    return { vis, b, ui };
   };
   const aggiornaVisibili = () => {
-    const { vis, b } = calcVisibles();
-    textoPorque.textContent = textoDePorque(pantalla, b);
+    const { vis, b, ui } = calcVisibles();
+    // Senza «En otro país» il menu del paese è chiuso e vuoto: un paese scelto prima (o svuotato con «Quitar respuesta») non resta.
+    if (radioPais && menuPais && !ui.otroPais) menuPais.vacia();
+    textoPorque.textContent = textoDePorque(pantalla, b, ui);
     for (const x of controles) {
       if (x.actualiza) x.actualiza(b);
       x.grupo.hidden = !vis.has(x);
@@ -751,6 +820,11 @@ export function renderCuestionario(ctx) {
     }
     let nuevo = ctx.perfil;
     for (const [ruta, valor] of escrituras) nuevo = escribir(nuevo, ruta, valor);
+    // «En otro país» con «No lo sé» nel menu: si ricorda sull'oggetto residencia appena scritto (vedi OTRO_NO_SE).
+    if (radioPais && !radioPais.grupo.hidden && radioPais.esOtro() && leer(nuevo, "residencia.pais") === "no_lo_se") {
+      const r = leer(nuevo, "residencia");
+      if (r && typeof r === "object") OTRO_NO_SE.add(r);
+    }
     // Ricorda «Prefiero no decirlo» sull'oggetto del reddito appena scritto (vedi PREFIERO_INGRESO).
     for (const x of controles) {
       if (!x.grupo.hidden && x.prefiere && x.prefiere()) PREFIERO_INGRESO.add(leer(nuevo, x.def.base));

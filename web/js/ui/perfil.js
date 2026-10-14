@@ -134,6 +134,8 @@ function formatea(c, v, perfil) {
     if (!v.length) return c.nadie ? c.nadie[1] : "Ninguno";
     return v.map((x) => (c.opciones ? etiquetaCodigo(c.opciones, x) : etiquetaCodigo(PAISES, x))).join(", ");
   }
+  // La risposta extra di un campo paese («No tengo permiso de conducir», codice ninguno) si mostra con la sua etichetta.
+  if (c.tipo === "pais" && c.nadie && v === c.nadie[0]) return c.nadie[1];
   if (c.tipo === "paises" || c.tipo === "pais") return etiquetaCodigo(PAISES, v);
   // Il paese scelto con «En otro país» (il radio) si scrive come codice ISO: si mostra il nome.
   if (c.opciones && RE_PAIS.test(v) && !c.opciones.some(([k]) => k === v)) return etiquetaCodigo(PAISES, v);

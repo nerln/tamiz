@@ -696,6 +696,7 @@
                 "ong_o_fundacion",
                 "centro_formacion",
                 "otro",
+                "ninguna",
                 "no_lo_se"
               ]
             },
@@ -729,6 +730,7 @@
                 "ong_o_fundacion",
                 "centro_formacion",
                 "otro",
+                "ninguna",
                 "no_lo_se"
               ]
             },
@@ -800,6 +802,9 @@
             {
               "type": "string",
               "pattern": "^[A-Z]{2}$"
+            },
+            {
+              "const": "ninguno"
             },
             {
               "const": "no_lo_se"

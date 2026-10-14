@@ -125,7 +125,7 @@ sé» del questionario). Le date «parziali» sono `AAAA`, `AAAA-MM` o `AAAA-MM-
 | `persona.mes_nacimiento` | intero 1-12 | facoltativo; si chiede solo quando serve (§3.2) |
 | `persona.nacionalidades` | lista ISO 3166-1 alfa-2 | nazionalità attuali, tutte. `[]` = apolide |
 | `persona.sexo` | enum `sexo` | facoltativo; il questionario lo chiede solo se una scheda pubblicata lo usa |
-| `residencia.pais` | ISO 3166-1 alfa-2 | paese in cui vive (`ES`) |
+| `residencia.pais` | ISO 3166-1 alfa-2 | paese in cui vive (`ES`). Il codice `XX` vale «Otro país»: un paese estero che non è in elenco (§2.9) |
 | `residencia.region` | ISO 3166-2 | comunità autonoma (`ES-VC`) |
 | `residencia.provincia` | ISO 3166-2 | provincia (`ES-V`) |
 | `residencia.municipio` | testo | solo da mostrare; **mai nelle regole** |
@@ -161,12 +161,12 @@ sé» del questionario). Le date «parziali» sono `AAAA`, `AAAA-MM` o `AAAA-MM-
 | `ingresos.individual` | `{tramo, importe}` | ingressi **lordi** annui della persona |
 | `ingresos.hogar` | `{tramo, importe}` | ingressi lordi annui della famiglia di `hogar.miembros` |
 | `ingresos.patrimonio_sin_vivienda` | `{tramo, importe}` | risparmi e beni, esclusa la casa in cui vive |
-| `vinculos.entidad_trabajo` | `{tipo, ambito}` | ente per cui lavora: `tipo` enum `tipo_entidad`, `ambito` codice come in §4.2 |
-| `vinculos.entidad_estudios` | `{tipo, ambito}` | ente in cui studia (stesso formato) |
+| `vinculos.entidad_trabajo` | `{tipo, ambito}` | ente per cui lavora: `tipo` enum `tipo_entidad` (`ninguna` = «No trabajo»), `ambito` codice come in §4.2 |
+| `vinculos.entidad_estudios` | `{tipo, ambito}` | ente in cui studia (stesso formato; `tipo` `ninguna` = «No estudio») |
 | `vinculos.paises_origen` | lista ISO 3166-1 | nazionalità **d'origine** (dalla nascita); apre le convenzioni bilaterali e la nazionalità a 2 anni |
 | `vinculos.paises_cotizacion` | lista ISO 3166-1 | paesi, diversi da `residencia.pais`, in cui ha lavorato e cotizzato. `[]` = nessuno |
 | `vinculos.afiliaciones` | lista enum `afiliacion` | colegio profesional, sociedad científica, asociación… (l'adesione sindacale non si chiede: dato di cui all'art. 9 GDPR) |
-| `vinculos.permiso_conducir_pais` | ISO 3166-1 | paese che ha rilasciato la patente |
+| `vinculos.permiso_conducir_pais` | ISO 3166-1, o `ninguno` | paese che ha rilasciato la patente. `ninguno` = «No tengo permiso de conducir» (§2.9) |
 | `intereses` | lista enum `interes` | nella v1.1 non lo usa né il motore né l'ordinamento: si conserva per dopo. Vietato nelle regole. Non accetta `no_lo_se` |
 | `solicitudes` | lista | §2.7 |
 | (salute) | — | nessun campo nella v1.1, §2.6 |
@@ -348,6 +348,7 @@ l'interfaccia accanto a quella domanda rinvia a una ONG dell'elenco `ayuda_human
 | `ong_o_fundacion` | ONG, asociación o fundación |
 | `centro_formacion` | Centro de FP, escuela de idiomas o academia |
 | `otro` | Otra |
+| `ninguna` | No trabajo (in `entidad_trabajo`) o No estudio (in `entidad_estudios`): nessun ente. Non è un dato mancante: una regola che chiede un ente, con `==` o `in`, dà «no cumple», mai «falta» |
 | `no_lo_se` | No lo sé |
 
 **`afiliacion`**
@@ -464,6 +465,24 @@ compilarle arriva dopo le 08:45; il formato c'è da stanotte.
 - **Spiegazioni «?».** Per documento (`situacion_administrativa.tipo`), tipo di contratto (`empleo.tipo_contrato`)
   e nivel di estudios (`estudios.nivel_max`): un pulsante «?» apre una spiegazione breve. Testi da verificare a mano
   su extranjeros.inclusion.gob.es (la lettura automatica non è riuscita: 403).
+
+### 2.9 Codici extra del questionario (v1.1)
+
+Quattro codici che non sono un paese ISO né un'opzione di un enum, e che il questionario offre
+accanto ai paesi o ai campi che li usano:
+
+- `residencia.pais` = `XX`: «Otro país», un paese estero che non è in elenco (menu del paese,
+  e nelle liste di paesi). È un paese vero per le regole: `==` e `in` non lo soddisfano, `not_in` e
+  `contains_none` sì. Il radio «En otro país» non scrive un paese: lo scrive il menu del paese.
+- `residencia.pais` = `no_lo_se` scelto nel menu sotto «En otro país»: il paese è sconosciuto ma
+  estero. Le domande della comunità, della provincia, del comune e dell'empadronamiento non si chiedono
+  (si chiedono per la Spagna, o per «No lo sé» del radio). Il ricordo al ritorno (Atrás) è
+  dell'interfaccia, come per il comune «No lo sé» (§2.5).
+- `vinculos.permiso_conducir_pais` = `ninguno`: «No tengo permiso de conducir». Una scheda che chiede
+  un paese del permiso (`in` o `==`) dà «no cumple» (No encaja), non «falta».
+- `vinculos.entidad_trabajo.tipo` / `vinculos.entidad_estudios.tipo` = `ninguna`: «No trabajo» /
+  «No estudio» (vedi `tipo_entidad`). La domanda sull'ente di lavoro si chiede se la persona lavora,
+  o non ha ancora detto la sua situazione; quella sul centro di studio solo se studia.
 
 ## 3. I campi calcolati (`calc.*`)
 

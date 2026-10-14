@@ -7,7 +7,7 @@ export const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "ju
 
 // Paesi: codice ISO 3166-1 e nome da mostrare. Include la UE, lo SEE, la Svizzera e i paesi
 // d'origine più frequenti; un paese che manca si può scegliere con «Otro país» più avanti.
-export const PAISES = [
+const PAISES_ORDENADOS = [
   ["AT", "Austria"], ["BE", "Bélgica"], ["BG", "Bulgaria"], ["CY", "Chipre"], ["CZ", "Chequia"],
   ["DE", "Alemania"], ["DK", "Dinamarca"], ["EE", "Estonia"], ["ES", "España"], ["FI", "Finlandia"],
   ["FR", "Francia"], ["GR", "Grecia"], ["HR", "Croacia"], ["HU", "Hungría"], ["IE", "Irlanda"],
@@ -23,6 +23,9 @@ export const PAISES = [
   ["CM", "Camerún"], ["CN", "China"], ["IN", "India"], ["PK", "Pakistán"], ["PH", "Filipinas"],
   ["UA", "Ucrania"], ["RU", "Rusia"], ["TR", "Turquía"], ["SY", "Siria"], ["AF", "Afganistán"],
 ].sort((a, b) => a[1].localeCompare(b[1], "es"));
+// «Otro país» (codice XX, docs/ESQUEMA.md §2.2): un paese che non è in elenco. Non è un paese vero: nessuna regola
+// positiva lo soddisfa (in, ==), solo le regole di esclusione (not_in, contains_none).
+export const PAISES = [...PAISES_ORDENADOS, ["XX", "Otro país"]];
 
 export const CCAA = [
   ["ES-AN", "Andalucía"], ["ES-AR", "Aragón"], ["ES-AS", "Principado de Asturias"],
@@ -72,20 +75,26 @@ export function esValenciaCiudad(p) {
   const prov = leer(p, "residencia.provincia");
   return esValencia(leer(p, "residencia.municipio")) && (prov === undefined || prov === "ES-V");
 }
-// Paese di residenza che non è Spagna né «no lo sé»: la voce «En otro país» del radio e il menu del paese.
-function esOtroPais(p) {
+// Il radio «En otro país» è scelto (ui.otroPais, letto dallo schermo): solo lui mostra il menu del paese. Il profilo da solo
+// non basta: dopo «Quitar respuesta» o con «No lo sé» nel menu, il paese scritto non riapre il menu né le domande della CV.
+export function esOtroPais(p, ui) {
+  return !!(ui && ui.otroPais);
+}
+// Le domande della comunità e del comune (CV) valgono per la Spagna, e per «No lo sé» solo se il radio è «No lo sé»:
+// con «En otro país» e «No lo sé» nel menu, il paese è sconosciuto ma estero, e la CV non si chiede.
+export function residenciaEnEspana(p, ui) {
   const v = leer(p, "residencia.pais");
-  return v !== undefined && v !== "ES" && v !== "no_lo_se";
+  return v === "ES" || (v === "no_lo_se" && !(ui && ui.otroPais));
 }
 // Il documento che non richiede un permesso di lavoro: la domanda «¿Tu documento te permite trabajar?» non si mostra
 // e il dato è vero per legge (cittadinanza spagnola o UE, docs/ESQUEMA.md §2.4).
 export const SIN_PERMISO_TRABAJO = ["nacional", "ciudadano_ue", "ciudadano_ue_permanente", "ciudadano_ue_sin_registro"];
 
 // «Por qué lo preguntamos» della pantalla di residencia e di empadronamiento: cambia con il paese e la comunità scelti.
-function porqueResidencia(b) {
+function porqueResidencia(b, ui) {
   const pais = leer(b, "residencia.pais");
   const region = leer(b, "residencia.region");
-  if (esOtroPais(b)) {
+  if (esOtroPais(b, ui)) {
     return "Dónde vives decide qué ayudas son tuyas. Si vives fuera de España, las preguntas sobre el municipio y el empadronamiento no se aplican.";
   }
   if (pais === "ES" && region && region !== "no_lo_se" && region !== "ES-VC") {
@@ -289,6 +298,32 @@ export const OPC_AMBITO = [["EU", "Unión Europea"], ["ES", "España (todo el te
   ...CCAA.filter(([c]) => c !== "ES-CE" && c !== "ES-ML"),
   ["ES-CE", "Ceuta"], ["ES-ML", "Melilla"], ["no_lo_se", "No lo sé"]];
 
+// «No trabajo» e «No estudio» sono il tipo «ninguna» (docs/ESQUEMA.md §2.2): una risposta certa, non un dato mancante.
+export const OPC_ENTIDAD_TRABAJO = [...OPC_ENTIDAD.filter(([k]) => k !== "no_lo_se"), ["ninguna", "No trabajo"],
+  ["no_lo_se", "No lo sé"]];
+export const OPC_ENTIDAD_ESTUDIOS = [...OPC_ENTIDAD.filter(([k]) => k !== "no_lo_se"), ["ninguna", "No estudio"],
+  ["no_lo_se", "No lo sé"]];
+
+// La domanda sull'ente di lavoro si mostra se la persona lavora (o se non ha ancora detto la sua situazione, o non la sa);
+// quella sul centro di studio solo se studia. Chi non lavora risponde «No trabajo», chi non studia «No estudio».
+const SITUACIONES_TRABAJO = ["asalariado", "autonomo"];
+export function puedeTrabajar(p) {
+  const s = leer(p, "empleo.situaciones");
+  return s === undefined || s === "no_lo_se" || (Array.isArray(s) && s.some((x) => SITUACIONES_TRABAJO.includes(x)));
+}
+export function puedeEstudiar(p) {
+  const s = leer(p, "empleo.situaciones");
+  return s === undefined || s === "no_lo_se" || (Array.isArray(s) && s.includes("estudiante"));
+}
+
+// Il valore di «¿Tu documento te permite trabajar?» che la schermata mostra come risposta. Con un documento che lo dà per
+// legge il valore è scritto in automatico (vedi SIN_PERMISO_TRABAJO): non è una risposta della persona, e se il documento
+// cambia (con Atrás) la domanda parte vuota.
+export function previoAutorizaTrabajar(perfil) {
+  const tipo = leer(perfil, "situacion_administrativa.tipo");
+  return SIN_PERMISO_TRABAJO.includes(tipo) ? undefined : leer(perfil, "situacion_administrativa.autoriza_trabajar");
+}
+
 // Figli minori (o di età non nota): «único adulto a cargo» si chiede solo se ci sono (la domanda sui figli viene prima).
 // L'età si misura sull'anno: per un anno sconosciuto il figlio conta come possibile minore.
 export function hayHijosMenores(p) {
@@ -380,17 +415,17 @@ export const PANTALLAS = [
       { tipo: "pais", campo: "residencia.pais", siempre: true, etiqueta: "¿En qué país vives?",
         si: esOtroPais },
       { tipo: "select", campo: "residencia.region", siempre: true, etiqueta: "Comunidad autónoma",
-        opciones: [...CCAA, ["no_lo_se", "No lo sé"]], si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
+        opciones: [...CCAA, ["no_lo_se", "No lo sé"]], si: residenciaEnEspana },
       { tipo: "select", campo: "residencia.provincia", siempre: true, etiqueta: "Provincia",
         opciones: [...PROVINCIAS, ["no_lo_se", "No lo sé"]], opciones_de: (b) => provinciasPara(leer(b, "residencia.region")),
-        si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
+        si: residenciaEnEspana },
       { tipo: "municipio", campo: "residencia.municipio", ine: "residencia.municipio_ine", siempre: true, etiqueta: "Municipio",
-        sugerencia: MUNICIPIO_VLC, si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
+        sugerencia: MUNICIPIO_VLC, si: residenciaEnEspana },
       { tipo: "texto", campo: "residencia.municipio_ine", etiqueta: "Código de 5 cifras del municipio", patron: /^\d{5}$/,
         error: "El código del municipio tiene 5 cifras.",
-        si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) && !esValenciaCiudad(p) },
+        si: (p, ui) => residenciaEnEspana(p, ui) && !esValenciaCiudad(p) },
       { tipo: "fecha", campo: "residencia.empadronado_desde", siempre: true, etiqueta: "Empadronado/a desde",
-        si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
+        si: residenciaEnEspana },
     ] },
   { id: "nacionalidad", titulo: "¿Qué nacionalidades tienes y de qué países eras al nacer?", porque: "Muchas ayudas dependen de la nacionalidad o del país de origen. Puedes añadir más de uno en cada lista.",
     controles: [
@@ -398,7 +433,7 @@ export const PANTALLAS = [
         nadie: [[], "No tengo ninguna nacionalidad"] },
       { tipo: "paises", campo: "vinculos.paises_origen", etiqueta: "Países de origen", nadie: [[], "Ninguno de ellos"] },
     ] },
-  { id: "sexo", titulo: "¿Cómo te identificas?", porque: "Solo lo preguntamos porque alguna ayuda lo tiene en cuenta. Puedes no contestar.",
+  { id: "sexo", titulo: "¿Cómo te identificas?", porque: "Solo lo preguntamos porque alguna ayuda lo tiene en cuenta. Si prefieres no decirlo, elige «Prefiero no decirlo».",
     controles: [{ tipo: "radio", campo: "persona.sexo", etiqueta: "Sexo", opciones: OPC_SEXO }] },
   { id: "documento", titulo: "¿Qué documento tienes y desde cuándo?", porque: "El documento que tienes decide a qué ayudas puedes acceder. Elige el que aparece en tu tarjeta o certificado. Si una ayuda lo pide, también preguntamos si puedes trabajar y las fechas de tu documento y de tu residencia.",
     controles: [
@@ -467,15 +502,20 @@ export const PANTALLAS = [
   // Trabajo e estudi nella stessa schermata: ognuno dei due gruppi si mostra solo se una scheda lo usa.
   { id: "trabajo_entidad", titulo: "¿Dónde trabajas o estudias?", porque: "Algunas ayudas están ligadas al tipo de entidad y al territorio donde trabajas o estudias.",
     controles: [
-      { tipo: "radio", campo: "vinculos.entidad_trabajo.tipo", etiqueta: "Tipo de entidad donde trabajas", opciones: OPC_ENTIDAD },
-      { tipo: "select", campo: "vinculos.entidad_trabajo.ambito", etiqueta: "Territorio de la entidad donde trabajas", opciones: OPC_AMBITO },
-      { tipo: "radio", campo: "vinculos.entidad_estudios.tipo", etiqueta: "Tipo de centro donde estudias", opciones: OPC_ENTIDAD },
-      { tipo: "select", campo: "vinculos.entidad_estudios.ambito", etiqueta: "Territorio del centro donde estudias", opciones: OPC_AMBITO },
+      { tipo: "radio", campo: "vinculos.entidad_trabajo.tipo", etiqueta: "Tipo de entidad donde trabajas", opciones: OPC_ENTIDAD_TRABAJO,
+        si: puedeTrabajar },
+      { tipo: "select", campo: "vinculos.entidad_trabajo.ambito", etiqueta: "Territorio de la entidad donde trabajas", opciones: OPC_AMBITO,
+        si: (p) => puedeTrabajar(p) && leer(p, "vinculos.entidad_trabajo.tipo") !== "ninguna" },
+      { tipo: "radio", campo: "vinculos.entidad_estudios.tipo", etiqueta: "Tipo de centro donde estudias", opciones: OPC_ENTIDAD_ESTUDIOS,
+        si: puedeEstudiar },
+      { tipo: "select", campo: "vinculos.entidad_estudios.ambito", etiqueta: "Territorio del centro donde estudias", opciones: OPC_AMBITO,
+        si: (p) => puedeEstudiar(p) && leer(p, "vinculos.entidad_estudios.tipo") !== "ninguna" },
     ] },
   { id: "cotizacion", titulo: "¿Has trabajado y pagado Seguridad Social en otro país?", porque: "Los años cotizados en otro país pueden contar para algunas prestaciones.",
     controles: [{ tipo: "paises", campo: "vinculos.paises_cotizacion", etiqueta: "Países donde has pagado Seguridad Social", nadie: [[], "No he cotizado en otro país"] }] },
   { id: "permiso", titulo: "¿En qué país sacaste el permiso de conducir?", porque: "Algunas ayudas de movilidad o de empleo lo piden.",
-    controles: [{ tipo: "pais", campo: "vinculos.permiso_conducir_pais", etiqueta: "País del permiso de conducir" }] },
+    controles: [{ tipo: "pais", campo: "vinculos.permiso_conducir_pais", etiqueta: "País del permiso de conducir",
+      nadie: ["ninguno", "No tengo permiso de conducir"] }] },
 ];
 
 // Campi di tutte le pantalle (per l'ordine di «faltan» → domanda).

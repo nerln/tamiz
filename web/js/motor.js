@@ -72,12 +72,16 @@ const ENUM = {
     "universidad_publica", "universidad_privada", "organismo_publico_investigacion",
     "centro_investigacion", "hospital_o_instituto_sanitario", "administracion_publica",
     "empresa", "ong_o_fundacion", "centro_formacion",
+    // «No trabajo» / «No estudio» (docs/ESQUEMA.md §2.2): nessun ente, risposta certa.
+    "ninguna",
   ],
   empleo_situacion: ["asalariado", "autonomo", "desempleado", "estudiante", "inactivo", "jubilado"],
   afiliacion: ["colegio_profesional", "sociedad_cientifica", "asociacion"],
 };
 
 const RE_PAIS = /^[A-Z]{2}$/;
+// Il permiso di guida: un paese ISO, o «ninguno» (non ha il permiso di guida, docs/ESQUEMA.md §2.2).
+const RE_PAIS_O_NINGUNO = /^([A-Z]{2}|ninguno)$/;
 const RE_REGION = /^[A-Z]{2}-[A-Z0-9]{1,3}$/;
 const RE_INE = /^[0-9]{5}$/;
 const RE_AMBITO = /^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$/;
@@ -145,7 +149,7 @@ const CAMPOS = {
   "estudios.titulo_pais": codigoCampo(RE_PAIS, true),
   "vinculos.entidad_trabajo.ambito": codigoCampo(RE_AMBITO, false),
   "vinculos.entidad_estudios.ambito": codigoCampo(RE_AMBITO, false),
-  "vinculos.permiso_conducir_pais": codigoCampo(RE_PAIS, true),
+  "vinculos.permiso_conducir_pais": codigoCampo(RE_PAIS_O_NINGUNO, true),
   "persona.nacionalidades": listaCampo({ re: RE_PAIS }, true),
   "vinculos.paises_origen": listaCampo({ re: RE_PAIS }, true),
   "vinculos.paises_cotizacion": listaCampo({ re: RE_PAIS }, true),
@@ -687,6 +691,8 @@ function valutaRegola(regla, ctx) {
       return rigaNonValida(regla);
   }
 
+  // «Ninguna» (nessun ente) è un no certo: la regola sull'ente non lo rende incerto con no_concluyente.
+  if (esito === N && def.tipo === "enum" && lettura.valore === "ninguna") return riga(texto, N, null, null, []);
   return concludi(regla, esito, motivo, faltan);
 }
 
