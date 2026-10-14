@@ -55,7 +55,7 @@ describe("token pieno", () => {
     const r = py(dir);
     assert.equal(r.status, 0, r.stdout + r.stderr);
     const pagine = paginas(dir);
-    assert.equal(pagine.length, 8);
+    assert.equal(pagine.length, 16, "8 pagine in spagnolo e 8 in web/en/");
     for (const p of pagine) {
       const html = leggi(p);
       assert.equal(html.split(BEACON).length - 1, 1, p);

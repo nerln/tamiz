@@ -8,6 +8,7 @@ import { renderPerfil, sanearPerfil } from "./ui/perfil.js";
 import { renderAyuda, renderEmpleo } from "./ui/ayuda.js";
 import { camposUsados, EJEMPLOS } from "./preguntas.js";
 import { oggi } from "./ui/dom.js";
+import { iniciarIdioma, RAIZ, t } from "./i18n.js";
 
 const SECCIONES = ["inicio", "preguntas", "resultados", "perfil", "ayuda", "empleo"];
 const RENDER = {
@@ -93,7 +94,7 @@ function empezar() {
 
 async function cargarEjemplo(nombre) {
   try {
-    const res = await fetch(`data/${EJEMPLOS[nombre]}`);
+    const res = await fetch(new URL(`data/${EJEMPLOS[nombre]}`, RAIZ));
     if (!res.ok) throw new Error(String(res.status));
     const r = sanearPerfil(await res.json());
     if (r.error) throw new Error(r.error);
@@ -111,8 +112,8 @@ async function cargarEjemplo(nombre) {
 function tituloPagina(seccion) {
   const sitio = estado.catalogo?.sitio || {};
   const nombre = sitio.nombre || "Ayudas";
-  if (seccion === "inicio") return sitio.lema ? `${nombre} · ${sitio.lema}` : nombre;
-  return `${nombre} · ${ETIQUETA[seccion]}`;
+  if (seccion === "inicio") return sitio.lema ? `${nombre} · ${t(sitio.lema)}` : nombre;
+  return `${nombre} · ${t(ETIQUETA[seccion])}`;
 }
 
 function cabecera(catalogo) {
@@ -122,8 +123,9 @@ function cabecera(catalogo) {
 }
 
 async function arrancar() {
+  await iniciarIdioma();
   try {
-    const res = await fetch("data/catalogo.json");
+    const res = await fetch(new URL("data/catalogo.json", RAIZ));
     if (!res.ok) throw new Error(String(res.status));
     estado.catalogo = await res.json();
   } catch (e) {

@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://nerln.github.io/tamiz/</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/indice.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/empleo.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/fuentes.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/avisos.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/quien.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/privacidad.html</loc><lastmod>2026-10-14</lastmod></url>
-  <url><loc>https://nerln.github.io/tamiz/condiciones.html</loc><lastmod>2026-10-14</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://nerln.github.io/tamiz/</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/indice.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/indice.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/indice.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/indice.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/indice.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/indice.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/empleo.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/empleo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/empleo.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/empleo.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/empleo.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/empleo.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/fuentes.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/fuentes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/fuentes.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/fuentes.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/fuentes.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/fuentes.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/avisos.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/avisos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/avisos.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/avisos.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/avisos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/avisos.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/privacidad.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/privacidad.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/privacidad.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/privacidad.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/condiciones.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/condiciones.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/condiciones.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/condiciones.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/condiciones.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/condiciones.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/quien.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/quien.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/quien.html"/>
+  </url>
+  <url><loc>https://nerln.github.io/tamiz/en/quien.html</loc><lastmod>2026-10-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://nerln.github.io/tamiz/quien.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nerln.github.io/tamiz/en/quien.html"/>
+  </url>
 </urlset>

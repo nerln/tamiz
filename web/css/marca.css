@@ -32,3 +32,8 @@
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
+
+/* Selettore della lingua nell'intestazione (lotto L37): ES | EN, la lingua corrente non è un link. */
+.selector-idioma { font-size: .9rem; margin: .4rem 1rem .2rem; text-align: right; }
+.selector-idioma a { color: inherit; }
+.selector-idioma [aria-current="true"] { font-weight: 700; }

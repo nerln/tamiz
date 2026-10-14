@@ -1,7 +1,7 @@
 // La pantalla de las preguntas: una pantalla por vez, atrás sin perder nada, «no lo sé» siempre.
 import { el, nuovoId } from "./dom.js";
 import { PANTALLAS, PAISES, TRAMOS, controlesVisibles, pantallasVisibles, escribir, leer, tramoDeImporte, esValencia,
-  previoAutorizaTrabajar } from "../preguntas.js";
+  previoAutorizaTrabajar, opcionDisponible, quitaIncompatibles, quitaRespuestasOcultas } from "../preguntas.js";
 
 // Il comune «No lo sé» non ha un codice nello schema (docs/ESQUEMA.md §2.5): si ricorda sull'oggetto residencia
 // salvato, come il reddito con PREFIERO_INGRESO. Se residencia cambia oggetto (cioè si riscrive), il ricordo cade.
@@ -328,6 +328,15 @@ function controlloRadio(c, previo, pantalla) {
     if (c.ong_si_otro) pintaOng(ayuda, c.ongs);
   };
   righe.forEach((r) => r.input.addEventListener("change", cambio));
+  // Un'opzione non disponibile con le risposte già date (punto 9: «No trabajo» se si lavora) si disattiva, e se era scelta si toglie.
+  const aplicaDisponibilidad = (b) => {
+    for (const r of righe) {
+      const libre = opcionDisponible(c.campo, String(r.codigo), b);
+      r.input.disabled = !libre;
+      if (!libre && r.input.checked) r.input.checked = false;
+    }
+    cambio();
+  };
   const legenda = el("legend", { class: "campo-etiqueta", text: c.etiqueta });
   const spiegazione = c.ayuda ? botonAyuda(c.ayuda, nuovoId("ayp"), legenda) : null;
   const quitar = el("button", { type: "button", class: "secundario", text: "Quitar respuesta", onclick: () => {
@@ -353,6 +362,9 @@ function controlloRadio(c, previo, pantalla) {
   const alternativa = c.opciones.some(([k]) => k === "prefiero_no_decirlo");
   return {
     nodo, nombre: righe[0].input,
+    actualiza: aplicaDisponibilidad,
+    // Nessuna scelta (dopo «Quitar respuesta»): la schermata lo sa, e il paese salvato non conta (punto 10).
+    sinElegir: () => !valorDi(),
     esOtro: () => { const sel = valorDi(); return !!sel && sel.codigo === "otro"; },
     leer() {
       const sel = valorDi();
@@ -451,7 +463,13 @@ function controlloLista(c, previo) {
       if (nadieRiga) nadieRiga.input.checked = false;
     }
   };
-  todas.forEach((x) => x.addEventListener("change", () => esclusiva(x)));
+  // Situazioni incompatibili (punto 9): «jubilado» e «inactivo» escludono le altre situazioni di lavoro, e viceversa.
+  const incompatibles = (sorgente) => {
+    if (!sorgente.checked || !righe.some((r) => r.input === sorgente)) return;
+    const quedan = quitaIncompatibles(righe.filter((r) => r.input.checked).map((r) => r.codigo), sorgente.value);
+    for (const r of righe) if (r.input.checked && !quedan.includes(r.codigo)) r.input.checked = false;
+  };
+  todas.forEach((x) => x.addEventListener("change", () => { esclusiva(x); incompatibles(x); }));
   const nodo = el("fieldset", { class: "grupo" }, el("legend", { class: "campo-etiqueta", text: c.etiqueta }),
     righe.map((r) => r.nodo), nadieRiga ? nadieRiga.nodo : null,
     el("label", { class: "opcion" }, nls, " No lo sé"));
@@ -745,7 +763,7 @@ export function renderCuestionario(ctx) {
   // Il radio «En otro país» e il menu del paese: il radio dice se il menu è aperto (ui.otroPais), il menu scrive il paese.
   const radioPais = controles.find((x) => x.def.campo === "residencia.pais" && x.def.radio_pais_otro);
   const menuPais = controles.find((x) => x.def.tipo === "pais" && x.def.campo === "residencia.pais");
-  const uiDe = () => ({ otroPais: !!(radioPais && radioPais.esOtro()) });
+  const uiDe = () => ({ otroPais: !!(radioPais && radioPais.esOtro()), sinElegir: !!(radioPais && radioPais.sinElegir()) });
 
   // Visibilità a punto fisso: la bozza è fatta solo dai controlli che si mostrano, e un controllo con «si» si mostra
   // in base a quella bozza. Un controllo nascosto non scrive: un valore rimasto in un menu nascosto non può riaccenderlo.
@@ -820,6 +838,9 @@ export function renderCuestionario(ctx) {
     }
     let nuevo = ctx.perfil;
     for (const [ruta, valor] of escrituras) nuevo = escribir(nuevo, ruta, valor);
+    // Punto 8: le risposte delle schermate che ora non si mostrano (dopo un cambio di idea) escono dal profilo. Si fa prima
+    // dei ricordi («En otro país», «No lo sé», «Prefiero no decirlo»), che stanno sugli oggetti scritti e non devono cambiare.
+    nuevo = quitaRespuestasOcultas(nuevo, { otroPais: !!(radioPais && radioPais.esOtro()), sinElegir: false });
     // «En otro país» con «No lo sé» nel menu: si ricorda sull'oggetto residencia appena scritto (vedi OTRO_NO_SE).
     if (radioPais && !radioPais.grupo.hidden && radioPais.esOtro() && leer(nuevo, "residencia.pais") === "no_lo_se") {
       const r = leer(nuevo, "residencia");

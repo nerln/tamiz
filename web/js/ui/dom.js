@@ -1,5 +1,7 @@
 // Piccoli aiuti per costruire il DOM senza innerHTML (niente testo del catalogo interpretato come HTML).
 
+import { t } from "../i18n.js";
+
 let seq = 0;
 export const nuovoId = (base) => `${base}-${++seq}`;
 
@@ -61,10 +63,14 @@ export function esFinTecnico(iso) {
 // Un testo del catalogo che nomina il tetto tecnico: via la frase «y el 31/12/2099 es solo un tope técnico»,
 // e le frasi che restano con un 2099 escono intere. Nessun testo esce con una data 2099.
 export function sinFinTecnico(testo) {
-  if (typeof testo !== "string" || !/2099/.test(testo)) return testo;
-  let t = testo.replace(/,?\s*y el \d{1,2}\/\d{1,2}\/2099 es solo un tope t[ée]cnico/gi, "");
-  if (/2099/.test(t)) t = t.replace(/\s*[^.]*2099[^.]*(?:\.|$)/g, "");
-  return t.replace(/\s{2,}/g, " ").trim();
+  if (typeof testo !== "string") return testo;
+  // In inglese il testo si traduce prima, e solo poi si toglie la frase del tetto tecnico (punto 4).
+  const tr = t(testo);
+  if (!/2099/.test(tr)) return tr;
+  let x = tr.replace(/,?\s*y el \d{1,2}\/\d{1,2}\/2099 es solo un tope t[ée]cnico/gi, "")
+    .replace(/,?\s*and (?:the )?\d{1,2}\/\d{1,2}\/2099 is only a technical cap/gi, "");
+  if (/2099/.test(x)) x = x.replace(/\s*[^.]*2099[^.]*(?:\.|$)/g, "");
+  return x.replace(/\s{2,}/g, " ").trim();
 }
 
 // Passa su tutti i testi di un nodo già costruito e toglie le date 2099 (ultima rete, dopo la costruzione).

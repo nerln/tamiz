@@ -83,6 +83,8 @@ export function esOtroPais(p, ui) {
 // Le domande della comunità e del comune (CV) valgono per la Spagna, e per «No lo sé» solo se il radio è «No lo sé»:
 // con «En otro país» e «No lo sé» nel menu, il paese è sconosciuto ma estero, e la CV non si chiede.
 export function residenciaEnEspana(p, ui) {
+  // Nessun radio scelto (dopo «Quitar respuesta»): il paese salvato non decide, la CV non è obbligatoria (punto 10).
+  if (ui && ui.sinElegir) return false;
   const v = leer(p, "residencia.pais");
   return v === "ES" || (v === "no_lo_se" && !(ui && ui.otroPais));
 }
@@ -315,6 +317,41 @@ export function puedeEstudiar(p) {
   const s = leer(p, "empleo.situaciones");
   return s === undefined || s === "no_lo_se" || (Array.isArray(s) && s.includes("estudiante"));
 }
+// «No trabajo» (ninguna) non si può scegliere se la persona ha detto di lavorare (punto 9).
+export function trabaja(p) {
+  const s = leer(p, "empleo.situaciones");
+  return Array.isArray(s) && s.some((x) => SITUACIONES_TRABAJO.includes(x));
+}
+export function opcionDisponible(campo, codigo, perfil) {
+  if (campo === "vinculos.entidad_trabajo.tipo" && codigo === "ninguna") return !trabaja(perfil);
+  return true;
+}
+// Situazioni incompatibili in «¿Qué haces ahora?» (punto 9): «Estoy jubilado» e «No trabajo ni busco trabajo» escludono
+// le altre situazioni di lavoro, e viceversa. Le coppie sono simmetriche; studiare con la pensione resta possibile.
+export const INCOMPATIBLES_SITUACION = [
+  ["jubilado", "asalariado"], ["jubilado", "autonomo"], ["jubilado", "desempleado"],
+  ["inactivo", "asalariado"], ["inactivo", "autonomo"], ["inactivo", "desempleado"],
+];
+// Dato il codice appena scelto, toglie dall'elenco i codici incompatibili con lui (il codice scelto resta).
+export function quitaIncompatibles(seleccion, nuevo) {
+  const fuera = new Set(INCOMPATIBLES_SITUACION.filter(([a, b]) => a === nuevo || b === nuevo)
+    .map(([a, b]) => (a === nuevo ? b : a)));
+  return seleccion.filter((x) => !fuera.has(x));
+}
+// La domanda sulla contrattazione (tipo e fine del contratto) vale per chi lavora, per chi cerca lavoro o studia:
+// l'ultimo contratto conta. Il pensionato o chi non lavora e non cerca non la riceve (punto 8).
+function situacionesIncluye(p, lista) {
+  const s = leer(p, "empleo.situaciones");
+  return Array.isArray(s) && s.some((x) => lista.includes(x));
+}
+export function puedeContrato(p) {
+  return puedeTrabajar(p) || situacionesIncluye(p, ["desempleado", "estudiante"]);
+}
+// Inscrizione e prestazione per disoccupazione valgono per chi cerca lavoro (o per chi non ha ancora risposto).
+export function puedeDesempleo(p) {
+  const s = leer(p, "empleo.situaciones");
+  return s === undefined || s === "no_lo_se" || situacionesIncluye(p, ["desempleado"]);
+}
 
 // Il valore di «¿Tu documento te permite trabajar?» che la schermata mostra come risposta. Con un documento che lo dà per
 // legge il valore è scritto in automatico (vedi SIN_PERMISO_TRABAJO): non è una risposta della persona, e se il documento
@@ -453,13 +490,14 @@ export const PANTALLAS = [
     controles: [{ tipo: "lista", campo: "empleo.situaciones", siempre: true, etiqueta: "Situación", opciones: OPC_SITUACIONES }] },
   { id: "contrato", titulo: "¿Qué tipo de contrato tienes?", porque: "Si no trabajas, responde con tu último contrato. Algunas ayudas dependen del tipo de contrato y de cuándo termina.",
     controles: [
-      { tipo: "radio", campo: "empleo.tipo_contrato", etiqueta: "Tipo de contrato", opciones: OPC_CONTRATO, ayuda: AYUDA_CONTRATO },
-      { tipo: "fecha", campo: "empleo.contrato_hasta", etiqueta: "El contrato termina el", futuro: true },
+      { tipo: "radio", campo: "empleo.tipo_contrato", etiqueta: "Tipo de contrato", opciones: OPC_CONTRATO, ayuda: AYUDA_CONTRATO,
+        si: puedeContrato },
+      { tipo: "fecha", campo: "empleo.contrato_hasta", etiqueta: "El contrato termina el", futuro: true, si: puedeContrato },
     ] },
   { id: "desempleo", titulo: "Tu situación de desempleo", porque: "La inscripción como demandante de empleo, la prestación y las cotizaciones cuentan en las ayudas por desempleo.",
     controles: [
-      { tipo: "bool", campo: "empleo.inscrito_demandante", etiqueta: "Estoy inscrito/a como demandante de empleo" },
-      { tipo: "bool", campo: "empleo.cobra_prestacion", etiqueta: "Ahora cobro una prestación o un subsidio por desempleo" },
+      { tipo: "bool", campo: "empleo.inscrito_demandante", etiqueta: "Estoy inscrito/a como demandante de empleo", si: puedeDesempleo },
+      { tipo: "bool", campo: "empleo.cobra_prestacion", etiqueta: "Ahora cobro una prestación o un subsidio por desempleo", si: puedeDesempleo },
       { tipo: "entero", campo: "empleo.meses_cotizados_6_anios", etiqueta: "Meses con cotización a la Seguridad Social (últimos 6 años)", min: 0, max: 72 },
     ] },
   { id: "nivel", titulo: "¿Cuál es tu título más alto terminado?", porque: "El nivel de estudios decide a qué becas y contratos puedes presentarte.",
@@ -531,6 +569,25 @@ export function controlesVisibles(pantalla, perfil, usados) {
     const serve = c.siempre || campos.some((x) => usados.has(x));
     return serve && (!c.si || c.si(perfil));
   });
+}
+
+// Le risposte delle schermate che non si mostrano più (punto 8): dopo un cambio di idea (per esempio da «Trabajo con
+// contrato» a «Estoy jubilado/a») il profilo non conserva i dati della situazione vecchia. Un controllo si toglie solo se
+// la sua condizione «si» è falsa. Non si toccano: il paese (lo scrivono più controlli), il permiso di lavoro scritto dal
+// documento, e il codice INE (lo tiene il controllo del comune, che lo scrive per València).
+export function quitaRespuestasOcultas(perfil, ui) {
+  let p = perfil;
+  for (const pantalla of PANTALLAS) {
+    for (const c of pantalla.controles) {
+      if (!c.si || c.si(p, ui)) continue;
+      if (c.campo === "residencia.pais" || c.campo === "residencia.municipio_ine") continue;
+      if (c.campo === "situacion_administrativa.autoriza_trabajar") continue;
+      const rutas = c.campo ? [c.campo, c.campo_mes] : [`${c.base}.tramo`, `${c.base}.importe`];
+      if (c.campo === "residencia.municipio") rutas.push("residencia.municipio_ine");
+      for (const r of rutas) if (r) p = escribir(p, r, undefined);
+    }
+  }
+  return p;
 }
 
 // Pantalla visibile: almeno un controllo visibile. Restituisce l'elenco in ordine.

@@ -70,6 +70,57 @@ PARAGRAFI_ON = {
     ),
 }
 
+# Stesse voci in inglese, per web/en/privacidad.html (lotto L37). Stessa regola: il token decide.
+PARAGRAFI_OFF_EN = {
+    'resumen': (
+        '<p><strong>In short:</strong> your answers stay on your device. Tamiz does not collect personal data.</p>'
+    ),
+    'finalidad': (
+        '<p>Answers to the questionnaire and your profile are processed only on your device, for the sole purpose of showing you the results. They are not sent to any server.</p>'
+    ),
+    'cookies': (
+        '<p>Tamiz does not use cookies, analytics or advertising, and does not load fonts, scripts, videos or content from other websites.</p>'
+    ),
+    'destinatarios': (
+        '<p>The site is hosted on GitHub Pages (GitHub, Inc.), which receives your IP address and the technical data of each request in order to serve the pages, and processes it as controller, in accordance with its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>. There are no other recipients.</p>'
+    ),
+    'transferencias': (
+        '<p>GitHub, Inc. processes data in the United States, under the EU-US Data Privacy Framework, which it has joined.</p>'
+    ),
+    'conservacion': (
+        '<p>Tamiz does not keep personal data. What you enter stays on your device until you press “Delete everything” or close the page. GitHub keeps technical data according to its privacy statement.</p>'
+    ),
+    'visitas': None,
+}
+PARAGRAFI_ON_EN = {
+    'resumen': (
+        '<p><strong>In short:</strong> your answers stay on your device. Only visits are counted, without cookies and in aggregate figures.</p>'
+    ),
+    'finalidad': (
+        '<p>Answers to the questionnaire and your profile are processed only on your device, for the sole purpose of showing you the results. They are not sent to any server. Separately, visits to the pages are counted with Cloudflare Web Analytics (section 8).</p>'
+    ),
+    'cookies': (
+        '<p>Tamiz does not use cookies or advertising, and does not load fonts, videos or content from other websites. The only external script is the one that counts visits (section 8), which does not use cookies.</p>'
+    ),
+    'destinatarios': (
+        '<p>The site is hosted on GitHub Pages (GitHub, Inc.), which receives your IP address and the technical data of each request in order to serve the pages, and processes it as controller, in accordance with its <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a>. Cloudflare, Inc. receives your IP address and the address of the page for the visit count (section 8). There are no other recipients.</p>'
+    ),
+    'transferencias': (
+        '<p>GitHub, Inc. and Cloudflare, Inc. process data in the United States, under the EU-US Data Privacy Framework, which both have joined.</p>'
+    ),
+    'conservacion': (
+        '<p>Tamiz does not keep personal data. What you enter stays on your device until you press “Delete everything” or close the page. GitHub keeps technical data according to its privacy statement, and Cloudflare keeps the visit-count data according to section 8.</p>'
+    ),
+    'visitas': (
+        '<h2>8. Visit count</h2>\n    <p>Tamiz counts visits with Cloudflare Web Analytics. When a page loads, a Cloudflare script sends the page address, the referring page, the browser type and the loading times; Cloudflare also receives your IP address, from which it deduces the country. Your answers are never part of the page address, so they do not reach Cloudflare.</p>\n    <p>According to Cloudflare, the script does not use cookies, does not store anything on your device and does not create profiles. Tamiz only sees aggregate figures. Cloudflare keeps the detailed data for 7 days and the aggregate data for up to 6 months, in accordance with its <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">privacy policy</a>.</p>\n    <p>Legal basis: the owner\'s legitimate interest in knowing which pages are consulted, in order to improve the service.</p>'
+    ),
+}
+# (file, testi spenti, testi accesi) di ogni privacidad.html che il conteggio aggiorna.
+PRIVACIDAD_PAGINE = [
+    (PRIVACIDAD, PARAGRAFI_OFF, PARAGRAFI_ON),
+    ("en/" + PRIVACIDAD, PARAGRAFI_OFF_EN, PARAGRAFI_ON_EN),
+]
+
 
 def cuerpo(testo):
     """Il contenuto fra due marcatori: sempre a capo e rientro, anche quando è vuoto."""
@@ -138,20 +189,21 @@ def allinea(radice, token):
             p.write_text(nuovo, encoding="utf-8")
             cambiati.append(str(p.relative_to(radice)))
 
-    priv = radice / "web" / PRIVACIDAD
-    if not priv.exists():
-        raise SystemExit(f"ERRORE  manca web/{PRIVACIDAD}")
-    testo = priv.read_text(encoding="utf-8")
-    for nome in PARAGRAFI_OFF:
-        scelto = PARAGRAFI_ON[nome] if token else PARAGRAFI_OFF[nome]
-        if not marcatore(nome).search(testo):
-            raise SystemExit(f"ERRORE  web/{PRIVACIDAD}: manca il marcatore analitica:{nome}")
-        testo = marcatore(nome).sub(
-            lambda m, nome=nome, scelto=scelto: f"<!--analitica:{nome}-->{cuerpo(scelto)}<!--/analitica:{nome}-->",
-            testo, count=1)
-    if testo != priv.read_text(encoding="utf-8"):
-        priv.write_text(testo, encoding="utf-8")
-        cambiati.append(f"web/{PRIVACIDAD}")
+    for rel_priv, off, on in PRIVACIDAD_PAGINE:
+        priv = radice / "web" / rel_priv
+        if not priv.exists():
+            raise SystemExit(f"ERRORE  manca web/{rel_priv}")
+        testo = priv.read_text(encoding="utf-8")
+        for nome in off:
+            scelto = on[nome] if token else off[nome]
+            if not marcatore(nome).search(testo):
+                raise SystemExit(f"ERRORE  web/{rel_priv}: manca il marcatore analitica:{nome}")
+            testo = marcatore(nome).sub(
+                lambda m, nome=nome, scelto=scelto: f"<!--analitica:{nome}-->{cuerpo(scelto)}<!--/analitica:{nome}-->",
+                testo, count=1)
+        if testo != priv.read_text(encoding="utf-8"):
+            priv.write_text(testo, encoding="utf-8")
+            cambiati.append(f"web/{rel_priv}")
     return cambiati
 
 
@@ -211,10 +263,25 @@ def controlla(radice, token):
             if f.is_file() and b"cloudflareinsights" in f.read_bytes():
                 problemi.append(f"{f.relative_to(radice)}: token vuoto ma il file nomina cloudflareinsights")
 
-    priv = web / PRIVACIDAD
-    if not priv.exists():
-        problemi.append(f"web/{PRIVACIDAD} manca")
-        return problemi
+    for rel_priv, off, on in PRIVACIDAD_PAGINE:
+        priv = web / rel_priv
+        if not priv.exists():
+            problemi.append(f"web/{rel_priv} manca")
+            continue
+        testo = priv.read_text(encoding="utf-8")
+        for nome in off:
+            m = marcatore(nome).search(testo)
+            if not m:
+                problemi.append(f"web/{rel_priv}: manca il marcatore analitica:{nome}")
+                continue
+            atteso = on[nome] if token else off[nome]
+            if m.group("corpo") != cuerpo(atteso):
+                problemi.append(f"web/{rel_priv}: il blocco {nome} non dice quello che dice il token")
+        if token and SERVIZIO not in testo:
+            problemi.append(f"web/{rel_priv} non cita {SERVIZIO} e il token è pieno")
+        if not token and SERVIZIO in testo:
+            problemi.append(f"web/{rel_priv} cita {SERVIZIO} e il token è vuoto")
+    return problemi
     testo = priv.read_text(encoding="utf-8")
     for nome in PARAGRAFI_OFF:
         m = marcatore(nome).search(testo)

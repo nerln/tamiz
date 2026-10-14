@@ -1,7 +1,9 @@
+import { iniciarIdioma, RAIZ } from "./i18n.js";
 // La pagina Fuentes: l'elenco delle fonti di ogni scheda, letto da data/catalogo.json (lo produce il build).
 // Raggruppato per area, in spagnolo. Nessuna richiesta a terzi, nessuno storage, nessun innerHTML:
 // il testo va in textContent e i link sono solo http(s).
 (() => {
+  iniciarIdioma();
   "use strict";
 
   // Le etichette delle aree: le stesse di web/js/ui/dom.js (AREAS), nell'ordine in cui si mostrano.
@@ -110,7 +112,7 @@
   const iniciar = async () => {
     const estado = $("fuentes-estado");
     try {
-      const respuesta = await fetch("data/catalogo.json");
+      const respuesta = await fetch(new URL("data/catalogo.json", RAIZ));
       if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
       const datos = await respuesta.json();
       const fichas = (Array.isArray(datos.fichas) ? datos.fichas : [])

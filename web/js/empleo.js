@@ -1,6 +1,8 @@
+import { iniciarIdioma, RAIZ } from "./i18n.js";
 // Ofertas de empleo: legge data/empleo.json (generato al build) e le mostra per categoria, con filtri.
 // Nessuna richiesta a terzi, nessuno storage del browser, nessun innerHTML: il testo va in textContent.
 (() => {
+  iniciarIdioma();
   "use strict";
 
   const DIAS_LIMITE_VIEJO = 3;
@@ -228,7 +230,7 @@
   // Se manca, o il file non si legge, resta il nome di default: nessun errore in console.
   async function cargarNombreSitio() {
     try {
-      const r = await fetch("data/catalogo.json", { cache: "no-store" });
+      const r = await fetch(new URL("data/catalogo.json", RAIZ), { cache: "no-store" });
       if (!r.ok) return;
       const catalogo = await r.json();
       const nombre =
@@ -253,7 +255,7 @@
 
   async function cargarOfertas() {
     try {
-      const r = await fetch("data/empleo.json", { cache: "no-store" });
+      const r = await fetch(new URL("data/empleo.json", RAIZ), { cache: "no-store" });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const doc = await r.json();
       if (!doc || !Array.isArray(doc.ofertas)) throw new Error("formato no válido");

@@ -2,6 +2,7 @@
 // schede compatte con il dettaglio a richiesta, filtri per area. Solo testo del catalogo e dell'esito.
 import { el, fechaLarga, esFinTecnico, sinFinTecnico, sinFinTecnicoEn, AREAS, SIN_AREA, areaValida, nombreArea, ordenArea } from "./dom.js";
 import { pantallaPara, campoDeDomanda } from "../preguntas.js";
+import { t } from "../i18n.js";
 
 const ETIQUETA_ESTADO = { encaja: "Parece que encajas", falta_dato: "Te falta un dato", no_encaja: "No encaja" };
 const CLASE_ESTADO = { encaja: "estado-encaja", falta_dato: "estado-falta", no_encaja: "estado-no" };
@@ -92,7 +93,8 @@ function textoImporte(c) {
   // La periodicità è un codice dello schema: all'utente si mostra in parole.
   const PERIODO = { unica: ", pago único", mensual: " al mes", anual: " al año", variable: " (variable)" };
   if (typeof cu.importe_eur === "number") return fmtEur(cu.importe_eur) + (PERIODO[cu.periodicidad] || "");
-  const corto = typeof cu.texto === "string" ? cu.texto.split(/[;.]\s/)[0].trim() : "";
+  // Il testo intero si traduce e poi si taglia alla prima frase (in spagnolo la stessa cosa di prima).
+  const corto = typeof cu.texto === "string" ? t(cu.texto).split(/[;.]\s/)[0].trim() : "";
   return corto && corto.length <= 110 ? corto : "ver la fuente";
 }
 const importe = (c) => (typeof c.cuantia?.importe_eur === "number" ? c.cuantia.importe_eur : 0);
@@ -173,7 +175,7 @@ function tarjeta(ctx, f, c, ayudas, area, conArea) {
       el("a", { href: c.fuente, rel: "noopener", text: "Ver en la fuente" }))
     : el("p", { class: "compat", text: "No hemos podido comprobar si es compatible con otras ayudas: míralo en las bases." });
   const solicita = c.solicita && c.solicita !== "persona"
-    ? el("p", { class: "solicita", text: `La presenta ${SOLICITA[c.solicita] || "otra entidad"}.` }) : null;
+    ? el("p", { class: "solicita", text: t(`La presenta ${SOLICITA[c.solicita] || "otra entidad"}.`) }) : null;
   const siguiente = !sinAccion && c.siguiente_paso ? el("p", { class: "siguiente" },
     el("strong", { text: "Siguiente paso: " }), c.siguiente_paso.texto, " ",
     c.siguiente_paso.url ? el("a", { href: c.siguiente_paso.url, rel: "noopener", text: "Abrir la página" }) : null) : null;
@@ -194,7 +196,7 @@ function tarjeta(ctx, f, c, ayudas, area, conArea) {
     el("p", { class: "fecha-revision", text: revision }),
     f.por_revisar ? el("p", { class: "aviso-revisar", text: `Lo estamos revisando: la fecha prevista para revisarla ya pasó (${fechaLarga(c.revisar_antes_de)}).` }) : null);
   const detalle = el("details", { class: "detalle" },
-    el("summary", null, "Ver el detalle", el("span", { class: "sr-only", text: ` de ${c.nombre}` })),
+    el("summary", { "aria-label": t(`Ver detalles de ${c.nombre}`) }, "Ver el detalle"),
     el("p", { class: "resumen", text: c.resumen }),
     notaPlazo,
     el("div", { class: "requisitos-bloque" },

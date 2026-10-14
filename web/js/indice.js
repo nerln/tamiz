@@ -1,7 +1,9 @@
+import { iniciarIdioma, RAIZ } from "./i18n.js";
 // Todas las convocatorias: legge data/indice.json (generato al build) e lo mostra con ricerca e filtri.
 // Lo stato del plazo si ricalcola qui dalle date di oggi (come estado_plazo in scripts/indice.py).
 // Nessuna richiesta a terzi, nessuno storage del browser, nessun innerHTML: il testo va in textContent.
 (() => {
+  iniciarIdioma();
   "use strict";
 
   const TAM_PAGINA = 30;
@@ -386,7 +388,7 @@
 
   const iniciar = async () => {
     try {
-      const respuesta = await fetch("data/indice.json", { cache: "no-cache" });
+      const respuesta = await fetch(new URL("data/indice.json", RAIZ), { cache: "no-cache" });
       if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
       datos = await respuesta.json();
       if (!datos || !Array.isArray(datos.convocatorias) || !Array.isArray(datos.previstas)) {
