@@ -154,6 +154,84 @@
       "confianza": "alta"
     },
     {
+      "id": "es-bono-social-electrico",
+      "nombre": "Bono social eléctrico",
+      "tipo": "derecho",
+      "subtipo": "descuento",
+      "concesion": "reglada",
+      "solicita": "persona",
+      "organismo": "Ministerio para la Transición Ecológica y el Reto Demográfico (MITECO); comercializadoras de referencia",
+      "ambito": "ES",
+      "resumen": "Descuento en la factura de la luz (PVPC) para consumidores vulnerables y vulnerables severos. Hasta el 31/12/2026 los descuentos están elevados temporalmente al 42,5 % y al 57,5 %. Se pide a la comercializadora de referencia.",
+      "cuantia": {
+        "texto": "Hasta el 31/12/2026: 42,5 % de descuento si eres consumidor vulnerable y 57,5 % si eres vulnerable severo, sobre el PVPC y hasta un límite anual de kWh según tu hogar (1.587 kWh para una persona sola o dos personas). El descuento habitual, superada esta situación excepcional, es del 35 % y del 50 %.",
+        "periodicidad": "variable"
+      },
+      "requisitos": [
+        {
+          "campo": "residencia.pais",
+          "op": "==",
+          "valor": "ES",
+          "texto": "Tener el suministro de luz en tu vivienda habitual en España",
+          "cita": "MITECO, bono social, «Requisitos»: PVPC en la vivienda habitual de la unidad familiar"
+        },
+        {
+          "any_of": [
+            {
+              "campo": "calc.ingresos_hogar",
+              "op": "<=",
+              "valor": 12600,
+              "texto": "Renta del hogar hasta 1,5 veces el IPREM de 14 pagas (12.600 € al año para una persona sola)",
+              "cita": "MITECO, bono social, «Requisitos»: ≤ 1,5 × IPREM de 14 pagas (IPREM 8.400 €/año)",
+              "no_concluyente": [
+                "no_cumple"
+              ],
+              "aclaracion": "Con más ingresos brutos puedes encajar igual: el límite sube 0,3 por cada adulto más y 0,5 por cada menor del hogar, y 1 IPREM más (8.400 €) en circunstancias especiales como discapacidad del 33 % o familia monoparental. Compruébalo con tu comercializadora."
+            },
+            {
+              "campo": "hogar.familia_numerosa",
+              "op": "in",
+              "valor": [
+                "general",
+                "especial"
+              ],
+              "texto": "Tener el título de familia numerosa",
+              "cita": "MITECO, bono social, «Requisitos»: basta el título de familia numerosa para ser consumidor vulnerable"
+            }
+          ],
+          "texto": "Ser consumidor vulnerable por renta o por familia numerosa"
+        }
+      ],
+      "requisitos_no_evaluables": [
+        "Tener contratado el PVPC (precio voluntario para el pequeño consumidor; potencia de 10 kW o menos) en tu vivienda habitual, con una comercializadora de referencia, y ser tú el titular persona física",
+        "También eres consumidor vulnerable si tú o todos los miembros del hogar con ingresos sois pensionistas de jubilación o incapacidad permanente con la pensión mínima y sin otros ingresos de más de 500 € al año, o si alguien del hogar cobra el Ingreso Mínimo Vital",
+        "Vulnerable severo: renta de hasta el 50 % de los umbrales de vulnerable; 16.800 € con familia numerosa; 8.400 € con pensión mínima (MITECO)"
+      ],
+      "plazo": {
+        "tipo": "abierto_todo_el_ano",
+        "verificado": false,
+        "fuente": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/requisitos.html",
+        "nota": "Se puede pedir en cualquier momento. Los descuentos elevados (42,5 % y 57,5 %) están fijados hasta el 31/12/2026."
+      },
+      "compatibilidad": {
+        "declarada_en_bases": false
+      },
+      "siguiente_paso": {
+        "texto": "Pide el bono social a tu comercializadora de referencia (por teléfono, correo electrónico, correo postal o en sus oficinas) con los documentos que te pida.",
+        "url": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/como-solicitarlo.html"
+      },
+      "ayuda_humana": [
+        "servicios-sociales-valencia"
+      ],
+      "como_pedirla": "Ante una comercializadora de referencia (COR): en sus oficinas, por teléfono, por correo electrónico o por correo postal. La lista de COR y sus teléfonos está en la página del MITECO.",
+      "fuente": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/requisitos.html",
+      "url_oficial": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/como-solicitarlo.html",
+      "verificado_el": null,
+      "leido_por_agente": "2026-10-14",
+      "revisar_antes_de": "2026-12-15",
+      "confianza": "alta"
+    },
+    {
       "id": "es-canje-permiso-conducir-paraguay",
       "nombre": "Canje del permiso de conducir paraguayo por el español (convenio España-Paraguay)",
       "tipo": "derecho",
@@ -225,6 +303,149 @@
       "como_pedirla": "Con cita previa en la Jefatura Provincial de Tráfico: solicitud en el modelo oficial y los documentos del anexo III del Reglamento General de Conductores (art. 23).",
       "fuente": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/index.html",
       "url_oficial": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/index.html",
+      "verificado_el": null,
+      "leido_por_agente": "2026-10-14",
+      "revisar_antes_de": "2027-01-12",
+      "confianza": "alta"
+    },
+    {
+      "id": "es-doble-nacionalidad-paraguay",
+      "nombre": "Conservar la nacionalidad paraguaya al hacerse español (convenio de doble nacionalidad España-Paraguay)",
+      "tipo": "derecho",
+      "subtipo": "tramite_ventaja",
+      "concesion": "reglada",
+      "solicita": "persona",
+      "organismo": "Ministerio de Asuntos Exteriores / Ministerio de Inclusión, Seguridad Social y Migraciones (convenio); Registro Civil",
+      "ambito": "ES",
+      "resumen": "Si pides la nacionalidad española por residencia y eres nacional de origen de un país iberoamericano, como Paraguay, no tienes que renunciar a tu nacionalidad anterior (art. 23.b Código Civil). España y Paraguay tienen además un convenio de doble nacionalidad (1959).",
+      "cuantia": {
+        "texto": "No hay importe: no es una ayuda, es una excepción al requisito de renunciar a tu nacionalidad anterior al hacerte español.",
+        "periodicidad": "no_monetaria"
+      },
+      "requisitos": [
+        {
+          "campo": "vinculos.paises_origen",
+          "op": "contains",
+          "valor": "PY",
+          "texto": "Ser nacional de origen de Paraguay (país iberoamericano)",
+          "cita": "Art. 23.b y art. 24.1 Código Civil (BOE-A-1889-4763); convenio España-Paraguay de 25/06/1959 (BOE 19/04/1960)"
+        },
+        {
+          "campo": "persona.nacionalidades",
+          "op": "not_contains",
+          "valor": "ES",
+          "texto": "Todavía no tener la nacionalidad española",
+          "cita": "Art. 23 Código Civil: se refiere a quien adquiere la nacionalidad española por opción, carta de naturaleza o residencia"
+        }
+      ],
+      "requisitos_no_evaluables": [
+        "Hay que pedir y obtener la nacionalidad española por residencia, por opción o por carta de naturaleza (mira la ficha de nacionalidad en 2 años). Esta ficha solo dice que no te exigen renunciar a la paraguaya",
+        "Siguen siendo requisitos comunes jurar o prometer fidelidad al Rey y obediencia a la Constitución y a las leyes (si tienes más de 14 años) y que la adquisición se inscriba en el Registro Civil español (art. 23.a y 23.c Código Civil)",
+        "Cómo lo recoge Paraguay no lo hemos podido comprobar: consúltalo con el consulado de Paraguay antes de decidir"
+      ],
+      "plazo": {
+        "tipo": "abierto_todo_el_ano",
+        "verificado": false,
+        "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-1889-4763",
+        "nota": "No tiene plazo propio: la excepción se aplica cuando adquieres la nacionalidad española."
+      },
+      "compatibilidad": {
+        "declarada_en_bases": false
+      },
+      "siguiente_paso": {
+        "texto": "Si vas a pedir la nacionalidad española, no hace falta que renuncies a la paraguaya (art. 23.b Código Civil). Antes de decidir, confirma con el consulado de Paraguay cómo lo recoge Paraguay.",
+        "url": "https://www.inclusion.gob.es/web/migraciones/convenios-de-doble-nacionalidad"
+      },
+      "ayuda_humana": [
+        "oficina-extranjeria-valencia",
+        "accem"
+      ],
+      "como_pedirla": "No se pide aparte: se aplica en el trámite de la nacionalidad española y en su inscripción en el Registro Civil.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-1889-4763",
+      "url_oficial": "https://www.inclusion.gob.es/web/migraciones/convenios-de-doble-nacionalidad",
+      "verificado_el": null,
+      "leido_por_agente": "2026-10-14",
+      "revisar_antes_de": "2027-01-12",
+      "confianza": "alta"
+    },
+    {
+      "id": "es-homologacion-titulo-universitario-extranjero",
+      "nombre": "Homologación o equivalencia de títulos universitarios extranjeros",
+      "tipo": "derecho",
+      "subtipo": "tramite_ventaja",
+      "concesion": "reglada",
+      "solicita": "persona",
+      "organismo": "Ministerio de Ciencia, Innovación y Universidades - Secretaría General de Universidades",
+      "ambito": "ES",
+      "resumen": "Para que un título universitario extranjero valga en España: homologación a un título español si da acceso a una profesión regulada, o declaración de equivalencia al nivel de Grado o Máster. Solo títulos oficiales ya terminados. Se pide en la sede del Ministerio de Universidades.",
+      "cuantia": {
+        "texto": "Hay que pagar la tasa 107 (modelo 790), por internet o con el formulario 107; desde fuera de España, por transferencia. El Ministerio no publica el importe en las páginas que hemos leído. Una vez pagada no se devuelve, salvo error de la Administración.",
+        "periodicidad": "unica"
+      },
+      "requisitos": [
+        {
+          "campo": "estudios.titulo_extranjero",
+          "op": "==",
+          "valor": true,
+          "texto": "Tener un título de educación superior obtenido fuera de España",
+          "cita": "Art. 1 y art. 9.1 Real Decreto 889/2022: título oficial en su país, de una universidad o institución de educación superior"
+        },
+        {
+          "campo": "estudios.nivel_max",
+          "op": "not_in",
+          "valor": [
+            "ninguno",
+            "primaria",
+            "eso",
+            "bachillerato",
+            "fp_medio",
+            "fp_superior",
+            "doctorado"
+          ],
+          "texto": "Que el título sea universitario de Grado o Máster o equivalente (no bachillerato, FP ni doctorado, que va por otro camino)",
+          "cita": "FAQ del Ministerio de Universidades: solo títulos universitarios oficiales; los no universitarios van al Ministerio de Educación y FP"
+        },
+        {
+          "campo": "estudios.homologacion",
+          "op": "not_in",
+          "valor": [
+            "concedida",
+            "en_tramite"
+          ],
+          "texto": "No tener ya concedida la homologación o la equivalencia, ni la solicitud en trámite",
+          "cita": "FAQ del Ministerio de Universidades y art. 18 Real Decreto 889/2022"
+        }
+      ],
+      "requisitos_no_evaluables": [
+        "El título debe ser oficial en su país y los estudios estar terminados (art. 9.1 RD 889/2022; FAQ del Ministerio)",
+        "Los títulos con estudios de menos de tres años generalmente no se homologan ni se declaran equivalentes (FAQ del Ministerio de Universidades)",
+        "No valen los títulos propios de las universidades ni estudios hechos en España en centros sin autorización (art. 4 RD 889/2022)",
+        "Para homologar hay que acreditar la competencia en español que pida la profesión regulada (art. 9.4 RD 889/2022); los documentos van legalizados y, si procede, con traducción oficial",
+        "El doctorado y las especialidades de Ciencias de la Salud siguen otros caminos (universidades y Ministerio de Sanidad)"
+      ],
+      "plazo": {
+        "tipo": "abierto_todo_el_ano",
+        "verificado": false,
+        "fuente": "https://universidades.sede.gob.es/procedimientos/portada/ida/3513/idp/1030",
+        "nota": "Sin fecha límite: la sede del Ministerio lo marca como «trámite abierto permanentemente». Plazo para resolver: 6 meses desde la entrada en el registro; sin respuesta, se entiende desestimada (art. 18.3 RD 889/2022)."
+      },
+      "compatibilidad": {
+        "declarada_en_bases": true,
+        "incompatible_con": [],
+        "compatible_con": [],
+        "texto": "Se puede pedir homologación y equivalencia del mismo título (una solicitud para cada una). No se puede pedir homologación y convalidación parcial en una universidad a la vez.",
+        "fuente": "https://universidades.sede.gob.es/fichero-publico/descargar/id/2922"
+      },
+      "siguiente_paso": {
+        "texto": "Elige homologación (profesión regulada) o equivalencia (nivel de Grado o Máster) y presenta la solicitud en la sede electrónica del Ministerio de Universidades, con el pago de la tasa 107.",
+        "url": "https://universidades.sede.gob.es/procedimientos/portada/ida/3513/idp/1030"
+      },
+      "ayuda_humana": [
+        "accem"
+      ],
+      "como_pedirla": "Solo por la sede electrónica del Ministerio de Universidades (obligatorio, art. 7 RD 889/2022); sin certificado digital se puede entrar con usuario. La tasa 107 se paga por internet, con el formulario 107 o por transferencia desde fuera de España.",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-17045",
+      "url_oficial": "https://universidades.sede.gob.es/",
       "verificado_el": null,
       "leido_por_agente": "2026-10-14",
       "revisar_antes_de": "2027-01-12",
@@ -931,6 +1152,72 @@
       "verificado_el": null,
       "leido_por_agente": "2026-10-14",
       "revisar_antes_de": "2026-11-21",
+      "confianza": "alta"
+    },
+    {
+      "id": "es-vc-ayuda-comedor-escolar",
+      "nombre": "Ayuda de comedor escolar (Comunitat Valenciana)",
+      "tipo": "oportunidad",
+      "subtipo": "subvencion",
+      "concesion": "concurrencia_competitiva",
+      "solicita": "persona",
+      "organismo": "Generalitat Valenciana - Conselleria de Educación - Dirección General de Centros Docentes",
+      "ambito": "ES-VC",
+      "resumen": "Ayuda por día de comedor para alumnado de 2.º ciclo de Infantil, Primaria, ESO y Educación Especial en centros públicos y concertados de la Comunitat Valenciana. Se puntúa por renta per cápita y circunstancias familiares, salvo las personas beneficiarias directas. Plazo ordinario 2026-2027 cerrado.",
+      "cuantia": {
+        "texto": "Curso 2026-2027, por día de asistencia al comedor: hasta 4,35 € (Infantil, Primaria, ESO), hasta 5,54 € (Educación Especial) y hasta 12,35 € (escuela-hogar). Las personas beneficiarias directas reciben el máximo; el resto, según su puntuación, prorrateado hasta agotar el crédito.",
+        "periodicidad": "variable"
+      },
+      "requisitos": [
+        {
+          "campo": "calc.hijos_menores_18",
+          "op": ">=",
+          "valor": 1,
+          "texto": "Tener un hijo o hija en edad escolar en el hogar (2.º ciclo de Infantil, Primaria, ESO o Educación Especial; no cubre a un hijo de 2 años ni Bachillerato)",
+          "cita": "Resolución de 26/06/2026 (DOGV 10395), apartados segundo y cuarto: alumnado matriculado en Infantil (2.º ciclo), Primaria, ESO o Educación Especial"
+        },
+        {
+          "campo": "calc.ingresos_hogar",
+          "op": "<=",
+          "valor": 25293,
+          "texto": "Renta de la familia en 2025 no superior a 25.293 € si son dos miembros (el límite sube con cada miembro: 34.332 € con tres)",
+          "cita": "Resolución de 26/06/2026 (DOGV 10395), apartado octavo: umbrales de renta; renta = casillas 435 y 460 del IRPF 2025",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "Con más ingresos brutos puedes encajar igual: el límite sube con cada miembro de la familia (34.332 € con tres, 40.773 € con cuatro) y se cuenta la base imponible, no el bruto. Las personas beneficiarias directas no tienen este límite."
+        }
+      ],
+      "requisitos_no_evaluables": [
+        "Hijo o hija matriculado en un centro de la Comunitat Valenciana (público, o concertado con comedor) en 2.º ciclo de Infantil, Primaria, ESO o Educación Especial",
+        "Son beneficiarias directas, sin límite de renta: alumnado de centros de la Generalitat escolarizado en otro municipio por falta de oferta, Educación Especial, acogida familiar o residencial, hijos de víctimas de violencia de género o de terrorismo, y alumnado de la renta valenciana de inclusión",
+        "Haber presentado la solicitud (anexo I) en el centro, o confirmado el borrador, y no estar en las circunstancias del art. 13 de la Ley 38/2003",
+        "Todos los miembros de la familia obligados a declarar el IRPF de 2025 deben haberlo presentado: si no, se deniega la ayuda"
+      ],
+      "plazo": {
+        "tipo": "cerrado",
+        "inicio": "2026-07-02",
+        "fin": "2026-07-31",
+        "verificado": false,
+        "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=1245",
+        "nota": "La sede marca el plazo 02/07 al 31/07/2026; la resolución dice que el plazo ordinario acaba con la matrícula, por eso no está verificado. Siguen abiertos plazos extraordinarios: 10 días hábiles desde una matrícula sobrevenida, y todo el curso para acogida familiar o residencial y víctimas de violencia de género."
+      },
+      "compatibilidad": {
+        "declarada_en_bases": false
+      },
+      "siguiente_paso": {
+        "texto": "Si tu hijo o hija se matricula a mitad de curso, pide la ayuda en su centro en los 10 días hábiles siguientes a la matrícula. En los demás casos, el plazo del curso 2026-2027 ya acabó: espera a la convocatoria del curso siguiente.",
+        "url": "https://sede.gva.es/en/detall-tramit?id_proc=1245"
+      },
+      "ayuda_humana": [
+        "servicios-sociales-valencia"
+      ],
+      "como_pedirla": "En el centro donde está matriculado el alumno o alumna, con el anexo I y la documentación; quien ya la pidió el curso pasado recibe un borrador (también en ITACA Web Familia) que se confirma.",
+      "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=1245",
+      "url_oficial": "https://sede.gva.es/en/detall-tramit?id_proc=1245",
+      "verificado_el": null,
+      "leido_por_agente": "2026-10-14",
+      "revisar_antes_de": "2027-01-12",
       "confianza": "alta"
     },
     {

@@ -1,0 +1,78 @@
+{
+  "id": "es-bono-social-electrico",
+  "nombre": "Bono social eléctrico",
+  "tipo": "derecho",
+  "subtipo": "descuento",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Ministerio para la Transición Ecológica y el Reto Demográfico (MITECO); comercializadoras de referencia",
+  "ambito": "ES",
+  "resumen": "Descuento en la factura de la luz (PVPC) para consumidores vulnerables y vulnerables severos. Hasta el 31/12/2026 los descuentos están elevados temporalmente al 42,5 % y al 57,5 %. Se pide a la comercializadora de referencia.",
+  "cuantia": {
+    "texto": "Hasta el 31/12/2026: 42,5 % de descuento si eres consumidor vulnerable y 57,5 % si eres vulnerable severo, sobre el PVPC y hasta un límite anual de kWh según tu hogar (1.587 kWh para una persona sola o dos personas). El descuento habitual, superada esta situación excepcional, es del 35 % y del 50 %.",
+    "periodicidad": "variable"
+  },
+  "requisitos": [
+    {
+      "campo": "residencia.pais",
+      "op": "==",
+      "valor": "ES",
+      "texto": "Tener el suministro de luz en tu vivienda habitual en España",
+      "cita": "MITECO, bono social, «Requisitos»: PVPC en la vivienda habitual de la unidad familiar"
+    },
+    {
+      "any_of": [
+        {
+          "campo": "calc.ingresos_hogar",
+          "op": "<=",
+          "valor": 12600,
+          "texto": "Renta del hogar hasta 1,5 veces el IPREM de 14 pagas (12.600 € al año para una persona sola)",
+          "cita": "MITECO, bono social, «Requisitos»: ≤ 1,5 × IPREM de 14 pagas (IPREM 8.400 €/año)",
+          "no_concluyente": [
+            "no_cumple"
+          ],
+          "aclaracion": "Con más ingresos brutos puedes encajar igual: el límite sube 0,3 por cada adulto más y 0,5 por cada menor del hogar, y 1 IPREM más (8.400 €) en circunstancias especiales como discapacidad del 33 % o familia monoparental. Compruébalo con tu comercializadora."
+        },
+        {
+          "campo": "hogar.familia_numerosa",
+          "op": "in",
+          "valor": [
+            "general",
+            "especial"
+          ],
+          "texto": "Tener el título de familia numerosa",
+          "cita": "MITECO, bono social, «Requisitos»: basta el título de familia numerosa para ser consumidor vulnerable"
+        }
+      ],
+      "texto": "Ser consumidor vulnerable por renta o por familia numerosa"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Tener contratado el PVPC (precio voluntario para el pequeño consumidor; potencia de 10 kW o menos) en tu vivienda habitual, con una comercializadora de referencia, y ser tú el titular persona física",
+    "También eres consumidor vulnerable si tú o todos los miembros del hogar con ingresos sois pensionistas de jubilación o incapacidad permanente con la pensión mínima y sin otros ingresos de más de 500 € al año, o si alguien del hogar cobra el Ingreso Mínimo Vital",
+    "Vulnerable severo: renta de hasta el 50 % de los umbrales de vulnerable; 16.800 € con familia numerosa; 8.400 € con pensión mínima (MITECO)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/requisitos.html",
+    "nota": "Se puede pedir en cualquier momento. Los descuentos elevados (42,5 % y 57,5 %) están fijados hasta el 31/12/2026."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Pide el bono social a tu comercializadora de referencia (por teléfono, correo electrónico, correo postal o en sus oficinas) con los documentos que te pida.",
+    "url": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/como-solicitarlo.html"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "Ante una comercializadora de referencia (COR): en sus oficinas, por teléfono, por correo electrónico o por correo postal. La lista de COR y sus teléfonos está en la página del MITECO.",
+  "fuente": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/requisitos.html",
+  "url_oficial": "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/como-solicitarlo.html",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2026-12-15",
+  "confianza": "alta"
+}

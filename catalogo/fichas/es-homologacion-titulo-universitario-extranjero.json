@@ -1,0 +1,83 @@
+{
+  "id": "es-homologacion-titulo-universitario-extranjero",
+  "nombre": "Homologación o equivalencia de títulos universitarios extranjeros",
+  "tipo": "derecho",
+  "subtipo": "tramite_ventaja",
+  "concesion": "reglada",
+  "solicita": "persona",
+  "organismo": "Ministerio de Ciencia, Innovación y Universidades - Secretaría General de Universidades",
+  "ambito": "ES",
+  "resumen": "Para que un título universitario extranjero valga en España: homologación a un título español si da acceso a una profesión regulada, o declaración de equivalencia al nivel de Grado o Máster. Solo títulos oficiales ya terminados. Se pide en la sede del Ministerio de Universidades.",
+  "cuantia": {
+    "texto": "Hay que pagar la tasa 107 (modelo 790), por internet o con el formulario 107; desde fuera de España, por transferencia. El Ministerio no publica el importe en las páginas que hemos leído. Una vez pagada no se devuelve, salvo error de la Administración.",
+    "periodicidad": "unica"
+  },
+  "requisitos": [
+    {
+      "campo": "estudios.titulo_extranjero",
+      "op": "==",
+      "valor": true,
+      "texto": "Tener un título de educación superior obtenido fuera de España",
+      "cita": "Art. 1 y art. 9.1 Real Decreto 889/2022: título oficial en su país, de una universidad o institución de educación superior"
+    },
+    {
+      "campo": "estudios.nivel_max",
+      "op": "not_in",
+      "valor": [
+        "ninguno",
+        "primaria",
+        "eso",
+        "bachillerato",
+        "fp_medio",
+        "fp_superior",
+        "doctorado"
+      ],
+      "texto": "Que el título sea universitario de Grado o Máster o equivalente (no bachillerato, FP ni doctorado, que va por otro camino)",
+      "cita": "FAQ del Ministerio de Universidades: solo títulos universitarios oficiales; los no universitarios van al Ministerio de Educación y FP"
+    },
+    {
+      "campo": "estudios.homologacion",
+      "op": "not_in",
+      "valor": [
+        "concedida",
+        "en_tramite"
+      ],
+      "texto": "No tener ya concedida la homologación o la equivalencia, ni la solicitud en trámite",
+      "cita": "FAQ del Ministerio de Universidades y art. 18 Real Decreto 889/2022"
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "El título debe ser oficial en su país y los estudios estar terminados (art. 9.1 RD 889/2022; FAQ del Ministerio)",
+    "Los títulos con estudios de menos de tres años generalmente no se homologan ni se declaran equivalentes (FAQ del Ministerio de Universidades)",
+    "No valen los títulos propios de las universidades ni estudios hechos en España en centros sin autorización (art. 4 RD 889/2022)",
+    "Para homologar hay que acreditar la competencia en español que pida la profesión regulada (art. 9.4 RD 889/2022); los documentos van legalizados y, si procede, con traducción oficial",
+    "El doctorado y las especialidades de Ciencias de la Salud siguen otros caminos (universidades y Ministerio de Sanidad)"
+  ],
+  "plazo": {
+    "tipo": "abierto_todo_el_ano",
+    "verificado": false,
+    "fuente": "https://universidades.sede.gob.es/procedimientos/portada/ida/3513/idp/1030",
+    "nota": "Sin fecha límite: la sede del Ministerio lo marca como «trámite abierto permanentemente». Plazo para resolver: 6 meses desde la entrada en el registro; sin respuesta, se entiende desestimada (art. 18.3 RD 889/2022)."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": true,
+    "incompatible_con": [],
+    "compatible_con": [],
+    "texto": "Se puede pedir homologación y equivalencia del mismo título (una solicitud para cada una). No se puede pedir homologación y convalidación parcial en una universidad a la vez.",
+    "fuente": "https://universidades.sede.gob.es/fichero-publico/descargar/id/2922"
+  },
+  "siguiente_paso": {
+    "texto": "Elige homologación (profesión regulada) o equivalencia (nivel de Grado o Máster) y presenta la solicitud en la sede electrónica del Ministerio de Universidades, con el pago de la tasa 107.",
+    "url": "https://universidades.sede.gob.es/procedimientos/portada/ida/3513/idp/1030"
+  },
+  "ayuda_humana": [
+    "accem"
+  ],
+  "como_pedirla": "Solo por la sede electrónica del Ministerio de Universidades (obligatorio, art. 7 RD 889/2022); sin certificado digital se puede entrar con usuario. La tasa 107 se paga por internet, con el formulario 107 o por transferencia desde fuera de España.",
+  "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-17045",
+  "url_oficial": "https://universidades.sede.gob.es/",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}

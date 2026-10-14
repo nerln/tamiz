@@ -8,7 +8,7 @@
 
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { evaluar } from "../web/js/motor.js";
 
 const RAIZ = new URL("../", import.meta.url);
@@ -885,5 +885,77 @@ describe("afiliación: il sindacato non è un codice valido (art. 9 GDPR)", () =
     const p = con(VACIO, "vinculos.afiliaciones", ["colegio_profesional"]);
     const v = voce(evaluar(CAT_AFILIACION, p, HOY), "es-prueba-afiliacion");
     assert.equal(v.estado, "encaja");
+  });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Catalogo vero (catalogo/fichas/): L14-2. Non usa web/data/catalogo.json (artefatto di build)
+// ma le schede sorgente. TAMIZ_FICHAS_DIR permette di puntare a un'altra cartella (prova rossa).
+const DIR_FICHAS_REALES = process.env.TAMIZ_FICHAS_DIR
+  ? new URL(process.env.TAMIZ_FICHAS_DIR.replace(/\/?$/, "/"), "file://")
+  : new URL("catalogo/fichas/", RAIZ);
+const FICHAS_REALES = readdirSync(DIR_FICHAS_REALES).filter((f) => f.endsWith(".json")).sort()
+  .map((f) => JSON.parse(readFileSync(new URL(f, DIR_FICHAS_REALES), "utf8")));
+const CAT_REAL = catalogoCon(FICHAS_REALES);
+
+describe("catalogo vero: capitalización resta fuori dal catalogo pubblico", () => {
+  // Il profilo non distingue la prestazione contributiva dal subsidio: con la regola su
+  // cobra_prestacion chi riceve un subsidio avrebbe «Parece que encajas», ma non può
+  // capitalizzare. Finché il profilo non ha quel dato la scheda sta in por-revisar/.
+  test("es-sepe-capitalizacion-prestacion-desempleo non è fra le schede pubblicate", () => {
+    assert.equal(FICHAS_REALES.some((x) => x.id === "es-sepe-capitalizacion-prestacion-desempleo"), false);
+  });
+});
+
+describe("catalogo vero: bono social e comedor non danno mai encaja con reddito mancante o sopra soglia", () => {
+  for (const id of ["es-bono-social-electrico", "es-vc-ayuda-comedor-escolar"]) {
+    test(`${id}: reddito mancante`, () => {
+      let p = con(RODRIGO, "ingresos.hogar", undefined);
+      p = con(p, "ingresos.individual", undefined);
+      p = con(p, "hogar.familia_numerosa", undefined);
+      assert.notEqual(voce(evaluar(CAT_REAL, p, HOY), id).estado, "encaja");
+    });
+    test(`${id}: reddito del nucleo molto sopra soglia`, () => {
+      let p = con(RODRIGO, "ingresos.hogar", { importe: 200000 });
+      p = con(p, "hogar.familia_numerosa", undefined);
+      assert.notEqual(voce(evaluar(CAT_REAL, p, HOY), id).estado, "encaja");
+    });
+  }
+});
+
+describe("catalogo vero: homologación e LABORA", () => {
+  test("homologación: nivel doctorado non dà encaja", () => {
+    let p = con(RODRIGO, "estudios.titulo_extranjero", true);
+    p = con(p, "estudios.nivel_max", "doctorado");
+    assert.notEqual(voce(evaluar(CAT_REAL, p, HOY), "es-homologacion-titulo-universitario-extranjero").estado, "encaja");
+  });
+  test("LABORA: retrocessa, non è nelle schede pubblicate e il motore non le dà nessun esito", () => {
+    const ID = "es-labora-formacion-becas-desempleados";
+    assert.equal(FICHAS_REALES.find((x) => x.id === ID), undefined, "non deve stare in catalogo/fichas/");
+    const pub = leer("web/data/catalogo.json");
+    assert.equal(pub.fichas.find((x) => x.id === ID), undefined, "non deve stare in web/data/catalogo.json");
+    // Rodrigo non è iscritto come demandante: con la scheda pubblicata dava «no encaja» per un corso già fatto.
+    assert.equal(voce(evaluar(CAT_REAL, RODRIGO, HOY), ID), undefined);
+    assert.equal(voce(evaluar(CAT_REAL, con(RODRIGO, "empleo.inscrito_demandante", true), HOY), ID), undefined);
+    assert.doesNotMatch(readFileSync(new URL("web/fuentes.html", RAIZ), "utf8"), /LABORA/);
+    assert.doesNotMatch(readFileSync(new URL("web/calendario.ics", RAIZ), "utf8"), /LABORA/i);
+  });
+  // catalogo/por-revisar/ non si pubblica: nell'esportazione questa prova non ha il file e salta.
+  const PR_LABORA = new URL("catalogo/por-revisar/es-labora-formacion-becas-desempleados.json", RAIZ);
+  test("LABORA: in por-revisar con confianza media, motivi scritti e nessuna regola sullo stato di oggi", { skip: !existsSync(PR_LABORA) }, () => {
+    const f = leer("catalogo/por-revisar/es-labora-formacion-becas-desempleados.json");
+    assert.equal(f.confianza, "media");
+    assert.match(f._revisar.join(" "), /10338/);
+    assert.equal(f.plazo.verificado, false);
+    assert.equal(JSON.stringify(f.requisitos), "[]", "l'iscrizione il giorno d'inizio del corso non si misura con lo stato di oggi");
+    assert.match(f.requisitos_no_evaluables.join(" "), /el día en que empiezas el curso/);
+    assert.match(f.requisitos_no_evaluables.join(" "), /completado y superado/);
+    assert.match(f.cuantia.texto, /presencialmente/);
+  });
+  test("nessuna scheda pubblicata ha il requisito centrale non valutabile né plazo sconosciuto", () => {
+    for (const f of FICHAS_REALES) {
+      assert.notEqual(f.plazo.tipo, "desconocido", `${f.id}: plazo sconosciuto con confianza alta`);
+      assert.doesNotMatch(f.requisitos_no_evaluables.join(" "), /requisito central/i, `${f.id}: requisito centrale non valutabile`);
+    }
   });
 });

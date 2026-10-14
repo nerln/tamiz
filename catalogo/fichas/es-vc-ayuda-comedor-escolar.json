@@ -1,0 +1,66 @@
+{
+  "id": "es-vc-ayuda-comedor-escolar",
+  "nombre": "Ayuda de comedor escolar (Comunitat Valenciana)",
+  "tipo": "oportunidad",
+  "subtipo": "subvencion",
+  "concesion": "concurrencia_competitiva",
+  "solicita": "persona",
+  "organismo": "Generalitat Valenciana - Conselleria de Educación - Dirección General de Centros Docentes",
+  "ambito": "ES-VC",
+  "resumen": "Ayuda por día de comedor para alumnado de 2.º ciclo de Infantil, Primaria, ESO y Educación Especial en centros públicos y concertados de la Comunitat Valenciana. Se puntúa por renta per cápita y circunstancias familiares, salvo las personas beneficiarias directas. Plazo ordinario 2026-2027 cerrado.",
+  "cuantia": {
+    "texto": "Curso 2026-2027, por día de asistencia al comedor: hasta 4,35 € (Infantil, Primaria, ESO), hasta 5,54 € (Educación Especial) y hasta 12,35 € (escuela-hogar). Las personas beneficiarias directas reciben el máximo; el resto, según su puntuación, prorrateado hasta agotar el crédito.",
+    "periodicidad": "variable"
+  },
+  "requisitos": [
+    {
+      "campo": "calc.hijos_menores_18",
+      "op": ">=",
+      "valor": 1,
+      "texto": "Tener un hijo o hija en edad escolar en el hogar (2.º ciclo de Infantil, Primaria, ESO o Educación Especial; no cubre a un hijo de 2 años ni Bachillerato)",
+      "cita": "Resolución de 26/06/2026 (DOGV 10395), apartados segundo y cuarto: alumnado matriculado en Infantil (2.º ciclo), Primaria, ESO o Educación Especial"
+    },
+    {
+      "campo": "calc.ingresos_hogar",
+      "op": "<=",
+      "valor": 25293,
+      "texto": "Renta de la familia en 2025 no superior a 25.293 € si son dos miembros (el límite sube con cada miembro: 34.332 € con tres)",
+      "cita": "Resolución de 26/06/2026 (DOGV 10395), apartado octavo: umbrales de renta; renta = casillas 435 y 460 del IRPF 2025",
+      "no_concluyente": [
+        "no_cumple"
+      ],
+      "aclaracion": "Con más ingresos brutos puedes encajar igual: el límite sube con cada miembro de la familia (34.332 € con tres, 40.773 € con cuatro) y se cuenta la base imponible, no el bruto. Las personas beneficiarias directas no tienen este límite."
+    }
+  ],
+  "requisitos_no_evaluables": [
+    "Hijo o hija matriculado en un centro de la Comunitat Valenciana (público, o concertado con comedor) en 2.º ciclo de Infantil, Primaria, ESO o Educación Especial",
+    "Son beneficiarias directas, sin límite de renta: alumnado de centros de la Generalitat escolarizado en otro municipio por falta de oferta, Educación Especial, acogida familiar o residencial, hijos de víctimas de violencia de género o de terrorismo, y alumnado de la renta valenciana de inclusión",
+    "Haber presentado la solicitud (anexo I) en el centro, o confirmado el borrador, y no estar en las circunstancias del art. 13 de la Ley 38/2003",
+    "Todos los miembros de la familia obligados a declarar el IRPF de 2025 deben haberlo presentado: si no, se deniega la ayuda"
+  ],
+  "plazo": {
+    "tipo": "cerrado",
+    "inicio": "2026-07-02",
+    "fin": "2026-07-31",
+    "verificado": false,
+    "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=1245",
+    "nota": "La sede marca el plazo 02/07 al 31/07/2026; la resolución dice que el plazo ordinario acaba con la matrícula, por eso no está verificado. Siguen abiertos plazos extraordinarios: 10 días hábiles desde una matrícula sobrevenida, y todo el curso para acogida familiar o residencial y víctimas de violencia de género."
+  },
+  "compatibilidad": {
+    "declarada_en_bases": false
+  },
+  "siguiente_paso": {
+    "texto": "Si tu hijo o hija se matricula a mitad de curso, pide la ayuda en su centro en los 10 días hábiles siguientes a la matrícula. En los demás casos, el plazo del curso 2026-2027 ya acabó: espera a la convocatoria del curso siguiente.",
+    "url": "https://sede.gva.es/en/detall-tramit?id_proc=1245"
+  },
+  "ayuda_humana": [
+    "servicios-sociales-valencia"
+  ],
+  "como_pedirla": "En el centro donde está matriculado el alumno o alumna, con el anexo I y la documentación; quien ya la pidió el curso pasado recibe un borrador (también en ITACA Web Familia) que se confirma.",
+  "fuente": "https://sede.gva.es/en/detall-tramit?id_proc=1245",
+  "url_oficial": "https://sede.gva.es/en/detall-tramit?id_proc=1245",
+  "verificado_el": null,
+  "leido_por_agente": "2026-10-14",
+  "revisar_antes_de": "2027-01-12",
+  "confianza": "alta"
+}
