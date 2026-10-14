@@ -16,10 +16,11 @@
   <meta property="og:locale" content="es_ES">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="img/favicon-16.png" sizes="16x16" type="image/png">
-  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/paginas.css">
+  <link rel="stylesheet" href="css/marca.css">
   <!--analitica:beacon-->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"ee2940af484d46e494d956e6ae0181d7"}'></script>
   <!--/analitica:beacon-->
@@ -28,43 +29,56 @@
   <a class="saltar" href="#contenido">Ir al contenido</a>
   <header class="cab">
     <div class="contenedor cab-interna">
-      <a class="marca" href="index.html"><svg class="simbolo simbolo-marca" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle class="simbolo-cabeza" cx="32" cy="11" r="7.6"/><path class="simbolo-brazos" d="M5 21 C9.5 25.5 18 27 32 27 C46 27 54.5 25.5 59 21"/><path class="simbolo-cuerpo" d="M26.75 27 H37.25 L36.5 57.5 A4.5 4.5 0 0 1 27.5 57.5 Z"/></svg><span>Tamiz</span></a>
+      <a class="marca" href="index.html"><svg class="marca-tamiz" viewBox="0 0 218 64" aria-hidden="true" focusable="false">
+    <circle class="tm-cabeza" cx="32" cy="11" r="7.6"/>
+  <path class="tm-brazos" d="M5 21 C9.5 25.5 18 27 32 27 C46 27 54.5 25.5 59 21"/>
+  <path class="tm-cuerpo" d="M26.75 27 H37.25 L36.5 57.5 A4.5 4.5 0 0 1 27.5 57.5 Z"/>
+  <g class="tm-letra">
+    <circle cx="88.75" cy="40.75" r="11.75"/>
+    <path d="M100.5 29 V52.5"/>
+    <path d="M115.5 52.5 V40.75 A11.75 11.75 0 0 1 139 40.75 V52.5 M139 40.75 A11.75 11.75 0 0 1 162.5 40.75 V52.5"/>
+    <path d="M177.5 29 V52.5"/>
+    <path d="M192.5 29 H212.5 L192.5 52.5 H212.5"/>
+  </g>
+  <circle class="tm-cabeza" cx="177.5" cy="11" r="7.6"/>
+  </svg><span class="solo-lector">Tamiz</span></a>
       <a class="volver" href="index.html">Volver al inicio</a>
     </div>
   </header>
 
   <main id="contenido" class="contenedor">
     <h1>Quién está detrás</h1>
-    <p class="entrada">Tamiz es un proyecto personal, sin ánimo de lucro y sin publicidad.</p>
+    <p class="entrada">Tamiz es un proyecto personal: gratuito, sin ánimo de lucro y sin publicidad.</p>
 
-    <dl class="datos">
-      <div>
-        <dt>Responsable</dt>
-        <dd>nerln</dd>
-      </div>
-      <div>
-        <dt>Contacto</dt>
-        <dd><a href="https://github.com/nerln/tamiz/issues">github.com/nerln/tamiz/issues</a></dd>
-      </div>
-      <div>
-        <dt>Hecho por</dt>
-        <dd><a href="https://nerln.github.io/" rel="noopener">nerln</a> (nerln.github.io)</dd>
-      </div>
-      <div>
-        <dt>Web</dt>
-        <dd>nerln.github.io/tamiz</dd>
-      </div>
-    </dl>
-
-    <h2>Inteligencia artificial</h2>
-    <div class="aviso">
-      <p><strong>Las fichas se han redactado con ayuda de inteligencia artificial a partir de fuentes oficiales y están pendientes de revisión humana completa.</strong></p>
+    <div class="tarjeta">
+      <h3>Qué es</h3>
+      <p>Una forma sencilla de saber qué ayudas, becas y trámites de España y de la Comunitat Valenciana podrían encajar contigo, y dónde pedirlos.</p>
     </div>
-    <p>Los resultados no los decide una inteligencia artificial: los calcula el programa a partir de las reglas escritas en cada ficha.</p>
+
+    <div class="tarjeta">
+      <h3>Por qué existe</h3>
+      <p>Las ayudas están repartidas entre boletines y sedes distintas, y escritas en un lenguaje difícil. Mucha gente no pide lo que podría pedir porque no sabe que existe. Tamiz quiere acortar ese camino.</p>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Cómo está hecho</h3>
+      <ul class="lista">
+        <li>Cada ayuda se resume a partir de su convocatoria oficial, con el enlace a la fuente.</li>
+        <li>Los resultados los calcula el programa comparando tus respuestas con los requisitos de cada ayuda.</li>
+        <li>Tus respuestas no salen de tu navegador.</li>
+      </ul>
+    </div>
+
+    <div class="aviso">
+      <p>Tamiz se ha hecho también con ayuda de inteligencia artificial. La información es orientativa: consulta siempre la fuente oficial.</p>
+    </div>
 
     <h2>Qué no es</h2>
-    <p>Tamiz no es un organismo público ni está vinculado a ninguna administración. No es asesoramiento jurídico, fiscal ni administrativo. El texto oficial es el publicado en el BOE, en el DOGV o en la sede del organismo.</p>
-    <p>Las condiciones completas están en <a href="condiciones.html">Condiciones de uso</a> y el tratamiento de datos en <a href="privacidad.html">Privacidad</a>.</p>
+    <p>Tamiz no es un organismo público ni está vinculado a ninguna administración. No es asesoramiento jurídico, fiscal ni administrativo.</p>
+
+    <h2>Contacto</h2>
+    <p>Para dudas, errores o sugerencias, escribe en la <a href="https://github.com/nerln/tamiz/issues">página de consultas de Tamiz</a>.</p>
+    <p>Más detalles en <a href="condiciones.html">Condiciones de uso</a> y <a href="privacidad.html">Privacidad</a>.</p>
   </main>
 
   <footer class="pie">
@@ -80,7 +94,7 @@
         </ul>
       </nav>
       <p>Versión de prueba. No es asesoramiento legal ni administrativo.</p>
-      <p class="hecho-por">Hecho por <a href="https://nerln.github.io/" rel="noopener">nerln</a></p>
+      <p class="hecho-por">Por <a href="https://nerln.github.io/" rel="noopener">nerln</a></p>
     </div>
   </footer>
 </body>

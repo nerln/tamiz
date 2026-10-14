@@ -29,10 +29,8 @@ export function renderInicio(ctx) {
   const avisos = [
     el("li", { text: "Versión de prueba." }),
     el("li", { text: "No es asesoramiento: es una orientación según lo que nos digas." }),
+    el("li", { text: "Tamiz se ha hecho también con ayuda de inteligencia artificial. La información es orientativa: consulta siempre la fuente oficial." }),
   ];
-  if (!catalogo.revision_humana || catalogo.revision_humana.completa !== true) {
-    avisos.push(el("li", { text: "Fichas redactadas con IA, sin revisión humana todavía." }));
-  }
   const vieja = giorniTra(catalogo.actualizado_el, hoy) > 30;
   const acceso = (href, titulo, texto) => el("li", null,
     el("a", { class: "acceso", href }, el("span", { class: "acceso-titulo", text: titulo }),
@@ -74,15 +72,15 @@ export function renderInicio(ctx) {
     el("nav", { class: "accesos-bloque", "aria-labelledby": "mas-para-consultar" },
       el("h2", { id: "mas-para-consultar", text: "Más para consultar" }),
       el("ul", { class: "accesos" },
-        acceso("indice.html", "Todas las convocatorias", "Índice automático de convocatorias públicas, con buscador. Sin revisar: no evaluamos si encajan contigo."),
-        acceso("empleo.html", "Ofertas de empleo", "Ofertas de terceros, sin verificar. No son ayudas."),
-        acceso("#ayuda", "Ayuda humana gratuita", "Entidades que orientan en persona y sin coste."))),
+        acceso("indice.html", "Todas las convocatorias", "Índice automático de convocatorias públicas, con buscador. No evaluamos si encajan contigo."),
+        acceso("empleo.html", "Ofertas de empleo", "Ofertas de otras webs, que no hemos comprobado. No son ayudas."),
+        acceso("#ayuda", "Orientación en persona", "Entidades que orientan en persona y sin coste."))),
 
     el("section", { class: "caja aviso", "aria-labelledby": "avisos" },
       el("h2", { id: "avisos", text: "Antes de empezar" }),
       el("ul", null, avisos)),
     el("p", { class: `fecha-datos${vieja ? " vieja" : ""}` },
-      el("span", { class: "etiqueta-pequena", text: "Catálogo actualizado el" }), " ",
+      el("span", { class: "etiqueta-pequena", text: "Datos actualizados el" }), " ",
       el("strong", { text: fechaLarga(catalogo.actualizado_el) }),
       vieja ? el("span", { class: "aviso-vieja", text: " (hace más de 30 días: pueden estar desactualizados)" }) : null)));
 }

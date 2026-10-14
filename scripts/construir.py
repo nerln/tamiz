@@ -38,6 +38,8 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 SALIDA = RAIZ / "web" / "data" / "catalogo.json"
 EJEMPLOS_DESTINO = RAIZ / "web" / "data" / "ejemplos"
+FUENTE_I18N = RAIZ / "catalogo" / "i18n" / "en.json"
+DESTINO_I18N = RAIZ / "web" / "data" / "i18n-en.json"
 PERFILES_EJEMPLO = [RAIZ / "schema" / "esempi" / "perfil-lucia.json",
                     RAIZ / "schema" / "esempi" / "perfil-rodrigo.json"]
 
@@ -168,6 +170,11 @@ def main(argv):
     EJEMPLOS_DESTINO.mkdir(parents=True, exist_ok=True)
     for p in PERFILES_EJEMPLO:
         shutil.copyfile(p, EJEMPLOS_DESTINO / p.name)
+    if FUENTE_I18N.exists():
+        shutil.copyfile(FUENTE_I18N, DESTINO_I18N)
+        print(f"Copiato {_rel(FUENTE_I18N)} in {_rel(DESTINO_I18N)}")
+    else:
+        print(f"AVVISO  {_rel(FUENTE_I18N)} non c'è: web/data/i18n-en.json non è stato aggiornato.")
     informative = sum(1 for f in fichas if f.get("informativa") is True)
     print(f"Scritto {_rel(SALIDA)}: {len(fichas)} schede ({informative} informative), {len(escluse)} escluse, "
           f"{len(catalogo['ayuda_humana'])} ayuda_humana, {len(catalogo['glosario'])} voci di glosario, "

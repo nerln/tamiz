@@ -29,7 +29,7 @@
       "campo": "estudios.titulo_pais",
       "op": "not_in",
       "valor_grupo": "UE",
-      "texto": "Que el título lo haya expedido una universidad o institución de un país que no sea de la UE",
+      "texto": "Que al menos uno de tus títulos lo haya expedido una universidad o institución de un país que no sea de la UE (si tienes varios títulos, basta uno)",
       "cita": "Anexo III, apartado primero 1 y segundo 4.a)"
     },
     {

@@ -67,33 +67,117 @@ function controlloNumero(c, previo, hoy) {
   };
 }
 
-function controlloFecha(c, previo, hoy) {
-  const campo = el("input", { type: "text", inputmode: "numeric", placeholder: "AAAA o AAAA-MM", id: nuovoId("f"),
-    "aria-label": c.etiqueta, autocomplete: "off" });
+// Campi di anno e mese (docs/ESQUEMA.md §3.1): un gruppo con due campi di stile uguale, mese facoltativo (1-12) e anno
+// (4 cifre). Testo con tastiera numerica, nessuno spinner. Il mese, se c'è, si scrive come AAAA-MM; senza, AAAA.
+function campoAnio(etiqueta) {
+  return el("input", { type: "text", inputmode: "numeric", pattern: "[0-9]*", maxlength: 4, autocomplete: "off",
+    id: nuovoId("ay"), placeholder: "AAAA", "aria-label": `${etiqueta}: año (4 cifras)` });
+}
+function campoMes(etiqueta) {
+  return el("input", { type: "text", inputmode: "numeric", pattern: "[0-9]*", maxlength: 2, autocomplete: "off",
+    id: nuovoId("me"), placeholder: "MM", "aria-label": `${etiqueta}: mes (1 a 12, opcional)` });
+}
+// Mese letto: undefined se vuoto, null se non valido, altrimenti il numero.
+function leerMesCampo(mes) {
+  const t = mes.value.trim();
+  if (t === "") return undefined;
+  if (!/^\d{1,2}$/.test(t)) return null;
+  const v = Number(t);
+  return v >= 1 && v <= 12 ? v : null;
+}
+
+function controlloMesAnio(c, previo) {
+  const anio = campoAnio(c.etiqueta);
+  const mes = campoMes(c.etiqueta);
   const chk = el("input", { type: "checkbox", id: nuovoId("nls") });
-  if (typeof previo === "string" && previo !== "no_lo_se") campo.value = previo;
+  if (typeof previo === "number") anio.value = String(previo);
+  if (typeof c.previo_mes === "number") mes.value = String(c.previo_mes);
   chk.checked = previo === "no_lo_se";
-  campo.disabled = chk.checked;
-  chk.addEventListener("change", () => { campo.disabled = chk.checked; });
+  const aplicaNls = () => { anio.disabled = chk.checked; mes.disabled = chk.checked; };
+  aplicaNls();
+  chk.addEventListener("change", () => { if (chk.checked) mes.value = ""; aplicaNls(); });
   const nodo = el("div", { class: "fila" },
-    el("label", { class: "campo-etiqueta", for: campo.id, text: c.etiqueta }), campo,
-    el("p", { class: "ayuda", text: "Ejemplos: 2019 o 2019-06." }),
+    el("span", { class: "campo-etiqueta", text: c.etiqueta }),
+    el("div", { class: "fila-linea" },
+      el("div", { class: "fila" }, el("label", { class: "campo-etiqueta", for: mes.id, text: "Mes (opcional)" }), mes),
+      el("div", { class: "fila" }, el("label", { class: "campo-etiqueta", for: anio.id, text: "Año" }), anio)),
     el("label", { class: "nls" }, chk, " No lo sé"));
-  const valorDi = () => {
+  const anioDi = () => {
     if (chk.checked) return "no_lo_se";
-    const e = extremosFecha(campo.value.trim());
-    if (!e) return undefined;
-    if (!c.futuro && e.prima > hoy) return undefined;
-    return campo.value.trim();
+    const t = anio.value.trim();
+    if (!/^\d{4}$/.test(t)) return undefined;
+    const v = Number(t);
+    return v >= c.min && v <= c.max ? v : undefined;
+  };
+  const escrituras = (a, m) => {
+    if (a === "no_lo_se") return [[c.campo, "no_lo_se"], [c.campo_mes, undefined]];
+    return [[c.campo, a], [c.campo_mes, typeof m === "number" ? m : undefined]];
   };
   return {
-    nodo, nombre: campo,
+    nodo, nombre: anio,
+    leer() {
+      if (chk.checked) return { ok: true, escrituras: escrituras("no_lo_se") };
+      if (anio.value.trim() === "") return { ok: false, error: `${c.etiqueta}: escribe el año (4 cifras) o marca «No lo sé».` };
+      const a = anioDi();
+      if (a === undefined) return { ok: false, error: `${c.etiqueta}: el año tiene 4 cifras y va de ${c.min} a ${c.max}.` };
+      const m = leerMesCampo(mes);
+      if (m === null) return { ok: false, error: `${c.etiqueta}: el mes va de 1 a 12, o déjalo vacío.` };
+      return { ok: true, escrituras: escrituras(a, m) };
+    },
+    borrador() {
+      if (chk.checked) return escrituras("no_lo_se");
+      const a = anioDi();
+      if (a === undefined) return [];
+      const m = leerMesCampo(mes);
+      return escrituras(a, m === null ? undefined : m);
+    },
+  };
+}
+
+// Data anno-mese (empadronado, residencia legal, documento): AAAA o AAAA-MM, con «No lo sé».
+function controlloFecha(c, previo, hoy) {
+  const anio = campoAnio(c.etiqueta);
+  const mes = campoMes(c.etiqueta);
+  const chk = el("input", { type: "checkbox", id: nuovoId("nls") });
+  if (typeof previo === "string" && previo !== "no_lo_se") {
+    const m = /^(\d{4})(?:-(\d{2}))?/.exec(previo);
+    if (m) {
+      anio.value = m[1];
+      if (m[2]) mes.value = String(Number(m[2]));
+    }
+  }
+  chk.checked = previo === "no_lo_se";
+  const aplicaNls = () => { anio.disabled = chk.checked; mes.disabled = chk.checked; };
+  aplicaNls();
+  chk.addEventListener("change", () => { if (chk.checked) mes.value = ""; aplicaNls(); });
+  const nodo = el("div", { class: "fila" },
+    el("span", { class: "campo-etiqueta", text: c.etiqueta }),
+    el("div", { class: "fila-linea" },
+      el("div", { class: "fila" }, el("label", { class: "campo-etiqueta", for: mes.id, text: "Mes (opcional)" }), mes),
+      el("div", { class: "fila" }, el("label", { class: "campo-etiqueta", for: anio.id, text: "Año" }), anio)),
+    el("p", { class: "ayuda", text: "Ejemplos: 2019, o 2019 y 6 (junio)." }),
+    el("label", { class: "nls" }, chk, " No lo sé"));
+  // Il valore scritto, o undefined se non è una data valida (nel futuro, se la data non può esserlo).
+  const valorDi = () => {
+    if (chk.checked) return "no_lo_se";
+    const t = anio.value.trim();
+    if (!/^\d{4}$/.test(t)) return undefined;
+    const m = leerMesCampo(mes);
+    if (m === null) return undefined;
+    const texto = m === undefined ? t : `${t}-${String(m).padStart(2, "0")}`;
+    const e = extremosFecha(texto);
+    if (!e) return undefined;
+    if (!c.futuro && e.prima > hoy) return undefined;
+    return texto;
+  };
+  return {
+    nodo, nombre: anio,
     leer() {
       if (chk.checked) return { ok: true, escrituras: [[c.campo, "no_lo_se"]] };
-      const t = campo.value.trim();
-      if (t === "") return { ok: false, error: `${c.etiqueta}: escribe una fecha o marca «No lo sé».` };
-      if (valorDi() === undefined) return { ok: false, error: `${c.etiqueta}: la fecha no es válida${c.futuro ? "" : " o está en el futuro"}. Usa AAAA, AAAA-MM o AAAA-MM-DD.` };
-      return { ok: true, escrituras: [[c.campo, t]] };
+      if (anio.value.trim() === "") return { ok: false, error: `${c.etiqueta}: escribe el año o marca «No lo sé».` };
+      if (leerMesCampo(mes) === null) return { ok: false, error: `${c.etiqueta}: el mes va de 1 a 12, o déjalo vacío.` };
+      if (valorDi() === undefined) return { ok: false, error: `${c.etiqueta}: la fecha no es válida${c.futuro ? "" : " o está en el futuro"}.` };
+      return { ok: true, escrituras: [[c.campo, valorDi()]] };
     },
     borrador: () => (valorDi() === undefined ? [] : [[c.campo, valorDi()]]),
   };
@@ -211,7 +295,9 @@ function controlloRadio(c, previo, pantalla) {
     if (c.ong_si_otro) pintaOng(ayuda, c.ongs);
   };
   righe.forEach((r) => r.input.addEventListener("change", cambio));
-  const nodo = el("fieldset", { class: "grupo" }, el("legend", { class: "campo-etiqueta", text: c.etiqueta }),
+  const legenda = el("legend", { class: "campo-etiqueta", text: c.etiqueta });
+  const spiegazione = c.ayuda ? botonAyuda(c.ayuda, nuovoId("ayp"), legenda) : null;
+  const nodo = el("fieldset", { class: "grupo" }, legenda, spiegazione ? spiegazione.panel : null,
     righe.map((r) => r.nodo), ayuda);
   cambio();
   const valorDi = () => {
@@ -234,6 +320,24 @@ function controlloRadio(c, previo, pantalla) {
       return conExtra(sel.codigo);
     },
   };
+}
+
+// Il pulsante «?» accanto a una domanda difficile: apre una spiegazione breve. Si apre e si chiude con il pulsante,
+// con Esc (dal pulsante o dentro la spiegazione, e il fuoco torna al pulsante) o con «Cerrar».
+function botonAyuda(ayuda, idPanel, legenda) {
+  const boton = el("button", { type: "button", class: "secundario", text: "?", "aria-expanded": "false",
+    "aria-controls": idPanel, "aria-label": `Ayuda: ${ayuda.titulo}` });
+  const cerrar = () => { panel.hidden = true; boton.setAttribute("aria-expanded", "false"); };
+  const abrir = () => { panel.hidden = false; boton.setAttribute("aria-expanded", "true"); };
+  const panel = el("div", { class: "ayuda", id: idPanel, hidden: true, role: "region", "aria-label": ayuda.titulo },
+    el("p", { text: ayuda.intro }),
+    el("dl", null, ayuda.filas.map(([nombre, desc]) => [el("dt", { text: nombre }), el("dd", { text: desc })])),
+    el("button", { type: "button", class: "secundario", text: "Cerrar", onclick: () => { cerrar(); boton.focus(); } }));
+  boton.addEventListener("click", () => (panel.hidden ? abrir() : cerrar()));
+  boton.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) { e.preventDefault(); cerrar(); } });
+  panel.addEventListener("keydown", (e) => { if (e.key === "Escape") { e.preventDefault(); cerrar(); boton.focus(); } });
+  legenda.append(" ", boton);
+  return { panel };
 }
 
 function pintaOng(nodo, ongs) {
@@ -337,22 +441,22 @@ function controlloPaises(c, previo) {
           "aria-label": `Quitar ${nombre}`, text: "×" }));
     }));
   };
-  const aggiungi = el("button", { type: "button", class: "secundario", text: "Añadir país",
-    onclick: () => {
-      if (!menu.value) return;
-      if (!lista.includes(menu.value)) lista.push(menu.value);
-      nls.checked = false;
-      if (nadie) nadie.checked = false;
-      menu.value = "";
-      pinta();
-    } });
+  // Un paese scelto dal menu diventa subito un'etichetta rimovibile: niente pulsante «Añadir país».
+  menu.addEventListener("change", () => {
+    if (!menu.value) return;
+    if (!lista.includes(menu.value)) lista.push(menu.value);
+    nls.checked = false;
+    if (nadie) nadie.checked = false;
+    menu.value = "";
+    pinta();
+  });
   nls.addEventListener("change", () => { if (nls.checked) { lista = []; if (nadie) nadie.checked = false; pinta(); } });
   if (nadie) nadie.addEventListener("change", () => { if (nadie.checked) { lista = []; nls.checked = false; pinta(); } });
   pinta();
   const nodo = el("div", { class: "fila" },
     el("span", { class: "campo-etiqueta", text: c.etiqueta }),
     chips,
-    el("div", { class: "fila-linea" }, menu, aggiungi),
+    el("div", { class: "fila-linea" }, menu),
     nadie ? el("label", { class: "opcion" }, nadie, " " + c.nadie[1]) : null,
     el("label", { class: "nls" }, nls, " No lo sé"));
   const leerDi = () => {
@@ -453,17 +557,15 @@ function controlloHijos(c, previo) {
   ninguno.checked = Array.isArray(previo) && previo.length === 0;
   const filas = el("div", { class: "hijos" });
   const filaHijo = (h) => {
-    const anio = el("input", { type: "number", inputmode: "numeric", min: 1900, max: 2100, "aria-label": "Año de nacimiento del hijo o hija" });
+    const mes = campoMes("Hijo o hija");
+    const anio = campoAnio("Hijo o hija");
     const anioNls = el("input", { type: "checkbox", id: nuovoId("ahn") });
-    const mes = el("select", { "aria-label": "Mes de nacimiento del hijo o hija" },
-      el("option", { value: "no_lo_se", text: "Mes: no lo sé" }),
-      Array.from({ length: 12 }, (_, i) => el("option", { value: String(i + 1), text: String(i + 1) })));
     if (h && typeof h.anio_nacimiento === "number") anio.value = String(h.anio_nacimiento);
     if (h && h.anio_nacimiento === "no_lo_se") anioNls.checked = true;
     if (h && typeof h.mes_nacimiento === "number") mes.value = String(h.mes_nacimiento);
     anio.disabled = anioNls.checked;
     anioNls.addEventListener("change", () => { anio.disabled = anioNls.checked; });
-    const fila = el("div", { class: "hijo" }, anio, el("label", { class: "nls" }, anioNls, " No lo sé"), mes,
+    const fila = el("div", { class: "hijo" }, mes, anio, el("label", { class: "nls" }, anioNls, " No lo sé"),
       el("button", { type: "button", class: "secundario", text: "Quitar", "aria-label": "Quitar este hijo o hija",
         onclick: () => fila.remove() }));
     return { fila, anio, anioNls, mes };
@@ -487,31 +589,35 @@ function controlloHijos(c, previo) {
     if (nls.checked) return "no_lo_se";
     if (ninguno.checked) return [];
     if (!filasHijos.length) return undefined;
-    return filasHijos.filter((x) => x.fila.isConnected).map((x) => ({
-      anio_nacimiento: x.anioNls.checked ? "no_lo_se" : (x.anio.value === "" ? "err" : Number(x.anio.value)),
-      mes_nacimiento: x.mes.value === "no_lo_se" ? "no_lo_se" : Number(x.mes.value),
-    }));
+    return filasHijos.filter((x) => x.fila.isConnected).map((x) => {
+      const h = { anio_nacimiento: x.anioNls.checked ? "no_lo_se" : (/^\d{4}$/.test(x.anio.value.trim()) ? Number(x.anio.value.trim()) : "err") };
+      const m = leerMesCampo(x.mes);
+      if (m === null) h.mes_nacimiento = "err";
+      else if (m !== undefined) h.mes_nacimiento = m;
+      return h;
+    });
   };
   return {
     nodo, nombre: ninguno,
     leer() {
       const v = leerDi();
       if (v === undefined) return { ok: false, error: `${c.etiqueta}: marca «No tengo hijos…», añade cada hijo o marca «No lo sé».` };
-      if (Array.isArray(v) && v.some((h) => h.anio_nacimiento === "err" || (typeof h.anio_nacimiento === "number" && (h.anio_nacimiento < 1900 || h.anio_nacimiento > 2100)))) {
-        return { ok: false, error: `${c.etiqueta}: escribe el año de nacimiento de cada hijo o marca «No lo sé».` };
+      if (Array.isArray(v) && v.some((h) => h.anio_nacimiento === "err" || h.mes_nacimiento === "err"
+        || (typeof h.anio_nacimiento === "number" && (h.anio_nacimiento < 1900 || h.anio_nacimiento > 2100)))) {
+        return { ok: false, error: `${c.etiqueta}: escribe el año (4 cifras) de cada hijo o marca «No lo sé», y el mes solo si lo sabes (1 a 12).` };
       }
       return { ok: true, escrituras: [[c.campo, v]] };
     },
     borrador() {
       const v = leerDi();
-      if (v === undefined || (Array.isArray(v) && v.some((h) => h.anio_nacimiento === "err"))) return [];
+      if (v === undefined || (Array.isArray(v) && v.some((h) => h.anio_nacimiento === "err" || h.mes_nacimiento === "err"))) return [];
       return [[c.campo, v]];
     },
   };
 }
 
 const FABRICA = {
-  anio: controlloNumero, entero: controlloNumero, fecha: controlloFecha, texto: controlloTexto,
+  anio: controlloNumero, mesanio: controlloMesAnio, entero: controlloNumero, fecha: controlloFecha, texto: controlloTexto,
   select: controlloSelect, radio: controlloRadio, bool: controlloBool, lista: controlloLista,
   paises: controlloPaises, pais: controlloPais, tramo: controlloTramo, hijos: controlloHijos,
   municipio: controlloMunicipio,
@@ -553,6 +659,7 @@ export function renderCuestionario(ctx) {
   };
   const controles = cosas.map((c) => {
     let previo = leer(ctx.perfil, c.campo || c.base);
+    if (c.tipo === "mesanio") c = { ...c, previo_mes: leer(ctx.perfil, c.campo_mes) };
     if (c.tipo === "radio" && c.campo === "residencia.pais") {
       c = { ...c, radio_pais_otro: true };
       // Un paese scelto dal menu (per esempio FR) si ricorda come «En otro país».
@@ -637,6 +744,7 @@ export function renderCuestionario(ctx) {
     for (const x of controles) {
       if (!x.grupo.hidden) continue;
       if (x.def.campo && !visiblesPaths.has(x.def.campo)) escrituras.push([x.def.campo, undefined]);
+      if (x.def.campo_mes && !visiblesPaths.has(x.def.campo_mes)) escrituras.push([x.def.campo_mes, undefined]);
       if (x.def.base) {
         for (const suf of [".tramo", ".importe"]) if (!visiblesPaths.has(x.def.base + suf)) escrituras.push([x.def.base + suf, undefined]);
       }

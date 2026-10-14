@@ -376,6 +376,24 @@
             {
               "const": "no_lo_se"
             }
+          ],
+          "description": "Campo vecchio (v1.1 prima di titulos_paises): si legge e si converte in estudios.titulos_paises."
+        },
+        "titulos_paises": {
+          "description": "Paesi dei titoli di studio ottenuti fuori da residencia.pais (ISO 3166-1 alfa-2). Più titoli: una regola è soddisfatta se lo è per almeno uno (docs/ESQUEMA.md §2.6).",
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "uniqueItems": true,
+              "maxItems": 10
+            },
+            {
+              "const": "no_lo_se"
+            }
           ]
         },
         "homologacion": {
@@ -511,6 +529,22 @@
           "anyOf": [
             {
               "type": "boolean"
+            },
+            {
+              "const": "no_lo_se"
+            }
+          ],
+          "description": "Campo vecchio: si legge e si converte in vivienda.contrato_titularidad (true→solo_mio, false→otra_persona)."
+        },
+        "contrato_titularidad": {
+          "description": "Titolarità del contratto d'affitto: a nome proprio, in comune con un'altra persona, o di un'altra persona (docs/ESQUEMA.md §2.6).",
+          "anyOf": [
+            {
+              "enum": [
+                "solo_mio",
+                "compartido",
+                "otra_persona"
+              ]
             },
             {
               "const": "no_lo_se"

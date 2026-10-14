@@ -130,12 +130,18 @@ const DEPENDENCIAS = {
 };
 
 // Campi che una scheda legge (anche dentro gruppi), più le dipendenze dei calc.*.
+// Campi vecchi e nuovi (docs/ESQUEMA.md §2.6): una scheda che legge il campo vecchio usa anche quello nuovo.
+const EQUIVALENTI = {
+  "estudios.titulo_pais": ["estudios.titulos_paises"],
+  "vivienda.contrato_a_su_nombre": ["vivienda.contrato_titularidad"],
+};
 export function camposUsados(catalogo) {
   const usati = new Set();
   const scendi = (nodo) => {
     if (!nodo || typeof nodo !== "object") return;
     if (typeof nodo.campo === "string") {
       usati.add(nodo.campo);
+      for (const e of EQUIVALENTI[nodo.campo] || []) usati.add(e);
       for (const d of DEPENDENCIAS[nodo.campo] || []) usati.add(d);
     }
     for (const figlio of [...(nodo.all_of || []), ...(nodo.any_of || [])]) scendi(figlio);
@@ -187,19 +193,19 @@ const NO_ALQUILER = ["propiedad", "hipoteca", "cedida", "sin_hogar", "otro"];
 // «null» = «Otra situación o prefiero no decirlo»: il campo resta vuoto.
 export const OPC_DOCUMENTO = [
   ["nacional", "Tengo la nacionalidad española (DNI)"],
-  ["ciudadano_ue", "Ciudadano/a de la UE, del EEE o de Suiza con certificado de registro (el certificado verde)"],
-  ["ciudadano_ue_permanente", "Ciudadano/a de la UE, del EEE o de Suiza con certificado de residencia permanente"],
-  ["ciudadano_ue_sin_registro", "Ciudadano/a de la UE, del EEE o de Suiza, todavía sin certificado de registro"],
+  ["ciudadano_ue", "Ciudadano/a de la UE, de Noruega, Islandia, Liechtenstein o Suiza, con certificado de registro (el certificado verde)"],
+  ["ciudadano_ue_permanente", "Ciudadano/a de la UE, de Noruega, Islandia, Liechtenstein o Suiza, con certificado de residencia permanente"],
+  ["ciudadano_ue_sin_registro", "Ciudadano/a de la UE, de Noruega, Islandia, Liechtenstein o Suiza, todavía sin certificado de registro"],
   ["familiar_ue", "Tarjeta de residencia de familiar de ciudadano de la Unión"],
   ["familiar_ue_permanente", "Tarjeta de residencia permanente de familiar de ciudadano de la Unión"],
-  ["residencia_temporal", "Residencia temporal (TIE): por trabajo, arraigo, reagrupación familiar u otro motivo"],
+  ["residencia_temporal", "Residencia temporal (tarjeta de extranjero, TIE): por trabajo, por tener raíces en España, por reagrupación familiar u otro motivo"],
   ["residencia_larga_duracion", "Residencia de larga duración (TIE). Antes se llamaba «residencia permanente»"],
   ["residencia_larga_duracion_ue", "Residencia de larga duración-UE (TIE)"],
   ["estancia_estudios", "Autorización por estudios, movilidad de estudiantes o prácticas"],
   ["proteccion_internacional_solicitante", "He pedido protección internacional (documento de solicitante, la «tarjeta roja»)"],
   ["proteccion_internacional", "Tengo asilo o protección subsidiaria concedida"],
   ["proteccion_temporal", "Protección temporal (por ejemplo, personas desplazadas de Ucrania)"],
-  ["residencia_art50_tue", "Documento de residencia artículo 50 TUE (Reino Unido)"],
+  ["residencia_art50_tue", "Documento de residencia de ciudadanos británicos (acuerdo de salida de la UE)"],
   [null, "Otra situación o prefiero no decirlo"],
   ["no_lo_se", "No lo sé"],
 ];
@@ -239,7 +245,7 @@ export const OPC_MATRICULA = [
 
 export const OPC_HOMOLOGACION = [
   ["no_pedida", "No la he pedido"], ["en_tramite", "La he pedido y está en trámite"],
-  ["concedida", "Me han dado la homologación o la equivalencia"], ["denegada", "Me la han denegado"],
+  ["concedida", "Sí, me han reconocido el título en España"], ["denegada", "Me la han denegado"],
   ["no_lo_se", "No lo sé"],
 ];
 
@@ -270,6 +276,11 @@ export const OPC_ENTIDAD = [
   ["otro", "Otra"], ["no_lo_se", "No lo sé"],
 ];
 
+export const OPC_TITULARIDAD = [
+  ["solo_mio", "Solo a mi nombre"], ["compartido", "A mi nombre y de otra persona"],
+  ["otra_persona", "A nombre de otra persona"], ["no_lo_se", "No lo sé"],
+];
+
 export const OPC_SEXO = [
   ["mujer", "Mujer"], ["hombre", "Hombre"], ["otro", "Otra respuesta"], ["prefiero_no_decirlo", "Prefiero no decirlo"],
 ];
@@ -278,14 +289,87 @@ export const OPC_AMBITO = [["EU", "Unión Europea"], ["ES", "España (todo el te
   ...CCAA.filter(([c]) => c !== "ES-CE" && c !== "ES-ML"),
   ["ES-CE", "Ceuta"], ["ES-ML", "Melilla"], ["no_lo_se", "No lo sé"]];
 
+// Figli minori (o di età non nota): «único adulto a cargo» si chiede solo se ci sono (la domanda sui figli viene prima).
+// L'età si misura sull'anno: per un anno sconosciuto il figlio conta come possibile minore.
+export function hayHijosMenores(p) {
+  const hijos = leer(p, "hogar.hijos");
+  if (hijos === "no_lo_se") return true;
+  if (!Array.isArray(hijos)) return false;
+  const anio = new Date().getFullYear();
+  return hijos.some((h) => h && (h.anio_nacimiento === "no_lo_se"
+    || (typeof h.anio_nacimiento === "number" && anio - h.anio_nacimiento < 18)));
+}
+
+// Spiegazioni «?» (docs/ESQUEMA.md §2.4). Verificate il 14/10/2026 sul BOE: Real Decreto 240/2007 (ciudadanos de la UE
+// y familiares: art. 7 certificado de registro, art. 8 tarjeta de familiar, art. 10-11 residencia permanente) e
+// Real Decreto 1155/2024 (nuovo reglamento de extranjería, in vigore dal 20/05/2025: TIE, larga duración, estancia por estudios).
+// extranjeros.inclusion.gob.es (ora inclusion.gob.es/web/migraciones) e sede.policia.gob.es danno 403/404 da qui: da ricontrollare a mano.
+// Non confermato su fonte ufficiale: il nome «larga duración-UE» nel testo del RD 1155/2024 (non compare nella parte letta).
+export const AYUDA_DOCUMENTO = {
+  titulo: "Qué documento es cada uno",
+  intro: "Mira el título de tu papel o tarjeta. Tres grupos: (1) ciudadanos de la UE, Noruega, Islandia, Liechtenstein o Suiza: " +
+    "tienen un certificado en papel (el «certificado verde», con tu NIE), no una tarjeta; (2) sus familiares que no son de esos países: " +
+    "tienen una tarjeta, la de «familiar de ciudadano de la Unión»; (3) el resto de extranjeros: tienen la TIE.",
+  filas: [
+    ["DNI español", "Tienes la nacionalidad española. No necesitas permiso para trabajar."],
+    ["Certificado de registro de ciudadano de la UE (el certificado verde)", "Es para ti si eres ciudadano de la UE, Noruega, Islandia, Liechtenstein o Suiza y vives aquí más de tres meses. Es un papel con tu NIE, no una tarjeta. Hay que pedirlo en los tres meses siguientes a la entrada."],
+    ["Certificado de residencia permanente", "El mismo tipo de papel, para quien ya vivió cinco años seguidos legalmente aquí. No caduca."],
+    ["Sin certificado todavía", "Eres ciudadano de la UE, Noruega, Islandia, Liechtenstein o Suiza, pero aún no has pedido el certificado."],
+    ["Tarjeta de familiar de ciudadano de la UE", "Es para ti si eres familiar de un ciudadano de la UE y no tienes esa nacionalidad (por ejemplo, tu pareja o tus padres de fuera de la UE). Es una tarjeta de 5 años. La diferencia con el certificado verde: el certificado es para el ciudadano comunitario, la tarjeta para su familiar."],
+    ["Tarjeta de residencia permanente de familiar", "La misma tarjeta tras cinco años de residencia legal. Se renueva cada diez años."],
+    ["TIE de residencia temporal", "Tarjeta de extranjero con permiso temporal: por trabajo, por tener raíces en España, por reagrupación familiar u otro motivo. Caduca y se renueva."],
+    ["TIE de larga duración", "Tarjeta de extranjero para quien ha vivido legalmente cinco años seguidos. Antes se llamaba residencia permanente."],
+    ["TIE de larga duración-UE", "La tarjeta dice «larga duración-UE». Si pone solo «larga duración», elige la opción anterior."],
+    ["Autorización por estudios", "Permiso para estudiar, hacer movilidad, voluntariado o prácticas formativas."],
+    ["Tarjeta roja (solicitante de protección internacional)", "Has pedido asilo y esperas la resolución."],
+    ["Asilo o protección subsidiaria", "Te la han concedido."],
+    ["Protección temporal", "Por ejemplo, para personas desplazadas desde Ucrania."],
+    ["Documento de ciudadano británico", "Para ciudadanos del Reino Unido que vivían en España antes del fin del periodo de salida de la UE (acuerdo de salida)."],
+    ["Otra situación o no lo sé", "Si ningún documento coincide o no estás seguro, elige esta opción: no pasa nada."],
+  ],
+};
+export const AYUDA_CONTRATO = {
+  titulo: "Qué tipo de contrato es",
+  intro: "Mira el tipo en tu contrato o en la última nómina. Si no sabes cómo se llama, elige la opción que describa tu situación.",
+  filas: [
+    ["Indefinido", "No tiene fecha de fin."],
+    ["Fijo discontinuo", "Se trabaja por temporadas y se vuelve a llamar cada año."],
+    // Fonte: RDL 32/2021 (BOE-A-2021-21788): il contratto di «obra o servicio» non esiste più; a termine solo per produzione o sostituzione.
+    ["Temporal", "Tiene fecha de fin, porque hay más trabajo por un tiempo o para sustituir a otra persona."],
+    ["Predoctoral", "Contrato para investigar durante el doctorado (Ley de la Ciencia)."],
+    ["Científico-técnico", "Contrato ligado a un proyecto de investigación."],
+    ["Postdoctoral", "Contrato para personal investigador ya doctor."],
+    ["Formativo o de prácticas", "Dos tipos: en alternancia (trabajas y estudias a la vez) y para la práctica profesional (con un título ya terminado)."],
+    ["Funcionario", "Plaza en una administración pública."],
+    ["Ninguno", "No tienes contrato ahora. Si no trabajas, responde con tu último contrato."],
+  ],
+};
+// Livelli: sistema educativo spagnolo (educacionfpydeportes.gob.es, non raggiungibile da qui: da ricontrollare).
+export const AYUDA_NIVEL = {
+  titulo: "Cuál es tu título más alto terminado",
+  intro: "Elige el más alto que hayas terminado, no el que estudias ahora.",
+  filas: [
+    ["Sin estudios terminados", "Ninguno que hayas terminado."],
+    ["Primaria", "Educación primaria terminada."],
+    ["ESO", "Graduado en ESO o equivalente."],
+    ["Bachillerato", "Bachillerato terminado."],
+    ["FP de grado medio", "Técnico de formación profesional."],
+    ["FP de grado superior", "Técnico superior de formación profesional."],
+    ["Grado, licenciatura o diplomatura", "Título universitario de grado o de primer ciclo."],
+    ["Máster", "Máster oficial o título de posgrado equivalente."],
+    ["Doctorado", "Título de doctor."],
+    ["Otros estudios", "Estudios que no están en la lista, por ejemplo un título de otro país que no sabes comparar. Elígela si ninguna otra encaja."],
+    ["No lo sé", "Si no sabes a qué nivel corresponde tu título. Puedes seguir sin responder."],
+  ],
+};
+
 // Ogni controllo: { tipo, campo, etichetta, … , siempre?, si?(perfil) }.
 // Tipi: anio, mes, entero, fecha, bool, radio, lista, pais, paises, tramo, hijos, texto, select.
 export const PANTALLAS = [
   { id: "anio", titulo: "¿En qué año y mes naciste?", porque: "La edad decide a qué ayudas puedes pedir. Basta el año de nacimiento; el mes es opcional y cuenta solo cuando la edad está justo en el límite de una ayuda.",
     controles: [
-      { tipo: "anio", campo: "persona.anio_nacimiento", siempre: true, etiqueta: "Año de nacimiento", min: 1900, max: 2100 },
-      { tipo: "select", campo: "persona.mes_nacimiento", etiqueta: "Mes de nacimiento", opcional: true,
-        opciones: [...MESES.map((m, i) => [i + 1, m[0].toUpperCase() + m.slice(1)]), ["no_lo_se", "No lo sé"]] },
+      { tipo: "mesanio", campo: "persona.anio_nacimiento", campo_mes: "persona.mes_nacimiento", siempre: true,
+        etiqueta: "Mes y año de nacimiento", min: 1900, max: 2100 },
     ] },
   { id: "residencia", titulo: "¿Dónde vives y desde cuándo estás empadronado/a?", porque: porqueResidencia,
     controles: [
@@ -302,8 +386,8 @@ export const PANTALLAS = [
         si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
       { tipo: "municipio", campo: "residencia.municipio", ine: "residencia.municipio_ine", siempre: true, etiqueta: "Municipio",
         sugerencia: MUNICIPIO_VLC, si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
-      { tipo: "texto", campo: "residencia.municipio_ine", etiqueta: "Código INE del municipio (5 cifras)", patron: /^\d{5}$/,
-        error: "El código INE tiene 5 cifras.",
+      { tipo: "texto", campo: "residencia.municipio_ine", etiqueta: "Código de 5 cifras del municipio", patron: /^\d{5}$/,
+        error: "El código del municipio tiene 5 cifras.",
         si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) && !esValenciaCiudad(p) },
       { tipo: "fecha", campo: "residencia.empadronado_desde", siempre: true, etiqueta: "Empadronado/a desde",
         si: (p) => ["ES", "no_lo_se"].includes(leer(p, "residencia.pais")) },
@@ -319,7 +403,7 @@ export const PANTALLAS = [
   { id: "documento", titulo: "¿Qué documento tienes y desde cuándo?", porque: "El documento que tienes decide a qué ayudas puedes acceder. Elige el que aparece en tu tarjeta o certificado. Si una ayuda lo pide, también preguntamos si puedes trabajar y las fechas de tu documento y de tu residencia.",
     controles: [
       // Il documento scrive da sé il permesso di lavoro: vero per la cittadinanza spagnola o UE, da chiedere negli altri casi.
-      { tipo: "radio", campo: "situacion_administrativa.tipo", siempre: true, etiqueta: "Documento", opciones: OPC_DOCUMENTO, ong_si_otro: true,
+      { tipo: "radio", campo: "situacion_administrativa.tipo", siempre: true, etiqueta: "Documento", opciones: OPC_DOCUMENTO, ong_si_otro: true, ayuda: AYUDA_DOCUMENTO,
         extra: (codigo) => (codigo === undefined ? [] : [["situacion_administrativa.autoriza_trabajar",
           SIN_PERMISO_TRABAJO.includes(codigo) ? true : undefined]]) },
       { tipo: "bool", campo: "situacion_administrativa.autoriza_trabajar", etiqueta: "¿Tu documento te permite trabajar?",
@@ -327,48 +411,50 @@ export const PANTALLAS = [
       // Chi ha la cittadinanza spagnola non ha una data di residenza da dare: il motore non la chiede (calc.*_residencia_legal).
       { tipo: "fecha", campo: "situacion_administrativa.residencia_legal_desde", etiqueta: "Residencia legal en España desde",
         si: (p) => leer(p, "situacion_administrativa.tipo") !== "nacional" },
-      { tipo: "fecha", campo: "situacion_administrativa.documento_desde", etiqueta: "Fecha de concesión del documento" },
-      { tipo: "fecha", campo: "situacion_administrativa.documento_hasta", etiqueta: "Fecha de caducidad del documento", futuro: true },
+      { tipo: "fecha", campo: "situacion_administrativa.documento_desde", etiqueta: "Fecha en que te lo dieron" },
+      { tipo: "fecha", campo: "situacion_administrativa.documento_hasta", etiqueta: "Fecha en que caduca", futuro: true },
     ] },
   { id: "situacion", titulo: "¿Qué haces ahora?", porque: "Puedes marcar varias opciones: por ejemplo, trabajar y estudiar a la vez.",
     controles: [{ tipo: "lista", campo: "empleo.situaciones", siempre: true, etiqueta: "Situación", opciones: OPC_SITUACIONES }] },
   { id: "contrato", titulo: "¿Qué tipo de contrato tienes?", porque: "Si no trabajas, responde con tu último contrato. Algunas ayudas dependen del tipo de contrato y de cuándo termina.",
     controles: [
-      { tipo: "radio", campo: "empleo.tipo_contrato", etiqueta: "Tipo de contrato", opciones: OPC_CONTRATO },
+      { tipo: "radio", campo: "empleo.tipo_contrato", etiqueta: "Tipo de contrato", opciones: OPC_CONTRATO, ayuda: AYUDA_CONTRATO },
       { tipo: "fecha", campo: "empleo.contrato_hasta", etiqueta: "El contrato termina el", futuro: true },
     ] },
   { id: "desempleo", titulo: "Tu situación de desempleo", porque: "La inscripción como demandante de empleo, la prestación y las cotizaciones cuentan en las ayudas por desempleo.",
     controles: [
       { tipo: "bool", campo: "empleo.inscrito_demandante", etiqueta: "Estoy inscrito/a como demandante de empleo" },
       { tipo: "bool", campo: "empleo.cobra_prestacion", etiqueta: "Ahora cobro una prestación o un subsidio por desempleo" },
-      { tipo: "entero", campo: "empleo.meses_cotizados_6_anios", etiqueta: "Meses cotizados en los últimos 6 años", min: 0, max: 72 },
+      { tipo: "entero", campo: "empleo.meses_cotizados_6_anios", etiqueta: "Meses con cotización a la Seguridad Social (últimos 6 años)", min: 0, max: 72 },
     ] },
   { id: "nivel", titulo: "¿Cuál es tu título más alto terminado?", porque: "El nivel de estudios decide a qué becas y contratos puedes presentarte.",
-    controles: [{ tipo: "radio", campo: "estudios.nivel_max", siempre: true, etiqueta: "Nivel de estudios", opciones: OPC_NIVEL }] },
+    controles: [{ tipo: "radio", campo: "estudios.nivel_max", siempre: true, etiqueta: "Nivel de estudios", opciones: OPC_NIVEL, ayuda: AYUDA_NIVEL }] },
   { id: "matricula", titulo: "¿Qué estudias ahora?", porque: "Muchas becas y contratos piden estar matriculado en un tipo de estudio concreto.",
     controles: [{ tipo: "radio", campo: "estudios.matriculado_en", siempre: true, etiqueta: "Estudios actuales", opciones: OPC_MATRICULA }] },
   { id: "titulo", titulo: "¿Tu título más alto es de otro país?", porque: "Un título obtenido fuera de España puede necesitar homologación o equivalencia.",
     controles: [
       { tipo: "bool", campo: "estudios.titulo_extranjero", etiqueta: "Lo obtuve fuera de España" },
-      { tipo: "pais", campo: "estudios.titulo_pais", etiqueta: "País donde lo obtuviste", si: (p) => leer(p, "estudios.titulo_extranjero") !== false },
-      { tipo: "radio", campo: "estudios.homologacion", etiqueta: "Homologación o equivalencia", opciones: OPC_HOMOLOGACION, si: (p) => leer(p, "estudios.titulo_extranjero") !== false },
+      { tipo: "paises", campo: "estudios.titulos_paises", etiqueta: "Países donde los obtuviste (puedes añadir más de uno)",
+        nadie: null, si: (p) => leer(p, "estudios.titulo_extranjero") !== false },
+      { tipo: "radio", campo: "estudios.homologacion", etiqueta: "Si te han reconocido el título en España", opciones: OPC_HOMOLOGACION, si: (p) => leer(p, "estudios.titulo_extranjero") !== false },
     ] },
+  { id: "hijos", titulo: "¿Tienes hijos o hijas que viven contigo o están a tu cargo?", porque: "Cuenta a los hijos aunque sean mayores de edad. Para cada uno basta el año de nacimiento.",
+    controles: [{ tipo: "hijos", campo: "hogar.hijos", siempre: true, etiqueta: "Hijos e hijas" }] },
   { id: "hogar", titulo: "¿Con cuántas personas vives?", porque: "Contamos a la familia que vive contigo, incluida tú. Las personas que comparten piso sin ser familia no cuentan. Algunas ayudas cambian con la familia numerosa o la monoparental.",
     controles: [
       { tipo: "entero", campo: "hogar.miembros", siempre: true, etiqueta: "Personas de la familia que viven contigo (tú incluida)", min: 1, max: 30 },
       { tipo: "radio", campo: "hogar.pareja", etiqueta: "Pareja", opciones: OPC_PAREJA },
-      { tipo: "bool", campo: "hogar.monoparental", etiqueta: "Soy el único adulto a cargo de hijos menores" },
+      { tipo: "bool", campo: "hogar.monoparental", etiqueta: "Soy el único adulto a cargo de hijos menores",
+        si: hayHijosMenores },
       { tipo: "radio", campo: "hogar.familia_numerosa", etiqueta: "Título de familia numerosa", opciones: OPC_FAMILIA },
     ] },
-  { id: "hijos", titulo: "¿Tienes hijos o hijas que viven contigo o están a tu cargo?", porque: "Cuenta a los hijos aunque sean mayores de edad. Para cada uno basta el año de nacimiento.",
-    controles: [{ tipo: "hijos", campo: "hogar.hijos", siempre: true, etiqueta: "Hijos e hijas" }] },
   { id: "vivienda", titulo: "¿Cómo es tu vivienda?", porque: "El régimen de la vivienda decide algunas ayudas de alquiler y de vivienda.",
     controles: [
       { tipo: "radio", campo: "vivienda.regimen", siempre: true, etiqueta: "Régimen de la vivienda", opciones: OPC_REGIMEN },
       { tipo: "entero", campo: "vivienda.alquiler_mensual", etiqueta: "Alquiler mensual que pagas tú (€)", min: 0, max: 100000,
         si: (p) => !NO_ALQUILER.includes(leer(p, "vivienda.regimen")) },
-      { tipo: "bool", campo: "vivienda.contrato_a_su_nombre", etiqueta: "El contrato de alquiler está a mi nombre",
-        si: (p) => !NO_ALQUILER.includes(leer(p, "vivienda.regimen")) },
+      { tipo: "radio", campo: "vivienda.contrato_titularidad", etiqueta: "¿A nombre de quién está el contrato de alquiler?",
+        opciones: OPC_TITULARIDAD, si: (p) => !NO_ALQUILER.includes(leer(p, "vivienda.regimen")) },
     ] },
   { id: "ingresos", titulo: "Tus ingresos del año pasado", porque: "Tus ingresos brutos (antes de impuestos) sirven para calcular prestaciones como el ingreso mínimo vital (IMV) o algunas deducciones. Si no sabes la cifra exacta, elige un tramo. Los ahorros, sin contar la casa en la que vives, cuentan en algunas ayudas con límite.",
     controles: [
@@ -386,15 +472,16 @@ export const PANTALLAS = [
       { tipo: "radio", campo: "vinculos.entidad_estudios.tipo", etiqueta: "Tipo de centro donde estudias", opciones: OPC_ENTIDAD },
       { tipo: "select", campo: "vinculos.entidad_estudios.ambito", etiqueta: "Territorio del centro donde estudias", opciones: OPC_AMBITO },
     ] },
-  { id: "cotizacion", titulo: "¿Has trabajado y cotizado en otro país?", porque: "Los años cotizados en otro país pueden contar para algunas prestaciones.",
-    controles: [{ tipo: "paises", campo: "vinculos.paises_cotizacion", etiqueta: "Países donde has cotizado", nadie: [[], "No he cotizado en otro país"] }] },
+  { id: "cotizacion", titulo: "¿Has trabajado y pagado Seguridad Social en otro país?", porque: "Los años cotizados en otro país pueden contar para algunas prestaciones.",
+    controles: [{ tipo: "paises", campo: "vinculos.paises_cotizacion", etiqueta: "Países donde has pagado Seguridad Social", nadie: [[], "No he cotizado en otro país"] }] },
   { id: "permiso", titulo: "¿En qué país sacaste el permiso de conducir?", porque: "Algunas ayudas de movilidad o de empleo lo piden.",
     controles: [{ tipo: "pais", campo: "vinculos.permiso_conducir_pais", etiqueta: "País del permiso de conducir" }] },
 ];
 
 // Campi di tutte le pantalle (per l'ordine di «faltan» → domanda).
 export function pantallaPara(path) {
-  return PANTALLAS.find((p) => p.controles.some((c) => c.campo === path || c.base === path.replace(/\.(tramo|importe)$/, ""))) || null;
+  return PANTALLAS.find((p) => p.controles.some((c) => c.campo === path || c.campo_mes === path
+    || c.base === path.replace(/\.(tramo|importe)$/, ""))) || null;
 }
 
 // Un controllo si mostra se è fisso (siempre) o se un campo che legge una scheda c'è; poi si applica si(perfil).

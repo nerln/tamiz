@@ -1,5 +1,5 @@
-// La pagina dei risultati: esiti per area, filtri per area, schede, domande che mancano.
-// Solo testo del catalogo e dell'esito.
+// La pagina dei risultati: priorità in cima, domande che sbloccano schede, ordine scelto dall'utente,
+// schede compatte con il dettaglio a richiesta, filtri per area. Solo testo del catalogo e dell'esito.
 import { el, fechaLarga, esFinTecnico, sinFinTecnico, sinFinTecnicoEn, AREAS, SIN_AREA, areaValida, nombreArea, ordenArea } from "./dom.js";
 import { pantallaPara, campoDeDomanda } from "../preguntas.js";
 
@@ -85,42 +85,101 @@ function textoPlazo(f, c) {
   return "Plazo por confirmar";
 }
 
-function tarjeta(ctx, f, c, ayudas) {
+// L'importe in una riga: la cifra in euro se il catalogo la dà, altrimenti la prima frase del testo.
+const fmtEur = (n) => `${Math.round(n).toLocaleString("es-ES")} €`;
+function textoImporte(c) {
+  const cu = c.cuantia || {};
+  // La periodicità è un codice dello schema: all'utente si mostra in parole.
+  const PERIODO = { unica: ", pago único", mensual: " al mes", anual: " al año", variable: " (variable)" };
+  if (typeof cu.importe_eur === "number") return fmtEur(cu.importe_eur) + (PERIODO[cu.periodicidad] || "");
+  const corto = typeof cu.texto === "string" ? cu.texto.split(/[;.]\s/)[0].trim() : "";
+  return corto && corto.length <= 110 ? corto : "ver la fuente";
+}
+const importe = (c) => (typeof c.cuantia?.importe_eur === "number" ? c.cuantia.importe_eur : 0);
+
+// Chiave di data per l'ordine «plazo más cercano»: prima le aperte con fine vicina, poi quelle senza data,
+// poi quelle che aprono, poi le sconosciute, le chiuse in fondo. Le date AAAA-MM-DD si confrontano come stringhe.
+const SIN_FECHA = "9999-12-31";
+const fechaUtil = (x) => (typeof x === "string" && x && !esFinTecnico(x) ? x : null);
+function claveFecha(f, c) {
+  const p = c.plazo || {};
+  if (f.apertura === "abierta") {
+    const d = fechaUtil(f.proximo_plazo) || fechaUtil(p.fin);
+    return d ? [0, d] : [1, SIN_FECHA];
+  }
+  if (f.apertura === "por_abrir") return [2, fechaUtil(p.inicio) || SIN_FECHA];
+  if (f.apertura === "cerrada") return [4, SIN_FECHA];
+  return [3, SIN_FECHA];
+}
+// Array.prototype.sort è stabile: a parità di chiave resta l'ordine del motore.
+function cmpFecha(a, b) {
+  const [ra, da] = a.fecha;
+  const [rb, db] = b.fecha;
+  return ra - rb || (da < db ? -1 : da > db ? 1 : 0);
+}
+
+// «Lo más importante»: prima le aperte, poi quelle che aprono presto (per data di apertura), dentro ogni gruppo per importe.
+function importancia(a, b) {
+  const rango = (x) => (x.f.apertura === "abierta" ? 0 : x.f.apertura === "por_abrir" ? 1 : 2);
+  const ra = rango(a);
+  const rb = rango(b);
+  if (ra !== rb) return ra - rb;
+  if (ra === 1 && a.fecha[1] !== b.fecha[1]) return a.fecha[1] < b.fecha[1] ? -1 : 1;
+  return importe(b.c) - importe(a.c);
+}
+
+// Quante schede si vedono subito per area dentro un esito aperto (ordine per area); nell'ordine piano, quante in lista.
+const VISIBLES_POR_AREA = 3;
+const VISIBLES_LISTA = 6;
+const TOP_N = 5;
+
+function textoVerOtras(n, area) {
+  return n === 1 ? `Ver la otra de ${nombreArea(area)}` : `Ver las otras ${n} de ${nombreArea(area)}`;
+}
+
+// Il dettaglio è chiuso: il titolo, l'esito, l'importo e il plazo bastano per decidere se aprirlo.
+function tarjeta(ctx, f, c, ayudas, area, conArea) {
   const estado = f.estado;
+  const cerrada = f.apertura === "cerrada";
   const cabecera = el("header", { class: "ficha-cabecera" },
     el("h4", { class: "ficha-titulo", text: c.nombre }),
     el("div", { class: "etiquetas" },
       el("span", { class: "etiqueta-tipo", text: f.tipo === "derecho" ? "Derecho" : "Oportunidad" }),
+      conArea ? el("span", { class: "etiqueta-tipo", text: nombreArea(area) }) : null,
       // Una convocatoria chiusa non «encaja» più con il suo plazo: si dice solo che è chiusa.
-      f.apertura === "cerrada"
+      cerrada
         ? el("span", { class: "etiqueta-cerrada", text: "Convocatoria cerrada" })
         : el("span", { class: `etiqueta-estado ${CLASE_ESTADO[estado]}`, text: ETIQUETA_ESTADO[estado] }),
-      f.por_revisar ? el("span", { class: "etiqueta-revisar", text: "Por revisar" }) : null));
-  const requisitosMostrati = estado === "no_encaja" ? f.requisitos.filter((q) => q.resultado === "no_cumple") : f.requisitos;
-  const lista = el("ul", { class: "requisitos" }, requisitosMostrati.map((q) => filaRequisito(ctx, q)));
+      f.por_revisar ? el("span", { class: "etiqueta-revisar", text: "Lo estamos revisando" }) : null));
+  const datos = el("dl", { class: "datos-ficha" },
+    el("div", null, el("dt", { text: "Importe" }), el("dd", { text: textoImporte(c) })),
+    el("div", null, el("dt", { text: "Plazo" }), el("dd", { text: textoPlazo(f, c) })));
   const preguntas = estado === "falta_dato" && f.faltan.length
     ? el("div", { class: "faltan" }, el("p", { class: "etiqueta-bloque", text: "Responde a esto para saberlo:" }),
       el("ul", { class: "lista-enlaces" }, enlacesDomanda(ctx, f.faltan).map((a) => el("li", null, a))))
     : null;
+
+  // Nel dettaglio: requisiti, compatibilità, fonte, aiuto in persona. Con «No encaja» restano i requisiti che non vanno.
+  const requisitosMostrati = estado === "no_encaja" ? f.requisitos.filter((q) => q.resultado === "no_cumple") : f.requisitos;
+  const lista = el("ul", { class: "requisitos" }, requisitosMostrati.map((q) => filaRequisito(ctx, q)));
   // Come da docs/ESQUEMA.md §6.2: il blocco «Además, compruébalo tú» solo con «Parece que encajas».
   const evaluables = estado === "encaja" && (c.requisitos_no_evaluables || []).length
     ? el("div", { class: "comprueba" }, el("p", { class: "etiqueta-bloque", text: "Además, compruébalo tú en las bases:" }),
       el("ul", null, c.requisitos_no_evaluables.map((t) => el("li", { text: t }))))
     : null;
-  // Con «No encaja» restano il perché (i requisiti non soddisfatti) e la fonte: niente invito a chiedere ciò che non va.
   const sinAccion = estado === "no_encaja";
   const compat = sinAccion ? null : c.compatibilidad && c.compatibilidad.declarada_en_bases
     ? el("p", { class: "compat" }, "Compatibilidad: " + (c.compatibilidad.texto || ""), " ",
       el("a", { href: c.fuente, rel: "noopener", text: "Ver en la fuente" }))
-    : el("p", { class: "compat", text: "Compatibilidad no verificada." });
+    : el("p", { class: "compat", text: "No hemos podido comprobar si es compatible con otras ayudas: míralo en las bases." });
   const solicita = c.solicita && c.solicita !== "persona"
     ? el("p", { class: "solicita", text: `La presenta ${SOLICITA[c.solicita] || "otra entidad"}.` }) : null;
   const siguiente = !sinAccion && c.siguiente_paso ? el("p", { class: "siguiente" },
     el("strong", { text: "Siguiente paso: " }), c.siguiente_paso.texto, " ",
     c.siguiente_paso.url ? el("a", { href: c.siguiente_paso.url, rel: "noopener", text: "Abrir la página" }) : null) : null;
   const humana = !sinAccion && ayudas.length ? el("p", { class: "ayuda-humana" },
-    el("strong", { text: "Ayuda humana gratuita: " }), ayudas.map((a) => a.nombre).join("; "), ". ",
-    el("a", { href: "#ayuda", text: "Ver la ayuda humana" })) : null;
+    el("strong", { text: "Orientación en persona, gratuita: " }), ayudas.map((a) => a.nombre).join("; "), ". ",
+    el("a", { href: "#ayuda", text: "Ver la orientación en persona" })) : null;
   const revision = c.verificado_el
     ? `Revisado por una persona el ${fechaLarga(c.verificado_el)}.`
     : "Revisado por una persona: todavía no.";
@@ -129,31 +188,30 @@ function tarjeta(ctx, f, c, ayudas) {
     ? el("p", { class: "nota-plazo" }, el("strong", { text: "Nota sobre el plazo: " }), sinFinTecnico(c.plazo.nota))
     : null;
   const pie = el("footer", { class: `ficha-pie${f.por_revisar ? " por-revisar" : ""}` },
-    el("p", { text: textoPlazo(f, c) }),
-    notaPlazo,
-    el("p", { text: `Cuantía: ${c.cuantia?.texto || "ver la fuente"}` }),
+    el("p", { text: `Importe: ${c.cuantia?.texto || "ver la fuente"}` }),
     el("p", null, "Fuente: ", el("a", { href: c.fuente, rel: "noopener", text: "Página oficial" })),
     el("p", { class: "fecha-lectura", text: `Leído por IA el ${fechaLarga(c.leido_por_agente)}.` }),
     el("p", { class: "fecha-revision", text: revision }),
-    f.por_revisar ? el("p", { class: "aviso-revisar", text: `Esta ficha debe revisarse: pasó la fecha prevista (${fechaLarga(c.revisar_antes_de)}).` }) : null);
-  const claseEstado = f.apertura === "cerrada" ? "ficha-cerrada" : `ficha-${CLASE_ESTADO[estado] || "estado-falta"}`;
-  return el("article", { class: `ficha ${claseEstado}`, id: `ficha-${f.id}`, "data-id": f.id },
-    cabecera,
+    f.por_revisar ? el("p", { class: "aviso-revisar", text: `Lo estamos revisando: la fecha prevista para revisarla ya pasó (${fechaLarga(c.revisar_antes_de)}).` }) : null);
+  const detalle = el("details", { class: "detalle" },
+    el("summary", null, "Ver el detalle", el("span", { class: "sr-only", text: ` de ${c.nombre}` })),
     el("p", { class: "resumen", text: c.resumen }),
-    preguntas,
-    // Con «No encaja» il requisito che non va resta in vista; negli altri esiti l'elenco si apre a richiesta.
-    estado === "no_encaja"
-      ? el("div", { class: "requisitos-bloque" }, el("p", { class: "etiqueta-bloque", text: "Lo que dices sobre cada requisito:" }), lista)
-      : el("details", { class: "requisitos-bloque mas" },
-        el("summary", { text: `Lo que dices sobre cada requisito (${requisitosMostrati.length})` }), lista),
+    notaPlazo,
+    el("div", { class: "requisitos-bloque" },
+      el("p", { class: "etiqueta-bloque", text: `Lo que dices sobre cada requisito (${requisitosMostrati.length})` }), lista),
     evaluables,
     compat,
     solicita,
     siguiente,
     humana,
     pie);
+  const claseEstado = cerrada ? "ficha-cerrada" : `ficha-${CLASE_ESTADO[estado] || "estado-falta"}`;
+  return el("article", { class: `ficha ficha-compacta ${claseEstado}`, id: `ficha-${f.id}`, "data-id": f.id },
+    cabecera,
+    datos,
+    preguntas,
+    detalle);
 }
-
 
 // Le schede «informativa» non ricevono un esito: vanno in «Otras ayudas que conviene conocer».
 // Il motore può darle in due forme. Nuova: evaluar(...).informativas = [{ id, area }], fuori da r.fichas.
@@ -176,7 +234,7 @@ function separaInformativas(r, mapa) {
   };
 }
 
-// Raggruppa per area nell'ordine di AREAS, «Otras» in fondo; dentro l'area resta l'ordine del motore.
+// Raggruppa per area nell'ordine di AREAS, «Otras» in fondo; dentro l'area resta l'ordine della lista.
 function porArea(items) {
   const m = new Map();
   for (const it of items) {
@@ -186,14 +244,55 @@ function porArea(items) {
   return [...m.entries()].sort((a, b) => ordenArea(a[0]) - ordenArea(b[0]));
 }
 
-// Quante schede si vedono subito per area dentro un esito aperto; le altre in «Ver las otras…».
-const VISIBLES_POR_AREA = 3;
+// Un elenco di schede. Con «area» si raggruppa per area (titoli, al massimo VISIBLES_POR_AREA per gruppo);
+// negli altri ordini è una lista piatta, con le prime VISIBLES_LISTA e il resto in «Ver las otras…».
+function bloqueLista(items, pinta, { modo, plegar, conTitulos }) {
+  if (modo !== "area") {
+    const nodos = items.map((x) => pinta(x, true));
+    const visibles = plegar ? nodos.slice(0, VISIBLES_LISTA) : nodos;
+    const resto = plegar ? nodos.slice(VISIBLES_LISTA) : [];
+    return [el("div", { class: "grupo-lista" }, visibles,
+      resto.length ? el("details", { class: "mas" }, el("summary", { text: `Ver las otras ${resto.length}` }), resto) : null)];
+  }
+  return porArea(items).map(([area, lista]) => {
+    const nodos = lista.map((x) => pinta(x, false));
+    const visibles = plegar ? nodos.slice(0, VISIBLES_POR_AREA) : nodos;
+    const resto = plegar ? nodos.slice(VISIBLES_POR_AREA) : [];
+    return el("div", { class: "grupo-area", "data-area": area },
+      conTitulos ? el("h3", { class: "titulo-area" }, nombreArea(area), " ",
+        el("span", { class: "cuenta", text: `(${lista.length})` })) : null,
+      visibles,
+      resto.length ? el("details", { class: "mas" }, el("summary", { text: textoVerOtras(resto.length, area) }), resto) : null);
+  });
+}
 
-function textoVerOtras(n, area) {
-  return n === 1 ? `Ver la otra de ${nombreArea(area)}` : `Ver las otras ${n} de ${nombreArea(area)}`;
+// «Responde y sabrás más»: per ogni schermata, quante schede «Te falta un dato» si sbloccano con le sue risposte.
+// Una scheda conta una volta per schermata. Ordinate dalla più utile.
+function bloqueResponder(ctx, lista) {
+  const conteggio = new Map();
+  for (const x of lista) {
+    const viste = new Set();
+    for (const path of x.f.faltan || []) {
+      const pantalla = pantallaPara(campoDeDomanda(path, ctx.perfil));
+      if (!pantalla || viste.has(pantalla.id)) continue;
+      viste.add(pantalla.id);
+      if (!conteggio.has(pantalla.id)) conteggio.set(pantalla.id, { pantalla, n: 0 });
+      conteggio.get(pantalla.id).n++;
+    }
+  }
+  const items = [...conteggio.values()].sort((a, b) => b.n - a.n);
+  if (!items.length) return null;
+  return el("section", { class: "responder", "aria-labelledby": "t-responder" },
+    el("h2", { id: "t-responder", class: "titulo-responder", text: "Responde y sabrás más" }),
+    el("p", { class: "pequeno", text: "Cada pregunta abre una o más ayudas que hoy no podemos decidir. Empieza por la primera." }),
+    el("ul", { class: "lista-responder" }, items.map(({ pantalla, n }) => el("li", null,
+      el("button", { type: "button", class: "responder-boton", onclick: () => ctx.irPregunta(pantalla.id) },
+        el("span", { class: "responder-frase", text: `Con esta respuesta sabrás más sobre ${n} ${n === 1 ? "ayuda" : "ayudas"}` }),
+        el("span", { class: "responder-pregunta", text: `Pregunta: ${pantalla.titulo}` }))))));
 }
 
 const ICONO = { encaja: "✓", falta_dato: "?", no_encaja: "✕", cerrada: "–", info: "i" };
+const ORDENES = [["util", "Lo más útil"], ["plazo", "Plazo más cercano"], ["area", "Área"]];
 
 export function renderResultados(ctx) {
   const { catalogo, perfil, hoy } = ctx;
@@ -202,7 +301,10 @@ export function renderResultados(ctx) {
   const r = ctx.evaluar(catalogo, perfil, hoy);
   registraReglasNoValidas(catalogo, r);
   const { evaluadas, informativas } = separaInformativas(r, mapa);
-  const conArea = (f) => ({ f, area: areaValida(f.area ?? mapa.get(f.id)?.area) });
+  const conArea = (f) => {
+    const c = mapa.get(f.id);
+    return { f, c, area: areaValida(f.area ?? c?.area), fecha: claveFecha(f, c) };
+  };
   const abiertas = evaluadas.filter((f) => f.apertura !== "cerrada" && mapa.has(f.id)).map(conArea);
   const listas = {
     encaja: abiertas.filter((x) => x.f.estado === "encaja"),
@@ -222,10 +324,9 @@ export function renderResultados(ctx) {
   for (const x of todas) cuentaArea.set(x.area, (cuentaArea.get(x.area) || 0) + 1);
   const areasPresentes = [...AREAS.map(([k]) => k), SIN_AREA].filter((k) => cuentaArea.has(k));
 
-  const pintaFicha = ({ f }) => {
-    const c = mapa.get(f.id);
+  const pintaFicha = ({ f, c, area }, conAreaEtiqueta) => {
     const ayudas = (c.ayuda_humana || []).map((x) => ayudaMapa.get(x)).filter(Boolean);
-    return tarjeta(ctx, f, c, ayudas);
+    return tarjeta(ctx, f, c, ayudas, area, conAreaEtiqueta);
   };
   const pintaInfo = ({ id }) => {
     const c = mapa.get(id);
@@ -236,30 +337,23 @@ export function renderResultados(ctx) {
       el("p", null, "Fuente: ", el("a", { href: c.fuente, rel: "noopener", text: "Página oficial" })));
   };
 
-  // Un esito con le sue aree. `plegar` piega le schede oltre VISIBLES_POR_AREA in un «Ver las otras…».
-  const bloqueAreas = (items, pinta, { plegar, conTitulos }) => porArea(items).map(([area, lista]) => {
-    const nodos = lista.map(pinta);
-    const visibles = plegar ? nodos.slice(0, VISIBLES_POR_AREA) : nodos;
-    const resto = plegar ? nodos.slice(VISIBLES_POR_AREA) : [];
-    return el("div", { class: "grupo-area", "data-area": area },
-      conTitulos ? el("h3", { class: "titulo-area" }, nombreArea(area), " ",
-        el("span", { class: "cuenta", text: `(${lista.length})` })) : null,
-      visibles,
-      resto.length ? el("details", { class: "mas" }, el("summary", { text: textoVerOtras(resto.length, area) }), resto) : null);
-  });
-
   const titulo = (clave, id, texto, n) => el("h2", { id, class: `titulo-estado titulo-${clave}` },
     el("span", { class: `icono-estado icono-${clave}`, "aria-hidden": "true", text: ICONO[clave] }),
     el("span", { text: texto }), " ", el("span", { class: "cuenta", text: `(${n})` }));
 
+  // L'ordine: «util» è quello del motore (tipo, esito, plazo); «plazo» per data; «area» raggruppa per area.
+  const ordenar = (items, modo) => (modo === "plazo" ? [...items].sort(cmpFecha) : items);
+
   const cuerpo = el("div", { class: "cuerpo-resultados" });
   const anuncio = el("p", { class: "sr-only", role: "status" });
   let filtro = "todas";
+  let orden = "util";
 
   function pintaCuerpo() {
     const f = (lista) => (filtro === "todas" ? lista : lista.filter((x) => x.area === filtro));
     const L = Object.fromEntries(Object.entries(listas).map(([k, v]) => [k, f(v)]));
     const conTitulos = filtro === "todas" && areasPresentes.length > 1;
+    const modo = orden;
     const resumen = el("ul", { class: "resumen-estados", "aria-label": "Resumen" },
       [["encaja", "Parece que encajas", "g-encaja"], ["falta_dato", "Te falta un dato", "g-falta"], ["no_encaja", "No encaja", "g-no"]]
         .map(([k, t, id]) => {
@@ -274,24 +368,39 @@ export function renderResultados(ctx) {
           return el("li", { class: `resumen-estado resumen-${k}` }, caja);
         }));
 
+    // Le prime schede «Lo más importante» non si ripetono nella sezione «Parece que encajas».
+    const top = [...L.encaja].sort(importancia).slice(0, TOP_N);
+    const topIds = new Set(top.map((x) => x.f.id));
+    const restoEncaja = L.encaja.filter((x) => !topIds.has(x.f.id));
+    const bloqueTop = top.length
+      ? el("section", { class: "destacadas", "aria-labelledby": "t-destacadas" },
+        el("h2", { id: "t-destacadas", class: "titulo-destacadas", text: "Lo más importante para ti" }),
+        el("p", { class: "pequeno", text: L.encaja.length > TOP_N
+          ? `Son ${TOP_N} de las ${L.encaja.length} que parecen encajar. El resto está más abajo.`
+          : "Son las que parecen encajar contigo: primero las abiertas o las que abren pronto." }),
+        top.map((x) => pintaFicha(x, true)))
+      : null;
+    const bloqueResp = bloqueResponder(ctx, L.falta_dato);
+
     // Una sezione senza schede non si mostra: niente titoli con «(0)» e «Ninguna».
-    const secEncaja = L.encaja.length
+    const secEncaja = restoEncaja.length
       ? el("section", { class: "estado-seccion seccion-encaja", id: "g-encaja", "aria-labelledby": "t-encaja" },
         titulo("encaja", "t-encaja", "Parece que encajas", L.encaja.length),
-        bloqueAreas(L.encaja, pintaFicha, { plegar: true, conTitulos }))
+        top.length ? el("p", { class: "pequeno", text: `Las ${top.length} más importantes están arriba.` }) : null,
+        bloqueLista(ordenar(restoEncaja, modo), pintaFicha, { modo, plegar: true, conTitulos }))
       : null;
     const secFalta = L.falta_dato.length
       ? el("section", { class: "estado-seccion seccion-falta", id: "g-falta", "aria-labelledby": "t-falta" },
         titulo("falta_dato", "t-falta", "Te falta un dato", L.falta_dato.length),
         el("p", { class: "pequeno", text: "Con estas no podemos decir nada hasta que respondas a la pregunta que se indica en cada una." }),
-        bloqueAreas(L.falta_dato, pintaFicha, { plegar: true, conTitulos }))
+        bloqueLista(ordenar(L.falta_dato, modo), pintaFicha, { modo, plegar: true, conTitulos }))
       : null;
     // «No encaja» e «cerradas» stanno chiuse: si aprono a mano.
     const plegable = (clave, id, texto, lista, nota) => (lista.length
       ? el("details", { class: `estado-seccion plegable seccion-${clave}`, id },
         el("summary", null, titulo(clave, `t-${id}`, texto, lista.length)),
         nota ? el("p", { class: "pequeno", text: nota }) : null,
-        bloqueAreas(lista, pintaFicha, { plegar: false, conTitulos }))
+        bloqueLista(ordenar(lista, modo), pintaFicha, { modo, plegar: false, conTitulos }))
       : null);
     const secNo = plegable("no_encaja", "g-no", "No encaja", L.no_encaja,
       "Según lo que has dicho, no se cumple al menos un requisito. Se indica cuál.");
@@ -300,11 +409,12 @@ export function renderResultados(ctx) {
       ? el("section", { class: "estado-seccion seccion-info", id: "g-info", "aria-labelledby": "t-info" },
         titulo("info", "t-info", "Otras ayudas que conviene conocer", L.info.length),
         el("p", { class: "pequeno", text: "Dependen de situaciones que aquí no preguntamos, por ejemplo de salud o de cuidados. No las evaluamos: las mostramos por si te sirven." }),
-        bloqueAreas(L.info, pintaInfo, { plegar: false, conTitulos }))
+        bloqueLista(L.info, pintaInfo, { modo: "area", plegar: false, conTitulos }))
       : null;
     // Il riepilogo dei tre esiti solo se almeno uno ha schede (un filtro con sole informative non lo mostra).
     const hayEvaluadas = L.encaja.length + L.falta_dato.length + L.no_encaja.length > 0;
-    cuerpo.replaceChildren(...[hayEvaluadas ? resumen : null, secEncaja, secFalta, secNo, secCerradas, secInfo].filter(Boolean));
+    cuerpo.replaceChildren(...[hayEvaluadas ? resumen : null, bloqueTop, bloqueResp, secEncaja, secFalta, secNo, secCerradas, secInfo]
+      .filter(Boolean));
     sinFinTecnicoEn(cuerpo);
   }
 
@@ -331,13 +441,25 @@ export function renderResultados(ctx) {
         areasPresentes.map((a) => chip(a, nombreArea(a), cuentaArea.get(a)))))
     : null;
 
+  // Il selettore sta fuori dal cuerpo che si ridisegna: così non perde il fuoco quando cambia l'ordine.
+  const selectOrden = el("select", { id: "orden-resultados", class: "orden-select",
+    onchange: (ev) => {
+      orden = ev.target.value;
+      pintaCuerpo();
+      const etiqueta = ORDENES.find(([k]) => k === orden)?.[1] || "";
+      anuncio.textContent = `Ordenado por: ${etiqueta.toLowerCase()}.`;
+    } },
+  ORDENES.map(([k, t]) => el("option", { value: k, text: t })));
+  const barraOrden = el("div", { class: "barra-orden" },
+    el("label", { for: "orden-resultados", text: "Ordenar por" }), selectOrden);
+
   const cabecera = el("header", { class: "cabecera-seccion" },
     el("h1", { tabindex: -1, id: "titulo-resultados", text: "Lo que parece encajar contigo" }),
     el("p", { text: "Esto es según lo que nos has dicho. No es una decisión ni una garantía: cada ayuda tiene sus bases, y la última palabra la tiene la convocatoria oficial." }));
   const bloques = [cabecera];
   if (perfil.ejemplo) {
     bloques.push(el("p", { class: "aviso-ejemplo", role: "status" },
-      `Estás viendo el perfil de ejemplo de ${perfil.ejemplo.nombre_ficticio || "una persona"}. Son datos inventados.`));
+      `Estás viendo un ejemplo con datos inventados de ${perfil.ejemplo.nombre_ficticio || "una persona"}.`));
   }
   if (vacioPerfil) {
     bloques.push(el("p", { class: "aviso-vacio" }, "Todavía no has contestado nada. ", el("a", { href: "#preguntas", text: "Empezar las preguntas" })));
@@ -351,9 +473,10 @@ export function renderResultados(ctx) {
   }
   if (utiles.length) bloques.push(el("div", { class: "utiles" }, utiles));
   if (!r.fichas.length && !informativas.length) {
-    bloques.push(el("p", { class: "vacio", text: "No hay ayudas en el catálogo que se puedan mostrar." }));
+    bloques.push(el("p", { class: "vacio", text: "No hay ayudas que mostrar con lo que has contestado." }));
   }
   pintaCuerpo();
+  bloques.push(barraOrden);
   bloques.push(el("div", { class: `disposicion-resultados${filtros ? " con-filtros" : ""}` },
     filtros ? el("aside", { class: "columna-filtros" }, filtros) : null, anuncio, cuerpo));
   return sinFinTecnicoEn(el("div", { class: "resultados" }, bloques));

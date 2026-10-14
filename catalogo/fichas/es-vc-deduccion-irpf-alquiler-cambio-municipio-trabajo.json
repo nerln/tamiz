@@ -64,12 +64,12 @@
       "campo": "vivienda.contrato_a_su_nombre",
       "op": "==",
       "valor": true,
-      "texto": "Ser la persona titular del contrato de alquiler",
+      "texto": "Ser titular del contrato de alquiler, solo o con otra persona",
       "cita": "Guía AEAT Renta 2025 (advertencia de la página); no figura en la ley",
       "no_concluyente": [
         "no_cumple"
       ],
-      "aclaracion": "La ley no lo exige, pero la guía de la Agencia Tributaria dice que sólo aplica la deducción quien figura como titular del contrato. Si el contrato no está a tu nombre, consúltalo con la Agencia Tributaria."
+      "aclaracion": "La guía de la Agencia Tributaria dice que sólo aplica la deducción quien figura como titular del contrato. Si el contrato está a nombre de otra persona, consúltalo con la AEAT. Si sois varios titulares, la deducción se divide entre vosotros."
     },
     {
       "campo": "calc.ingresos_individuales",

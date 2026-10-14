@@ -145,7 +145,8 @@ sé» del questionario). Le date «parziali» sono `AAAA`, `AAAA-MM` o `AAAA-MM-
 | `estudios.nivel_max` | enum `nivel_estudios` | titolo più alto terminato |
 | `estudios.matriculado_en` | enum `matriculado_en` | cosa studia adesso (il principale) |
 | `estudios.titulo_extranjero` | booleano | il titolo più alto è stato ottenuto fuori da `residencia.pais` |
-| `estudios.titulo_pais` | ISO 3166-1 alfa-2 | paese del titolo più alto |
+| `estudios.titulos_paises` | lista di ISO 3166-1 alfa-2 (1-10), o `no_lo_se` | paesi dei titoli ottenuti fuori da `residencia.pais`: uno per titolo. Una regola sul paese è soddisfatta se lo è per almeno un titolo (§2.8) |
+| `estudios.titulo_pais` | ISO 3166-1 alfa-2 (campo vecchio) | paese del titolo più alto. Si legge e si converte in `titulos_paises` (§2.8) |
 | `estudios.homologacion` | enum `homologacion` | stato di homologación/equivalencia di quel titolo |
 | `hogar.miembros` | intero 1-30 | persone della **famiglia** che vivono con lei, contando lei stessa (coppia, figli, altri parenti). I coinquilini non contano |
 | `hogar.hijos` | lista di `{anio_nacimiento, mes_nacimiento}` | figli e figlie che vivono con lei o sono a suo carico, anche maggiorenni. `[]` = nessuno. Ogni elemento accetta `no_lo_se` nei due campi |
@@ -154,7 +155,8 @@ sé» del questionario). Le date «parziali» sono `AAAA`, `AAAA-MM` o `AAAA-MM-
 | `hogar.familia_numerosa` | enum `familia_numerosa` | titolo di familia numerosa |
 | `vivienda.regimen` | enum `regimen_vivienda` | |
 | `vivienda.alquiler_mensual` | intero € | affitto mensile che paga lei (la sua parte) |
-| `vivienda.contrato_a_su_nombre` | booleano | il contratto d'affitto è a suo nome |
+| `vivienda.contrato_titularidad` | enum `contrato_titularidad` | a nome di chi è il contratto d'affitto: `solo_mio`, `compartido` (a nome proprio e di un'altra persona), `otra_persona`, `no_lo_se` (§2.8) |
+| `vivienda.contrato_a_su_nombre` | booleano (campo vecchio) | si legge e si converte in `contrato_titularidad` (§2.8) |
 | `ingresos.ejercicio` | intero | anno a cui si riferiscono le cifre (di solito l'anno scorso). **Non** accetta `no_lo_se` |
 | `ingresos.individual` | `{tramo, importe}` | ingressi **lordi** annui della persona |
 | `ingresos.hogar` | `{tramo, importe}` | ingressi lordi annui della famiglia di `hogar.miembros` |
@@ -442,6 +444,27 @@ compilarle arriva dopo le 08:45; il formato c'è da stanotte.
 
 ---
 
+### 2.8 Titoli su più paesi, titolarità dell'affitto, date anno-mese (v1.1, questionario)
+
+- **Titoli di studio.** `estudios.titulos_paises` è una lista: un paese per ogni titolo ottenuto fuori da
+  `residencia.pais`, anche più di uno (per esempio Italia e Austria). Il motore valuta **tutti** i titoli, e una
+  regola sul paese del titolo (`estudios.titulo_pais` nelle schede) è soddisfatta se lo è per **almeno uno**. Con
+  `not_in` su un gruppo (per esempio «non UE»): basta un titolo fuori dal gruppo. Un titolo «no lo sé» non decide.
+- **Titolarità del contratto d'affitto.** `vivienda.contrato_titularidad`: `solo_mio` (a nome proprio),
+  `compartido` (a nome proprio e di un'altra persona), `otra_persona`, `no_lo_se`. La cotitolarità conta come
+  titolarità: la regola `vivienda.contrato_a_su_nombre == true` (derivata) è soddisfatta anche con `compartido`.
+  La deducción si divide fra i titolari: lo dice la scheda.
+- **Campi vecchi.** `estudios.titulo_pais` (un codice) e `vivienda.contrato_a_su_nombre` (un booleano) restano
+  leggibili: `normalizaPerfil()` in `web/js/motor.js` li converte prima di valutare, e `web/js/ui/perfil.js` li
+  converte al caricamento. `true` → `solo_mio`, `false` → `otra_persona`. Se il campo nuovo c'è già, vince.
+- **Figli e «único adulto».** La domanda sui figli viene prima di quella sulla convivenza. «Soy el único adulto a
+  cargo de hijos menores» compare solo se c'è almeno un figlio minore, o di età non nota (`no_lo_se`).
+- **Date anno-mese.** Data di nascita, empadronado, residencia legal, date del documento: un gruppo con mese
+  (facoltativo, 1-12) e anno (4 cifre), testo con tastiera numerica, senza spinner. Si salvano come `AAAA` o `AAAA-MM`.
+- **Spiegazioni «?».** Per documento (`situacion_administrativa.tipo`), tipo di contratto (`empleo.tipo_contrato`)
+  e nivel di estudios (`estudios.nivel_max`): un pulsante «?» apre una spiegazione breve. Testi da verificare a mano
+  su extranjeros.inclusion.gob.es (la lettura automatica non è riuscita: 403).
+
 ## 3. I campi calcolati (`calc.*`)
 
 Le regole non leggono l'anno di nascita, i figli o il reddito grezzi: leggono questi campi, che il
@@ -638,7 +661,7 @@ scrive come `any_of` fra «non sei nel caso» e «sei nel caso e hai il requisit
 | `empleo.cobra_prestacion` | bool | `==`, `!=` | `true` / `false` |
 | `estudios.titulo_extranjero` | bool | `==`, `!=` | `true` / `false` |
 | `hogar.monoparental` | bool | `==`, `!=` | `true` / `false` |
-| `vivienda.contrato_a_su_nombre` | bool | `==`, `!=` | `true` / `false` |
+| `vivienda.contrato_a_su_nombre` | bool | `==`, `!=` | `true` / `false`. Derivato da `vivienda.contrato_titularidad`: `solo_mio` e `compartido` danno `true`, `otra_persona` `false`, `no_lo_se` manca (§2.8) |
 | `persona.sexo` | enum | `==`, `!=`, `in`, `not_in` | codici di `sexo` (tabella sotto) |
 | `situacion_administrativa.tipo` | enum | `==`, `!=`, `in`, `not_in` | codici di `situacion_administrativa` (tabella sotto) |
 | `empleo.tipo_contrato` | enum | `==`, `!=`, `in`, `not_in` | codici di `tipo_contrato` (tabella sotto) |
@@ -654,7 +677,7 @@ scrive come `any_of` fra «non sei nel caso» e «sei nel caso e hai il requisit
 | `residencia.region` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^[A-Z]{2}-[A-Z0-9]{1,3}$` (ISO 3166-2) |
 | `residencia.provincia` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^[A-Z]{2}-[A-Z0-9]{1,3}$` (ISO 3166-2) |
 | `residencia.municipio_ine` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^[0-9]{5}$` (código INE) |
-| `estudios.titulo_pais` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^[A-Z]{2}$`; per gli op di lista anche `valor_grupo` (ISO 3166-1) |
+| `estudios.titulo_pais` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^[A-Z]{2}$`; per gli op di lista anche `valor_grupo` (ISO 3166-1). Legge `estudios.titulos_paises`: soddisfatta se lo è per almeno un titolo (§2.8) |
 | `vinculos.entidad_trabajo.ambito` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$` |
 | `vinculos.entidad_estudios.ambito` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^(EU|[A-Z]{2}|[A-Z]{2}-[A-Z0-9]{1,3})$` |
 | `vinculos.permiso_conducir_pais` | codigo | `==`, `!=`, `in`, `not_in` | stringa `^[A-Z]{2}$`; per gli op di lista anche `valor_grupo` (ISO 3166-1) |

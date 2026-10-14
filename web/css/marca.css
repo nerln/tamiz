@@ -1,0 +1,34 @@
+/* Tamiz · marchio nella testata. Scritta in SVG disegnata (la T del logo + «amiz» con lo stesso tratto).
+   I colori seguono il tema della pagina: chiaro di default, scuro con prefers-color-scheme o data-theme="dark". */
+
+.marca-tamiz {
+  --mc: #b06a10;   /* testa ocra */
+  --mb: #a3401c;   /* braccia e asta terracotta */
+  --mt: #3b2a20;   /* lettere */
+  display: block; flex: 0 0 auto;
+  height: 36px; width: auto; overflow: visible;
+}
+.marca-tamiz .tm-cabeza { fill: var(--mc); }
+.marca-tamiz .tm-cuerpo { fill: var(--mb); }
+.marca-tamiz .tm-brazos { fill: none; stroke: var(--mb); stroke-width: 10; stroke-linecap: round; }
+.marca-tamiz .tm-letra { fill: none; stroke: var(--mt); stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .marca-tamiz {
+    --mc: #e9b45a; --mb: #f0956d; --mt: #f3ebe2;
+  }
+}
+:root[data-theme="dark"] .marca-tamiz {
+  --mc: #e9b45a; --mb: #f0956d; --mt: #f3ebe2;
+}
+
+@media (max-width: 480px) {
+  .marca-tamiz { height: 32px; }
+}
+
+/* Testo per lettori di schermo e per il JS che imposta il nome del sito: non si vede. */
+.solo-lector {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+

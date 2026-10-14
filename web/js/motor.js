@@ -282,6 +282,19 @@ function leggiData(campo, def, perfil, hoy) {
   return { ok: true, lo: d.prima, hi: d.ultima, rango: { motivo: "rango", faltan: [campo] } };
 }
 
+// Titolarità del contratto d'affitto (docs/ESQUEMA.md §2.6): a nome proprio, in comune, o di un'altra persona.
+// «A nome proprio» e «in comune» contano come titolarità: la deduzione si divide fra i titolari (scheda), non si nega.
+const TITOLARITA = ["solo_mio", "compartido", "otra_persona"];
+function leggiContrato(perfil) {
+  const c = "vivienda.contrato_titularidad";
+  const r = leggiPercorso(perfil, c);
+  if (r.stato === "falta") return manca("falta", [c]);
+  if (r.stato === "invalido") return manca("dato_no_valido", [c]);
+  if (esIndeterminado(r.valore)) return manca("falta", [c]);
+  if (!TITOLARITA.includes(r.valore)) return manca("dato_no_valido", [c]);
+  return { ok: true, valore: r.valore !== "otra_persona" };
+}
+
 function leggiScalare(campo, valido, perfil) {
   const r = leggiPercorso(perfil, campo);
   if (r.stato === "falta") return manca("falta", [campo]);
@@ -587,7 +600,9 @@ function leggiPerRegola(campo, def, ctx) {
   switch (def.tipo) {
     case "numero": return leggiNumero(campo, def, ctx.perfil);
     case "fecha": return leggiData(campo, def, ctx.perfil, ctx.hoy);
-    case "bool": return leggiScalare(campo, (x) => typeof x === "boolean", ctx.perfil);
+    case "bool":
+      if (campo === "vivienda.contrato_a_su_nombre") return leggiContrato(ctx.perfil);
+      return leggiScalare(campo, (x) => typeof x === "boolean", ctx.perfil);
     case "enum":
     case "codigo": return leggiScalare(campo, (x) => valorScalareValido(def, x), ctx.perfil);
     case "lista": return leggiLista(campo, def, ctx.perfil);
@@ -595,11 +610,42 @@ function leggiPerRegola(campo, def, ctx) {
   }
 }
 
+// Esito di un solo valore scalare contro l'operatore della regola.
+function esitoScalare(op, x, valor) {
+  if (op === "==") return x === valor ? C : N;
+  if (op === "!=") return x !== valor ? C : N;
+  if (op === "in") return valor.includes(x) ? C : N;
+  return valor.includes(x) ? N : C; // not_in
+}
+
+// Paesi dei titoli (estudios.titulos_paises, docs/ESQUEMA.md §2.6): la regola è soddisfatta se lo è per almeno un
+// titolo; tutti i titoli si valutano. Un titolo con «no lo sé» non decide da solo.
+function esitoTitoli(op, valor, perfil) {
+  const c = "estudios.titulos_paises";
+  const r = leggiPercorso(perfil, c);
+  if (r.stato === "falta") return { esito: F, motivo: "falta", faltan: [c] };
+  if (r.stato === "invalido") return { esito: F, motivo: "dato_no_valido", faltan: [c] };
+  const lista = r.valore;
+  if (esIndeterminado(lista) || !Array.isArray(lista) || lista.length === 0) {
+    return { esito: F, motivo: "falta", faltan: [c] };
+  }
+  if (!lista.every((x) => typeof x === "string" && RE_PAIS.test(x))) {
+    return { esito: F, motivo: "dato_no_valido", faltan: [c] };
+  }
+  const esiti = lista.map((x) => esitoScalare(op, x, valor));
+  if (esiti.includes(C)) return { esito: C, motivo: null, faltan: [] };
+  return { esito: N, motivo: null, faltan: [] };
+}
+
 function valutaRegola(regla, ctx) {
   const v = validaRegola(regla, ctx.grupos);
   if (!v) return rigaNonValida(regla);
   const { campo, op, valor, def } = v;
   const texto = regla.texto;
+  if (campo === "estudios.titulo_pais") {
+    const t = esitoTitoli(op, valor, ctx.perfil);
+    return concludi(regla, t.esito, t.motivo, t.faltan);
+  }
   const lettura = leggiPerRegola(campo, def, ctx);
   if (!lettura.ok) return riga(texto, F, lettura.motivo, null, [...lettura.faltan]);
 
@@ -619,11 +665,7 @@ function valutaRegola(regla, ctx) {
     case "bool":
     case "enum":
     case "codigo": {
-      const x = lettura.valore;
-      if (op === "==") esito = x === valor ? C : N;
-      else if (op === "!=") esito = x !== valor ? C : N;
-      else if (op === "in") esito = valor.includes(x) ? C : N;
-      else esito = valor.includes(x) ? N : C; // not_in
+      esito = esitoScalare(op, lettura.valore, valor);
       break;
     }
     case "lista": {
@@ -645,8 +687,12 @@ function valutaRegola(regla, ctx) {
       return rigaNonValida(regla);
   }
 
-  // no_concluyente (§4.4): si applica alla regola prima di combinarla, e solo a un
-  // esito cumple/no_cumple.
+  return concludi(regla, esito, motivo, faltan);
+}
+
+// Chiude una regola: no_concluyente (§4.4) si applica prima di combinarla, e solo a un esito cumple/no_cumple.
+function concludi(regla, esito, motivo, faltan) {
+  const texto = regla.texto;
   if (esito !== F && Array.isArray(regla.no_concluyente) && regla.no_concluyente.includes(esito)) {
     const acl = typeof regla.aclaracion === "string" ? regla.aclaracion : null;
     return riga(texto, F, "no_concluyente", acl, []);
@@ -830,9 +876,37 @@ function valutaScheda(ficha, ctx) {
 // ---------------------------------------------------------------------------
 // Contrato de evaluar()
 
+// Campi vecchi → campi nuovi (docs/ESQUEMA.md §2.6). Non tocca l'oggetto ricevuto.
+// estudios.titulo_pais (un codice) → estudios.titulos_paises (lista); vivienda.contrato_a_su_nombre (booleano)
+// → vivienda.contrato_titularidad. Se il campo nuovo c'è già, vince quello.
+export function normalizaPerfil(perfil) {
+  if (!esOggetto(perfil)) return {};
+  let out = perfil;
+  const est = perfil.estudios;
+  if (esOggetto(est) && tiene(est, "titulo_pais")) {
+    const { titulo_pais: vecchio, ...resto } = est;
+    if (resto.titulos_paises === undefined) {
+      if (vecchio === "no_lo_se") resto.titulos_paises = "no_lo_se";
+      else if (typeof vecchio === "string" && RE_PAIS.test(vecchio)) resto.titulos_paises = [vecchio];
+    }
+    out = { ...out, estudios: resto };
+  }
+  const viv = out.vivienda;
+  if (esOggetto(viv) && tiene(viv, "contrato_a_su_nombre")) {
+    const { contrato_a_su_nombre: vecchio, ...resto } = viv;
+    if (resto.contrato_titularidad === undefined) {
+      if (vecchio === true) resto.contrato_titularidad = "solo_mio";
+      else if (vecchio === false) resto.contrato_titularidad = "otra_persona";
+      else if (vecchio === "no_lo_se") resto.contrato_titularidad = "no_lo_se";
+    }
+    out = { ...out, vivienda: resto };
+  }
+  return out;
+}
+
 export function evaluar(catalogo, perfil, hoy) {
   const hoyValido = esDataCompleta(hoy) ? hoy : null;
-  const prof = esOggetto(perfil) ? perfil : {};
+  const prof = normalizaPerfil(esOggetto(perfil) ? perfil : {});
   const cat = esOggetto(catalogo) ? catalogo : {};
   const fichas = Array.isArray(cat.fichas) ? cat.fichas : [];
   const grupos = esOggetto(cat.grupos_paises) ? cat.grupos_paises : {};

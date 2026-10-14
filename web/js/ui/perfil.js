@@ -1,6 +1,7 @@
 // Tu perfil: il riepilogo, il salvataggio sul dispositivo, il caricamento con controllo minimo, il cancellamento.
 import { el, fechaLarga } from "./dom.js";
 import { PANTALLAS, PAISES, TRAMOS, leer, escribir, esValencia } from "../preguntas.js";
+import { normalizaPerfil } from "../motor.js";
 import { prefieroNoDecirloIngreso } from "./cuestionario.js";
 
 const RE_PAIS = /^[A-Z]{2}$/;
@@ -25,7 +26,8 @@ function valorValido(c, v) {
   // Il comune non ha «no lo sé» nello schema: «No lo sé» sul comune si legge come campo vuoto.
   if (v === INDET) return c.tipo !== "municipio";
   switch (c.tipo) {
-    case "anio": return Number.isInteger(v) && v >= (c.min ?? 1900) && v <= (c.max ?? 2100);
+    case "anio":
+    case "mesanio": return Number.isInteger(v) && v >= (c.min ?? 1900) && v <= (c.max ?? 2100);
     case "entero": return Number.isInteger(v) && v >= c.min && v <= c.max;
     case "fecha": return typeof v === "string" && fechaValida(v);
     case "texto": return typeof v === "string" && /^\d{5}$/.test(v);
@@ -53,6 +55,8 @@ export function sanearPerfil(datos) {
   }
   if (datos.esquema !== "tamiz-perfil") return { error: "Este archivo no es un perfil de este sitio." };
   if (datos.version !== 1.1) return { error: "Este perfil tiene una versión que esta página no conoce." };
+  // Campi vecchi (titolo di un solo paese, contratto come booleano) → campi nuovi, prima di leggere (docs/ESQUEMA.md §2.6).
+  datos = normalizaPerfil(datos);
   let nuevo = {};
   const vistos = new Set();
   for (const p of PANTALLAS) {
@@ -81,6 +85,9 @@ export function sanearPerfil(datos) {
       if (v === undefined || v === null) continue;
       if (valorValido(c, v)) nuevo = escribir(nuevo, ruta, v);
       else descartados.push(c.etiqueta);
+      // Il mese di un anno e mese (campo_mes) si legge a parte: facoltativo, da 1 a 12.
+      const m = c.campo_mes ? leer(datos, c.campo_mes) : undefined;
+      if (Number.isInteger(m) && m >= 1 && m <= 12) nuevo = escribir(nuevo, c.campo_mes, m);
     }
   }
   if (datos.ingresos && datos.ingresos.ejercicio !== undefined && Number.isInteger(datos.ingresos.ejercicio)) {
@@ -106,6 +113,8 @@ function etiquetaCodigo(opciones, v) {
   return hit ? hit[1] : String(v);
 }
 
+const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+
 function formatea(c, v, perfil) {
   if (v === INDET) return "No lo sé";
   if (typeof v === "boolean") return v ? "Sí" : "No";
@@ -114,6 +123,11 @@ function formatea(c, v, perfil) {
     if (obj.importe !== undefined) return `${obj.importe} € al año`;
     // Come nel questionario: «Prefiero no decirlo» ricordato sull'oggetto del reddito (vedi cuestionario.js).
     return prefieroNoDecirloIngreso(obj) ? "Prefiero no decirlo" : etiquetaCodigo(TRAMO_ETIQUETAS, obj.tramo);
+  }
+  // La data di nascita si salva in due campi (anno e mese): il riepilogo li mostra insieme.
+  if (c.tipo === "mesanio") {
+    const mes = leer(perfil, c.campo_mes);
+    return Number.isInteger(mes) && mes >= 1 && mes <= 12 ? `${MESES[mes - 1]} de ${v}` : String(v);
   }
   if (c.tipo === "hijos") return v.length ? `${v.length} ${v.length === 1 ? "hijo o hija" : "hijos o hijas"}` : "Ninguno";
   if (Array.isArray(v)) {
@@ -161,7 +175,7 @@ export function renderPerfil(ctx) {
     if (!archivo) return;
     let datos;
     try { datos = JSON.parse(await archivo.text()); } catch (e) {
-      mensaje.textContent = "Este archivo no se puede leer: no es un JSON válido.";
+      mensaje.textContent = "Este archivo no se puede leer: no tiene el formato de un perfil de Tamiz.";
       return;
     }
     const r = sanearPerfil(datos);
@@ -182,7 +196,7 @@ export function renderPerfil(ctx) {
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 4000);
-      mensaje.textContent = "Archivo perfil.json preparado para guardar.";
+      mensaje.textContent = "Tu archivo está listo para guardar.";
     } });
   const borrar = el("button", { type: "button", class: "secundario peligro", text: "Borrar todo",
     onclick: () => {
