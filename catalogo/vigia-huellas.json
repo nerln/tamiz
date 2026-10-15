@@ -1,0 +1,462 @@
+{
+  "https://bonoculturajoven.gob.es/": {
+    "sha256": "ec2cacedc6e530312a8c0a377e3088c1f71d0ec2d8d582fbb50331757792302e",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://ceice.gva.es/ca/web/ciencia/-/pla-gent2-1": {
+    "sha256": "c58f46b84d1291dac0b140d00a573b597e43f80a07d74365844654accf0924c5",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://ceice.gva.es/va/web/ciencia/convocatories_2027": {
+    "sha256": "b5d389314d14541d0376fad01fa8fc3b65a6a5087e7d5061382d98afa3faa03a",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://dogv.gva.es/datos/2026/07/24/pdf/2026_24905_es.pdf": {
+    "sha256": "19bbf4f749d3e59910a089ec41bfef3741dceaf4942cb6b3c4d0a0682ce45812",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://dogv.gva.es/datos/2026/08/21/pdf/2026_27284_es.pdf": {
+    "sha256": "b2c8c93ad731ec22cd0023014d513dc66f10299e8d992647bac112ea98ca52dc",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://dogv.gva.es/datos/2026/09/25/pdf/2026_30202_es.pdf": {
+    "sha256": "0eedd94e9892626a8862fe1b6928ca84f284fb3134915800f997d055e8ec4933",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://dogv.gva.es/datos/2026/10/08/pdf/2026_31508_es.pdf": {
+    "sha256": "867ff5067885a52bae9be1cd986e954cb9d056b2b0f94176c57938fde2b20d38",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026": {
+    "sha256": "4e9d0d6c1ae99e5d69cdbd9bac46f1f1ddf5fdea652ab1976192e72dc35e4cb2",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://habitatge.gva.es/es/web/vivienda-y-calidad-en-la-edificacion/bono-lloguer-jove-2026/bases-i-convocatoria": {
+    "sha256": "2bc31a80e0881f31af816861e8e31cb61632b5276f1ca420353f4d6638af41a1",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://innoavi.es/es/promocion-del-talento-agentes-de-innovacion-incorporacion-de-tecnologos-en-empresas-y-doctorandos-empresariales-2026/": {
+    "sha256": "9357d545a6675643f2902e713dd44597fc0ec92ad4d89b6c2bf87c164e599d1c",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://innoavi.es/wp-content/uploads/2026/03/260331_DOGV_convo2026_es.pdf": {
+    "sha256": "7a49512d3832dadab35684ad2ab33e2579a475c7016646d8b2b12a93de7412d7",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://labora.gva.es/es/busque-ajudes-subvencions/ajudes-foment-de-l-ocupacio-2026": {
+    "sha256": "76bd818a8992e08720521139e7f927557cfbeeee00653e1d1bfd9e0e244e0148",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://labora.gva.es/es/ciutadania/busque-ocupacio/com-inscriuret/inscrpicio": {
+    "sha256": "61301372164eacbddb5052961a84da208aa20a7e215100c86d7ac17e57624760",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/Ayuda/25Presentacion/100/8_8_2_1.html": {
+    "sha256": "c6c60a845b5a3e0984de53732b3b9da90e0913b7f27ea08fd4a5cde47c04ed4d",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/calendario-contribuyente/calendario-contribuyente-2026/calendario-anual/abril/8-abril-hasta-30-junio.html": {
+    "sha256": "53685892c962e2c4f45e114df02338884d0caf8271af3fd4acc18d2bdda21a3d",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/cantidades-destinadas-custodia-no-ocasional-guarderias.html": {
+    "sha256": "4181b1840f5d34256f230624347a8faaf71dce46b0def3c1649d4804caa2941b",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-discapacidad-grado-igual-superior.html": {
+    "sha256": "210be1ff2f418fe05230706bf41c94b93bfa27bee33184121bb9a7d0b690c9e4",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/contribuyentes-dos-descendientes.html": {
+    "sha256": "2a4a7e8e1bd9b4e7fea6b706a5958e0d6b53b9fa8c4eb235cc5b08db0461a429",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/familia-numerosa-monoparental.html": {
+    "sha256": "e1137a592439fc5f9c1f4a84d99c2ecc10ad3e893fc8598511406f45bed2d33d",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/nacimiento-adopcion-delegacion-guarda-acogimiento-familiar.html": {
+    "sha256": "1f7a38505becef9ffdeaa2de0c08cb986063298b6b243cf6694c7998448fa1db",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/obras-conservacion-mejora-calidad-sostenibilidad___.html": {
+    "sha256": "2af9b2049cf7be0ce9cb962286d0d753c115b80420a7bcbc5faf60724b072226",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/primera-adquisicion-vivienda-habitual-igual-anos.html": {
+    "sha256": "3f6e16b55e911776bf5b56dbcdaf4f8ec2b9c97730aebed702f06dd2fafffac0",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-descendientes/concepto-requisitos-descendientes.html": {
+    "sha256": "71c42d43bedeecd4a9e6e06e85d429d3ef157443af1f9dfaebc778892cdbd5e5",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-descendientes/cuantias-aplicables.html": {
+    "sha256": "4e028383c46912ea93b31cf1586344c139b4413f1b87af754369f37c8a812b45",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c18-cuota-liquida-resultante-autoliquidacion/resultado-declaracion/deduccion-maternidad-incremento-adicional-gastos-custodia/deduccion-maternidad/cuantia-limite-deduccion.html": {
+    "sha256": "677de42a901718c6cc89cee3f0d1b9cdea29e9d2d1261789776c410d64e5c3aa",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/arrendamiento-pago-cesion-uso-vivienda-habitual.html": {
+    "sha256": "3a19c746e14821d3840dfc3f1f5f59e9d5656a6a181bc24c1513624922a93f7c",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025-deducciones-autonomicas/comunitat-valenciana/arrendamiento-vivienda-distinto-municipio.html": {
+    "sha256": "d1d7f5c74918c156f0dec22d070f06c1786d722451e71d3c0932b42b9e85fbce",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/detall-tramit?id_proc=G110949": {
+    "sha256": "f2d0579deaac7f5934f615b1b74ab32cd2bd0b17a57272cfbac2dc553f1438f0",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/detall-tramit?id_proc=G112223": {
+    "sha256": "d4de476abde32112d3c55894bf39e02a16d731ee45a1ec958348fd45fdc410cc",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/detall-tramit?id_proc=G265": {
+    "sha256": "b88a1714c2b02a5828a7875074128de5a4f659e6fbca0133a7ac0024caf3797b",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/detall-tramit?id_proc=G95885": {
+    "sha256": "f7251e55d0835a9b3e7fb67c709a1bf50e0a436b31a0b0f1c6861a49f457f3a1",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/en/detall-tramit?id_proc=1245": {
+    "sha256": "406468fbd77d3333f4857e16ccaba2fc53d32bd87a16efca1153c7f56e5d9e4e",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/en/detall-tramit?id_proc=17032": {
+    "sha256": "cb61283461ecd205ade205903b3ae2f7bf55e245e78fb1d89b063374f8b97a91",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/en/detall-tramit?id_proc=206": {
+    "sha256": "22cc6986f7996d144e82479c8f21a9dae4890f72a2f15c67cf2cabd49ef2be33",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/en/detall-tramit?id_proc=376": {
+    "sha256": "e390781a2f109ea24fa919fa3212def5f994b0e2ccecd8117ff37a5a30576b20",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/en/detall-tramit?id_proc=377": {
+    "sha256": "74c13280cc690a651ac05372504271dd4f0f4b4010eae6191c8fba8ba2df7259",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/es/detall-tramit?id_proc=22896": {
+    "sha256": "dbb56bdb2999c0cd8c3499e2e07253d42c1ad1105149639f46eec7fc473280b3",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/es/detall-tramit?id_proc=G1244": {
+    "sha256": "88a0e9c68cb08894b2ffaa1a5263d14be3c2bcd9937fc2948743e181e529bae7",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.gva.es/es/detall-tramit?id_proc=G3256": {
+    "sha256": "4aab3c4d541053abcc1d09813f86f19b18c0e67058c267427e10c26f56f56c79",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.mjusticia.gob.es/es/tramites/nacionalidad-espanola": {
+    "sha256": "93ebddae953bf9606e0d5f0f14463406553e895380fd6a3c1cfc0568b5580072",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.policia.gob.es/portalCiudadano/_es/tramites_extranjeria_tramite_certificadoregistro_ciudadanoue.php": {
+    "sha256": "31f448742006db806b444c4cc47ad9d186519a71d1ec589180bc10c4536498d4",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010209190": {
+    "sha256": "d0da3a891fa88edf979883fa89fb56200764c6352d54d3b538cedf86ed93ea31",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010454437": {
+    "sha256": "5789f2de535900a2cd7623fffad30808cde81ec4bcc4d9eec27a0f87d5eb55f8",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/descarga/doc/DOCUMENT_1_20260010704231": {
+    "sha256": "bfccab92e704208f4148f9a2cc1566e489c6cee7aeb2188e01b49d5a5e0605bd",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/AE.IE.245?lang=1": {
+    "sha256": "79b9458a3a36fce87077aac1fca9a0607d15f146dd43b145b7d29ed11adf57c9",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/BS.DI.25?lang=1": {
+    "sha256": "0d9d9cf596313b8308134ecb820c82f3d83466abd53af8a5b33a431c50b4a19f",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.10?lang=1": {
+    "sha256": "ae5d75420cff11d8b7fd89c1b440f0e4af30650c74da11978ce37b943252bd9c",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/BS.DP.30?lang=1": {
+    "sha256": "482b1c7b31d5d8fdd8438e6723df0953042dcf675c17f34052674f0d8338f736",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/HA.BI.15?lang=1": {
+    "sha256": "ae5049022314c7e4bb89ce1b4ea4584357a3245ee2423586dcf725d421a7bca1",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/HA.TA.15?lang=1": {
+    "sha256": "745896f55f9de03afaf514690c50833d788a2e777f2aef645637e13743d1e7ec",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/HA.VE.20?lang=1": {
+    "sha256": "4507ac2743cbe2985d4dd834025280425d84235231db1659fb604b7c5bb27155",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://sede.valencia.es/sede/registro/procedimiento/PA.GP.11?lang=1": {
+    "sha256": "0150d1c285a14e1b344e74a9d6497b666eb46db41aa155c7a29ff6269ff46cde",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://universidades.sede.gob.es/": {
+    "sha256": "3b0818ad6af962769975a5f922882fc2c77007ed47b4d245644534db5ea41d76",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://universidades.sede.gob.es/procedimientos/portada/ida/3513/idp/1030": {
+    "sha256": "7759ad9c791266c4b2938c19fdffb8845daf7f01bd15ba961c1f4c65de8eba97",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-formacion-doctores-doctoras-empresas-otras-20": {
+    "sha256": "7e679ae85b7a13c7cefd533cb78200efdf3a902c9cf4735dbd40b51ffc0736b6",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-juan-cierva-2026": {
+    "sha256": "36c789db535e956f0865371c0d81d97f3b900d047be26c83e1477a4da28eb889",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-ramon-cajal-ryc-2026": {
+    "sha256": "9d5867090fee2a7096b55d539bc443424e6890d14986bf96600f4f2612d15673",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/convocatorias/buscador-convocatorias/ayudas-contratos-torres-quevedo-ptq-2026": {
+    "sha256": "180f31050f082a896d51582b68344d08ec7427a6ac8851bb0d1c6e453d0ecd66",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/convocatorias/buscador-convocatorias/proyectos-generacion-conocimiento-actuaciones-formacion-9": {
+    "sha256": "e80c17100762acc3630f21face3e6e75f0cd3a7df0d277ddbf88fd19d4495041",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/en/announcements/announcements-finder/ayudas-formacion-profesorado-universitario-fpu-2026": {
+    "sha256": "351bbb78ebb227f829d328276e78773d863f5fa7f574b76cef0930ca578b2dee",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Convocatoria%20JDC%202026_firmada.pdf": {
+    "sha256": "3e21e240c9cffc687ee23763428a83472a9425dc21bb2fd7bff75b5fc94bd86c",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/Resoluci%C3%B3n%20convocatoria%20PTQ%202026_firmada_0.pdf": {
+    "sha256": "b7b1afe3105329e06eaddf295c3dc27cc32b6488b9162c8bf7af35070ee3ba9f",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/sites/default/files/convocatory_info/assistants/2026-09/convocatoria%20FPU%202026_firmada.pdf": {
+    "sha256": "c3e8df5279c3445cfbe2869a627bb74faf86d757a0f139f63ca46bbf7ece8fec",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/Resoluci%C3%B3n%20convocatoria%20DIN%202026_fda.pdf": {
+    "sha256": "365999384007f107b4a3b6a858144a480e4999096e806fd9baed1cab1bc602ae",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-09/convocatoria%20RYC%202026_.pdf": {
+    "sha256": "143e171e28287c681dafc2605049859ca7e45cd2fbde92a273d0a7ea546aabcf",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.aei.gob.es/sites/default/files/convocatory_info/file/2026-10/Convocatoria_ProyectosGeneraci%C3%B3nConocimiento_Predoc_2026_fda.pdf": {
+    "sha256": "28f1528804031f2fe4ac6fad5929cd50e3e2a4eb9a41d892297d2569102d0118",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-1889-4763": {
+    "sha256": "e52bc0d21578466377058068032075bfeca7f293a9a0fe7fd3ee6274c53e8c48",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2006-21990": {
+    "sha256": "6f607da24e3ba94f60da15be690c46d078b08af814d2d75be608a84b6efb2778",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11724": {
+    "sha256": "34b5d21360a65beec2affe7213ce2762845c5771577e7675d2d612c2d3dfc881",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2015-12047": {
+    "sha256": "0641e9eb23e4f75f0eca210345a37137036f815674357ddf3cf5c6da788249a2",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2021-21007": {
+    "sha256": "7f20c1f777a9479bcb0f66323a165bdbd58e080ac6564ea3dc12ff94fff39bdd",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2022-17045": {
+    "sha256": "39157e4a609df83cb5983516ff8ea6f10f2c6dc658af451b825abda10a96cd1d",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2024-24099": {
+    "sha256": "6627130b53c4cdc6786d270a93e3f981595a4d4840da149a0993a5becd0e1095",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/buscar/act.php?id=BOE-A-2026-9946": {
+    "sha256": "f686f5ed211a08ca89332d6b53c11adbd42bda53a61eecf2129c0382189c9a46",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-9799": {
+    "sha256": "203735f932cda50362ab4a391413d3738cb040d41e15a0a33c30c54d2475d141",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-21271": {
+    "sha256": "f08f9966a2d1f123102d56ff321d8b65b1bdc928636b640bf1678739f6c2d168",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.ciencia.gob.es/Convocatorias/2026/MovilidadFPU2026.html": {
+    "sha256": "70ece81fed6fe838963a234a2fc4493ff31c8104ef8467c33e0e142534580230",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.ciencia.gob.es/dam/jcr:13a7493e-be01-4992-90a4-0ea8bc4e8da6/Resolucion%20convocatoria%20ayudas%20complementarias.pdf": {
+    "sha256": "8141eaecd43e6e7c05ffeafc73ed52ea54a33fbeb2a03e6a2925de41187a2ca2",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/canjes-de-permisos-extranjeros/canje-de-permisos-de-otros-paises": {
+    "sha256": "18cb533aec65d9ec0dd02ee675e181b2f2a10c517bf94f3da8e24709f688cc42",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/index.html": {
+    "sha256": "465d230898e3b9090c8105e6c2a444bc180e9b545465fe75c050ce9572871897",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.isciii.es/documents/d/guest/report_aes_2026?download=true": {
+    "sha256": "8888607d32ef2e19d4addee79ca42d5f598baadc9bddd96c77f553fd445227b3",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.isciii.es/financiacion/aes/como-solicitar": {
+    "sha256": "e00147df1bdeafb9654eb38290fb7e0e98175a9cac66364000f190bc5783dbfb",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/como-solicitarlo.html": {
+    "sha256": "e118752e53b94dca0d32e7bae2da3e0749502fc33a75319d58ca97f1847e277a",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.miteco.gob.es/es/energia/pobreza-energetica/pe-001/requisitos.html": {
+    "sha256": "817d083642b2e590bb7f83df09b8e1a7c31c5a14798677a0f31f27ae07dcd844",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.san.gva.es/es/web/tarjeta-sanitaria/preguntas-frecuentes": {
+    "sha256": "0324448972508cf5aef0747718c7ed2d07a166047e52f371f3fc7221d76bd5fe",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/PrestacionesPensionesTrabajadores/65850d68-8d06-4645-bde7-05374ee42ac7": {
+    "sha256": "711041344be239f17baae121e98e5fbf7666a4e0fbf0e3413456db29ae3343ad",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.sepe.es/HomeSepe/encontrar-trabajo/Garantia-Juvenil.html": {
+    "sha256": "9cd956385efa7ee592b1961c43cfdb97e4d102ca84930f2ff1d633327d8c3e6b",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.sepe.es/HomeSepe/prestaciones-desempleo/prestacion-contributiva/prestacion-contributiva-mas-de-un-anyo.html": {
+    "sha256": "3b022269385cfc942339cbe8a691de450297215d2a3386d49b3472c774ab73d4",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-cotizaciones-insuficientes-he-trabajado-menos-de-un-anyo.html": {
+    "sha256": "d8df9a0a41d0ef5b478e2dc3d2949b989c3abe260a8b0301191ad4cfe29e8079",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.sepe.es/HomeSepe/prestaciones-desempleo/subsidio-desempleo/subsidio-de-emigrante-retornado.html": {
+    "sha256": "b765d61a7e52766cccfb3ee24d847e52a22c119395d2cdf0f135ea1c59415411",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  },
+  "https://www.valencia.es/es/-/emprende-y-concilia": {
+    "sha256": "dfd2f57aca21326b49737a04a6bb41c411370d3dd693bf04a7a33fb78089ec16",
+    "sellado_el": "2026-10-15",
+    "inestable": true
+  },
+  "https://youth.europa.eu/discovereu_es": {
+    "sha256": "7ef55b0b92ca7ca26e43cd7d4009323aaa6994284f5d4f5aa196814867bd25cd",
+    "sellado_el": "2026-10-15",
+    "inestable": false
+  }
+}

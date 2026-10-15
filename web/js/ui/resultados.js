@@ -9,6 +9,14 @@ const CLASE_ESTADO = { encaja: "estado-encaja", falta_dato: "estado-falta", no_e
 const SOLICITA = { empresa: "la empresa", universidad: "la universidad", director_tesis: "tu director o directora de tesis",
   otro: "otra entidad" };
 
+// La vigía (web/data/vigia.json, lotto L40): una scheda con aviso_publico mostra questa riga, sola e in evidenza.
+// Il testo passa dal dizionario inglese (web/js/i18n-dic.js), come gli altri testi fissi.
+export const AVISO_VIGIA = "Puede haber cambiado desde nuestra última revisión. Comprueba la fuente oficial antes de pedirla.";
+export function avisoVigia(vigia, id) {
+  const ficha = Array.isArray(vigia?.fichas) ? vigia.fichas.find((f) => f && f.id === id) : null;
+  return ficha && ficha.aviso_publico === true ? el("p", { class: "aviso-revisar", text: AVISO_VIGIA }) : null;
+}
+
 // Un link che riporta alla domanda: la pantalla viene messa in cima alla pila nel contesto.
 // Il campo passa da campoDeDomanda, così il link non punta a una pantalla che non si mostra.
 function enlaceDomanda(ctx, path) {
@@ -211,6 +219,7 @@ function tarjeta(ctx, f, c, ayudas, area, conArea) {
   return el("article", { class: `ficha ficha-compacta ${claseEstado}`, id: `ficha-${f.id}`, "data-id": f.id },
     cabecera,
     datos,
+    avisoVigia(ctx.vigia, f.id),
     preguntas,
     detalle);
 }

@@ -17,6 +17,9 @@ export const DIC = {
   "Revisa esta pregunta antes de seguir.": "Check this question before continuing.",
   "Mira el título de tu papel o tarjeta. Tres grupos: (1) ciudadanos de la UE, Noruega, Islandia, Liechtenstein o Suiza: tienen un certificado en papel (el «certificado verde», con tu NIE), no una tarjeta; (2) sus familiares que no son de esos países: tienen una tarjeta, la de «familiar de ciudadano de la Unión»; (3) el resto de extranjeros: tienen la TIE.":
     "Look at the title of your paper or card. Three groups: (1) citizens of the EU, Norway, Iceland, Liechtenstein or Switzerland: they have a paper certificate (the «green certificate», with your NIE), not a card; (2) their family members who are not from those countries: they have a card, the «family member of a citizen of the Union» card; (3) the rest of foreigners: they have the TIE.",
+  // --- Vigía: avviso di una scheda che potrebbe essere cambiata (lotto L40) ---
+  "Puede haber cambiado desde nuestra última revisión. Comprueba la fuente oficial antes de pedirla.":
+    "This may have changed since our last review. Check the official source before you apply.",
   // --- Risultati: chi presenta la domanda (SOLICITA) ---
   "La presenta la empresa.": "It is submitted by the company.",
   "La presenta la universidad.": "It is submitted by the university.",

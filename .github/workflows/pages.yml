@@ -12,6 +12,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  issues: write  # la vigía tiene una issue aperta con le schede da rivedere
 
 # un solo deploy alla volta; un deploy in corso non viene interrotto
 concurrency:
@@ -42,6 +43,19 @@ jobs:
       - name: Indice delle convocatorie
         continue-on-error: true
         run: python3 scripts/indice.py
+
+      # La vigía segnala le schede che potrebbero essere cambiate (senza IA). Legge l'indice appena
+      # generato e scrive web/data/vigia.json: non fallisce mai, e il sito funziona anche senza il file.
+      - name: Vigía delle schede
+        continue-on-error: true
+        run: python3 scripts/vigia.py
+
+      # Una sola issue aperta con le schede da rivedere. Se gh fallisce il build non si ferma.
+      - name: Issue della vigía
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/vigia.py --issues
 
       - name: Costruisci il catalogo
         run: python3 scripts/construir.py

@@ -18,13 +18,13 @@ const RENDER = {
 const ETIQUETA = { inicio: "Inicio", preguntas: "Preguntas", resultados: "Resultados", perfil: "Tu perfil",
   ayuda: "Ayuda humana", empleo: "Empleo" };
 
-const estado = { catalogo: null, usados: new Set(), perfil: {}, pila: [], aviso: "", seccion: null };
+const estado = { catalogo: null, vigia: null, usados: new Set(), perfil: {}, pila: [], aviso: "", seccion: null };
 
 const cargando = document.getElementById("cargando");
 
 function contexto() {
   return {
-    catalogo: estado.catalogo, usados: estado.usados, perfil: estado.perfil, pila: estado.pila,
+    catalogo: estado.catalogo, vigia: estado.vigia, usados: estado.usados, perfil: estado.perfil, pila: estado.pila,
     hoy: oggi(), aviso: estado.aviso, evaluar,
     aplicar, ir, irPregunta, empezar, cargarEjemplo, render,
   };
@@ -122,8 +122,21 @@ function cabecera(catalogo) {
   marca.textContent = nombre;
 }
 
+// La vigía (data/vigia.json, generato al build): se manca o non si legge, il sito funziona come prima.
+async function cargarVigia() {
+  try {
+    const res = await fetch(new URL("data/vigia.json", RAIZ));
+    if (!res.ok) return null;
+    const doc = await res.json();
+    return doc && Array.isArray(doc.fichas) ? doc : null;
+  } catch (e) {
+    return null;
+  }
+}
+
 async function arrancar() {
   await iniciarIdioma();
+  const vigiaPendiente = cargarVigia(); // in parallelo al catalogo: non ritarda la pagina
   try {
     const res = await fetch(new URL("data/catalogo.json", RAIZ));
     if (!res.ok) throw new Error(String(res.status));
@@ -132,6 +145,7 @@ async function arrancar() {
     cargando.textContent = "No se pudo cargar el catálogo. Recarga la página dentro de un rato.";
     return;
   }
+  estado.vigia = await vigiaPendiente;
   estado.usados = camposUsados(estado.catalogo);
   cabecera(estado.catalogo);
   cargando.remove();
